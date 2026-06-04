@@ -1,0 +1,131 @@
+:root {
+  --vp-c-brand-1: #2563eb;
+  --vp-c-brand-2: #3b82f6;
+  --vp-c-brand-3: #60a5fa;
+  --vp-c-brand-soft: rgba(37, 99, 235, 0.14);
+
+  --vp-c-tip-1: #10b981;
+  --vp-c-tip-2: #34d399;
+  --vp-c-tip-3: #6ee7b7;
+  --vp-c-tip-soft: rgba(16, 185, 129, 0.14);
+
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(135deg, #2563eb 30%, #7c3aed);
+  --vp-home-hero-image-background-image: linear-gradient(135deg, #2563eb 30%, #7c3aed);
+  --vp-home-hero-image-filter: blur(68px);
+}
+
+/* 课程卡片样式 */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.course-card {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  text-decoration: none !important;
+  display: block;
+}
+
+.course-card:hover {
+  border-color: var(--vp-c-brand-2);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.12);
+}
+
+.course-card .course-code {
+  font-size: 0.8rem;
+  color: var(--vp-c-text-2);
+  margin-bottom: 0.25rem;
+}
+
+.course-card .course-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  margin-bottom: 0.5rem;
+}
+
+.course-card .course-meta {
+  font-size: 0.85rem;
+  color: var(--vp-c-text-3);
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.course-card .course-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: var(--vp-c-bg-soft);
+  padding: 0.15rem 0.6rem;
+  border-radius: 6px;
+}
+
+/* 学期标签 */
+.semester-badge {
+  display: inline-block;
+  padding: 0.2rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.badge-required { background: #fef2f2; color: #dc2626; }
+.badge-elective { background: #eff6ff; color: #2563eb; }
+.badge-common { background: #f0fdf4; color: #16a34a; }
+
+/* ta说卡片 */
+.ta-card {
+  border-left: 3px solid var(--vp-c-brand-2);
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  background: var(--vp-c-bg-soft);
+  border-radius: 0 10px 10px 0;
+}
+
+.ta-card .ta-score {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--vp-c-brand-1);
+}
+
+.ta-card .ta-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.ta-card .ta-quote {
+  font-size: 0.9rem;
+  color: var(--vp-c-text-2);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+/* Hero 自定义 */
+.VPHero .name {
+  font-size: 2.2rem !important;
+}
+
+.VPHero .text {
+  font-size: 1.2rem !important;
+  max-width: 600px !important;
+}
+
+/* 课程页面内区块样式 */
+.course-section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.course-section h3 {
+  color: var(--vp-c-brand-1);
+  margin-bottom: 0.75rem;
+}

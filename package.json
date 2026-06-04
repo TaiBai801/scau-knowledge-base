@@ -1,0 +1,15 @@
+{
+  "name": "scau-knowledge-base",
+  "version": "1.0.0",
+  "description": "四川农业大学机电学院专业知识库",
+  "scripts": {
+    "dev": "node node_modules/vitepress/bin/vitepress.js dev",
+    "build": "node node_modules/vitepress/bin/vitepress.js build",
+    "preview": "node node_modules/vitepress/bin/vitepress.js preview",
+    "sync": "node sync.mjs --dry",
+    "deploy": "node sync.mjs --build"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.0"
+  }
+}

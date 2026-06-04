@@ -1,0 +1,33 @@
+{
+  "spaceId": "epXJHgEtpIjo",
+  "spaceUrl": "https://docs.qq.com/space/DZXBYSkhnRXRwSWpv",
+  "major": "电子科学与技术",
+  "courses": {
+    "common": [
+      { "slug": "math-a1", "name": "高等数学A（上）", "semester": "大一上", "credit": "5", "docId": null },
+      { "slug": "math-a2", "name": "高等数学A（下）", "semester": "大一下", "credit": "5", "docId": null },
+      { "slug": "physics-a1", "name": "大学物理A（上）", "semester": "大一下", "credit": "4", "docId": null },
+      { "slug": "english-1", "name": "大学英语I", "semester": "大一上", "credit": "3", "docId": null },
+      { "slug": "english-2", "name": "大学英语II", "semester": "大一下", "credit": "3", "docId": null },
+      { "slug": "sixiangdaode", "name": "思想道德与法治", "semester": "大一上", "credit": "3", "docId": null }
+    ],
+    "semester1-1": [
+      { "slug": "c-language", "name": "程序设计基础（C语言）", "credit": "3", "docId": null },
+      { "slug": "tuxue", "name": "工程图学基础", "credit": "2.5", "docId": null }
+    ],
+    "semester1-2": [
+      { "slug": "dianlu-yuanli", "name": "电路原理", "credit": "3.5", "docId": "eRbMofgecDpE", "docType": "word" }
+    ],
+    "semester2-1": [
+      { "slug": "xinhaoyuxt", "name": "信号与系统", "credit": "4", "docId": "eCcozxMoTccX", "docType": "word" },
+      { "slug": "modian", "name": "模拟电子技术", "credit": "4", "docId": null },
+      { "slug": "shudian", "name": "数字电子技术", "credit": "4", "docId": null },
+      { "slug": "fubian", "name": "复变函数与积分变换", "credit": "3", "docId": null }
+    ],
+    "semester2-2": [
+      { "slug": "danpianji", "name": "单片机原理与接口技术", "credit": "4", "docId": null },
+      { "slug": "diancichang", "name": "电磁场与电磁波", "credit": "3", "docId": null },
+      { "slug": "chuanganqi", "name": "传感器与检测技术", "credit": "3", "docId": null }
+    ]
+  }
+}
