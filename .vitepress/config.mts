@@ -73,10 +73,6 @@ export default defineConfig({
     docFooter: { prev: '上一页', next: '下一页' },
     outline: { label: '本页目录', level: [2, 3] },
     lastUpdated: false,
-    editLink: {
-      pattern: 'https://github.com/TaiBai801/scau-knowledge-base/edit/main/:path',
-      text: '在 GitHub 上编辑此页',
-    },
   },
 
   ignoreDeadLinks: true,
