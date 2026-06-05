@@ -8,13 +8,13 @@
 |------|----------|------|----------|
 | 1 | [大学生劳动教育（实践II）](/majors/nongyejixiehua/courses/大学生劳动教育-实践ii-) | 0.5 | <span class="badge-required semester-badge">必修</span> |
 | 2 | [大学生心理健康与职业发展IV](/majors/nongyejixiehua/courses/大学生心理健康与职业发展iv) | 0.5 | <span class="badge-required semester-badge">必修</span> |
-| 3 | [工程测试技术](/majors/nongyejixiehua/courses/engineering-testing) | 3.0 | <span class="badge-required semester-badge">必修</span> |
-| 4 | [互换性与测量技术](/majors/nongyejixiehua/courses/interchangeability) | 2.0 | <span class="badge-required semester-badge">必修</span> |
-| 5 | [机械设计](/majors/nongyejixiehua/courses/mechanical-design) | 4.0 | <span class="badge-required semester-badge">必修</span> |
-| 6 | [汽车拖拉机学](/majors/nongyejixiehua/courses/auto-tractor) | 3.5 | <span class="badge-required semester-badge">必修</span> |
+| 3 | [工程测试技术](/majors/nongyejixiehua/courses/test) | 3.0 | <span class="badge-required semester-badge">必修</span> |
+| 4 | [互换性与测量技术](/majors/nongyejixiehua/courses/swap) | 2.0 | <span class="badge-required semester-badge">必修</span> |
+| 5 | [机械设计](/majors/nongyejixiehua/courses/mdesign) | 4.0 | <span class="badge-required semester-badge">必修</span> |
+| 6 | [汽车拖拉机学](/majors/nongyejixiehua/courses/tractor) | 3.5 | <span class="badge-required semester-badge">必修</span> |
 | 7 | [形势与政策V](/majors/nongyejixiehua/courses/形势与政策v) | 0.5 | <span class="badge-required semester-badge">必修</span> |
-| 8 | [机械设计教学实习](/majors/nongyejixiehua/courses/mech-design-practice) | 1.0 | <span class="badge-elective semester-badge">实践教学</span> |
-| 9 | [汽车与拖拉机学教学实习](/majors/nongyejixiehua/courses/auto-tractor-practice) | 1.0 | <span class="badge-elective semester-badge">实践教学</span> |
-| 10 | [电子电路设计与仿真](/majors/nongyejixiehua/courses/circuit-design-sim) | 2.5 | <span class="badge-core semester-badge">专业方向课</span> |
-| 11 | [电子电路设计与仿真实验](/majors/nongyejixiehua/courses/circuit-design-sim-lab) | 1.0 | <span class="badge-core semester-badge">专业方向课</span> |
-| 12 | [现代机械设计方法](/majors/nongyejixiehua/courses/modern-mech-design) | 3.0 | <span class="badge-core semester-badge">专业方向课</span> |
+| 8 | [机械设计教学实习](/majors/nongyejixiehua/courses/机械设计教学实习) | 1.0 | <span class="badge-elective semester-badge">实践教学</span> |
+| 9 | [汽车与拖拉机学教学实习](/majors/nongyejixiehua/courses/汽车与拖拉机学教学实习) | 1.0 | <span class="badge-elective semester-badge">实践教学</span> |
+| 10 | [电子电路设计与仿真](/majors/nongyejixiehua/courses/ecds) | 2.5 | <span class="badge-core semester-badge">专业方向课</span> |
+| 11 | [电子电路设计与仿真实验](/majors/nongyejixiehua/courses/ecds-lab) | 1.0 | <span class="badge-core semester-badge">专业方向课</span> |
+| 12 | [现代机械设计方法](/majors/nongyejixiehua/courses/modern) | 3.0 | <span class="badge-core semester-badge">专业方向课</span> |

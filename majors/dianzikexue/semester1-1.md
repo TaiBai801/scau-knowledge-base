@@ -6,8 +6,8 @@
 
 | 序号 | 课程名称 | 学分 | 课程性质 |
 |------|----------|------|----------|
-| 1 | [C语言程序设计](/majors/dianzikexue/courses/c-language) | 2.5 | <span class="badge-required semester-badge">必修</span> |
-| 2 | [C语言程序设计实验](/majors/dianzikexue/courses/c-language-lab) | 1.5 | <span class="badge-required semester-badge">必修</span> |
+| 1 | [C语言程序设计](/majors/dianzikexue/courses/c) | 2.5 | <span class="badge-required semester-badge">必修</span> |
+| 2 | [C语言程序设计实验](/majors/dianzikexue/courses/c-lab) | 1.5 | <span class="badge-required semester-badge">必修</span> |
 | 3 | [大学生心理健康与职业发展II](/majors/dianzikexue/courses/大学生心理健康与职业发展ii) | 0.5 | <span class="badge-required semester-badge">必修</span> |
 | 4 | [大学体育I](/majors/dianzikexue/courses/大学体育i) | 1.0 | <span class="badge-required semester-badge">必修</span> |
 | 5 | [大学英语A I](/majors/dianzikexue/courses/english-a1) | 4.0 | <span class="badge-required semester-badge">必修</span> |

@@ -10,8 +10,8 @@
 | 2 | [大学物理B](/majors/dianzikexue/courses/physics-b) | 3.0 | <span class="badge-required semester-badge">必修</span> |
 | 3 | [大学物理实验B](/majors/dianzikexue/courses/physics-b-lab) | 1.0 | <span class="badge-required semester-badge">必修</span> |
 | 4 | [大学英语A II](/majors/dianzikexue/courses/english-a2) | 4.0 | <span class="badge-required semester-badge">必修</span> |
-| 5 | [概率论与数理统计B](/majors/dianzikexue/courses/prob-stat) | 4.0 | <span class="badge-required semester-badge">必修</span> |
+| 5 | [概率论与数理统计B](/majors/dianzikexue/courses/prob) | 4.0 | <span class="badge-required semester-badge">必修</span> |
 | 6 | [高等数学A II](/majors/dianzikexue/courses/math-a2) | 5.0 | <span class="badge-required semester-badge">必修</span> |
 | 7 | [人工智能](/majors/dianzikexue/courses/ai-intro) | 1.0 | <span class="badge-required semester-badge">必修</span> |
-| 8 | [线性代数](/majors/dianzikexue/courses/linear-algebra) | 2.0 | <span class="badge-required semester-badge">必修</span> |
+| 8 | [线性代数](/majors/dianzikexue/courses/linalg) | 2.0 | <span class="badge-required semester-badge">必修</span> |
 | 9 | [形势与政策II](/majors/dianzikexue/courses/形势与政策ii) | 0.5 | <span class="badge-required semester-badge">必修</span> |
