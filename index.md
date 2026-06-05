@@ -42,15 +42,15 @@ features:
 
 <div class="hero-stats">
   <div class="hero-stat">
-    <div class="stat-num">16</div>
+    <div class="stat-num">196</div>
     <div class="stat-label">收录课程</div>
   </div>
   <div class="hero-stat">
-    <div class="stat-num">8</div>
-    <div class="stat-label">学期覆盖</div>
+    <div class="stat-num">3</div>
+    <div class="stat-label">覆盖专业</div>
   </div>
   <div class="hero-stat">
-    <div class="stat-num">2</div>
+    <div class="stat-num">4</div>
     <div class="stat-label">学长分享</div>
   </div>
   <div class="hero-stat">
