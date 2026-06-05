@@ -1,0 +1,12 @@
+{
+  "name": "机电学院知识库",
+  "short_name": "机电知识库",
+  "description": "四川农业大学机电学院专业课程资源共享平台",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

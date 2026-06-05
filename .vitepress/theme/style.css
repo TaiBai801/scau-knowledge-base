@@ -1,131 +1,317 @@
+/* ══════════════════════════════════════════════
+   机电学院知识库 — 全局主题
+   ══════════════════════════════════════════════ */
+
+/* ── 浅色主题 ── */
 :root {
+  /* 品牌色系 */
   --vp-c-brand-1: #2563eb;
   --vp-c-brand-2: #3b82f6;
   --vp-c-brand-3: #60a5fa;
-  --vp-c-brand-soft: rgba(37, 99, 235, 0.14);
+  --vp-c-brand-soft: rgba(37,99,235,0.14);
 
+  /* 辅色 */
+  --vp-c-accent-1: #f59e0b;
+  --vp-c-accent-2: #fbbf24;
+  --vp-c-accent-soft: rgba(245,158,11,0.14);
+
+  /* 功能色 */
   --vp-c-tip-1: #10b981;
   --vp-c-tip-2: #34d399;
   --vp-c-tip-3: #6ee7b7;
-  --vp-c-tip-soft: rgba(16, 185, 129, 0.14);
+  --vp-c-tip-soft: rgba(16,185,129,0.14);
 
+  --vp-c-warning-1: #f59e0b;
+  --vp-c-warning-2: #fbbf24;
+  --vp-c-warning-soft: rgba(245,158,11,0.14);
+
+  /* Hero */
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: linear-gradient(135deg, #2563eb 30%, #7c3aed);
   --vp-home-hero-image-background-image: linear-gradient(135deg, #2563eb 30%, #7c3aed);
   --vp-home-hero-image-filter: blur(68px);
+
+  /* 圆角 */
+  --card-radius: 12px;
+  --badge-radius: 20px;
 }
 
-/* 课程卡片样式 */
+/* ── 暗黑主题 ── */
+.dark {
+  --vp-home-hero-name-background: linear-gradient(135deg, #60a5fa 30%, #a78bfa);
+  --vp-home-hero-image-background-image: linear-gradient(135deg, #2563eb 30%, #7c3aed);
+  --vp-home-hero-image-filter: blur(56px);
+}
+
+/* ══════════════════════════════════════════════
+   Hero 区域
+   ══════════════════════════════════════════════ */
+.VPHero .name { font-size: 2.4rem !important; font-weight: 800 !important; }
+.VPHero .text { font-size: 1.15rem !important; max-width: 600px !important; line-height: 1.7 !important; }
+
+/* Hero 数据条 */
+.hero-stats {
+  display: flex; gap: 1.5rem; justify-content: center;
+  margin-top: 2.5rem; flex-wrap: wrap;
+}
+.hero-stat {
+  text-align: center; background: var(--vp-c-bg-soft);
+  border-radius: var(--card-radius); padding: 1rem 1.5rem;
+  min-width: 120px; border: 1px solid var(--vp-c-divider);
+}
+.hero-stat .stat-num { font-size: 1.6rem; font-weight: 800; color: var(--vp-c-brand-1); }
+.hero-stat .stat-label { font-size: 0.8rem; color: var(--vp-c-text-2); margin-top: 0.25rem; }
+
+/* ══════════════════════════════════════════════
+   导航增强
+   ══════════════════════════════════════════════ */
+
+/* 面包屑 */
+.breadcrumb { font-size: 0.82rem; color: var(--vp-c-text-2); padding: 0.5rem 0; }
+.breadcrumb a { color: var(--vp-c-brand-1); text-decoration: none; }
+.breadcrumb span { margin: 0 0.35rem; }
+
+/* ══════════════════════════════════════════════
+   课程卡片
+   ══════════════════════════════════════════════ */
 .course-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.25rem;
-  margin-top: 1.5rem;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+  gap: 1.25rem; margin-top: 1.5rem;
 }
-
 .course-card {
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
-  padding: 1.25rem 1.5rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  text-decoration: none !important;
-  display: block;
+  border: 1px solid var(--vp-c-divider); border-radius: var(--card-radius);
+  padding: 1.25rem 1.5rem; transition: all 0.2s; text-decoration: none !important;
+  display: flex; flex-direction: column; gap: 0.5rem; position: relative;
 }
-
 .course-card:hover {
-  border-color: var(--vp-c-brand-2);
-  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.12);
+  border-color: var(--vp-c-brand-2); box-shadow: 0 6px 20px rgba(37,99,235,0.15);
+  transform: translateY(-2px);
 }
 
-.course-card .course-code {
-  font-size: 0.8rem;
-  color: var(--vp-c-text-2);
-  margin-bottom: 0.25rem;
+/* 课程状态点 */
+.course-card .course-status {
+  position: absolute; top: 1rem; right: 1rem;
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.course-status.ready { background: #10b981; box-shadow: 0 0 6px rgba(16,185,129,0.4); }
+.course-status.collecting { background: #f59e0b; box-shadow: 0 0 6px rgba(245,158,11,0.4); }
+.course-status.pending { background: #9ca3af; }
+
+/* 课程首字母图标 */
+.course-icon {
+  width: 42px; height: 42px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 1.1rem; color: #fff; flex-shrink: 0;
 }
 
-.course-card .course-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--vp-c-text-1);
-  margin-bottom: 0.5rem;
-}
-
+.course-card .course-code { font-size: 0.8rem; color: var(--vp-c-text-2); }
+.course-card .course-title { font-size: 1.1rem; font-weight: 600; color: var(--vp-c-text-1); }
 .course-card .course-meta {
-  font-size: 0.85rem;
-  color: var(--vp-c-text-3);
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+  font-size: 0.82rem; color: var(--vp-c-text-3); display: flex; gap: 0.5rem; flex-wrap: wrap;
 }
-
 .course-card .course-meta span {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  background: var(--vp-c-bg-soft);
-  padding: 0.15rem 0.6rem;
-  border-radius: 6px;
+  display: inline-flex; align-items: center; gap: 0.2rem;
+  background: var(--vp-c-bg-soft); padding: 0.15rem 0.6rem; border-radius: 6px;
 }
 
-/* 学期标签 */
+/* 课程进度条 */
+.course-progress {
+  height: 4px; background: var(--vp-c-divider); border-radius: 2px; overflow: hidden; margin-top: 0.25rem;
+}
+.course-progress .course-progress-fill {
+  height: 100%; border-radius: 2px; background: var(--vp-c-brand-1); transition: width 0.5s;
+}
+.course-progress-text { font-size: 0.75rem; color: var(--vp-c-text-3); margin-top: 0.2rem; }
+
+/* ══════════════════════════════════════════════
+   标签系统
+   ══════════════════════════════════════════════ */
 .semester-badge {
-  display: inline-block;
-  padding: 0.2rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 500;
+  display: inline-block; padding: 0.2rem 0.75rem; border-radius: var(--badge-radius);
+  font-size: 0.8rem; font-weight: 500;
 }
-
 .badge-required { background: #fef2f2; color: #dc2626; }
+.dark .badge-required { background: #7f1d1d33; color: #fca5a5; }
 .badge-elective { background: #eff6ff; color: #2563eb; }
+.dark .badge-elective { background: #1e3a5f33; color: #93c5fd; }
 .badge-common { background: #f0fdf4; color: #16a34a; }
+.dark .badge-common { background: #14532d33; color: #86efac; }
+.badge-core { background: #fefce8; color: #ca8a04; }
+.dark .badge-core { background: #713f1233; color: #fde047; }
 
-/* ta说卡片 */
+/* ══════════════════════════════════════════════
+   ta 说卡片
+   ══════════════════════════════════════════════ */
 .ta-card {
-  border-left: 3px solid var(--vp-c-brand-2);
-  padding: 1rem 1.25rem;
-  margin: 1rem 0;
-  background: var(--vp-c-bg-soft);
-  border-radius: 0 10px 10px 0;
+  border-left: 3px solid var(--vp-c-brand-2); padding: 1.25rem;
+  margin: 1.25rem 0; background: var(--vp-c-bg-soft);
+  border-radius: 0 12px 12px 0; position: relative;
 }
-
+.ta-card .ta-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+.ta-card .ta-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--vp-c-brand-2), var(--vp-c-brand-1));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: 700; font-size: 1rem; flex-shrink: 0;
+}
 .ta-card .ta-score {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--vp-c-brand-1);
+  font-size: 1.5rem; font-weight: 800; color: var(--vp-c-brand-1);
+  margin-left: auto;
 }
-
-.ta-card .ta-name {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--vp-c-text-1);
-}
-
+.ta-card .ta-name { font-size: 1rem; font-weight: 600; color: var(--vp-c-text-1); }
+.ta-card .ta-grade { font-size: 0.82rem; color: var(--vp-c-text-3); }
 .ta-card .ta-quote {
-  font-size: 0.9rem;
-  color: var(--vp-c-text-2);
-  margin-top: 0.5rem;
-  font-style: italic;
+  font-size: 0.92rem; color: var(--vp-c-text-2); margin: 0.75rem 0;
+  padding-left: 0.75rem; border-left: 2px solid var(--vp-c-divider); font-style: italic;
+}
+.ta-card .ta-section { margin-top: 0.6rem; }
+.ta-card .ta-section strong { color: var(--vp-c-brand-1); }
+
+/* ══════════════════════════════════════════════
+   课程元信息面板
+   ══════════════════════════════════════════════ */
+.course-meta-panel {
+  background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-divider);
+  border-radius: var(--card-radius); padding: 1.25rem 1.5rem;
+  margin: 1rem 0 2rem;
+}
+.course-meta-panel .meta-title {
+  font-size: 1.4rem; font-weight: 700; color: var(--vp-c-text-1); margin-bottom: 0.5rem;
+}
+.course-meta-panel .meta-row {
+  display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; font-size: 0.88rem;
+  color: var(--vp-c-text-2); margin-bottom: 0.75rem;
+}
+.course-meta-panel .meta-row span { display: inline-flex; align-items: center; gap: 0.25rem; }
+.course-meta-panel .meta-stats {
+  display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.5rem;
+}
+.course-meta-panel .meta-stat {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  background: var(--vp-c-bg); padding: 0.3rem 0.75rem; border-radius: 8px;
+  font-size: 0.82rem; color: var(--vp-c-text-2);
 }
 
-/* Hero 自定义 */
-.VPHero .name {
-  font-size: 2.2rem !important;
+/* ══════════════════════════════════════════════
+   课程地图页
+   ══════════════════════════════════════════════ */
+.course-tree {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 0.9rem; line-height: 1.8; padding: 1rem;
+  background: var(--vp-c-bg-soft); border-radius: var(--card-radius); overflow-x: auto;
+}
+.course-tree .tree-node { white-space: pre; }
+.course-tree a { text-decoration: none; font-weight: 500; }
+.course-tree .status-dot {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin: 0 4px;
+}
+.course-tree .status-dot.ready { background: #10b981; }
+.course-tree .status-dot.collecting { background: #f59e0b; }
+.course-tree .status-dot.pending { background: #9ca3af; }
+
+/* 可视化地图 */
+.visual-map {
+  display: flex; flex-direction: column; gap: 0;
+  padding: 1.5rem; background: var(--vp-c-bg-soft); border-radius: var(--card-radius);
+  overflow-x: auto;
+}
+.visual-map .map-row { display: flex; align-items: center; gap: 0; }
+.visual-map .map-label {
+  width: 120px; flex-shrink: 0; font-size: 0.85rem; font-weight: 600;
+  color: var(--vp-c-text-1); padding: 0.6rem 0.75rem;
+}
+.visual-map .map-node {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.4rem 0.75rem; margin: 0.15rem 0.25rem;
+  border-radius: 8px; text-decoration: none; font-size: 0.85rem;
+  border: 1px solid var(--vp-c-divider); white-space: nowrap;
+  transition: all 0.15s;
+}
+.visual-map .map-node:hover { border-color: var(--vp-c-brand-2); transform: translateY(-1px); }
+.visual-map .map-node .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+/* ══════════════════════════════════════════════
+   贡献者墙
+   ══════════════════════════════════════════════ */
+.contributors-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  gap: 1rem; margin-top: 1.5rem;
+}
+.contributor-card {
+  border: 1px solid var(--vp-c-divider); border-radius: var(--card-radius);
+  padding: 1.25rem; text-align: center; transition: all 0.2s;
+}
+.contributor-card:hover { border-color: var(--vp-c-brand-2); transform: translateY(-2px); }
+.contributor-card .c-avatar {
+  width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 0.75rem;
+  background: linear-gradient(135deg, var(--vp-c-brand-2), var(--vp-c-brand-1));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: 700; font-size: 1.3rem;
+}
+.contributor-card .c-name { font-weight: 600; color: var(--vp-c-text-1); }
+.contributor-card .c-courses { font-size: 0.82rem; color: var(--vp-c-text-3); margin-top: 0.25rem; }
+
+/* ══════════════════════════════════════════════
+   404 品牌页
+   ══════════════════════════════════════════════ */
+.not-found-page { text-align: center; padding: 4rem 1rem; }
+.not-found-page .nf-emoji { font-size: 4rem; margin-bottom: 1rem; }
+.not-found-page .nf-title { font-size: 1.5rem; font-weight: 700; color: var(--vp-c-text-1); }
+.not-found-page .nf-subtitle { font-size: 1rem; color: var(--vp-c-text-2); margin: 0.5rem 0 1.5rem; }
+.not-found-page .nf-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+.not-found-page .nf-btn {
+  display: inline-block; padding: 0.6rem 1.5rem; border-radius: 8px;
+  font-weight: 500; text-decoration: none; border: 1px solid var(--vp-c-divider);
+  color: var(--vp-c-text-1); transition: all 0.15s;
+}
+.not-found-page .nf-btn:hover { border-color: var(--vp-c-brand-2); color: var(--vp-c-brand-1); }
+.not-found-page .nf-btn.primary {
+  background: var(--vp-c-brand-1); color: #fff; border-color: var(--vp-c-brand-1);
 }
 
-.VPHero .text {
-  font-size: 1.2rem !important;
-  max-width: 600px !important;
+/* ══════════════════════════════════════════════
+   搜索增强
+   ══════════════════════════════════════════════ */
+.search-hot { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+.search-hot a {
+  font-size: 0.8rem; padding: 0.25rem 0.75rem; border-radius: var(--badge-radius);
+  background: var(--vp-c-bg-soft); color: var(--vp-c-text-2); text-decoration: none;
+  border: 1px solid var(--vp-c-divider);
+}
+.search-hot a:hover { border-color: var(--vp-c-brand-2); color: var(--vp-c-brand-1); }
+
+/* ══════════════════════════════════════════════
+   响应式
+   ══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .VPHero .name { font-size: 1.6rem !important; }
+  .VPHero .text { font-size: 0.95rem !important; }
+  .hero-stats { gap: 0.75rem; }
+  .hero-stat { min-width: 80px; padding: 0.75rem 1rem; }
+  .hero-stat .stat-num { font-size: 1.2rem; }
+  .course-grid { grid-template-columns: 1fr; }
+  .visual-map { overflow-x: scroll; }
+  .visual-map .map-label { width: 80px; font-size: 0.75rem; }
+  .contributors-grid { grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); }
 }
 
-/* 课程页面内区块样式 */
-.course-section {
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--vp-c-divider);
+/* ══════════════════════════════════════════════
+   工具类
+   ══════════════════════════════════════════════ */
+.mt-0 { margin-top: 0 !important; }
+.mt-1 { margin-top: 0.5rem !important; }
+.mt-2 { margin-top: 1rem !important; }
+.text-center { text-align: center; }
+.flex-gap { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }
 
-.course-section h3 {
-  color: var(--vp-c-brand-1);
-  margin-bottom: 0.75rem;
+/* 打印样式 */
+@media print {
+  .VPNav, .VPSidebar, .VPLocalNav, .VPFooter, .DocSearch, .breadcrumb,
+  .edit-link, .prev-next, .outline-marker { display: none !important; }
+  .VPContent { padding-top: 0 !important; }
+  .content-container { max-width: 100% !important; }
 }

@@ -13,6 +13,9 @@ hero:
       text: 进入知识库
       link: /majors/dianzikexue/
     - theme: alt
+      text: 浏览课程地图
+      link: /map
+    - theme: alt
       text: 关于本站
       link: /about
 
@@ -28,7 +31,7 @@ features:
     details: 高分学长学姐的真实经验和学习方法，比绩点更有参考价值。
   - icon: 🔍
     title: 全文搜索
-    details: 搜课程名、搜知识点、搜老师名，快速定位你需要的内容。
+    details: 搜课程名、搜知识点、搜老师名，搜「ta 说」经验，快速定位。
   - icon: 👥
     title: 全院共建
     details: 每门课由多人协作维护，资料持续更新，毕业了学弟学妹还能看到你的贡献。
@@ -36,3 +39,22 @@ features:
     title: 手机友好
     details: 课间用手机就能查资料，不挑设备不挑网。
 ---
+
+<div class="hero-stats">
+  <div class="hero-stat">
+    <div class="stat-num">16</div>
+    <div class="stat-label">收录课程</div>
+  </div>
+  <div class="hero-stat">
+    <div class="stat-num">8</div>
+    <div class="stat-label">学期覆盖</div>
+  </div>
+  <div class="hero-stat">
+    <div class="stat-num">2</div>
+    <div class="stat-label">学长分享</div>
+  </div>
+  <div class="hero-stat">
+    <div class="stat-num">∞</div>
+    <div class="stat-label">全院共建</div>
+  </div>
+</div>
