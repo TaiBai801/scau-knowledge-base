@@ -42,11 +42,11 @@ features:
 
 <div class="hero-stats">
   <div class="hero-stat">
-    <div class="stat-num">196</div>
+    <div class="stat-num">346</div>
     <div class="stat-label">收录课程</div>
   </div>
   <div class="hero-stat">
-    <div class="stat-num">3</div>
+    <div class="stat-num">4</div>
     <div class="stat-label">覆盖专业</div>
   </div>
   <div class="hero-stat">
@@ -57,4 +57,14 @@ features:
     <div class="stat-num">∞</div>
     <div class="stat-label">全院共建</div>
   </div>
+</div>
+
+<div class="search-hot" style="justify-content:center;margin-top:1rem;">
+  <span style="color:var(--vp-c-text-2);font-size:0.82rem;">热门搜索：</span>
+  <a href="/majors/dianzikexue/courses/c">C语言</a>
+  <a href="/majors/dianzikexue/courses/circuit">电路分析</a>
+  <a href="/majors/dianzikexue/courses/signal">信号与系统</a>
+  <a href="/majors/dianzikexue/courses/control">自动控制</a>
+  <a href="/majors/nongyejixiehua/courses/drawing">机械制图</a>
+  <a href="/majors/nongyejixiehua/courses/tractor">汽车拖拉机</a>
 </div>
