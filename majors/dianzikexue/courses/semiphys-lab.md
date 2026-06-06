@@ -4,8 +4,10 @@
 <span class="badge-required semester-badge">必修</span>
 <span>**1.0 学分**</span>
 
----
 
+<a href="/majors/dianzikexue/semester2-2" class="back-link">← 返回大二下学期课程列表</a>
+
+---
 ## ① 课程介绍
 
 | 项目 | 内容 |
@@ -38,3 +40,6 @@
 </div>
 
 > 📩 联系管理员参与共建。
+
+> 🔄 本页内容同步自 [腾讯文档编辑后台](https://docs.qq.com/space/DZXBYSkhnRXRwSWpv)
+> 📩 想要分享你的学习经验？联系管理员。

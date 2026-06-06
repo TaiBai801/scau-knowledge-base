@@ -6,37 +6,9 @@
 
 ## 核心贡献者
 
-<div class="contributors-grid">
+<div class="contributors-grid" style="text-align:center;padding:2rem 0;">
 
-<div class="contributor-card">
-  <div class="c-avatar">邱</div>
-  <div class="c-name">邱柯文</div>
-  <div class="c-courses">项目发起人 · 技术维护 · 电路原理</div>
-</div>
-
-<div class="contributor-card">
-  <div class="c-avatar">李</div>
-  <div class="c-name">李同学</div>
-  <div class="c-courses">电路原理 ta 说 · 资料整理</div>
-</div>
-
-<div class="contributor-card">
-  <div class="c-avatar">王</div>
-  <div class="c-name">王同学</div>
-  <div class="c-courses">电路原理 ta 说</div>
-</div>
-
-<div class="contributor-card">
-  <div class="c-avatar">张</div>
-  <div class="c-name">张同学</div>
-  <div class="c-courses">信号与系统 ta 说 · 习题整理</div>
-</div>
-
-<div class="contributor-card">
-  <div class="c-avatar">刘</div>
-  <div class="c-name">刘同学</div>
-  <div class="c-courses">信号与系统 ta 说</div>
-</div>
+暂无贡献者。期待你的加入！
 
 </div>
 

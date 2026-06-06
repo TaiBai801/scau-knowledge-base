@@ -50,7 +50,7 @@
 
 ## 📞 联系方式
 
-- 📧 邮箱：2286318767@qq.com
+- 📧 邮箱：<ClientOnly><span class="email-obfuscate" data-user="2286318767" data-host="qq.com"><a href="mailto:2286318767@qq.com">2286318767@qq.com</a></span></ClientOnly>
 - 🏫 四川农业大学机电学院
 
 想要加入编辑团队？直接联系管理员申请权限。
