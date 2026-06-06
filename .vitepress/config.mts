@@ -81,7 +81,7 @@ export default defineConfig({
     };})(),
     search:{provider:'local',options:{translations:{button:{buttonText:'搜索课程',buttonAriaLabel:'搜索课程'},modal:{displayDetails:'显示详情',noResultsText:'未找到',footer:{selectText:'选择',closeText:'关闭'},resetButtonTitle:'清除',backButtonTitle:'关闭'}}}},
     footer:{},
-    docFooter:{prev:'上一页',next:'下一页'},outline:{label:'本页目录',level:[2,3]},lastUpdated:{text:'最近更新'},
+    docFooter:{prev:'上一页',next:'下一页'},outline:{label:'本页目录',level:[2,3]},lastUpdated:false,
   },
   ignoreDeadLinks:true,
 })
