@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>知识库管理后台</title>
+<style>
+:root{--brand:#0D5C5A;--bg:#F7F5F0;--card:#fff;--line:#E8E4DB;--text:#4A5568;--red:#dc2626;--green:#059669}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:var(--brand);color:#fff;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;position:sticky;top:0;z-index:100}
+header h1{font-size:1.2rem;font-weight:600}
+header a{color:#b2d9d6;font-size:0.85rem;text-decoration:none}
+header a:hover{color:#fff}
+main{max-width:1200px;margin:0 auto;padding:2rem}
+.toolbar{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem}
+.toolbar select,.toolbar input,.toolbar button{padding:0.4rem 0.75rem;border:1px solid var(--line);border-radius:6px;font-size:0.85rem;background:var(--card)}
+.btn{padding:0.5rem 1rem;border:1px solid var(--brand);border-radius:6px;font-size:0.85rem;cursor:pointer;background:var(--brand);color:#fff;transition:all .15s}
+.btn:hover{opacity:.9}
+.btn-outline{background:var(--card);color:var(--brand)}
+.btn-outline:hover{background:var(--brand);color:#fff}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+th{background:var(--brand);color:#fff;padding:0.6rem 0.75rem;font-size:0.8rem;text-align:left;position:sticky;top:0}
+td{padding:0.5rem 0.75rem;font-size:0.82rem;border-bottom:1px solid var(--line)}
+tr:hover{background:#f0faf8}
+.badge{display:inline-block;padding:0.15rem 0.5rem;border-radius:10px;font-size:0.7rem;font-weight:500}
+.badge-required{background:#fef2f2;color:var(--red)}
+.badge-core{background:#fffbeb;color:#D97706}
+.badge-elective{background:#f0fdf4;color:var(--green)}
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);z-index:200;justify-content:center;align-items:center}
+.modal-overlay.active{display:flex}
+.modal{background:var(--card);border-radius:12px;width:90%;max-width:700px;max-height:85vh;overflow-y:auto;padding:2rem;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.modal h2{font-size:1.2rem;margin-bottom:1rem;color:var(--brand)}
+.modal label{display:block;font-size:0.82rem;font-weight:600;margin:0.75rem 0 0.25rem;color:var(--text)}
+.modal input,.modal textarea{width:100%;padding:0.5rem 0.75rem;border:1px solid var(--line);border-radius:6px;font-size:0.85rem;font-family:inherit}
+.modal textarea{min-height:80px;resize:vertical}
+.modal .actions{display:flex;gap:0.5rem;margin-top:1.5rem;justify-content:flex-end}
+.empty-state{text-align:center;padding:3rem;color:#94a3b8}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0.75rem;margin-bottom:1.5rem}
+.stat-card{background:var(--card);padding:1rem;border-radius:10px;text-align:center;border:1px solid var(--line)}
+.stat-card .num{font-size:1.8rem;font-weight:700;color:var(--brand)}
+.stat-card .label{font-size:0.75rem;color:#94a3b8;margin-top:0.25rem}
+.row-count{font-size:0.8rem;color:#94a3b8;margin-bottom:0.5rem}
+@media(max-width:768px){main{padding:1rem}th,td{font-size:0.72rem;padding:0.4rem 0.5rem}.modal{padding:1.25rem}}
+</style>
+</head>
+<body>
+<header>
+  <h1>⚙️ 知识库管理后台</h1>
+  <a href="/">← 回站点</a>
+  <a href="/课程任务分配表.xlsx">📥 下载任务分配表</a>
+</header>
+<main>
+  <div class="stats" id="stats"></div>
+
+  <div class="toolbar">
+    <select id="filterMajor"><option value="">全部专业</option></select>
+    <select id="filterSemester"><option value="">全部学期</option></select>
+    <select id="filterStatus"><option value="">全部状态</option><option value="no">待编辑</option><option value="yes">已编辑</option></select>
+    <input id="filterSearch" placeholder="搜索课程名...">
+    <button class="btn" onclick="exportAll()">📥 导出全部md</button>
+  </div>
+
+  <div class="row-count" id="rowCount"></div>
+  <div style="overflow-x:auto">
+    <table id="courseTable"><thead><tr><th>专业</th><th>学期</th><th>课程名称</th><th>学分</th><th>性质</th><th>路径</th><th>状态</th><th>操作</th></tr></thead><tbody></tbody></table>
+  </div>
+</main>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h2 id="modalTitle">编辑课程</h2>
+    <div id="modalBody"></div>
+    <div class="actions">
+      <button class="btn btn-outline" onclick="closeModal()">取消</button>
+      <button class="btn" onclick="downloadMd()">📥 下载 .md 文件</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let courses=[];
+const FIELDS=[
+  {key:'intro',label:'① 课程介绍',hint:'该课程资料正在整理中，敬请期待！'},
+  {key:'materials',label:'② 课程资料',hint:'资料收集中。'},
+  {key:'exercises',label:'③ 练习题',hint:'整理中。'},
+  {key:'resources',label:'④ 推荐资源',hint:'待老师推荐。'},
+  {key:'tashuo',label:'⑤ 优秀学长「ta 说」',hint:'招募中'},
+];
+
+async function init(){
+  const res=await fetch('/course_metadata.txt');
+  const text=await res.text();
+  const lines=text.trim().split('\n');
+  lines.shift();
+  courses=lines.map(l=>{
+    const p=l.split('|');
+    return {major:p[0],semester:p[1],name:p[2],credits:p[3],type:p[4],path:p[5],filled:p[6]==='yes'};
+  });
+  renderStats();
+  renderFilters();
+  renderTable();
+}
+
+function renderStats(){
+  const m={};
+  courses.forEach(c=>{if(!m[c.major])m[c.major]={total:0,filled:0};m[c.major].total++;if(c.filled)m[c.major].filled++});
+  let h='';
+  for(const [k,v] of Object.entries(m)){
+    h+=`<div class="stat-card"><div class="num">${v.filled}/${v.total}</div><div class="label">${k}</div></div>`;
+  }
+  document.getElementById('stats').innerHTML=h;
+}
+
+function renderFilters(){
+  const majors=[...new Set(courses.map(c=>c.major))];
+  const semesters=[...new Set(courses.map(c=>c.semester))];
+  document.getElementById('filterMajor').innerHTML+='<option value="">全部专业</option>'+majors.map(m=>`<option>${m}</option>`).join('');
+  document.getElementById('filterSemester').innerHTML+='<option value="">全部学期</option>'+semesters.map(s=>`<option>${s}</option>`).join('');
+  ['filterMajor','filterSemester','filterStatus','filterSearch'].forEach(id=>{
+    document.getElementById(id).addEventListener('input',renderTable);
+    document.getElementById(id).addEventListener('change',renderTable);
+  });
+}
+
+function renderTable(){
+  const fm=document.getElementById('filterMajor').value;
+  const fs=document.getElementById('filterSemester').value;
+  const fst=document.getElementById('filterStatus').value;
+  const fq=document.getElementById('filterSearch').value.toLowerCase();
+  const filtered=courses.filter(c=>
+    (!fm||c.major===fm)&&(!fs||c.semester===fs)&&
+    (!fst||(fst==='yes'?c.filled:!c.filled))&&
+    (!fq||c.name.toLowerCase().includes(fq))
+  );
+  document.getElementById('rowCount').textContent=`显示 ${filtered.length} / ${courses.length} 门课程`;
+  const tbody=document.querySelector('#courseTable tbody');
+  tbody.innerHTML=filtered.map(c=>`
+    <tr>
+      <td>${c.major}</td><td>${c.semester}</td><td>${c.name}</td>
+      <td style="text-align:center">${c.credits}</td>
+      <td><span class="badge badge-${c.type==='必修'?'required':c.type==='专业方向课'?'core':'elective'}">${c.type}</span></td>
+      <td style="font-size:0.75rem;color:#94a3b8">${c.path}</td>
+      <td>${c.filled?'<span class="badge" style="background:#f0fdf4;color:#059669">已编辑</span>':'<span class="badge" style="background:#fef2f2;color:#dc2626">待编辑</span>'}</td>
+      <td><button class="btn btn-outline" style="font-size:0.75rem;padding:0.25rem 0.5rem" onclick="editCourse('${escapeHtml(c.name)}','${escapeHtml(c.path)}','${escapeHtml(c.type)}','${escapeHtml(c.credits)}','${escapeHtml(c.semester)}')">编辑</button></td>
+    </tr>`).join('');
+}
+
+function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function unescapeHtml(s){return s.replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>');}
+
+function editCourse(name,path,type,credits,semester){
+  name=unescapeHtml(name);path=unescapeHtml(path);type=unescapeHtml(type);
+  credits=unescapeHtml(credits);semester=unescapeHtml(semester);
+
+  document.getElementById('modalTitle').textContent='编辑：'+name;
+  let h='';
+  h+=`<p style="font-size:0.8rem;color:#94a3b8;margin-bottom:0.5rem">${path} · ${credits}学分 · ${type} · ${semester}</p>`;
+  FIELDS.forEach(f=>{
+    h+=`<label>${f.label}</label>`;
+    h+=`<textarea id="field_${f.key}" placeholder="${f.hint}"></textarea>`;
+  });
+  document.getElementById('modalBody').innerHTML=h;
+  // Store course ref
+  document.getElementById('modal').setAttribute('data-name',name);
+  document.getElementById('modal').setAttribute('data-path',path);
+  document.getElementById('modal').setAttribute('data-type',type);
+  document.getElementById('modal').setAttribute('data-credits',credits);
+  document.getElementById('modal').setAttribute('data-semester',semester);
+  document.getElementById('modal').parentElement.classList.add('active');
+}
+
+function closeModal(){document.getElementById('modal').parentElement.classList.remove('active');}
+
+function downloadMd(){
+  const modal=document.getElementById('modal');
+  const name=modal.getAttribute('data-name');
+  const path=modal.getAttribute('data-path');
+  const type=modal.getAttribute('data-type');
+  const credits=modal.getAttribute('data-credits');
+
+  let md=`# ${name}\n\n`;
+  if(type==='必修')md+=`<span class="badge-required semester-badge">必修</span>\n`;
+  else if(type==='专业方向课')md+=`<span class="badge-core semester-badge">专业方向课</span>\n`;
+  else md+=`<span class="badge-elective semester-badge">实践教学</span>\n`;
+  md+=`<span>**${credits} 学分**</span>\n\n`;
+
+  // Determine parent link
+  const parts=path.split('/');
+  let backLink='';
+  if(path.includes('/shared/')){
+    backLink=`<a href="javascript:history.back()" class="back-link">← 返回</a>\n\n`;
+  }else{
+    // Extract semester from path pattern
+    const majorPart=parts[2];
+    const filePart=parts[parts.length-1].replace('.md','');
+    backLink=`<a href="/majors/${majorPart}/semesterX" class="back-link">← 返回课程列表</a>\n\n`;
+  }
+  md+=backLink;
+  md+=`---\n\n`;
+
+  FIELDS.forEach(f=>{
+    const val=document.getElementById('field_'+f.key)?.value.trim()||f.hint;
+    md+=`## ${f.label}\n\n${val}\n\n`;
+  });
+
+  const blob=new Blob([md],{type:'text/markdown'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download=path.split('/').pop()||(name+'.md');
+  a.click();
+  URL.revokeObjectURL(url);
+  closeModal();
+}
+
+function exportAll(){
+  alert(`全量导出功能：将 ${courses.length} 门课程批量生成为 zip 包。\n\n提示：在命令行运行以下脚本即可：\n\npython export_all.py`);
+}
+
+document.getElementById('modal').parentElement.addEventListener('click',function(e){if(e.target===this)closeModal();});
+init();
+</script>
+</body>
+</html>
