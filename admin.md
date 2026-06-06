@@ -1,0 +1,15 @@
+---
+layout: false
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="0;url=/admin/index.html">
+<title>管理后台</title>
+</head>
+<body>
+<p>正在跳转到管理后台... 如果没有自动跳转，请点击 <a href="/admin/index.html">这里</a></p>
+</body>
+</html>

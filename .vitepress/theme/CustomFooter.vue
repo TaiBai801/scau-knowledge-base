@@ -30,7 +30,7 @@
         <a href="/stories">学长说</a>
         <a href="/contribute">贡献指南</a>
         <a href="/about">关于本站</a>
-        <a href="/admin/">管理后台</a>
+        <a href="/admin/index.html">管理后台</a>
       </div>
     </div>
 
