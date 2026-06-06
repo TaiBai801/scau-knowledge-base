@@ -323,9 +323,57 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   from { opacity: 0; } to { opacity: 1; }
 }
 
-/* ── VPNavScreen（移动端顶部下拉菜单）— 完全隐藏，用侧边栏替代 ── */
+/* ── VPNavScreen（移动端菜单面板）— 样式优化，修复黑屏问题 ── */
 .VPNavScreen {
-  display: none !important;
+  z-index: 40 !important;
+  background: var(--bg-card) !important;
+  border-bottom: 1px solid var(--line) !important;
+  max-height: calc(100vh - var(--vp-nav-height)) !important;
+  max-height: calc(100dvh - var(--vp-nav-height)) !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18) !important;
+  transition: opacity 0.25s ease, transform 0.25s ease !important;
+}
+/* 暗色模式 */
+.dark .VPNavScreen { background: #1a1d23 !important; border-bottom-color: #333842 !important; }
+
+/* VPNavScreen 内菜单项触摸增强 */
+.VPNavScreen a,
+.VPNavScreen button,
+.VPNavScreen .VPNavScreenMenuLink,
+.VPNavScreen .VPLink {
+  min-height: 44px; display: flex; align-items: center;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  font-size: 1rem !important;
+  padding: 0.5rem 1.5rem !important;
+}
+
+/* VPNavScreen 菜单链接样式 */
+.VPNavScreen .VPNavScreenMenuLink,
+.VPNavScreen .VPLink {
+  color: var(--text-heading) !important;
+  text-decoration: none !important;
+}
+.VPNavScreen .VPNavScreenMenuLink:hover,
+.VPNavScreen .VPLink:hover {
+  color: var(--brand) !important;
+  background: var(--brand-pale) !important;
+}
+.VPNavScreen .VPNavScreenMenuLink.active {
+  color: var(--brand) !important; font-weight: 600 !important;
+}
+/* 暗色模式菜单链接 */
+.dark .VPNavScreen .VPNavScreenMenuLink,
+.dark .VPNavScreen .VPLink { color: #e2e4e9 !important; }
+.dark .VPNavScreen .VPNavScreenMenuLink:hover,
+.dark .VPNavScreen .VPLink:hover { color: #5EEAD4 !important; background: rgba(94,234,212,0.1) !important; }
+.dark .VPNavScreen .VPNavScreenMenuLink.active { color: #5EEAD4 !important; }
+
+/* 底部安全区 */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .VPNavScreen { padding-bottom: env(safe-area-inset-bottom) !important; }
 }
 
 /* ── 侧边栏（替代 VPNavScreen 作为移动菜单） ── */
@@ -538,7 +586,6 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
 .dark .VPSidebar { background: #1a1d23 !important; border-right-color: #333842 !important; }
 .dark .VPSidebarItem .text { color: #b0b5c0; }
 .dark .VPSidebarItem.is-active > .item > .link > .text { color: #5EEAD4; }
-.dark .VPNavScreen { display: none !important; }
 .dark blockquote { background: rgba(94,234,212,0.08); border-left-color: #5EEAD4; }
 .dark .vp-doc thead th { background: rgba(13,92,90,0.25); border-bottom-color: #5EEAD4 !important; }
 .dark .vp-doc table { border-color: #333842; }
