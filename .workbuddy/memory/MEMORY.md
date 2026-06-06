@@ -23,3 +23,11 @@
 - 13项 UI 优化 + 14项前端优化（无障碍/性能/响应式/代码质量）
 - 85个课程页 onclick → back-link 批量替换
 - TOC 不遮挡 Footer 修复（z-index + padding-bottom）
+
+## VitePress 移动端菜单
+- 移动端（<960px）汉堡菜单走 **VPNavScreen**（顶部下拉面板），非 VPSidebar（桌面侧边栏）
+- VPNavScreen 和 VPSidebar 是两套独立组件，JS 按断点自动切换
+- 黑屏问题 = VPNavScreen 默认透明背景 → 需显式设置 `background` + 自定义样式
+- 汉堡菜单修复方向：给 VPNavScreen 穿 Ardot 皮肤（不要隐藏它）
+- 菜单项触控：`min-height: 44px` + `touch-action: manipulation`
+- 遮罩 VPOverlay：`z-index: 35`，VPNavScreen：`z-index: 40`

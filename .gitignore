@@ -7,3 +7,5 @@ node_modules/
 stdout.txt
 stderr.txt
 build-output.txt
+create_*.py
+insert_templates.py

@@ -57,6 +57,7 @@ tr:hover{background:#f0faf8}
 
 <script>
 let courses=[];
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 
 async function init(){
   const res=await fetch('/course_metadata.txt');
@@ -74,15 +75,15 @@ function renderStats(){
   const m={};
   courses.forEach(c=>{if(!m[c.major])m[c.major]=0;m[c.major]++});
   document.getElementById('stats').innerHTML=Object.entries(m).map(([k,v])=>
-    `<div class="stat-card"><div class="num">${v}</div><div class="label">${k}</div></div>`
+    `<div class="stat-card"><div class="num">${v}</div><div class="label">${esc(k)}</div></div>`
   ).join('');
 }
 
 function renderFilters(){
   const majors=[...new Set(courses.map(c=>c.major))];
   const semesters=[...new Set(courses.map(c=>c.semester))];
-  document.getElementById('filterMajor').innerHTML='<option value="">全部专业</option>'+majors.map(m=>`<option>${m}</option>`).join('');
-  document.getElementById('filterSemester').innerHTML='<option value="">全部学期</option>'+semesters.map(s=>`<option>${s}</option>`).join('');
+  document.getElementById('filterMajor').innerHTML='<option value="">全部专业</option>'+majors.map(m=>`<option>${esc(m)}</option>`).join('');
+  document.getElementById('filterSemester').innerHTML='<option value="">全部学期</option>'+semesters.map(s=>`<option>${esc(s)}</option>`).join('');
   ['filterMajor','filterSemester','filterSearch'].forEach(id=>{
     document.getElementById(id).addEventListener('input',renderTable);
     document.getElementById(id).addEventListener('change',renderTable);
@@ -98,15 +99,18 @@ function renderTable(){
     (!fq||c.name.toLowerCase().includes(fq))
   );
   document.getElementById('rowCount').textContent=`${filtered.length} / ${courses.length} 门课程`;
-  document.querySelector('#courseTable tbody').innerHTML=filtered.map(c=>{
+  const tbody=document.querySelector('#courseTable tbody');
+  tbody.innerHTML='';
+  filtered.forEach(c=>{
+    const tr=document.createElement('tr');
     const params=new URLSearchParams({name:c.name,path:c.path,credits:c.credits,type:c.type,major:c.major,semester:c.semester});
-    return `<tr>
-      <td>${c.major}</td><td>${c.semester}</td><td>${c.name}</td>
-      <td style="text-align:center">${c.credits}</td>
-      <td><span class="badge badge-${c.type==='必修'?'required':c.type==='专业方向课'?'core':'elective'}">${c.type}</span></td>
-      <td><a class="btn btn-sm" href="/admin/edit.html?${params}">✏️ 编辑</a></td>
-    </tr>`;
-  }).join('');
+    const tb=esc(c.type==='必修'?'required':c.type==='专业方向课'?'core':'elective');
+    tr.innerHTML=`<td>${esc(c.major)}</td><td>${esc(c.semester)}</td><td>${esc(c.name)}</td>
+      <td style="text-align:center">${esc(c.credits)}</td>
+      <td><span class="badge badge-${tb}">${esc(c.type)}</span></td>
+      <td><a class="btn btn-sm" href="/admin/edit.html?${params}">编辑</a></td>`;
+    tbody.appendChild(tr);
+  });
 }
 
 init();

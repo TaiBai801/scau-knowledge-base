@@ -728,10 +728,3 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   table { border-collapse: collapse; }
   th, td { border: 1px solid #999; padding: 4pt; }
 }
-
-/* ── 超宽屏约束 ── */
-/* 首页：Hero + Features 居中约束 */
-@media (min-width: 1200px) {
-  .VPContent.is-home .VPHero .container { max-width: 960px; margin: 0 auto; }
-  .VPContent.is-home .VPFeatures .container { max-width: 1100px; margin: 0 auto; }
-}

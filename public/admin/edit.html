@@ -80,6 +80,7 @@ main{max-width:800px;margin:2rem auto;padding:0 1rem}
 <div class="toast" id="toast"></div>
 
 <script>
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 const params=new URLSearchParams(location.search);
 const coursePath=params.get('path')||'';
 const courseName=params.get('name')||'';
@@ -89,13 +90,12 @@ const courseMajor=params.get('major')||'';
 const courseSemester=params.get('semester')||'';
 
 document.getElementById('courseTitle').textContent='编辑：'+courseName;
-document.getElementById('courseMeta').innerHTML=`
-  <span>📘 ${courseMajor}</span>
-  <span>📅 ${courseSemester}</span>
-  <span>🎓 ${courseCredits}学分</span>
-  <span>${courseType}</span>
-  <span style="font-size:0.75rem;color:#94a3b8">${coursePath}</span>
-`;
+const meta=document.getElementById('courseMeta');
+meta.innerHTML='';
+['📘 '+courseMajor,'📅 '+courseSemester,'🎓 '+courseCredits+'学分',courseType,coursePath].forEach(t=>{
+  const s=document.createElement('span'); s.textContent=t; meta.appendChild(s);
+});
+if(coursePath) meta.lastChild.style='font-size:0.75rem;color:#94a3b8';
 
 async function loadContent(){
   if(!coursePath) return;
