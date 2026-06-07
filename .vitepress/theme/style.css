@@ -119,7 +119,13 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   box-shadow: var(--shadow-sm);
 }
 /* 隐藏 VitePress 默认的本地导航栏（避免首页空白） */
-.VPLocalNav { display: none !important; }
+.VPLocalNav,
+.VPLocalNavOutline,
+.local-nav { display: none !important; }
+/* 导航栏下的分隔条也隐藏 */
+.divider-line,
+.nav-bar + hr,
+.VPNavBar + div[style] { display: none !important; }
 .VPNavBar .title { font-family: var(--font-display); color: var(--brand); }
 .VPNavBar .logo { height: 36px; }
 
@@ -134,31 +140,22 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   border-radius: 8px !important;
   border: 1px solid var(--line) !important;
 }
+.DocSearch-Button-Placeholder { font-size: 0.85rem !important; }
+.DocSearch-Button-Key {
+  font-size: 0.75rem !important;
+  border-radius: 4px !important;
+}
 
 /* ── Hero ── */
-/* Hero 所有层级统一背景色（不含 .clip，避免覆盖品牌渐变色文字） */
-.VPContent.is-home,
-.VPHero,
-.VPHero .container,
-.VPHero .main,
-.VPHero .image-container,
-.VPHome,
-.VPHomeHero {
-  background-color: var(--bg-warm) !important;
-  background: var(--bg-warm) !important;
-}
-/* 导航栏下 80px 呼吸区 */
+/* 仅通过 CSS 变量覆盖背景，留白 VitePress 默认布局 */
 .VPHero {
+  background: var(--bg-warm) !important;
   padding-top: 80px !important;
 }
-.VPHero .container { background: var(--bg-warm) !important; overflow: visible !important; }
+.VPHero .container { background: transparent !important; overflow: visible !important; }
 .VPHero .main { overflow: visible !important; }
-.VPHero .clip { overflow: visible !important; }
-.VPHero .image-container { 
-  background: var(--bg-warm) !important;
-  transform: scale(1.05); overflow: visible !important;
-}
-.VPHero .image-container .image-src { max-width: 100%; height: auto; }
+.VPHero .name .clip { overflow: visible !important; }
+.VPHero .image-container { transform: scale(1.05); overflow: visible !important; }
 .VPHero .image-bg {
   background: var(--brand-glow) !important;
   filter: blur(64px) !important;
@@ -691,8 +688,7 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
 /* ── 响应式 ── */
 /* 小屏手机 <768px */
 @media (max-width: 767px) {
-  .VPHero { padding: 0 0 2rem !important; overflow: hidden !important; }
-  .VPHero .container { overflow: hidden !important; }
+  .VPHero { padding: 0 0 2rem !important; }
   .VPHero .name { font-size: 1.8rem !important; }
   .VPHero .text { font-size: 0.9rem !important; }
   .VPHero .tagline { font-size: 0.82rem !important; }
