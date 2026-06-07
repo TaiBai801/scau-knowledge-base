@@ -465,8 +465,12 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
 }
 
 /* ── 布局修复 ── */
-/* 首页：导航栏 + 100px 呼吸区，防止 Hero 被遮挡 */
-.VPContent.is-home { padding-top: calc(var(--vp-nav-height) + 100px) !important; }
+/* 首页：导航栏 + 小呼吸区 */
+.VPContent.is-home { padding-top: var(--vp-nav-height) !important; }
+/* 桌面端稍宽松 */
+@media (min-width: 960px) {
+  .VPContent.is-home { padding-top: calc(var(--vp-nav-height) + 24px) !important; }
+}
 /* 内容页：仅导航栏高度即可 */
 .VPContent:not(.is-home) { padding-top: var(--vp-nav-height) !important; }
 /* 内容居中：最大宽度 + 水平居中 */
