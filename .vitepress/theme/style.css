@@ -150,6 +150,7 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
 .VPHero {
   background: var(--bg-warm) !important;
   padding-top: 240px !important;
+  margin-top: 0 !important;
 }
 .VPHero .container { background: transparent !important; }
 .VPHero .image-container {
