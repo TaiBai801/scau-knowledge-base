@@ -1,5 +1,24 @@
 # 知识库每日构建部署 — 执行记录
 
+## 2026-06-06
+
+**结果：构建成功，部署成功** ✅
+
+### 构建
+- 命令：`node node_modules/vitepress/bin/vitepress.js build`
+- 状态：✅ 成功 (vitepress v1.6.4, 25.53s)
+- 构建产物：`.vitepress/dist/` (716 files)
+
+### 部署
+- 目标：CloudStudio sandbox `6f92c87784b6436fbe8dcdef4a5291ec`
+- 状态：✅ 成功
+- 地址：https://6f92c87784b6436fbe8dcdef4a5291ec.app.codebuddy.work
+- 工具：`workbuddy_cloudstudio_deploy` 在 automation 环境下可用
+
+### 备注
+- 相较昨天(06-05)部署失败，本次部署成功，`workbuddy_cloudstudio_deploy` 内置工具已可正常调用
+- 站点已验证可访问
+
 ## 2026-06-05
 
 **结果：构建成功，部署失败**
