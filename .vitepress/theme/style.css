@@ -147,15 +147,22 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
 }
 
 /* ── Hero ── */
-/* 仅通过 CSS 变量覆盖背景，留白 VitePress 默认布局 */
 .VPHero {
   background: var(--bg-warm) !important;
-  padding-top: 80px !important;
+  padding-top: 200px !important;
 }
-.VPHero .container { background: transparent !important; overflow: visible !important; }
-.VPHero .main { overflow: visible !important; }
-.VPHero .name .clip { overflow: visible !important; }
-.VPHero .image-container { transform: scale(1.05); overflow: visible !important; }
+.VPHero .container { background: transparent !important; }
+.VPHero .image-container {
+  overflow: visible !important;
+  border-radius: 28px !important;
+  clip-path: none !important;
+}
+.VPHero .image-container .image-src,
+.VPHero .image-container img {
+  border-radius: 28px !important;
+  clip-path: none !important;
+  max-width: 100%; height: auto;
+}
 .VPHero .image-bg {
   background: var(--brand-glow) !important;
   filter: blur(64px) !important;
