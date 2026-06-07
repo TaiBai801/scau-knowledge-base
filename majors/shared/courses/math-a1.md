@@ -27,10 +27,10 @@
 
 | 文件名 | 格式 | 下载 |
 |--------|------|------|
-| 高等数学AI试题（2） | DOC | [下载](/files/高数/math-AI-exam-2.doc) |
-| 高等数学B1模拟题1及答案 | DOC | [下载](/files/高数/math-B1-mock-1.doc) |
-| 清华大学高数第二次阶段测试试卷 | PDF | [下载](/files/高数/tsinghua-math-test.pdf) |
-| 高等数学A上复习资料 | PDF | [下载](/files/高数/math-A-review.pdf) |
+| 高等数学AI试题（2） | DOC | [下载](/files/math/math-AI-exam-2.doc) |
+| 高等数学B1模拟题1及答案 | DOC | [下载](/files/math/math-B1-mock-1.doc) |
+| 清华大学高数第二次阶段测试试卷 | PDF | [下载](/files/math/tsinghua-math-test.pdf) |
+| 高等数学A上复习资料 | PDF | [下载](/files/math/math-A-review.pdf) |
 
 > 📩 有更多资料？欢迎投稿。
 

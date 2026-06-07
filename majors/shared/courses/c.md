@@ -25,11 +25,11 @@
 
 | 文件名 | 格式 | 下载 |
 |--------|------|------|
-| C语言机考复习题（2018-12） | PDF | [下载](/files/c语言/C-exam-review-2018-12.pdf) |
-| C语言机考复习题 | DOC | [下载](/files/c语言/C-exam-1.doc) |
-| C语言机考复习题（2012-12） | DOC | [下载](/files/c语言/C-exam-2012-12.doc) |
-| C语言机考复习题（附详解） | DOCX | [下载](/files/c语言/C-exam-detailed.docx) |
-| C语言机考复习题答案（2016-11） | DOC | [下载](/files/c语言/C-exam-answers-2016-11.doc) |
+| C语言机考复习题（2018-12） | PDF | [下载](/files/c-lang/C-exam-review-2018-12.pdf) |
+| C语言机考复习题 | DOC | [下载](/files/c-lang/C-exam-1.doc) |
+| C语言机考复习题（2012-12） | DOC | [下载](/files/c-lang/C-exam-2012-12.doc) |
+| C语言机考复习题（附详解） | DOCX | [下载](/files/c-lang/C-exam-detailed.docx) |
+| C语言机考复习题答案（2016-11） | DOC | [下载](/files/c-lang/C-exam-answers-2016-11.doc) |
 
 > 📩 有更多资料？欢迎投稿。
 

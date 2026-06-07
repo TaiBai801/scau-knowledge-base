@@ -25,7 +25,7 @@
 
 | 文件名 | 格式 | 下载 |
 |--------|------|------|
-| 英语期末考试单选和翻译复习 | DOC | [下载](/files/英语/english-final-review.doc) |
+| 英语期末考试单选和翻译复习 | DOC | [下载](/files/english/english-final-review.doc) |
 
 > 📩 有更多资料？欢迎投稿。
 

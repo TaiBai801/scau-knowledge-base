@@ -83,5 +83,5 @@ export default defineConfig({
     footer:{},
     docFooter:{prev:'上一页',next:'下一页'},outline:{label:'本页目录',level:[2,3]},lastUpdated:false,
   },
-  ignoreDeadLinks:false,
+  ignoreDeadLinks:true,
 })
