@@ -136,16 +136,21 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
 }
 
 /* ── Hero ── */
+/* Hero 所有层级统一背景色 */
+.VPContent.is-home,
 .VPHero,
+.VPHero .container,
+.VPHero .main,
+.VPHero .image-container,
+.VPHero .clip,
 .VPHome,
-.VPHomeHero,
-.VPHomeContent {
+.VPHomeHero {
+  background-color: var(--bg-warm) !important;
   background: var(--bg-warm) !important;
 }
+/* 导航栏下 80px 呼吸区 */
 .VPHero {
-  padding: 32px 0 3rem !important;
-  overflow: visible !important;
-  margin-top: 0 !important;
+  padding-top: 80px !important;
 }
 .VPHero .container { background: var(--bg-warm) !important; overflow: visible !important; }
 .VPHero .main { overflow: visible !important; }
@@ -481,12 +486,8 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
 }
 
 /* ── 布局修复 ── */
-/* 首页：导航栏 + 小呼吸区 */
-.VPContent.is-home { padding-top: var(--vp-nav-height) !important; }
-/* 桌面端稍宽松 */
-@media (min-width: 960px) {
-  .VPContent.is-home { padding-top: calc(var(--vp-nav-height) + 24px) !important; }
-}
+/* 首页：VitePress VPHero 自有负 margin padding 避让导航，免额外 padding */
+.VPContent.is-home { padding-top: 0 !important; }
 /* 内容页：仅导航栏高度即可 */
 .VPContent:not(.is-home) { padding-top: var(--vp-nav-height) !important; }
 /* 内容居中：最大宽度 + 水平居中 */
