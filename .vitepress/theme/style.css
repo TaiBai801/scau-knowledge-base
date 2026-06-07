@@ -328,8 +328,8 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
 
 /* ══ 全尺寸可收展侧边栏 + 汉堡菜单（优化版） ══ */
 
-/* ── 汉堡菜单按钮 ── */
-@media screen {
+/* ── 汉堡菜单：仅 <960px 显示，桌面让 VitePress 原生导航栏处理 ── */
+@media screen and (max-width: 959px) {
   .VPNavBarHamburger { display: flex !important; }
 }
 .VPNavBarHamburger {
@@ -356,7 +356,10 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   from { opacity: 0; } to { opacity: 1; }
 }
 
-/* ── VPNavScreen（移动端菜单面板）— 宽度约束 + 防溢出 ── */
+/* ── VPNavScreen（移动端菜单面板）— 仅 <960px 显示 ── */
+@media screen and (min-width: 960px) {
+  .VPNavScreen { display: none !important; }
+}
 .VPNavScreen {
   z-index: 40 !important;
   position: fixed !important;
