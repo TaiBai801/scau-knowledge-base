@@ -136,13 +136,12 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
 }
 
 /* ── Hero ── */
-/* Hero 所有层级统一背景色 */
+/* Hero 所有层级统一背景色（不含 .clip，避免覆盖品牌渐变色文字） */
 .VPContent.is-home,
 .VPHero,
 .VPHero .container,
 .VPHero .main,
 .VPHero .image-container,
-.VPHero .clip,
 .VPHome,
 .VPHomeHero {
   background-color: var(--bg-warm) !important;
