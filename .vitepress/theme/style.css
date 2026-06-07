@@ -15,6 +15,12 @@
   --brand-pale: #E8F4F0;
   --brand-glow: rgba(13,92,90,0.25);
 
+  /* VitePress 原生变量覆盖 */
+  --vp-c-bg: #F7F5F0;
+  --vp-c-bg-soft: #F7F5F0;
+  --vp-c-bg-elv: #FFFFFF;
+  --vp-c-bg-alt: #F7F5F0;
+
   /* 背景 */
   --bg-warm: #F7F5F0;
   --bg-card: #FFFFFF;
@@ -130,27 +136,24 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
 }
 
 /* ── Hero ── */
-.VPHero {
+.VPHero,
+.VPHome,
+.VPHomeHero,
+.VPHomeContent {
   background: var(--bg-warm) !important;
+}
+.VPHero {
   padding: 32px 0 3rem !important;
   overflow: visible !important;
   margin-top: 0 !important;
 }
-.VPHero .container { background: transparent; overflow: visible !important; }
+.VPHero .container { background: var(--bg-warm) !important; overflow: visible !important; }
 .VPHero .main { overflow: visible !important; }
 .VPHero .clip { overflow: visible !important; }
-
-/* Hero 院徽区域背景 */
 .VPHero .image-container { 
   background: var(--bg-warm) !important;
+  transform: scale(1.05); overflow: visible !important;
 }
-
-/* Hero 底部无缝 */
-.VPHero + *,
-.VPHero ~ * { margin-top: 0 !important; }
-
-/* Hero 院徽 */
-.VPHero .image-container { transform: scale(1.05); overflow: visible !important; }
 .VPHero .image-container .image-src { max-width: 100%; height: auto; }
 .VPHero .image-bg {
   background: var(--brand-glow) !important;
