@@ -15,6 +15,7 @@ export default defineConfig({
     ['meta', { property: 'og:site_name', content: '机电学院知识库' }],
   ],
   sitemap: { hostname: 'https://scau-knowledge-base-nhlkrpf1.edgeone.cool' },
+  srcExclude: ['cloud-function/**', '**/node_modules/**'],
   themeConfig: {
     logo: '/emblem.png',
     nav: [
