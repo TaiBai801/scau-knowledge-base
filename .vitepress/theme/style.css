@@ -1061,3 +1061,708 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   table { border-collapse: collapse; }
   th, td { border: 1px solid #999; padding: 4pt; }
 }
+
+/* ══════════════════════════════════════════════
+   Ardot 通用页面样式
+   ══════════════════════════════════════════════ */
+
+.ardot-page-hero,
+.ardot-major-hero,
+.ardot-semester-hero,
+.ardot-stories-hero {
+  background: linear-gradient(135deg, #0D5C5A 0%, #148F8C 100%);
+  color: #fff;
+  padding: 50px 24px 60px;
+}
+.ardot-page-inner,
+.ardot-major-inner,
+.ardot-semester-inner,
+.ardot-stories-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.ardot-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin-bottom: 12px;
+  font-family: var(--font-body);
+  backdrop-filter: blur(8px);
+}
+.ardot-page-hero h1,
+.ardot-major-hero h1,
+.ardot-semester-hero h1,
+.ardot-stories-hero h1 {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  margin: 0 0 12px;
+  color: #fff;
+}
+.ardot-page-hero p,
+.ardot-major-hero p,
+.ardot-semester-hero p,
+.ardot-stories-hero p {
+  font-size: 1rem;
+  line-height: 1.7;
+  opacity: 0.9;
+  margin: 0;
+  font-family: var(--font-body);
+}
+.ardot-page-content {
+  background: var(--bg-warm);
+  padding: 48px 24px;
+  min-height: 60vh;
+}
+
+.ardot-back {
+  display: inline-block;
+  color: rgba(255,255,255,0.85);
+  font-size: 0.85rem;
+  text-decoration: none;
+  margin-bottom: 16px;
+  font-family: var(--font-body);
+}
+.ardot-back:hover { color: #fff; }
+
+.ardot-major-title { font-size: 2.5rem !important; }
+.ardot-major-sub { font-size: 1.05rem; }
+.ardot-major-stats,
+.ardot-contrib-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+.ardot-major-stats > div,
+.ardot-contrib-stats > div {
+  text-align: center;
+}
+.ardot-major-stats .num,
+.ardot-contrib-stats .num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.ardot-major-stats .label,
+.ardot-contrib-stats .label {
+  font-size: 0.78rem;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.ardot-semester-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  background: #fff;
+}
+.ardot-section-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--brand);
+  text-align: center;
+  margin: 0 0 12px;
+}
+.ardot-section-sub {
+  text-align: center;
+  color: var(--text-muted);
+  margin: 0 0 32px;
+  font-family: var(--font-body);
+}
+.ardot-semester-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+.ardot-semester-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  background: var(--bg-warm);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  text-decoration: none !important;
+  transition: all 0.2s;
+  position: relative;
+}
+.ardot-semester-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(13,92,90,0.12);
+}
+.ardot-semester-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+.ardot-semester-count {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.ardot-semester-arrow {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  font-size: 1.1rem;
+}
+
+.ardot-cta {
+  background: linear-gradient(135deg, #0D5C5A 0%, #148F8C 100%);
+  color: #fff;
+  padding: 40px 24px;
+  text-align: center;
+  border-radius: 12px;
+  margin: 32px 0;
+}
+.ardot-cta-inner { max-width: 600px; margin: 0 auto; }
+.ardot-cta h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin: 0 0 8px;
+}
+.ardot-cta p {
+  opacity: 0.9;
+  margin: 0 0 16px;
+  font-family: var(--font-body);
+}
+.ardot-cta-btn {
+  display: inline-block;
+  background: #fff;
+  color: var(--brand) !important;
+  padding: 10px 24px;
+  border-radius: 8px;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-family: var(--font-body);
+}
+
+/* 学期列表 */
+.ardot-course-list-section {
+  padding: 32px 24px;
+  background: #fff;
+}
+.ardot-course-list-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.ardot-course-toolbar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.ardot-course-search {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+  background: var(--bg-warm);
+}
+.ardot-course-filters {
+  display: flex;
+  gap: 6px;
+}
+.ardot-course-filters button {
+  background: var(--bg-warm);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  font-family: var(--font-body);
+  cursor: pointer;
+  color: var(--text-body);
+}
+.ardot-course-filters button.active {
+  background: var(--brand);
+  color: #fff;
+  border-color: var(--brand);
+}
+.ardot-course-table {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.ardot-course-head, .ardot-course-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 100px 100px 50px;
+  padding: 14px 20px;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-body);
+}
+.ardot-course-head {
+  background: var(--bg-warm);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.ardot-course-row {
+  text-decoration: none !important;
+  color: var(--text-body) !important;
+  transition: background 0.15s;
+}
+.ardot-course-row:hover {
+  background: var(--bg-warm);
+}
+.ardot-course-row .num { color: var(--text-muted); font-size: 0.85rem; }
+.ardot-course-row .name { color: var(--text-heading); font-weight: 500; }
+.ardot-course-row .arrow { color: var(--brand); font-size: 1.2rem; }
+.ardot-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.ardot-badge-bixiu { background: #fef2f2; color: #dc2626; }
+.ardot-badge-fangxiang { background: #fffbeb; color: #D97706; }
+.ardot-badge-shijian { background: #f0fdf4; color: #059669; }
+.ardot-empty { text-align: center; padding: 40px; color: var(--text-muted); }
+
+/* 学长说 */
+.ardot-stories-list { background: #fff; padding: 48px 24px; }
+.ardot-story-card {
+  background: var(--bg-warm);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.ardot-story-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.ardot-story-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.ardot-story-author {
+  font-weight: 600;
+  color: var(--text-heading);
+  font-family: var(--font-body);
+}
+.ardot-story-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+}
+.ardot-story-score {
+  margin-left: auto;
+  background: var(--brand);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.ardot-story-quote {
+  margin: 0;
+  padding: 16px;
+  background: #fff;
+  border-left: 4px solid var(--brand);
+  border-radius: 4px;
+  font-style: italic;
+  color: var(--text-body);
+  font-family: var(--font-body);
+  line-height: 1.7;
+}
+
+/* 贡献指南 */
+.ardot-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.ardot-step {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+.ardot-step-num {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 auto 12px;
+}
+.ardot-step h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--brand);
+  margin: 0 0 8px;
+}
+.ardot-step p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+.ardot-contribute-methods h2 {
+  font-family: var(--font-display);
+  color: var(--brand);
+  text-align: center;
+  margin: 0 0 24px;
+}
+.ardot-method-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.ardot-method {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  text-decoration: none !important;
+  color: var(--text-body) !important;
+  transition: all 0.2s;
+}
+.ardot-method:hover {
+  border-color: var(--brand);
+  transform: translateY(-2px);
+}
+.ardot-method-icon { font-size: 2.5rem; margin-bottom: 8px; }
+.ardot-method h3 {
+  font-family: var(--font-display);
+  color: var(--brand);
+  margin: 0 0 4px;
+}
+.ardot-method p { font-size: 0.9rem; margin: 0 0 8px; font-family: var(--font-body); }
+.ardot-method-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+}
+
+/* 贡献者墙 */
+.ardot-contrib-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.ardot-contrib-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+.ardot-contrib-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 auto 12px;
+}
+.ardot-contrib-name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--brand);
+}
+.ardot-contrib-role {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 4px 0 8px;
+}
+.ardot-contrib-count {
+  font-size: 0.78rem;
+  background: var(--brand-pale);
+  color: var(--brand);
+  padding: 2px 10px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+/* 关于本站 */
+.ardot-about-section {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.ardot-about-section h2 {
+  font-family: var(--font-display);
+  color: var(--brand);
+  margin: 0 0 12px;
+  font-size: 1.15rem;
+}
+.ardot-about-section p, .ardot-about-section ul {
+  color: var(--text-body);
+  line-height: 1.7;
+  font-family: var(--font-body);
+}
+.ardot-about-section ul { padding-left: 20px; }
+.ardot-about-section li { margin: 4px 0; }
+
+/* 404 页 */
+.ardot-404-page {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-warm);
+  padding: 40px 24px;
+}
+.ardot-404-inner {
+  max-width: 500px;
+  text-align: center;
+}
+.ardot-404-code {
+  font-family: var(--font-display);
+  font-size: 8rem;
+  font-weight: 700;
+  color: var(--brand);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.ardot-404-inner h1 {
+  font-family: var(--font-display);
+  color: var(--brand);
+  font-size: 1.5rem;
+  margin: 0 0 8px;
+}
+.ardot-404-inner p {
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  margin: 0 0 24px;
+}
+.ardot-404-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.ardot-404-btn {
+  background: var(--brand);
+  color: #fff !important;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none !important;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+
+/* 课程地图 */
+.ardot-map-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.ardot-map-row {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 4px solid;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.ardot-map-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 240px;
+}
+.ardot-map-code {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+.ardot-map-name h3 {
+  font-family: var(--font-display);
+  color: var(--brand);
+  font-size: 1rem;
+  margin: 0;
+}
+.ardot-map-name p {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 2px 0 0;
+  font-family: var(--font-body);
+}
+.ardot-map-sems {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+.ardot-map-sem {
+  border: 1px solid;
+  border-radius: 6px;
+  padding: 6px 12px;
+  text-decoration: none !important;
+  background: #fff;
+  text-align: center;
+  font-family: var(--font-body);
+  min-width: 80px;
+}
+.ardot-map-sem-name { font-weight: 600; font-size: 0.82rem; }
+.ardot-map-sem-count { font-size: 0.7rem; opacity: 0.7; }
+
+/* 课程详情 */
+.ardot-course-detail {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+.ardot-cd-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--brand);
+  margin: 12px 0 16px;
+}
+.ardot-cd-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  font-family: var(--font-body);
+}
+.ardot-cd-badge {
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.ardot-cd-credits { color: var(--text-muted); font-size: 0.85rem; }
+.ardot-cd-section {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.ardot-cd-section h2 {
+  font-family: var(--font-display);
+  color: var(--brand);
+  font-size: 1.15rem;
+  margin: 0 0 12px;
+}
+.ardot-cd-table {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.ardot-cd-tr {
+  display: contents;
+}
+.ardot-cd-tr > div {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+}
+.ardot-cd-tr > div:nth-child(odd) {
+  background: var(--bg-warm);
+  font-weight: 600;
+  color: var(--text-heading);
+  border-right: 1px solid var(--line);
+}
+.ardot-cd-files {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.ardot-cd-file {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-warm);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+}
+.ardot-cd-file-size { color: var(--text-muted); font-size: 0.78rem; margin-left: auto; }
+.ardot-cd-file button {
+  background: none; border: none; color: #dc2626; cursor: pointer; font-size: 0.9rem;
+}
+.ardot-cd-upload { text-align: center; }
+.ardot-cd-upload input { display: none; }
+.ardot-cd-upload-btn {
+  display: inline-block;
+  padding: 10px 24px;
+  background: var(--brand-pale);
+  color: var(--brand);
+  border: 1px dashed var(--brand);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+.ardot-cd-empty { color: var(--text-muted); font-family: var(--font-body); margin: 0; }
+.ardot-cd-tashuo {
+  text-align: center;
+  background: var(--bg-warm);
+  padding: 24px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+}
+.ardot-cd-tashuo p { margin: 8px 0; }
+.ardot-cd-footer {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  text-align: center;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+}
+.ardot-cd-footer p { margin: 4px 0; }

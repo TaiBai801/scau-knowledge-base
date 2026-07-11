@@ -1,41 +1,74 @@
-# 电子科学与技术
-
-> 电子科学与技术培养方案 · 93 门课程
-
+---
+title: 电子科学与技术
+sidebar: false
+aside: false
 ---
 
-## 📖 按学期浏览
+<div class="ardot-page-hero ardot-major-hero">
+  <div class="ardot-major-inner">
+    <span class="ardot-tag">专业总览</span>
+    <h1 class="ardot-major-title">电子科学与技术</h1>
+    <p class="ardot-major-sub">93 门课程 · 大一到大四全覆盖 · 8 个学期贯通培养</p>
+    <div class="ardot-major-stats">
+      <div><div class="num">93</div><div class="label">课程总数</div></div>
+      <div><div class="num">4</div><div class="label">学年</div></div>
+      <div><div class="num">8</div><div class="label">学期</div></div>
+      <div><div class="num">12</div><div class="label">核心课程</div></div>
+    </div>
+  </div>
+</div>
 
-| 学期 | 课程数 | 链接 |
-|:----:|:------:|------|
-| 🟦 大一上 | 13 | [查看课程 →](/majors/dianzikexue/semester1-1) |
-| 🟩 大一下 | 9 | [查看课程 →](/majors/dianzikexue/semester1-2) |
-| 🟥 大二上 | 13 | [查看课程 →](/majors/dianzikexue/semester2-1) |
-| 🟪 大二下 | 15 | [查看课程 →](/majors/dianzikexue/semester2-2) |
-| 🟨 大三上 | 18 | [查看课程 →](/majors/dianzikexue/semester3-1) |
-| 🩷 大三下 | 19 | [查看课程 →](/majors/dianzikexue/semester3-2) |
-| ⬜ 大四上 | 3 | [查看课程 →](/majors/dianzikexue/semester4-1) |
-| 🟫 大四下 | 3 | [查看课程 →](/majors/dianzikexue/semester4-2) |
+<div class="ardot-semester-section">
+  <h2 class="ardot-section-title">📖 按学期浏览</h2>
+  <p class="ardot-section-sub">从大一到大四，点击进入对应学期查看完整课程列表</p>
+  <div class="ardot-semester-grid">
+    <a href="/majors/dianzikexue/semester1-1" class="ardot-semester-card">
+      <div class="ardot-semester-name" style="color:#2563eb;background:#eff6ff">大一上</div>
+      <div class="ardot-semester-count">13 门课</div>
+      <div class="ardot-semester-arrow" style="color:#2563eb">→</div>
+    </a>
+    <a href="/majors/dianzikexue/semester1-2" class="ardot-semester-card">
+      <div class="ardot-semester-name" style="color:#2563eb;background:#eff6ff">大一下</div>
+      <div class="ardot-semester-count">9 门课</div>
+      <div class="ardot-semester-arrow" style="color:#2563eb">→</div>
+    </a>
+    <a href="/majors/dianzikexue/semester2-1" class="ardot-semester-card">
+      <div class="ardot-semester-name" style="color:#059669;background:#f0fdf4">大二上</div>
+      <div class="ardot-semester-count">13 门课</div>
+      <div class="ardot-semester-arrow" style="color:#059669">→</div>
+    </a>
+    <a href="/majors/dianzikexue/semester2-2" class="ardot-semester-card">
+      <div class="ardot-semester-name" style="color:#059669;background:#f0fdf4">大二下</div>
+      <div class="ardot-semester-count">15 门课</div>
+      <div class="ardot-semester-arrow" style="color:#059669">→</div>
+    </a>
+    <a href="/majors/dianzikexue/semester3-1" class="ardot-semester-card">
+      <div class="ardot-semester-name" style="color:#D97706;background:#fffbeb">大三上</div>
+      <div class="ardot-semester-count">18 门课</div>
+      <div class="ardot-semester-arrow" style="color:#D97706">→</div>
+    </a>
+    <a href="/majors/dianzikexue/semester3-2" class="ardot-semester-card">
+      <div class="ardot-semester-name" style="color:#D97706;background:#fffbeb">大三下</div>
+      <div class="ardot-semester-count">19 门课</div>
+      <div class="ardot-semester-arrow" style="color:#D97706">→</div>
+    </a>
+    <a href="/majors/dianzikexue/semester4-1" class="ardot-semester-card">
+      <div class="ardot-semester-name" style="color:#dc2626;background:#fef2f2">大四上</div>
+      <div class="ardot-semester-count">3 门课</div>
+      <div class="ardot-semester-arrow" style="color:#dc2626">→</div>
+    </a>
+    <a href="/majors/dianzikexue/semester4-2" class="ardot-semester-card">
+      <div class="ardot-semester-name" style="color:#dc2626;background:#fef2f2">大四下</div>
+      <div class="ardot-semester-count">3 门课</div>
+      <div class="ardot-semester-arrow" style="color:#dc2626">→</div>
+    </a>
+  </div>
+</div>
 
----
-
-## 📂 核心课程速览
-
-| 类别 | 代表课程 |
-|------|----------|
-| 数学基础 | 高等数学、线性代数、概率统计、复变函数 |
-| 物理基础 | 大学物理、固体物理、半导体物理、电磁场与电磁波 |
-| 电路电子 | 电路分析、模拟电子技术、数字电子技术、EDA技术 |
-| 信号控制 | 信号与系统、自动控制原理、传感器技术 |
-| 器件方向 | 半导体集成电路、固态电子器件、光电子技术、电子材料 |
-| 嵌入式 | 单片机原理与应用、嵌入式系统开发、虚拟仪器技术 |
-| 电力电子 | 电力电子技术、电气控制技术 |
-| 数据AI | 大数据处理技术、人工智能原理及应用、系统仿真技术 |
-
----
-
-## 🔗 快速链接
-
-- [📖 共享课程库](/majors/shared/) — 跨专业公共课
-- [🗺️ 课程地图](/map) — 四专业全景总览
-- [💬 学长说](/stories) — 课程学习经验分享
+<div class="ardot-cta">
+  <div class="ardot-cta-inner">
+    <h3>查看本专业共享课程</h3>
+    <p>跨专业公共课程在四专业之间复用 — 87 门课一次维护多处使用</p>
+    <a href="/majors/shared/" class="ardot-cta-btn">浏览共享课程 →</a>
+  </div>
+</div>
