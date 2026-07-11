@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>知识库管理后台</title>
+<style>
+:root{--brand:#0D5C5A;--bg:#F7F5F0;--card:#fff;--line:#E8E4DB;--text:#4A5568;--red:#dc2626;--green:#059669}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:var(--brand);color:#fff;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+header h1{font-size:1.2rem;font-weight:600}
+header a{color:#b2d9d6;font-size:0.85rem;text-decoration:none}
+header a:hover{color:#fff}
+main{max-width:1200px;margin:0 auto;padding:2rem}
+.toolbar{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem}
+.toolbar select,.toolbar input,.toolbar button{padding:0.4rem 0.75rem;border:1px solid var(--line);border-radius:6px;font-size:0.85rem;background:var(--card)}
+.btn{padding:0.5rem 1rem;border:none;border-radius:6px;font-size:0.85rem;cursor:pointer;background:var(--brand);color:#fff;transition:all .15s;text-decoration:none;display:inline-block}
+.btn:hover{opacity:.9}
+.btn-sm{padding:0.25rem 0.6rem;font-size:0.75rem}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+th{background:var(--brand);color:#fff;padding:0.6rem 0.75rem;font-size:0.8rem;text-align:left}
+td{padding:0.5rem 0.75rem;font-size:0.82rem;border-bottom:1px solid var(--line)}
+tr:hover{background:#f0faf8}
+.badge{display:inline-block;padding:0.15rem 0.5rem;border-radius:10px;font-size:0.7rem;font-weight:500}
+.badge-required{background:#fef2f2;color:var(--red)}
+.badge-core{background:#fffbeb;color:#D97706}
+.badge-elective{background:#f0fdf4;color:var(--green)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0.75rem;margin-bottom:1.5rem}
+.stat-card{background:var(--card);padding:1rem;border-radius:10px;text-align:center;border:1px solid var(--line)}
+.stat-card .num{font-size:1.8rem;font-weight:700;color:var(--brand)}
+.stat-card .label{font-size:0.75rem;color:#94a3b8;margin-top:0.25rem}
+.row-count{font-size:0.8rem;color:#94a3b8;margin-bottom:0.5rem}
+@media(max-width:768px){main{padding:1rem}th,td{font-size:0.72rem;padding:0.4rem 0.5rem}}
+</style>
+</head>
+<body>
+<header>
+  <h1>⚙️ 知识库管理后台</h1>
+  <a href="/">← 回站点</a>
+  <a href="/课程任务分配表.xlsx">📥 任务分配表</a>
+</header>
+<main>
+  <div class="stats" id="stats"></div>
+
+  <div class="toolbar">
+    <select id="filterMajor"><option value="">全部专业</option></select>
+    <select id="filterSemester"><option value="">全部学期</option></select>
+    <input id="filterSearch" placeholder="搜索课程名..." style="width:180px">
+  </div>
+
+  <div class="row-count" id="rowCount"></div>
+  <div style="overflow-x:auto">
+    <table id="courseTable"><thead><tr><th>专业</th><th>学期</th><th>课程名称</th><th>学分</th><th>性质</th><th>操作</th></tr></thead><tbody></tbody></table>
+  </div>
+</main>
+
+<script>
+let courses=[];
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
+async function init(){
+  const res=await fetch('/course_metadata.txt');
+  const text=await res.text();
+  courses=text.trim().split('\n').slice(1).map(l=>{
+    const p=l.split('|');
+    return {major:p[0],semester:p[1],name:p[2],credits:p[3],type:p[4],path:p[5]};
+  });
+  renderStats();
+  renderFilters();
+  renderTable();
+}
+
+function renderStats(){
+  const m={};
+  courses.forEach(c=>{if(!m[c.major])m[c.major]=0;m[c.major]++});
+  document.getElementById('stats').innerHTML=Object.entries(m).map(([k,v])=>
+    `<div class="stat-card"><div class="num">${v}</div><div class="label">${esc(k)}</div></div>`
+  ).join('');
+}
+
+function renderFilters(){
+  const majors=[...new Set(courses.map(c=>c.major))];
+  const semesters=[...new Set(courses.map(c=>c.semester))];
+  document.getElementById('filterMajor').innerHTML='<option value="">全部专业</option>'+majors.map(m=>`<option>${esc(m)}</option>`).join('');
+  document.getElementById('filterSemester').innerHTML='<option value="">全部学期</option>'+semesters.map(s=>`<option>${esc(s)}</option>`).join('');
+  ['filterMajor','filterSemester','filterSearch'].forEach(id=>{
+    document.getElementById(id).addEventListener('input',renderTable);
+    document.getElementById(id).addEventListener('change',renderTable);
+  });
+}
+
+function renderTable(){
+  const fm=document.getElementById('filterMajor').value;
+  const fs=document.getElementById('filterSemester').value;
+  const fq=document.getElementById('filterSearch').value.toLowerCase();
+  const filtered=courses.filter(c=>
+    (!fm||c.major===fm)&&(!fs||c.semester===fs)&&
+    (!fq||c.name.toLowerCase().includes(fq))
+  );
+  document.getElementById('rowCount').textContent=`${filtered.length} / ${courses.length} 门课程`;
+  const tbody=document.querySelector('#courseTable tbody');
+  tbody.innerHTML='';
+  filtered.forEach(c=>{
+    const tr=document.createElement('tr');
+    const params=new URLSearchParams({name:c.name,path:c.path,credits:c.credits,type:c.type,major:c.major,semester:c.semester});
+    const tb=esc(c.type==='必修'?'required':c.type==='专业方向课'?'core':'elective');
+    tr.innerHTML=`<td>${esc(c.major)}</td><td>${esc(c.semester)}</td><td>${esc(c.name)}</td>
+      <td style="text-align:center">${esc(c.credits)}</td>
+      <td><span class="badge badge-${tb}">${esc(c.type)}</span></td>
+      <td><a class="btn btn-sm" href="/admin/edit.html?${params}">编辑</a></td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+init();
+</script>
+</body>
+</html>
