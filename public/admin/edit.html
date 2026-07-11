@@ -198,6 +198,16 @@ function buildMd(){
   // ② 课程资料
   md+=`## ② 课程资料\n\n`;
   const materialsVal=document.getElementById('sec_materials').value.trim();
+
+  // 把上传的文件作为下载链接写入
+  if (uploadedFiles.length > 0) {
+    const courseSlug = coursePath.replace(/^majors\/(shared\/courses|dianzikexue\/courses|dianqigongcheng\/courses|nongyegongcheng\/courses|nongyejixiehua\/courses)\//, '');
+    for (const f of uploadedFiles) {
+      const fileUrl = `/files/${courseSlug}/${encodeURIComponent(f.name)}`;
+      md += `[📥 ${f.name}](${fileUrl})\n\n`;
+    }
+  }
+
   md+=materialsVal?`${materialsVal}\n\n`:'> 📄 资料收集中。\n\n';
 
   // ③ 练习题
@@ -280,17 +290,22 @@ async function saveToGitHub(){
     });
     if(!res.ok) throw new Error('Save failed: '+res.status);
 
-    // 2. 上传附件
+    // 2. 上传附件（如果云函数支持）
+    let uploadOk = 0;
     for(const f of uploadedFiles){
-      const filePath=`public/files/${coursePath.replace('majors/','').replace('/courses/','/')}/${f.name}`;
-      await fetch(API_URL,{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({
-          path:filePath,
-          file:{name:f.name,data:f.data,filePath}
-        })
-      });
+      try {
+        const filePath=`public/files/${coursePath.replace('majors/','').replace('/courses/','/')}/${f.name}`;
+        const upRes = await fetch(API_URL,{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({
+            path:filePath,
+            content: f.data,
+            message:`📎 上传 ${f.name}`
+          })
+        });
+        if (upRes.ok) uploadOk++;
+      } catch(e) { /* 上传失败不影响保存 */ }
     }
 
     uploadedFiles=[];
