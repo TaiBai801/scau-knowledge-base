@@ -1,56 +1,73 @@
-# 贡献指南
-
-> 🌟 机电学院知识库由全院同学共建。你的每一次贡献，都会帮到未来的学弟学妹。
-
+---
+title: 贡献指南 · 机电学院知识库
+sidebar: false
+aside: false
 ---
 
-## 我能做什么？
+<div class="ardot-page-hero">
+  <div class="ardot-page-inner">
+    <span class="ardot-tag">参与共建</span>
+    <h1>贡献指南</h1>
+    <p>投稿课程资料·学习经验·纠错建议 — 让你的知识帮助更多学弟学妹</p>
+  </div>
+</div>
 
-| 角色 | 任务 | 需要什么技能 |
-|------|------|-------------|
-| 📝 **内容编辑** | 填充课程介绍、上传 PPT/习题/试卷 | 会用腾讯文档即可 |
-| 🎓 **ta 说分享** | 接受采访，分享你的学习经验 | 学过这门课且成绩不错 |
-| 🔍 **资料收集** | 从学长学姐那里收集纸质/电子资料 | 愿意开口问 |
-| 💻 **技术维护** | 更新网站功能、修 bug | 懂一点代码 |
+<div class="ardot-page-content">
+  <div class="ardot-page-inner">
 
----
+    <div class="ardot-steps">
+      <div class="ardot-step">
+        <div class="ardot-step-num">1</div>
+        <h3>整理资料</h3>
+        <p>课件PDF / 复习笔记 / 历年真题 / 学习方法 — 任何对学弟学妹有用的内容</p>
+      </div>
+      <div class="ardot-step">
+        <div class="ardot-step-num">2</div>
+        <h3>选择方式</h3>
+        <p>邮件发送 / 腾讯文档协作 / GitHub PR — 三种方式任选</p>
+      </div>
+      <div class="ardot-step">
+        <div class="ardot-step-num">3</div>
+        <h3>等待审核</h3>
+        <p>管理员1-3天内审核格式和内容，纳入对应课程页面</p>
+      </div>
+      <div class="ardot-step">
+        <div class="ardot-step-num">4</div>
+        <h3>全院共享</h3>
+        <p>审核通过后，资料自动同步到EdgeOne CDN，全院学生随时访问</p>
+      </div>
+    </div>
 
-## 📝 如何编辑课程内容？
+    <div class="ardot-contribute-methods">
+      <h2>三种投稿方式</h2>
+      <div class="ardot-method-grid">
+        <a href="mailto:2286318767@qq.com" class="ardot-method">
+          <div class="ardot-method-icon">📧</div>
+          <h3>邮件投稿</h3>
+          <p>2286318767@qq.com</p>
+          <span class="ardot-method-hint">附件不超过50MB</span>
+        </a>
+        <a href="https://docs.qq.com" class="ardot-method" target="_blank">
+          <div class="ardot-method-icon">📝</div>
+          <h3>腾讯文档协作</h3>
+          <p>在线协作编辑</p>
+          <span class="ardot-method-hint">推荐！可多人编辑</span>
+        </a>
+        <a href="https://github.com/TaiBai801/scau-knowledge-base" class="ardot-method" target="_blank">
+          <div class="ardot-method-icon">💻</div>
+          <h3>GitHub PR</h3>
+          <p>开发者友好</p>
+          <span class="ardot-method-hint">Pull Request方式</span>
+        </a>
+      </div>
+    </div>
 
-1. 打开 [腾讯文档编辑后台](https://docs.qq.com/space/DZXBYSkhnRXRwSWpv)
-2. 找到你要编辑的课程，点开文档
-3. 在五段式模板中填写或修改内容
-4. 改完自动保存，无需额外操作
+    <div class="ardot-cta">
+      <div class="ardot-cta-inner">
+        <h3>联系我们</h3>
+        <p>QQ: 2286318767 · 邮箱: 2286318767@qq.com</p>
+      </div>
+    </div>
 
----
-
-## 🎓 如何投稿「ta 说」？
-
-**采访提纲（提供给采访人员的标准问题）：**
-
-1. 你考了多少分？这门课在你们年级的平均分大概多少？
-2. 你觉得这门课在整个专业课程体系里扮演什么角色？
-3. 你最推荐的学习方法是什么？（至少 3 条）
-4. 有没有踩过的坑想提醒学弟学妹？
-5. 推荐哪些教辅书 / 网课？
-6. 如果重新学一次，你会怎么安排时间？
-
-采访完成后，把整理好的文字发给管理员即可。
-
----
-
-## 📐 资料上传规范
-
-- **命名规则**：`{课程}/{学期}_{类型}_{描述}.pdf`
-  - 例如：`dianlu/2024s2_exam_final.pdf`
-- **文件大小**：单文件不超过 20MB
-- **格式**：优先 PDF，其次图片（JPG/PNG 扫描版）
-
----
-
-## 📞 联系方式
-
-- 📧 邮箱：<ClientOnly><span class="email-obfuscate" data-user="2286318767" data-host="qq.com"><a href="mailto:2286318767@qq.com">2286318767@qq.com</a></span></ClientOnly>
-- 🏫 四川农业大学机电学院
-
-想要加入编辑团队？直接联系管理员申请权限。
+  </div>
+</div>
