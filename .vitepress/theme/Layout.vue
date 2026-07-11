@@ -2,6 +2,7 @@
 import DefaultTheme from 'vitepress/theme'
 import CustomFooter from './CustomFooter.vue'
 import BackToTop from './BackToTop.vue'
+import SharedCourses from './SharedCourses.vue'
 
 const { Layout } = DefaultTheme
 </script>
@@ -14,6 +15,9 @@ const { Layout } = DefaultTheme
     </template>
     <template #layout-top>
       <BackToTop />
+    </template>
+    <template #layout-404>
+      <SharedCourses v-if="$frontmatter.pageClass === 'shared-courses-page'" />
     </template>
   </Layout>
 </template>

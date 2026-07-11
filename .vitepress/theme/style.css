@@ -718,6 +718,288 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   .shared-grid a { font-size: 0.82rem; padding: 0.4rem 0.6rem; }
   .vp-doc h1 { font-size: 1.5rem !important; }
   .vp-doc h2 { font-size: 1.25rem !important; }
+
+/* ══════════════════════════════════════════════
+   共享课程页（Ardot 设计实现）
+   ══════════════════════════════════════════════ */
+
+.shared-courses-page .VPHero { display: none; }
+.shared-courses-page .VPContent { padding-top: var(--vp-nav-height) !important; }
+
+/* Hero 区 */
+.shared-hero {
+  background: linear-gradient(135deg, #0D5C5A 0%, #148F8C 100%);
+  color: #fff;
+  padding: 60px 24px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.shared-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+.shared-hero-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+}
+.shared-hero-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin-bottom: 16px;
+  font-family: var(--font-body);
+  backdrop-filter: blur(8px);
+}
+.shared-hero-title {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 16px;
+  letter-spacing: -0.5px;
+}
+.shared-hero-sub {
+  font-size: 1rem;
+  line-height: 1.7;
+  opacity: 0.9;
+  margin: 0 0 32px;
+  font-family: var(--font-body);
+}
+
+/* 搜索框 */
+.shared-search {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  max-width: 540px;
+  margin: 0 auto 32px;
+  gap: 12px;
+}
+.shared-search-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.shared-search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  color: #333;
+  background: transparent;
+}
+.shared-search input::placeholder {
+  color: #94A3B8;
+}
+
+/* 统计 */
+.shared-stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.shared-stat {
+  text-align: center;
+  min-width: 70px;
+}
+.shared-stat .num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.shared-stat .label {
+  font-size: 0.78rem;
+  opacity: 0.85;
+  margin-top: 2px;
+  font-family: var(--font-body);
+}
+
+/* 课程分类区 */
+.shared-featured {
+  background: #fff;
+  padding: 60px 24px;
+  border-bottom: 1px solid var(--line);
+}
+.shared-featured-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.shared-section-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--brand);
+  text-align: center;
+  margin: 0 0 32px;
+}
+.shared-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.shared-category {
+  display: block;
+  padding: 24px;
+  background: var(--bg-warm);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  text-decoration: none !important;
+  color: var(--text-heading) !important;
+  transition: all 0.2s;
+  text-align: left;
+}
+.shared-category:hover {
+  border-color: var(--brand);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(13,92,90,0.12);
+}
+.shared-category img {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 12px;
+}
+.shared-cat-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--brand);
+  margin-bottom: 4px;
+}
+.shared-cat-count {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+}
+
+/* 课程列表区 */
+.shared-list {
+  background: var(--bg-warm);
+  padding: 60px 24px;
+}
+.shared-list-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.shared-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.shared-list-header .shared-section-title {
+  text-align: left;
+  margin: 0;
+}
+.shared-filter {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.shared-filter-btn {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 0.82rem;
+  font-family: var(--font-body);
+  color: var(--text-body);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.shared-filter-btn:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+.shared-filter-btn.active {
+  background: var(--brand);
+  color: #fff;
+  border-color: var(--brand);
+}
+.shared-grid a {
+  text-decoration: none !important;
+}
+.shared-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+.shared-empty-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+.shared-empty p {
+  margin: 0;
+  font-family: var(--font-body);
+}
+
+/* 上传 CTA */
+.shared-upload-cta {
+  background: linear-gradient(135deg, #0D5C5A 0%, #148F8C 100%);
+  color: #fff;
+  padding: 60px 24px;
+  text-align: center;
+}
+.shared-upload-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.shared-upload-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+.shared-upload-inner h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin: 0 0 12px;
+}
+.shared-upload-inner p {
+  font-family: var(--font-body);
+  opacity: 0.9;
+  margin: 0 0 24px;
+  line-height: 1.7;
+}
+.shared-upload-btn {
+  display: inline-block;
+  background: #fff;
+  color: var(--brand) !important;
+  padding: 12px 32px;
+  border-radius: 8px;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-family: var(--font-body);
+  transition: all 0.2s;
+}
+.shared-upload-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* 移动端 */
+@media (max-width: 767px) {
+  .shared-hero { padding: 40px 20px 60px; }
+  .shared-hero-title { font-size: 1.8rem; }
+  .shared-stats { gap: 16px; }
+  .shared-stat .num { font-size: 1.3rem; }
+  .shared-categories { grid-template-columns: 1fr 1fr; }
+  .shared-list-header { flex-direction: column; align-items: stretch; }
+  .shared-list-header .shared-section-title { text-align: center; }
+  .shared-filter { justify-content: center; }
+}
   .vp-doc h3 { font-size: 1.05rem !important; }
 }
 /* 平板 768-959px */
