@@ -129,41 +129,68 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
 .VPNavBar .title { font-family: var(--font-display); color: var(--brand); }
 .VPNavBar .logo { height: 36px; }
 
-/* 导航链接 — 统一无底色块，hover 轻量高亮 */
-.VPNavBarMenuLink {
-  color: var(--text-nav);
-  font-family: var(--font-body);
-  background: transparent !important;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 0.88rem;
-  font-weight: 400;
-  transition: color 0.15s, background 0.15s;
+/* ── 右侧菜单右对齐 ── */
+.VPNavBar .content-body {
+  justify-content: flex-end !important;
+  align-items: center !important;
 }
-.VPNavBarMenuLink:hover {
-  color: var(--brand);
+
+/* ═══ 导航链接统一样式（父选择器防 scoped 覆盖） ═══ */
+
+/* 普通导航链接 */
+.VPNavBar .VPNavBarMenuLink {
+  color: var(--text-nav) !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.88rem !important;
+  font-weight: 400 !important;
+  line-height: var(--vp-nav-height) !important;
+  padding: 0 12px !important;
+  background: transparent !important;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s !important;
+}
+.VPNavBar .VPNavBarMenuLink:hover {
+  color: var(--brand) !important;
   background: var(--brand-pale) !important;
 }
-.VPNavBarMenuLink.active {
-  color: var(--brand);
-  font-weight: 600;
+.VPNavBar .VPNavBarMenuLink.active {
+  color: var(--brand) !important;
+  font-weight: 600 !important;
   background: transparent !important;
 }
-/* 右侧导航菜单贴右边缘 */
-.VPNavBar .container {
-  display: flex;
-  align-items: center;
+
+/* 下拉菜单组 "课程总览" — 按钮与文字统一样式 */
+.VPNavBar .VPFlyout > .button {
+  color: var(--text-nav) !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.88rem !important;
+  font-weight: 400 !important;
+  background: transparent !important;
+  padding: 0 12px !important;
+  border-radius: 6px;
+  display: flex !important;
+  align-items: center !important;
 }
-.VPNavBar .content {
-  margin-left: auto;
+.VPNavBar .VPFlyout > .button .text {
+  color: var(--text-nav) !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.88rem !important;
+  font-weight: 400 !important;
+  line-height: var(--vp-nav-height) !important;
+  transition: color 0.15s !important;
 }
-/* 搜索框与导航项的间距 */
-.VPNavBar .VPNavBarSearch {
-  margin-right: 8px;
+.VPNavBar .VPFlyout:hover > .button .text,
+.VPNavBar .VPFlyout.active > .button .text {
+  color: var(--brand) !important;
 }
-/* 菜单组内间距 */
-.VPNavBar .VPNavBarMenu {
-  gap: 2px;
+.VPNavBar .VPFlyout:hover > .button,
+.VPNavBar .VPFlyout.active > .button {
+  background: var(--brand-pale) !important;
+}
+/* 下拉菜单箭头 */
+.VPNavBar .VPFlyout .text-icon {
+  color: var(--text-muted) !important;
+  font-size: 12px !important;
 }
 
 /* 搜索框 */
