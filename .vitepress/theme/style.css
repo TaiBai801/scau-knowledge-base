@@ -118,6 +118,50 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   border-bottom: 1px solid var(--line) !important;
   box-shadow: var(--shadow-sm);
 }
+/* 导航栏容器：flex 水平布局，垂直居中 */
+.VPNavBar > .wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.VPNavBar .container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px;
+}
+/* 左侧 logo + 标题 */
+.VPNavBar .container > .title {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+/* 右侧内容区：菜单 + 搜索 + 主题 + 汉堡 */
+.VPNavBar .content,
+.VPNavBar .content-body {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px;
+}
+.VPNavBar .VPNavBarMenu {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px;
+}
+.VPNavBar .VPNavBarSearch {
+  display: flex;
+  align-items: center;
+}
+.VPNavBar .VPNavBarAppearance {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.VPNavBar .VPNavBarHamburger {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
 /* 隐藏 VitePress 默认的本地导航栏（避免首页空白） */
 .VPLocalNav,
 .VPLocalNavOutline,
@@ -718,6 +762,21 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   .shared-grid a { font-size: 0.82rem; padding: 0.4rem 0.6rem; }
   .vp-doc h1 { font-size: 1.5rem !important; }
   .vp-doc h2 { font-size: 1.25rem !important; }
+  .vp-doc h3 { font-size: 1.05rem !important; }
+
+  /* 移动端导航栏紧凑 */
+  .VPNavBar > .wrapper { padding: 0 12px; }
+  .VPNavBar .container { gap: 8px; }
+  .VPNavBar .content,
+  .VPNavBar .content-body { gap: 4px; }
+  .VPNavBar .VPNavBarMenu { gap: 0; }
+}
+
+/* ── 平板: 768-959px 导航栏收紧 ── */
+@media (min-width: 768px) and (max-width: 959px) {
+  .VPNavBar > .wrapper { padding: 0 16px; }
+  .VPNavBar .container { gap: 12px; }
+}
 
 /* ══════════════════════════════════════════════
    共享课程页（Ardot 设计实现）
@@ -999,8 +1058,6 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   .shared-list-header { flex-direction: column; align-items: stretch; }
   .shared-list-header .shared-section-title { text-align: center; }
   .shared-filter { justify-content: center; }
-}
-  .vp-doc h3 { font-size: 1.05rem !important; }
 }
 /* 平板 768-959px */
 @media (min-width: 768px) and (max-width: 959px) {
