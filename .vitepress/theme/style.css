@@ -118,6 +118,16 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   border-bottom: 1px solid var(--line) !important;
   box-shadow: var(--shadow-sm);
 }
+/* 宽屏（≥960px）VitePress 会把 title 和 content-body 拆开渲染 */
+/* 强制统一：导航栏整体一种背景色，子区域透明继承 */
+@media (min-width: 960px) {
+  .VPNavBar .title {
+    background: transparent !important;
+  }
+  .VPNavBar .content-body {
+    background: transparent !important;
+  }
+}
 /* 隐藏 VitePress 默认的本地导航栏（避免首页空白） */
 .VPLocalNav,
 .VPLocalNavOutline,
