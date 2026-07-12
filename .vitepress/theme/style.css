@@ -129,10 +129,42 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
 .VPNavBar .title { font-family: var(--font-display); color: var(--brand); }
 .VPNavBar .logo { height: 36px; }
 
-/* 导航链接 */
-.VPNavBarMenuLink { color: var(--text-nav); font-family: var(--font-body); }
-.VPNavBarMenuLink:hover { color: var(--brand); }
-.VPNavBarMenuLink.active { color: var(--brand); font-weight: 600; }
+/* 导航链接 — 统一无底色块，hover 轻量高亮 */
+.VPNavBarMenuLink {
+  color: var(--text-nav);
+  font-family: var(--font-body);
+  background: transparent !important;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 400;
+  transition: color 0.15s, background 0.15s;
+}
+.VPNavBarMenuLink:hover {
+  color: var(--brand);
+  background: var(--brand-pale) !important;
+}
+.VPNavBarMenuLink.active {
+  color: var(--brand);
+  font-weight: 600;
+  background: transparent !important;
+}
+/* 右侧导航菜单贴右边缘 */
+.VPNavBar .container {
+  display: flex;
+  align-items: center;
+}
+.VPNavBar .content {
+  margin-left: auto;
+}
+/* 搜索框与导航项的间距 */
+.VPNavBar .VPNavBarSearch {
+  margin-right: 8px;
+}
+/* 菜单组内间距 */
+.VPNavBar .VPNavBarMenu {
+  gap: 2px;
+}
 
 /* 搜索框 */
 .DocSearch-Button {
