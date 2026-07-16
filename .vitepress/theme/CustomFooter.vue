@@ -1,5 +1,5 @@
 <script setup>
-// 机电学院知识库 — 页脚（对齐 Ardot 设计稿）
+// 机电专业知识库 — 页脚（对齐 Ardot 设计稿）
 </script>
 
 <template>
@@ -8,10 +8,10 @@
       <!-- 品牌区 -->
       <div class="cf-brand">
         <div class="cf-logo">
-          <img src="/emblem.png" alt="四川农业大学机电学院" width="48" height="48" />
+          <img src="/emblem.png" alt="机电专业知识库" width="48" height="48" />
         </div>
-        <div class="cf-site-name">机电学院知识库</div>
-        <div class="cf-desc">四川农业大学机电学院课程资源共享平台<br/>电子科学 · 电气工程 · 农业机械化 · 农业工程<br/>四专业全覆盖，全院共建，人人共享。</div>
+        <div class="cf-site-name">机电专业知识库</div>
+        <div class="cf-desc">机电专业课程资源 · 个人站点<br/>电子科学 · 电气工程 · 农业机械化 · 农业工程<br/>四专业全覆盖，开放共享。</div>
       </div>
 
       <!-- 快速链接 -->

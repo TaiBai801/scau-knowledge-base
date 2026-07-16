@@ -2,12 +2,12 @@
 layout: home
 
 hero:
-  name: "机电学院知识库"
+  name: "机电专业知识库"
   text: "课程资料 · 经验传承 · 共同成长"
-  tagline: 别让好资料躺在学长硬盘里吃灰 — 全院共建，人人共享
+  tagline: 别让好资料躺在硬盘里吃灰 — 个人维护，开放共享
   image:
     src: /emblem.png
-    alt: 四川农业大学机电学院
+    alt: 机电专业知识库
   actions:
     - theme: brand
       text: 浏览课程
@@ -62,7 +62,7 @@ features:
   </div>
   <div class="hero-stat">
     <div class="stat-num">∞</div>
-    <div class="stat-label">全院共建</div>
+    <div class="stat-label">开放共享</div>
   </div>
 </div>
 

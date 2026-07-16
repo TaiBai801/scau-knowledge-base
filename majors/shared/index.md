@@ -1,5 +1,5 @@
 ---
-title: 共享课程 · 机电学院知识库
+title: 共享课程 · 机电专业知识库
 description: 跨专业公共课程 — 87 门课程在多专业之间复用
 sidebar: false
 aside: false
