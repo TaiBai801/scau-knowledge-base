@@ -1,7 +1,7 @@
 {
   "name": "机电专业知识库",
   "short_name": "机电知识库",
-  "description": "机电专业课程资源 · 个人站点",
+  "description": "机电专业课程资源",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

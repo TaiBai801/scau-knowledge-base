@@ -11,7 +11,7 @@
           <img src="/emblem.png" alt="机电专业知识库" width="48" height="48" />
         </div>
         <div class="cf-site-name">机电专业知识库</div>
-        <div class="cf-desc">机电专业课程资源 · 个人站点<br/>电子科学 · 电气工程 · 农业机械化 · 农业工程<br/>四专业全覆盖，开放共享。</div>
+        <div class="cf-desc">机电专业课程资源<br/>电子科学 · 电气工程 · 农业机械化 · 农业工程<br/>四专业全覆盖，开放共享。</div>
       </div>
 
       <!-- 快速链接 -->

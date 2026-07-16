@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   lang: 'zh-CN',
   title: '机电专业知识库',
-  description: '机电专业课程资源 · 四专业346门课程 · 个人站点',
+  description: '机电专业课程资源 · 四专业346门课程',
   head: [
     ['link', { rel: 'icon', href: '/emblem.png' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
@@ -14,7 +14,7 @@ export default defineConfig({
     ['meta', { 'http-equiv': 'Expires', content: '0' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: '机电专业知识库' }],
-    ['meta', { property: 'og:description', content: '机电专业课程资源 · 电子/电气/农机/农业工程四专业全覆盖 · 个人站点' }],
+    ['meta', { property: 'og:description', content: '机电专业课程资源 · 电子/电气/农机/农业工程四专业全覆盖 · 开放共享' }],
     ['meta', { property: 'og:site_name', content: '机电专业知识库' }],
   ],
   sitemap: { hostname: 'https://sicau-jdxy-resource.cn' },

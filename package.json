@@ -1,7 +1,7 @@
 {
   "name": "scau-knowledge-base",
   "version": "1.0.0",
-  "description": "机电专业课程资源 · 个人站点",
+  "description": "机电专业课程资源",
   "scripts": {
     "dev": "node node_modules/vitepress/bin/vitepress.js dev",
     "build": "node node_modules/vitepress/bin/vitepress.js build",

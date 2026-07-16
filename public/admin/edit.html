@@ -53,6 +53,19 @@ main{max-width:800px;margin:2rem auto;padding:0 1rem}
 </style>
 </head>
 <body>
+<script>
+// 管理后台密码门
+(function(){
+  if (sessionStorage.getItem('admin_authed') === '1') return;
+  var pw = prompt('请输入管理密码');
+  if (pw !== '123456#') {
+    alert('密码错误');
+    history.back();
+    return;
+  }
+  sessionStorage.setItem('admin_authed', '1');
+})();
+</script>
 <header>
   <a href="/admin/index.html">← 返回列表</a>
   <h2 id="courseTitle">编辑课程</h2>

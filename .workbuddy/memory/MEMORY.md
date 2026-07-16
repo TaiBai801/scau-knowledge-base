@@ -24,10 +24,14 @@
 - 85个课程页 onclick → back-link 批量替换
 - TOC 不遮挡 Footer 修复（z-index + padding-bottom）
 
-## VitePress 移动端菜单
-- 移动端（<960px）汉堡菜单走 **VPNavScreen**（顶部下拉面板），非 VPSidebar（桌面侧边栏）
-- VPNavScreen 和 VPSidebar 是两套独立组件，JS 按断点自动切换
-- 黑屏问题 = VPNavScreen 默认透明背景 → 需显式设置 `background` + 自定义样式
-- 汉堡菜单修复方向：给 VPNavScreen 穿 Ardot 皮肤（不要隐藏它）
-- 菜单项触控：`min-height: 44px` + `touch-action: manipulation`
-- 遮罩 VPOverlay：`z-index: 35`，VPNavScreen：`z-index: 40`
+## VitePress 自定义样式关键规则
+- **Vue Scoped 覆盖问题**：VitePress 导航栏/侧边栏组件用 `<style scoped>`，全局 CSS 裸写类名（特异性 0,1,0）会被 scoped 选择器 `.class[data-v-xxx]`（特异性 0,2,0）覆盖
+- **解法**：用父选择器提特异性（如 `.VPNavBar .VPNavBarMenuLink`→0,2,0）+ 全属性 `!important`
+- **宽屏断点（≥960px）**：VitePress 会重构导航栏结构——`.title` 变绝对定位、`.content-body` 独立背景色、`.VPNavBar` 自身变透明
+- **宽屏导航栏统一**：`@media (min-width: 960px)` 强制 `.VPNavBar .title` 和 `.VPNavBar .content-body` 设 `background: transparent !important` 继承父背景
+- **"课程总览"下拉组**用的是 `VPFlyout` 组件（非 `VPNavBarMenuLink`），需单独用 `.VPNavBar .VPFlyout > .button` 覆盖
+
+## 部署
+- **CloudBase 静态托管**：`tcb hosting deploy -e scau-knowledge-base-d7b3ed8d2fc8` → 永久域名 `https://scau-knowledge-base-d7b3ed8d2fc8-1440179010.tcloudbaseapp.com`
+- **CloudBase 云函数**：SCF 代理 GitHub Contents API，admin 后台保存课程
+- **EdgeOne Pages**：临时域名 3 小时过期（`eo_time missing`），不适合做长期入口

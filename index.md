@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "机电专业知识库"
   text: "课程资料 · 经验传承 · 共同成长"
-  tagline: 别让好资料躺在硬盘里吃灰 — 个人维护，开放共享
+  tagline: 别让好资料躺在硬盘里吃灰 — 开放共享
   image:
     src: /emblem.png
     alt: 机电专业知识库
