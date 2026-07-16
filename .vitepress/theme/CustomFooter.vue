@@ -34,9 +34,13 @@
       </div>
     </div>
 
-    <!-- 版权栏 -->
+    <!-- 备案栏 -->
     <div class="cf-bottom">
-      <span>&copy; 2026 四川农业大学 · 机电学院知识库</span>
+      <div class="cf-beian">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener" class="cf-beian-link">蜀ICP备2026039822号</a>
+        <span class="cf-beian-divider">|</span>
+        <span class="cf-beian-placeholder">川公网安备 XXXXXX号</span>
+      </div>
     </div>
   </footer>
 </template>
@@ -104,6 +108,29 @@
   text-align: center;
   font-size: 0.8rem;
   color: #7FB8B5;
+}
+.cf-beian {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.cf-beian-link {
+  color: #7FB8B5;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.cf-beian-link:hover {
+  color: #FFFFFF;
+}
+.cf-beian-divider {
+  color: #5C9E9B;
+  font-size: 0.75rem;
+}
+.cf-beian-placeholder {
+  color: #5C9E9B;
+  font-style: italic;
 }
 
 @media (max-width: 768px) {

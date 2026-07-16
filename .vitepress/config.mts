@@ -17,7 +17,7 @@ export default defineConfig({
     ['meta', { property: 'og:description', content: '四川农业大学机电学院课程资源共享平台，电子/电气/农机/农业工程四专业全覆盖' }],
     ['meta', { property: 'og:site_name', content: '机电学院知识库' }],
   ],
-  sitemap: { hostname: 'https://scau-knowledge-base-nhlkrpf1.edgeone.cool' },
+  sitemap: { hostname: 'https://sicau-jdxy-resource.cn' },
   srcExclude: ['cloud-function/**', '**/node_modules/**'],
   themeConfig: {
     logo: '/emblem.png',

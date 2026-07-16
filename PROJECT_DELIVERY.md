@@ -10,10 +10,10 @@
 
 | 资源 | 地址 |
 |------|------|
-| 🌐 **线上站点** | https://scau-knowledge-base-nhlkrpf1.edgeone.cool（EdgeOne Pages） |
+| 🌐 **线上站点** | https://sicau-jdxy-resource.cn |
 | 📦 **GitHub 仓库** | https://github.com/TaiBai801/scau-knowledge-base |
 | 📝 **腾讯文档空间** | https://docs.qq.com/space/DZXBYSkhnRXRwSWpv |
-| 🛠 **管理后台** | https://admin-scau-knowledge-base-d7b3ed8d2fc8.webapps.tcloudbase.com（CloudBase 静态托管，永久域名） |
+| 🛠 **管理后台** | https://sicau-jdxy-resource.cn/admin/index.html |
 | 📡 **云函数 API** | https://scau-knowledge-base-d7b3ed8d2fc8-1440170170.ap-shanghai.app.tcloudbase.com/save-course |
 | 🗺 **全站导航** | /nav |
 
