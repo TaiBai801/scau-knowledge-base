@@ -39,7 +39,10 @@
       <div class="cf-beian">
         <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener" class="cf-beian-link">蜀ICP备2026039822号</a>
         <span class="cf-beian-divider">|</span>
-        <span class="cf-beian-placeholder">川公网安备 XXXXXX号</span>
+        <a href="https://beian.mps.gov.cn/#/query/webSearch?code=51180202512088" target="_blank" rel="noreferrer" class="cf-beian-link cf-beian-gongan">
+          <img src="/beian-gongan.png" alt="公安备案图标" class="cf-beian-icon" />
+          川公网安备51180202512088号
+        </a>
       </div>
     </div>
   </footer>
@@ -128,9 +131,15 @@
   color: #5C9E9B;
   font-size: 0.75rem;
 }
-.cf-beian-placeholder {
-  color: #5C9E9B;
-  font-style: italic;
+.cf-beian-gongan {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.cf-beian-icon {
+  width: 18px;
+  height: 20px;
+  vertical-align: middle;
 }
 
 @media (max-width: 768px) {
