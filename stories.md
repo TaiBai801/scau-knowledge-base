@@ -1,10 +1,14 @@
 # 学长「ta 说」
 
+<div class="ta-say-hero">
+  <img src="/ta-say.svg" alt="「ta说」" />
+</div>
+
 > 🎓 高分学长学姐的真实经验，比绩点更有参考价值。
 
 ---
 
-## 信号与系统
+## 信号与系统 {.ta-section-title}
 
 <div class="ta-card">
   <div class="ta-header">
@@ -39,7 +43,7 @@
 
 ---
 
-## 电路原理
+## 电路原理 {.ta-section-title}
 
 <div class="ta-card">
   <div class="ta-header">

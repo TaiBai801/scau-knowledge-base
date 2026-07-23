@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" preserveAspectRatio="xMidYMid meet">
+  <g fill="#0D5C5A" font-family="Georgia, 'Times New Roman', 'Songti SC', 'Noto Serif SC', serif">
+    <!-- 左括号「 -->
+    <text x="8" y="62" font-size="60" font-weight="400">「</text>
+    <!-- ta（斜体） -->
+    <text x="48" y="55" font-size="40" font-style="italic" font-weight="700">ta</text>
+    <!-- 说 -->
+    <text x="105" y="55" font-size="40" font-weight="700">说</text>
+    <!-- 右括号」 -->
+    <text x="160" y="62" font-size="60" font-weight="400">」</text>
+  </g>
+</svg>

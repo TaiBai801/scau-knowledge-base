@@ -623,6 +623,22 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   font-size: 0.92rem; color: var(--text-muted); margin: 0.75rem 0;
   padding-left: 0.75rem; border-left: 2px solid var(--line); font-style: italic;
 }
+/* ta说 装饰括号样式：quote 文本前后自动加「」 */
+.ta-card .ta-quote::before { content: '「'; color: var(--brand); font-size: 1.1em; font-weight: 700; font-style: normal; margin-right: 2px; }
+.ta-card .ta-quote::after  { content: '」'; color: var(--brand); font-size: 1.1em; font-weight: 700; font-style: normal; margin-left: 2px; }
+
+/* ── ta说 段落标题 ── */
+.ta-section-title {
+  font-family: var(--font-display) !important;
+  font-size: 1.4rem !important;
+  font-weight: 700 !important;
+  color: var(--brand) !important;
+  margin: 2.5rem 0 1rem !important;
+  padding: 0.5rem 0 0.5rem 14px;
+  border-left: 4px solid var(--brand);
+  background: linear-gradient(to right, var(--brand-pale) 0%, transparent 60%);
+  border-radius: 0 8px 8px 0;
+}
 
 /* ── 课程卡片 ── */
 .course-card {
@@ -1112,6 +1128,21 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   .VPContent:not(.is-home).has-sidebar .VPDoc.has-aside { padding-bottom: 4rem !important; }
 }
 
+/* ── ta说 SVG Hero 元素 ── */
+.ta-say-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 0 8px;
+  margin: 0 auto;
+  max-width: 220px;
+}
+.ta-say-hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 @media print {
   .VPNav, .VPSidebar, .VPLocalNav, .VPFooter, .DocSearch,
   .edit-link, .prev-next, .outline-marker, .back-to-top,
@@ -1301,15 +1332,62 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   margin: 0 0 16px;
   font-family: var(--font-body);
 }
-.ardot-cta-btn {
-  display: inline-block;
+.ardot-cta-btn:hover {
+  opacity: 0.9;
+}
+
+/* ── 转专业Ta说 ── */
+.ardot-stats-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.ardot-stat-card {
   background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px 28px;
+  text-align: center;
+  min-width: 100px;
+}
+.ardot-stat-num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--brand);
+}
+.ardot-stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.transfer-section-title {
+  font-family: var(--font-display) !important;
+  font-size: 1.3rem !important;
   color: var(--brand) !important;
-  padding: 10px 24px;
-  border-radius: 8px;
-  text-decoration: none !important;
+  margin: 36px 0 16px !important;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--brand-pale);
+}
+.transfer-badge {
+  display: inline-block;
+  background: rgba(124,58,237,0.12);
+  color: #7C3AED;
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 10px;
   font-weight: 600;
-  font-family: var(--font-body);
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.transfer-card {
+  border-left: 4px solid #7C3AED;
+}
+@media (max-width: 767px) {
+  .ardot-stats-row { gap: 8px; }
+  .ardot-stat-card { padding: 14px 16px; min-width: 70px; }
+  .ardot-stat-num { font-size: 1.4rem; }
 }
 
 /* 学期列表 */
