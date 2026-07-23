@@ -1,12 +1,18 @@
-# 学长「ta 说」
-
-<div class="ta-say-hero">
-  <img src="/ta-say.svg" alt="「ta说」" />
-</div>
-
-> 🎓 高分学长学姐的真实经验，比绩点更有参考价值。
-
 ---
+title: 学长说
+sidebar: false
+aside: false
+---
+
+<div class="ta-card-hero">
+  <div class="ta-card-hero-icon">
+    <img src="/icons/academic.svg" alt="" />
+  </div>
+  <div class="ta-card-hero-body">
+    <h1>学长说</h1>
+    <p>高分学长学姐的真实经验分享，比绩点更有参考价值。</p>
+  </div>
+</div>
 
 ## 信号与系统 {.ta-section-title}
 
@@ -19,7 +25,7 @@
     </div>
     <div class="ta-score">91</div>
   </div>
-  <div class="ta-quote">"信号与系统是考研必考课。傅里叶变换和拉普拉斯变换是核心中的核心，考前一定要把变换对表背熟。时域卷积和频域乘积的对应关系是高频考点。"</div>
+  <div class="ta-quote">信号与系统是考研必考课。傅里叶变换和拉普拉斯变换是核心中的核心，考前一定要把变换对表背熟。时域卷积和频域乘积的对应关系是高频考点。</div>
   <div class="ta-section"><strong>💡 推荐学习方法：</strong></div>
   <ul>
     <li>先搞清楚三种变换之间的联系和区别，建一张对比表</li>
@@ -38,10 +44,8 @@
     </div>
     <div class="ta-score">87</div>
   </div>
-  <div class="ta-quote">"刚开始学傅里叶变换觉得抽象很正常，坚持做两周练习题就会开窍。建议用 MATLAB 画频谱图帮助理解。"</div>
+  <div class="ta-quote">刚开始学傅里叶变换觉得抽象很正常，坚持做两周练习题就会开窍。建议用 MATLAB 画频谱图帮助理解。</div>
 </div>
-
----
 
 ## 电路原理 {.ta-section-title}
 
@@ -54,7 +58,7 @@
     </div>
     <div class="ta-score">93</div>
   </div>
-  <div class="ta-quote">"电路原理是后面模电数电的基础，这门课没学好后面会很痛苦。KCL、KVL 看起来简单，但到了复杂电路一定要多练，形成肌肉记忆。"</div>
+  <div class="ta-quote">电路原理是后面模电数电的基础，这门课没学好后面会很痛苦。KCL、KVL 看起来简单，但到了复杂电路一定要多练，形成肌肉记忆。</div>
   <div class="ta-section"><strong>💡 推荐学习方法：</strong></div>
   <ul>
     <li>课后当天就把邱关源对应章节的习题做掉，每周至少 10 道大题保持手感</li>
@@ -73,7 +77,7 @@
     </div>
     <div class="ta-score">89</div>
   </div>
-  <div class="ta-quote">"我当时最怕一阶电路的时域分析，后来发现把常微分方程那章复习一遍之后豁然开朗。建议学电路之前先翻翻高数下册的微分方程部分。"</div>
+  <div class="ta-quote">我当时最怕一阶电路的时域分析，后来发现把常微分方程那章复习一遍之后豁然开朗。建议学电路之前先翻翻高数下册的微分方程部分。</div>
 </div>
 
 ---
