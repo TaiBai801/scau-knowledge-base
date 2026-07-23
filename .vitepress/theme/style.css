@@ -52,6 +52,17 @@
   --radius-card: 12px;
   --radius-tag: 20px;
 
+  /* 间距阶梯 */
+  --space-xs: 4px; --space-sm: 8px; --space-md: 16px;
+  --space-lg: 24px; --space-xl: 32px; --space-2xl: 48px; --space-3xl: 64px;
+
+  /* 字号阶梯 */
+  --text-xs: 0.75rem; --text-sm: 0.85rem; --text-base: 0.95rem;
+  --text-md: 1.05rem; --text-lg: 1.2rem; --text-xl: 1.5rem; --text-2xl: 2rem;
+
+  /* 过渡 */
+  --transition-fast: 0.15s ease; --transition-normal: 0.25s ease;
+
   /* 字体 */
   --font-display: 'Crimson Pro', 'Georgia', 'Noto Serif SC', serif;
   --font-body: 'PingFang SC', 'Sarasa Gothic SC', 'Microsoft YaHei', sans-serif;
@@ -604,6 +615,14 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   font-family: var(--font-display); color: var(--brand); margin-top: 0;
 }
 
+/* ── 统一卡片基类 ── */
+.ardot-card {
+  background: var(--bg-card); border: 1px solid var(--line);
+  border-radius: var(--radius-card); padding: var(--space-lg);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.ardot-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(13,92,90,0.1); }
+
 /* ── ta说卡片 ── */
 .ta-card {
   border-left: 3px solid var(--brand); padding: 1.25rem;
@@ -731,6 +750,9 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
 .dark .nav-card:hover { border-color: #5EEAD4; background: rgba(94,234,212,0.1); }
 .dark .nav-card.major { border-color: #5EEAD4; }
 .dark .VPOverlay { background: rgba(0,0,0,0.65) !important; }
+.dark .ta-tag { background: rgba(94,234,212,0.15); color: #5EEAD4; }
+.dark .ardot-stat-card { background: var(--bg-card); }
+.dark .ardot-tag { background: rgba(94,234,212,0.2); color: #5EEAD4; }
 
 /* ── Feature 图标 ── */
 .VPFeature .VPIcon { width: 36px; height: 36px; }
@@ -1141,6 +1163,33 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   width: 100%;
   height: auto;
   display: block;
+}
+
+/* ══════════════════════════════════════════════
+   手机端适配 (≤767px)
+   ══════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-sm); padding: 0 var(--space-md); }
+  .hero-stat .stat-num { font-size: var(--text-2xl); }
+  .course-card { padding: var(--space-md); border-radius: 10px; }
+  .ta-card { padding: var(--space-md); margin: var(--space-md) 0; }
+  .ta-card .ta-avatar { width: 36px; height: 36px; font-size: 0.85rem; }
+  .ta-card .ta-quote { font-size: 0.85rem; }
+  .ta-card-hero { flex-direction: column; text-align: center; padding: var(--space-xl) var(--space-lg); margin: var(--space-md); border-radius: var(--radius-card); }
+  .ta-card-hero-body h1 { font-size: var(--text-xl) !important; }
+  .cf-main { flex-direction: column; gap: var(--space-xl); padding: var(--space-xl) var(--space-md); }
+  .cf-brand { align-items: center; text-align: center; }
+  .cf-desc { max-width: 100%; }
+  .cf-beian { flex-direction: column; gap: 2px; }
+  .cf-beian-divider { display: none; }
+  .ardot-stats-row { gap: var(--space-sm); }
+  .ardot-stat-card { padding: var(--space-md) var(--space-sm); min-width: 70px; }
+  .ardot-stat-num { font-size: var(--text-xl); }
+  .vp-doc { padding: 0 var(--space-md); }
+  .vp-doc h1 { font-size: var(--text-2xl); }
+  .vp-doc h2 { font-size: var(--text-xl); }
+  .search-hot { flex-wrap: wrap; gap: var(--space-xs); }
+  .search-hot a { font-size: var(--text-xs); padding: var(--space-xs) 10px; }
 }
 
 @media print {
