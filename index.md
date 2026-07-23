@@ -34,8 +34,8 @@ features:
   - icon:
       light: /icons/academic.svg
       dark: /icons/academic-dark.svg
-      alt: 学长
-    title: 学长说
+      alt: Ta说
+    title: 「Ta说」
     details: 高分学长学姐的真实经验分享，比绩点更有参考价值。
     link: /stories
   - icon:

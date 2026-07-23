@@ -88,7 +88,8 @@
 
 <a href="/majors/shared/" class="nav-card">📚 共享课程 · 87门</a>
 <a href="/map" class="nav-card">🗺️ 课程地图</a>
-<a href="/stories" class="nav-card">💬 学长说</a>
+<a href="/stories" class="nav-card">💬 「Ta说」</a>
+<a href="/transfer" class="nav-card">🔄 转专业「Ta说」</a>
 <a href="/contribute" class="nav-card">✏️ 贡献指南</a>
 <a href="/about" class="nav-card">ℹ️ 关于本站</a>
 <a href="/contributors" class="nav-card">👥 贡献者</a>

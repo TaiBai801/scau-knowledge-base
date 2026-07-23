@@ -1,5 +1,5 @@
 ---
-title: 学长说
+title: 「Ta说」
 sidebar: false
 aside: false
 ---
@@ -9,7 +9,7 @@ aside: false
     <img src="/icons/academic.svg" alt="" />
   </div>
   <div class="ta-card-hero-body">
-    <h1>学长说</h1>
+    <h1>「Ta说」</h1>
     <p>高分学长学姐的真实经验分享，比绩点更有参考价值。</p>
   </div>
 </div>
