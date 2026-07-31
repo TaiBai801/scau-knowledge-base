@@ -2,16 +2,9 @@
 title: 电气工程及其自动化 2026级
 ---
 
-<div class="ardot-page-hero">
-  <div class="ardot-page-inner">
-    <span class="ardot-tag">2026 级 *(2026 修订版)*</span>
-    <h1>电气工程及其自动化</h1>
-    <p>总学分 **160.0** · 总学时 **2176** · 共 **86** 门课</p>
-  </div>
-</div>
+# 电气工程及其自动化 · 2026 级 *(2026 修订版)*
 
-<div class="ardot-page-content">
-  <div class="ardot-page-inner">
+> 📋 总学分 **160.0** · 总学时 **2176** · 共 **86** 门课
 
 ## 学期课程
 
@@ -25,6 +18,3 @@ title: 电气工程及其自动化 2026级
 | [第 6 学期](/majors/dianqigongcheng/2026/semester6) | 13 | 23.5 | 368 |
 | [第 7 学期](/majors/dianqigongcheng/2026/semester7) | 3 | 7.0 | 0 |
 | [第 8 学期](/majors/dianqigongcheng/2026/semester8) | 2 | 9.0 | 0 |
-
-  </div>
-</div>

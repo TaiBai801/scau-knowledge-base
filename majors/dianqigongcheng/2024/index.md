@@ -2,16 +2,9 @@
 title: 电气工程及其自动化 2024级
 ---
 
-<div class="ardot-page-hero">
-  <div class="ardot-page-inner">
-    <span class="ardot-tag">2024 级</span>
-    <h1>电气工程及其自动化</h1>
-    <p>总学分 **173.5** · 总学时 **2448** · 共 **99** 门课</p>
-  </div>
-</div>
+# 电气工程及其自动化 · 2024 级
 
-<div class="ardot-page-content">
-  <div class="ardot-page-inner">
+> 📋 总学分 **173.5** · 总学时 **2448** · 共 **99** 门课
 
 ## 学期课程
 
@@ -25,6 +18,3 @@ title: 电气工程及其自动化 2024级
 | [第 6 学期](/majors/dianqigongcheng/2024/semester6) | 19 | 28.0 | 400 |
 | [第 7 学期](/majors/dianqigongcheng/2024/semester7) | 2 | 3.0 | 48 |
 | [第 8 学期](/majors/dianqigongcheng/2024/semester8) | 3 | 12.0 | 0 |
-
-  </div>
-</div>

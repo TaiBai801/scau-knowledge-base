@@ -2,16 +2,9 @@
 title: 农业机械化及其自动化 2024级
 ---
 
-<div class="ardot-page-hero">
-  <div class="ardot-page-inner">
-    <span class="ardot-tag">2024 级</span>
-    <h1>农业机械化及其自动化</h1>
-    <p>总学分 **169.0** · 总学时 **2344** · 共 **82** 门课</p>
-  </div>
-</div>
+# 农业机械化及其自动化 · 2024 级
 
-<div class="ardot-page-content">
-  <div class="ardot-page-inner">
+> 📋 总学分 **169.0** · 总学时 **2344** · 共 **82** 门课
 
 ## 学期课程
 
@@ -25,6 +18,3 @@ title: 农业机械化及其自动化 2024级
 | [第 6 学期](/majors/nongyejixiehua/2024/semester6) | 10 | 22.5 | 328 |
 | [第 7 学期](/majors/nongyejixiehua/2024/semester7) | 5 | 10.5 | 152 |
 | [第 8 学期](/majors/nongyejixiehua/2024/semester8) | 3 | 12.0 | 0 |
-
-  </div>
-</div>

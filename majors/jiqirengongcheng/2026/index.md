@@ -2,16 +2,9 @@
 title: 机器人工程 2026级
 ---
 
-<div class="ardot-page-hero">
-  <div class="ardot-page-inner">
-    <span class="ardot-tag">2026 级 *(2026 修订版)*</span>
-    <h1>机器人工程</h1>
-    <p>总学分 **157.0** · 总学时 **2160** · 共 **81** 门课</p>
-  </div>
-</div>
+# 机器人工程 · 2026 级 *(2026 修订版)*
 
-<div class="ardot-page-content">
-  <div class="ardot-page-inner">
+> 📋 总学分 **157.0** · 总学时 **2160** · 共 **81** 门课
 
 ## 学期课程
 
@@ -25,6 +18,3 @@ title: 机器人工程 2026级
 | [第 6 学期](/majors/jiqirengongcheng/2026/semester6) | 11 | 21.0 | 312 |
 | [第 7 学期](/majors/jiqirengongcheng/2026/semester7) | 3 | 6.0 | 0 |
 | [第 8 学期](/majors/jiqirengongcheng/2026/semester8) | 2 | 9.0 | 0 |
-
-  </div>
-</div>

@@ -2,33 +2,14 @@
 title: 电气工程及其自动化
 ---
 
-<div class="ardot-page-hero">
-  <div class="ardot-page-inner">
-    <span class="ardot-tag">专业课程</span>
-    <h1>电气工程及其自动化</h1>
-    <p>选择年级查看培养方案</p>
-  </div>
-</div>
+# 电气工程及其自动化
 
-<div class="ardot-page-content">
-  <div class="ardot-page-inner">
+> 🎓 选择年级查看培养方案
 
-<div class="major-year-grid">
+## 年级一览
 
-      <a href="/majors/dianqigongcheng/2024/" class="major-overview-card">
-        <span class="moc-year">2024 级</span>
-        <span class="moc-stats">99 门课 · 173.5 学分 · 2448 学时</span>
-      </a>
-      <a href="/majors/dianqigongcheng/2025/" class="major-overview-card">
-        <span class="moc-year">2025 级</span>
-        <span class="moc-stats">100 门课 · 174.5 学分 · 2464 学时</span>
-      </a>
-      <a href="/majors/dianqigongcheng/2026/" class="major-overview-card">
-        <span class="moc-year">2026 级 *(修订版)*</span>
-        <span class="moc-stats">86 门课 · 160.0 学分 · 2176 学时</span>
-      </a>
-
-</div>
-
-  </div>
-</div>
+| 年级 | 课程数 | 学分 | 学时 |
+|:--:|:--:|:--:|:--:|
+| [2024 级](/majors/dianqigongcheng/2024/) | 99 | 173.5 | 2448 |
+| [2025 级](/majors/dianqigongcheng/2025/) | 100 | 174.5 | 2464 |
+| [2026 级 *(修订版)*](/majors/dianqigongcheng/2026/) | 86 | 160.0 | 2176 |

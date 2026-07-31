@@ -2,16 +2,9 @@
 title: 电子科学与技术 2024级
 ---
 
-<div class="ardot-page-hero">
-  <div class="ardot-page-inner">
-    <span class="ardot-tag">2024 级</span>
-    <h1>电子科学与技术</h1>
-    <p>总学分 **168.5** · 总学时 **2352** · 共 **93** 门课</p>
-  </div>
-</div>
+# 电子科学与技术 · 2024 级
 
-<div class="ardot-page-content">
-  <div class="ardot-page-inner">
+> 📋 总学分 **168.5** · 总学时 **2352** · 共 **93** 门课
 
 ## 学期课程
 
@@ -25,6 +18,3 @@ title: 电子科学与技术 2024级
 | [第 6 学期](/majors/dianzikexue/2024/semester6) | 19 | 32.5 | 488 |
 | [第 7 学期](/majors/dianzikexue/2024/semester7) | 3 | 5.5 | 88 |
 | [第 8 学期](/majors/dianzikexue/2024/semester8) | 3 | 12.0 | 0 |
-
-  </div>
-</div>
