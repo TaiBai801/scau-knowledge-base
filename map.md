@@ -1,61 +1,43 @@
 # 课程地图
 
-> 🗺️ 机电专业四大方向全景
+> 🗺️ 全院培养方案一览 · 按年级和专业快速导航
+
+## 电子科学与技术
+
+| 年级 | 入口 | 课程数 | 学分 |
+|:--:|------|:--:|:--:|
+| 2024 | [电子2024](/majors/dianzikexue/2024/) | 93 | 168.5 |
+| 2025 | [电子2025](/majors/dianzikexue/2025/) | 94 | 169.5 |
+| 2026 | [电子2026](/majors/dianzikexue/2026/) | 89 | 164.0 |
+
+## 电气工程及其自动化
+
+| 年级 | 入口 | 课程数 | 学分 |
+|:--:|------|:--:|:--:|
+| 2024 | [电气2024](/majors/dianqigongcheng/2024/) | 99 | 173.5 |
+| 2025 | [电气2025](/majors/dianqigongcheng/2025/) | 100 | 174.5 |
+| 2026 | [电气2026](/majors/dianqigongcheng/2026/) | 86 | 160.0 |
+
+## 农业机械化及其自动化
+
+| 年级 | 入口 | 课程数 | 学分 |
+|:--:|------|:--:|:--:|
+| 2024 | [农机2024](/majors/nongyejixiehua/2024/) | 82 | 169.0 |
+| 2025 | [农机2025](/majors/nongyejixiehua/2025/) | 83 | 170.0 |
+
+## 农业工程
+
+| 年级 | 入口 | 课程数 | 学分 |
+|:--:|------|:--:|:--:|
+| 2024 | [农工2024](/majors/nongyegongcheng/2024/) | 88 | 164.0 |
+| 2025 | [农工2025](/majors/nongyegongcheng/2025/) | 89 | 165.0 |
+
+## 机器人工程
+
+| 年级 | 入口 | 课程数 | 学分 |
+|:--:|------|:--:|:--:|
+| 2026 | [机器人2026](/majors/jiqirengongcheng/2026/) | 81 | 157.0 |
 
 ---
 
-## 🔵 电子科学与技术 — 93门
-
-<div class="map-table-wrap">
-
-| | | | |
-|---|---|---|---|
-| [大一上 (13)](/majors/dianzikexue/semester1-1) | [大一下 (9)](/majors/dianzikexue/semester1-2) | [大二上 (13)](/majors/dianzikexue/semester2-1) | [大二下 (15)](/majors/dianzikexue/semester2-2) |
-| [大三上 (18)](/majors/dianzikexue/semester3-1) | [大三下 (19)](/majors/dianzikexue/semester3-2) | [大四上 (3)](/majors/dianzikexue/semester4-1) | [大四下 (3)](/majors/dianzikexue/semester4-2) |
-
-</div>
-
-## 🟢 农业机械化及其自动化 — 82门
-
-<div class="map-table-wrap">
-
-| | | | |
-|---|---|---|---|
-| [大一上 (15)](/majors/nongyejixiehua/semester1-1) | [大一下 (10)](/majors/nongyejixiehua/semester1-2) | [大二上 (13)](/majors/nongyejixiehua/semester2-1) | [大二下 (14)](/majors/nongyejixiehua/semester2-2) |
-| [大三上 (12)](/majors/nongyejixiehua/semester3-1) | [大三下 (9)](/majors/nongyejixiehua/semester3-2) | [大四上 (6)](/majors/nongyejixiehua/semester4-1) | [大四下 (3)](/majors/nongyejixiehua/semester4-2) |
-
-</div>
-
-## 🟡 电气工程及其自动化 — 85门
-
-<div class="map-table-wrap">
-
-| | | | |
-|---|---|---|---|
-| [大一上 (13)](/majors/dianqigongcheng/semester1-1) | [大一下 (11)](/majors/dianqigongcheng/semester1-2) | [大二上 (12)](/majors/dianqigongcheng/semester2-1) | [大二下 (12)](/majors/dianqigongcheng/semester2-2) |
-| [大三上 (12)](/majors/dianqigongcheng/semester3-1) | [大三下 (12)](/majors/dianqigongcheng/semester3-2) | [大四上 (5)](/majors/dianqigongcheng/semester4-1) | [大四下 (8)](/majors/dianqigongcheng/semester4-2) |
-
-</div>
-
-## 🔴 农业工程 — 86门
-
-<div class="map-table-wrap">
-
-| | | | |
-|---|---|---|---|
-| [大一上 (13)](/majors/nongyegongcheng/semester1-1) | [大一下 (9)](/majors/nongyegongcheng/semester1-2) | [大二上 (16)](/majors/nongyegongcheng/semester2-1) | [大二下 (15)](/majors/nongyegongcheng/semester2-2) |
-| [大三上 (17)](/majors/nongyegongcheng/semester3-1) | [大三下 (8)](/majors/nongyegongcheng/semester3-2) | [大四上 (6)](/majors/nongyegongcheng/semester4-1) | [大四下 (2)](/majors/nongyegongcheng/semester4-2) |
-
-</div>
-
----
-
-## 图例
-
-| 标识 | 含义 |
-|------|------|
-| 🟢 绿点 | 已完善 — 五段内容齐全 |
-| 🟡 黄点 | 收集中 — 部分内容已到位 |
-| ⚪ 灰点 | 待建设 — 尚未开始 |
-
-> 🌟 想要给某门课添砖加瓦？查看[贡献指南](/contribute)
+> 📚 [共享课程](/majors/shared/) · 通识必修 + 专业基础课共 51 门
