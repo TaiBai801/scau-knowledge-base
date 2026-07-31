@@ -55,7 +55,7 @@ for (major, year), path in files_spec.items():
 
 courses = pd.DataFrame(rows)
 
-SPECIAL_KEYWORDS = ['毕业', '军训', '实习', '教学实习', '课程设计', '综合实践', '劳动教育']
+SPECIAL_KEYWORDS = ['毕业', '军训', '实习', '教学实习', '课程设计', '综合实践', '劳动教育', '思政课社会实践', '创新创业实践', '实践Ⅰ', '实践Ⅱ', '实践Ⅲ', '实践Ⅳ']
 
 def is_special(name):
     nm = str(name)

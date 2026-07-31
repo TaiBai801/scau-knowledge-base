@@ -15,7 +15,7 @@ title: 机器人工程 2026级 第6学期
 
 <div class="course-grid">
 
-<a href="/majors/shared/3251045020" class="course-card"><div class="course-code">3251045020</div><div class="course-title">大学体育实践Ⅱ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 0h · 实践教育</span></div></a>
+<a href="/majors/jiqirengongcheng/2026/3251045020" class="course-card"><div class="course-code">3251045020</div><div class="course-title">大学体育实践Ⅱ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 0h · 实践教育</span></div></a>
 <a href="/majors/shared/1250181000" class="course-card"><div class="course-code">1250181000</div><div class="course-title">电气控制技术</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">2.0学分 · 32h · 个性化教育</span></div></a>
 <a href="/majors/shared/4250181000" class="course-card"><div class="course-code">4250181000</div><div class="course-title">电气控制技术实验</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">1.0学分 · 16h · 个性化教育</span></div></a>
 <a href="/majors/shared/2258510000" class="course-card"><div class="course-code">2258510000</div><div class="course-title">机器人操作系统</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">2.5学分 · 40h · 个性化教育</span></div></a>
