@@ -12,4 +12,4 @@ title: 电气工程及其自动化
 |:--:|:--:|:--:|:--:|
 | [2024 级](/majors/dianqigongcheng/2024/) | 99 | 173.5 | 2448 |
 | [2025 级](/majors/dianqigongcheng/2025/) | 100 | 174.5 | 2464 |
-| [2026 级 *(修订版)*](/majors/dianqigongcheng/2026/) | 86 | 160.0 | 2176 |
+| [2026 级](/majors/dianqigongcheng/2026/) | 86 | 160.0 | 2176 |
