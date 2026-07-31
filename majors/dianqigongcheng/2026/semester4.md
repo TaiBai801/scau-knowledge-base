@@ -14,7 +14,6 @@ title: 电气工程及其自动化 2026级 第4学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/dianqigongcheng/2026/3251045010" class="course-card"><div class="course-code">3251045010</div><div class="course-title">大学体育实践Ⅰ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 0h · 实践教育</span></div></a>
 <a href="/majors/shared/1250169001" class="course-card"><div class="course-code">1250169001</div><div class="course-title">电机学</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.0学分 · 32h · 专业教育</span></div></a>
 <a href="/majors/shared/4250169000" class="course-card"><div class="course-code">4250169000</div><div class="course-title">电机学实验</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 16h · 专业教育</span></div></a>

@@ -14,7 +14,6 @@ title: 电子科学与技术 2024级 第3学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1210008001" class="course-card"><div class="course-code">1210008001</div><div class="course-title">MATLAB程序设计</div><div class="course-meta"><span class="badge-practice">专业方向课</span><span class="course-info">2.0学分 · 32h · 专业方向课</span></div></a>
 <a href="/majors/shared/4214493000" class="course-card"><div class="course-code">4214493000</div><div class="course-title">MATLAB程序设计实验</div><div class="course-meta"><span class="badge-practice">专业方向课</span><span class="course-info">1.0学分 · 16h · 专业方向课</span></div></a>
 <a href="/majors/shared/1212418030" class="course-card"><div class="course-code">1212418030</div><div class="course-title">大学生心理健康与职业发展Ⅲ（大学生职业生涯规划）</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识必修</span></div></a>

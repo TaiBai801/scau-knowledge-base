@@ -14,7 +14,6 @@ title: 农业机械化及其自动化 2025级 第6学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/2210430000" class="course-card"><div class="course-code">2210430000</div><div class="course-title">机械电子学</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">3.0学分 · 48h · 专业核心课</span></div></a>
 <a href="/majors/shared/2210437001" class="course-card"><div class="course-code">2210437001</div><div class="course-title">机械制造工艺学</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">3.0学分 · 48h · 专业核心课</span></div></a>
 <a href="/majors/nongyejixiehua/2025/3219942000" class="course-card"><div class="course-code">3219942000</div><div class="course-title">机械制造工艺学教学实习</div><div class="course-meta"><span class="badge-practice">实践教学</span><span class="course-info">1.0学分 · 0h · 专业实践</span></div></a>

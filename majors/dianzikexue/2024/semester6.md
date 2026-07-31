@@ -14,7 +14,6 @@ title: 电子科学与技术 2024级 第6学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1210019000" class="course-card"><div class="course-code">1210019000</div><div class="course-title">半导体集成电路</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">3.0学分 · 48h · 专业核心课</span></div></a>
 <a href="/majors/shared/4210019000" class="course-card"><div class="course-code">4210019000</div><div class="course-title">半导体集成电路实验</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 16h · 专业核心课</span></div></a>
 <a href="/majors/dianzikexue/2024/3215864002" class="course-card"><div class="course-code">3215864002</div><div class="course-title">半导体器件与集成电路综合实践</div><div class="course-meta"><span class="badge-practice">实践教学</span><span class="course-info">1.0学分 · 0h · 专业实践</span></div></a>

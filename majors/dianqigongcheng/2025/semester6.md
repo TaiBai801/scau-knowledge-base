@@ -14,7 +14,6 @@ title: 电气工程及其自动化 2025级 第6学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1210038002" class="course-card"><div class="course-code">1210038002</div><div class="course-title">变电工程设计</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.0学分 · 32h · 专业核心课</span></div></a>
 <a href="/majors/shared/4214587000" class="course-card"><div class="course-code">4214587000</div><div class="course-title">变电工程设计实验</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 16h · 专业核心课</span></div></a>
 <a href="/majors/dianqigongcheng/2025/3214601000" class="course-card"><div class="course-code">3214601000</div><div class="course-title">变电工程设计综合实践</div><div class="course-meta"><span class="badge-practice">实践教学</span><span class="course-info">1.0学分 · 0h · 专业实践</span></div></a>

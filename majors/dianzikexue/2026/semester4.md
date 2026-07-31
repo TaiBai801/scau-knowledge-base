@@ -14,7 +14,6 @@ title: 电子科学与技术 2026级 第4学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1250002002" class="course-card"><div class="course-code">1250002002</div><div class="course-title">半导体物理</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">3.0学分 · 48h · 专业教育</span></div></a>
 <a href="/majors/shared/4250002000" class="course-card"><div class="course-code">4250002000</div><div class="course-title">半导体物理实验</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 16h · 专业教育</span></div></a>
 <a href="/majors/shared/1250121002" class="course-card"><div class="course-code">1250121002</div><div class="course-title">传感器技术（双轨制）</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">2.5学分 · 40h · 个性化教育</span></div></a>

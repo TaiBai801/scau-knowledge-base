@@ -14,7 +14,6 @@ title: 农业工程 2025级 第3学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/4211119000" class="course-card"><div class="course-code">4211119000</div><div class="course-title">CAD计算机辅助设计实验</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 16h · 专业基础课</span></div></a>
 <a href="/majors/shared/1212418030" class="course-card"><div class="course-code">1212418030</div><div class="course-title">大学生心理健康与职业发展Ⅲ（大学生职业生涯规划）</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识必修</span></div></a>
 <a href="/majors/shared/1211045000" class="course-card"><div class="course-code">1211045000</div><div class="course-title">大学体育Ⅲ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 16h · 通识必修</span></div></a>

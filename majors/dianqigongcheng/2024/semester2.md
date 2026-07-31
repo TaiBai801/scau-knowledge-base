@@ -14,7 +14,6 @@ title: 电气工程及其自动化 2024级 第2学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1210008001" class="course-card"><div class="course-code">1210008001</div><div class="course-title">MATLAB程序设计</div><div class="course-meta"><span class="badge-practice">专业方向课</span><span class="course-info">2.0学分 · 32h · 专业方向课</span></div></a>
 <a href="/majors/shared/4214493000" class="course-card"><div class="course-code">4214493000</div><div class="course-title">MATLAB程序设计实验</div><div class="course-meta"><span class="badge-practice">专业方向课</span><span class="course-info">1.0学分 · 16h · 专业方向课</span></div></a>
 <a href="/majors/shared/1215788000" class="course-card"><div class="course-code">1215788000</div><div class="course-title">大学体育Ⅱ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 16h · 通识必修</span></div></a>

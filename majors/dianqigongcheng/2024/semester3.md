@@ -14,7 +14,6 @@ title: 电气工程及其自动化 2024级 第3学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1215689001" class="course-card"><div class="course-code">1215689001</div><div class="course-title">Python语言及应用</div><div class="course-meta"><span class="badge-practice">专业方向课</span><span class="course-info">2.0学分 · 32h · 专业方向课</span></div></a>
 <a href="/majors/shared/4215689002" class="course-card"><div class="course-code">4215689002</div><div class="course-title">Python语言及应用实验</div><div class="course-meta"><span class="badge-practice">专业方向课</span><span class="course-info">1.0学分 · 16h · 专业方向课</span></div></a>
 <a href="/majors/shared/1212418030" class="course-card"><div class="course-code">1212418030</div><div class="course-title">大学生心理健康与职业发展Ⅲ（大学生职业生涯规划）</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识必修</span></div></a>

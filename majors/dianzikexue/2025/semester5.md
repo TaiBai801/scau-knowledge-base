@@ -14,7 +14,6 @@ title: 电子科学与技术 2025级 第5学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1210005001" class="course-card"><div class="course-code">1210005001</div><div class="course-title">EDA技术</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.0学分 · 32h · 专业核心课</span></div></a>
 <a href="/majors/shared/4214413000" class="course-card"><div class="course-code">4214413000</div><div class="course-title">EDA技术实验</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.5学分 · 24h · 专业核心课</span></div></a>
 <a href="/majors/dianzikexue/2025/3214430000" class="course-card"><div class="course-code">3214430000</div><div class="course-title">EDA技术综合实践</div><div class="course-meta"><span class="badge-practice">实践教学</span><span class="course-info">1.0学分 · 0h · 专业实践</span></div></a>

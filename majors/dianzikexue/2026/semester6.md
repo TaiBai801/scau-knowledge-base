@@ -14,7 +14,6 @@ title: 电子科学与技术 2026级 第6学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1250005001" class="course-card"><div class="course-code">1250005001</div><div class="course-title">EDA技术</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">2.0学分 · 32h · 个性化教育</span></div></a>
 <a href="/majors/shared/4250005000" class="course-card"><div class="course-code">4250005000</div><div class="course-title">EDA技术实验</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">1.5学分 · 24h · 个性化教育</span></div></a>
 <a href="/majors/dianzikexue/2026/3251045020" class="course-card"><div class="course-code">3251045020</div><div class="course-title">大学体育实践Ⅱ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 0h · 实践教育</span></div></a>

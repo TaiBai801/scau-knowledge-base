@@ -14,7 +14,6 @@ title: 电气工程及其自动化 2026级 第2学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1255689001" class="course-card"><div class="course-code">1255689001</div><div class="course-title">Python语言及应用</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">2.0学分 · 32h · 个性化教育</span></div></a>
 <a href="/majors/shared/4255689002" class="course-card"><div class="course-code">4255689002</div><div class="course-title">Python语言及应用实验</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">1.0学分 · 16h · 个性化教育</span></div></a>
 <a href="/majors/shared/1251045020" class="course-card"><div class="course-code">1251045020</div><div class="course-title">大学体育Ⅱ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 16h · 通识教育</span></div></a>

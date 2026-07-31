@@ -14,7 +14,6 @@ title: 电气工程及其自动化 2026级 第3学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1250008001" class="course-card"><div class="course-code">1250008001</div><div class="course-title">MATLAB程序设计</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">2.0学分 · 32h · 个性化教育</span></div></a>
 <a href="/majors/shared/4250008000" class="course-card"><div class="course-code">4250008000</div><div class="course-title">MATLAB程序设计实验</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">1.0学分 · 16h · 个性化教育</span></div></a>
 <a href="/majors/shared/1252417021" class="course-card"><div class="course-code">1252417021</div><div class="course-title">大学生心理健康与职业发展Ⅱ（职业发展）</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识教育</span></div></a>

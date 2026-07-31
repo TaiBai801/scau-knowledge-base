@@ -14,7 +14,6 @@ title: 机器人工程 2026级 第3学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1252417021" class="course-card"><div class="course-code">1252417021</div><div class="course-title">大学生心理健康与职业发展Ⅱ（职业发展）</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识教育</span></div></a>
 <a href="/majors/shared/2258447000" class="course-card"><div class="course-code">2258447000</div><div class="course-title">电工电子学</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">3.0学分 · 48h · 专业教育</span></div></a>
 <a href="/majors/shared/1250254001" class="course-card"><div class="course-code">1250254001</div><div class="course-title">复变函数与积分变换</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.0学分 · 32h · 专业教育</span></div></a>

@@ -14,7 +14,6 @@ title: 机器人工程 2026级 第4学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/jiqirengongcheng/2026/3251045010" class="course-card"><div class="course-code">3251045010</div><div class="course-title">大学体育实践Ⅰ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 0h · 实践教育</span></div></a>
 <a href="/majors/shared/2258519000" class="course-card"><div class="course-code">2258519000</div><div class="course-title">机器人学</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.5学分 · 40h · 专业教育</span></div></a>
 <a href="/majors/shared/1250656000" class="course-card"><div class="course-code">1250656000</div><div class="course-title">马克思主义基本原理概论</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.5学分 · 40h · 通识教育</span></div></a>

@@ -14,7 +14,6 @@ title: 农业工程 2024级 第4学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1210121001" class="course-card"><div class="course-code">1210121001</div><div class="course-title">传感器技术</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.5学分 · 40h · 专业基础课</span></div></a>
 <a href="/majors/nongyegongcheng/2024/3212418050" class="course-card"><div class="course-code">3212418050</div><div class="course-title">传感器技术教学实习</div><div class="course-meta"><span class="badge-practice">实践教学</span><span class="course-info">1.0学分 · 0h · 专业实践</span></div></a>
 <a href="/majors/shared/4214657000" class="course-card"><div class="course-code">4214657000</div><div class="course-title">传感器技术实验</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 16h · 专业基础课</span></div></a>

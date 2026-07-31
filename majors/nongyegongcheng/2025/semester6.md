@@ -14,7 +14,6 @@ title: 农业工程 2025级 第6学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1210181000" class="course-card"><div class="course-code">1210181000</div><div class="course-title">电气控制技术</div><div class="course-meta"><span class="badge-practice">专业方向课</span><span class="course-info">2.0学分 · 32h · 专业方向课</span></div></a>
 <a href="/majors/shared/4210181000" class="course-card"><div class="course-code">4210181000</div><div class="course-title">电气控制技术实验</div><div class="course-meta"><span class="badge-practice">专业方向课</span><span class="course-info">1.0学分 · 16h · 专业方向课</span></div></a>
 <a href="/majors/shared/2212680070" class="course-card"><div class="course-code">2212680070</div><div class="course-title">工程技术经济学</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">3.0学分 · 48h · 专业核心课</span></div></a>

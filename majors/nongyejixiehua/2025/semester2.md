@@ -14,7 +14,6 @@ title: 农业机械化及其自动化 2025级 第2学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1215788000" class="course-card"><div class="course-code">1215788000</div><div class="course-title">大学体育Ⅱ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 16h · 通识必修</span></div></a>
 <a href="/majors/shared/2210141120" class="course-card"><div class="course-code">2210141120</div><div class="course-title">大学英语AⅡ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">4.0学分 · 64h · 通识必修</span></div></a>
 <a href="/majors/shared/1210267121" class="course-card"><div class="course-code">1210267121</div><div class="course-title">高等数学AⅡ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">5.0学分 · 80h · 通识必修</span></div></a>

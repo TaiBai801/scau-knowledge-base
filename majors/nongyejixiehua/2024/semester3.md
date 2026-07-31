@@ -14,7 +14,6 @@ title: 农业机械化及其自动化 2024级 第3学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1210004000" class="course-card"><div class="course-code">1210004000</div><div class="course-title">C语言程序设计</div><div class="course-meta"><span class="badge-practice">专业方向课</span><span class="course-info">2.5学分 · 40h · 专业方向课</span></div></a>
 <a href="/majors/shared/4210004000" class="course-card"><div class="course-code">4210004000</div><div class="course-title">C语言程序设计实验</div><div class="course-meta"><span class="badge-practice">专业方向课</span><span class="course-info">1.5学分 · 24h · 专业方向课</span></div></a>
 <a href="/majors/shared/2170043204" class="course-card"><div class="course-code">2170043204</div><div class="course-title">材料力学B</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">3.0学分 · 48h · 专业基础课</span></div></a>

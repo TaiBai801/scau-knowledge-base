@@ -14,7 +14,6 @@ title: 农业工程 2024级 第5学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1215689001" class="course-card"><div class="course-code">1215689001</div><div class="course-title">Python语言及应用</div><div class="course-meta"><span class="badge-practice">专业方向课</span><span class="course-info">2.0学分 · 32h · 专业方向课</span></div></a>
 <a href="/majors/shared/4215689002" class="course-card"><div class="course-code">4215689002</div><div class="course-title">Python语言及应用实验</div><div class="course-meta"><span class="badge-practice">专业方向课</span><span class="course-info">1.0学分 · 16h · 专业方向课</span></div></a>
 <a href="/majors/nongyegongcheng/2024/4215859000" class="course-card"><div class="course-code">4215859000</div><div class="course-title">大学生劳动教育（实践II）</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识必修</span></div></a>

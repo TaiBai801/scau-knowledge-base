@@ -14,7 +14,6 @@ title: 电子科学与技术 2026级 第3学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1252417021" class="course-card"><div class="course-code">1252417021</div><div class="course-title">大学生心理健康与职业发展Ⅱ（职业发展）</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识教育</span></div></a>
 <a href="/majors/shared/1250134100" class="course-card"><div class="course-code">1250134100</div><div class="course-title">大学物理A</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">4.0学分 · 64h · 通识教育</span></div></a>
 <a href="/majors/shared/4250134100" class="course-card"><div class="course-code">4250134100</div><div class="course-title">大学物理实验A</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.0学分 · 32h · 通识教育</span></div></a>

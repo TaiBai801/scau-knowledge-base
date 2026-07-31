@@ -14,7 +14,6 @@ title: 农业工程 2024级 第1学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1210004000" class="course-card"><div class="course-code">1210004000</div><div class="course-title">C语言程序设计</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.5学分 · 40h · 专业基础课</span></div></a>
 <a href="/majors/shared/4210004000" class="course-card"><div class="course-code">4210004000</div><div class="course-title">C语言程序设计实验</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.5学分 · 24h · 通识必修</span></div></a>
 <a href="/majors/shared/1212418010" class="course-card"><div class="course-code">1212418010</div><div class="course-title">大学生心理健康与职业发展Ⅰ（国防安全卫生）</div><div class="course-meta"><span class="badge-practice">实践教学</span><span class="course-info">0.5学分 · 0h · 通识实践</span></div></a>

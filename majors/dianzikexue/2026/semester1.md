@@ -14,7 +14,6 @@ title: 电子科学与技术 2026级 第1学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1250001000" class="course-card"><div class="course-code">1250001000</div><div class="course-title">产业创新</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.0学分 · 32h · 通识教育</span></div></a>
 <a href="/majors/shared/1252417010" class="course-card"><div class="course-code">1252417010</div><div class="course-title">大学生心理健康与职业发展Ⅰ（心理健康）</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识教育</span></div></a>
 <a href="/majors/shared/1251045010" class="course-card"><div class="course-code">1251045010</div><div class="course-title">大学体育Ⅰ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 16h · 通识教育</span></div></a>

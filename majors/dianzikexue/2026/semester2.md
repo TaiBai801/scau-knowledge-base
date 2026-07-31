@@ -14,7 +14,6 @@ title: 电子科学与技术 2026级 第2学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1250008001" class="course-card"><div class="course-code">1250008001</div><div class="course-title">MATLAB程序设计</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">2.0学分 · 32h · 个性化教育</span></div></a>
 <a href="/majors/shared/4250008000" class="course-card"><div class="course-code">4250008000</div><div class="course-title">MATLAB程序设计实验</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">1.0学分 · 16h · 个性化教育</span></div></a>
 <a href="/majors/shared/1255689001" class="course-card"><div class="course-code">1255689001</div><div class="course-title">Python语言及应用</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">2.0学分 · 32h · 个性化教育</span></div></a>

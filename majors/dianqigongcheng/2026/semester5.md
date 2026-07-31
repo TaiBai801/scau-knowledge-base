@@ -14,7 +14,6 @@ title: 电气工程及其自动化 2026级 第5学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/shared/1250170001" class="course-card"><div class="course-code">1250170001</div><div class="course-title">电力电子技术</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.0学分 · 32h · 专业教育</span></div></a>
 <a href="/majors/shared/4250170000" class="course-card"><div class="course-code">4250170000</div><div class="course-title">电力电子技术实验</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 16h · 专业教育</span></div></a>
 <a href="/majors/dianqigongcheng/2026/3250172000" class="course-card"><div class="course-code">3250172000</div><div class="course-title">电力系统分析综合实践</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 0h · 实践教育</span></div></a>

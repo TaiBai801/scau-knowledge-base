@@ -14,7 +14,6 @@ title: 农业机械化及其自动化 2025级 第4学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/nongyejixiehua/2025/4215858000" class="course-card"><div class="course-code">4215858000</div><div class="course-title">大学生劳动教育（实践I）</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识必修</span></div></a>
 <a href="/majors/shared/1215949001" class="course-card"><div class="course-code">1215949001</div><div class="course-title">单片机原理与应用</div><div class="course-meta"><span class="badge-practice">专业方向课</span><span class="course-info">2.0学分 · 32h · 专业方向课</span></div></a>
 <a href="/majors/shared/4215949000" class="course-card"><div class="course-code">4215949000</div><div class="course-title">单片机原理与应用实验</div><div class="course-meta"><span class="badge-practice">专业方向课</span><span class="course-info">1.0学分 · 16h · 专业方向课</span></div></a>

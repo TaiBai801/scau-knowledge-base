@@ -191,9 +191,7 @@ title: {major_names[major]} {year}级 第{sem}学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 {chr(10).join(rows_md)}
-
 </div>
 
   </div>

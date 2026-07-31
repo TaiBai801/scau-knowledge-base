@@ -14,7 +14,6 @@ title: 电气工程及其自动化 2024级 第5学期
   <div class="ardot-page-inner">
 
 <div class="course-grid">
-
 <a href="/majors/dianqigongcheng/2024/4215859000" class="course-card"><div class="course-code">4215859000</div><div class="course-title">大学生劳动教育（实践II）</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识必修</span></div></a>
 <a href="/majors/shared/1212418040" class="course-card"><div class="course-code">1212418040</div><div class="course-title">大学生心理健康与职业发展Ⅳ（大学生就业指导）</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识必修</span></div></a>
 <a href="/majors/dianqigongcheng/2024/3215949000" class="course-card"><div class="course-code">3215949000</div><div class="course-title">单片机原理与应用综合实践</div><div class="course-meta"><span class="badge-practice">实践教学</span><span class="course-info">1.0学分 · 0h · 专业实践</span></div></a>
