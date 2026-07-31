@@ -27,7 +27,6 @@ title: 电气工程及其自动化 2026级 第6学期
 <a href="/majors/shared/4259950000" class="course-card"><div class="course-code">4259950000</div><div class="course-title">嵌入式系统开发与应用实验</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">1.5学分 · 24h · 个性化教育</span></div></a>
 <a href="/majors/shared/1251234000" class="course-card"><div class="course-code">1251234000</div><div class="course-title">虚拟仪器技术</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">2.0学分 · 32h · 个性化教育</span></div></a>
 <a href="/majors/shared/4251234000" class="course-card"><div class="course-code">4251234000</div><div class="course-title">虚拟仪器技术实验</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">1.0学分 · 16h · 个性化教育</span></div></a>
-
 </div>
 
   </div>

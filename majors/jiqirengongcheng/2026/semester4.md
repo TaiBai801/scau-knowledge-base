@@ -27,7 +27,6 @@ title: 机器人工程 2026级 第4学期
 <a href="/majors/shared/1251478000" class="course-card"><div class="course-code">1251478000</div><div class="course-title">自动控制原理</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">3.0学分 · 48h · 专业教育</span></div></a>
 <a href="/majors/shared/4251478000" class="course-card"><div class="course-code">4251478000</div><div class="course-title">自动控制原理实验</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 16h · 专业教育</span></div></a>
 <a href="/majors/jiqirengongcheng/2026/3251478000" class="course-card"><div class="course-code">3251478000</div><div class="course-title">自动控制原理综合实践</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 0h · 实践教育</span></div></a>
-
 </div>
 
   </div>

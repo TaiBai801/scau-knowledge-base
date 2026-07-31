@@ -31,7 +31,6 @@ title: 农业工程 2025级 第5学期
 <a href="/majors/shared/1217001000" class="course-card"><div class="course-code">1217001000</div><div class="course-title">人工智能</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 16h · 专业基础课</span></div></a>
 <a href="/majors/shared/1215844000" class="course-card"><div class="course-code">1215844000</div><div class="course-title">习近平新时代中国特色社会主义思想概论</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">3.0学分 · 48h · 通识必修</span></div></a>
 <a href="/majors/shared/1211227050" class="course-card"><div class="course-code">1211227050</div><div class="course-title">形势与政策Ⅴ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识必修</span></div></a>
-
 </div>
 
   </div>

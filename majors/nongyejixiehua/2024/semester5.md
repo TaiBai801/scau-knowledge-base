@@ -27,7 +27,6 @@ title: 农业机械化及其自动化 2024级 第5学期
 <a href="/majors/shared/2211170000" class="course-card"><div class="course-code">2211170000</div><div class="course-title">现代机械设计方法</div><div class="course-meta"><span class="badge-practice">专业方向课</span><span class="course-info">3.0学分 · 48h · 专业方向课</span></div></a>
 <a href="/majors/shared/1211227050" class="course-card"><div class="course-code">1211227050</div><div class="course-title">形势与政策Ⅴ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识必修</span></div></a>
 <a href="/majors/shared/2211273000" class="course-card"><div class="course-code">2211273000</div><div class="course-title">液压与气压传动技术</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">3.0学分 · 48h · 专业基础课</span></div></a>
-
 </div>
 
   </div>

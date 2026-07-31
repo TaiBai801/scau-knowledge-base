@@ -28,7 +28,6 @@ title: 农业机械化及其自动化 2024级 第4学期
 <a href="/majors/nongyejixiehua/2024/3218038002" class="course-card"><div class="course-code">3218038002</div><div class="course-title">思政课社会实践</div><div class="course-meta"><span class="badge-practice">实践教学</span><span class="course-info">2.0学分 · 0h · 通识实践</span></div></a>
 <a href="/majors/shared/1215104001" class="course-card"><div class="course-code">1215104001</div><div class="course-title">线性代数</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.0学分 · 32h · 通识必修</span></div></a>
 <a href="/majors/shared/1211217040" class="course-card"><div class="course-code">1211217040</div><div class="course-title">形势与政策Ⅳ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识必修</span></div></a>
-
 </div>
 
   </div>

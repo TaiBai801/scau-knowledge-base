@@ -29,7 +29,6 @@ title: 机器人工程 2026级 第1学期
 <a href="/majors/shared/1255841000" class="course-card"><div class="course-code">1255841000</div><div class="course-title">思想道德与法治</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.5学分 · 40h · 通识教育</span></div></a>
 <a href="/majors/shared/1251227010" class="course-card"><div class="course-code">1251227010</div><div class="course-title">形势与政策Ⅰ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识教育</span></div></a>
 <a href="/majors/shared/2258514000" class="course-card"><div class="course-code">2258514000</div><div class="course-title">专业概论与新生研讨（机器人工程）</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 专业教育</span></div></a>
-
 </div>
 
   </div>

@@ -28,7 +28,6 @@ title: 电气工程及其自动化 2026级 第3学期
 <a href="/majors/shared/1250672001" class="course-card"><div class="course-code">1250672001</div><div class="course-title">模拟电子技术</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">3.0学分 · 48h · 专业教育</span></div></a>
 <a href="/majors/shared/4254419000" class="course-card"><div class="course-code">4254419000</div><div class="course-title">模拟电子技术实验</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 16h · 专业教育</span></div></a>
 <a href="/majors/shared/2257001005" class="course-card"><div class="course-code">2257001005</div><div class="course-title">人工智能原理及应用</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.5学分 · 40h · 专业教育</span></div></a>
-
 </div>
 
   </div>

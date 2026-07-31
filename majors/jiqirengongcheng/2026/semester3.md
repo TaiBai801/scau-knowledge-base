@@ -26,7 +26,6 @@ title: 机器人工程 2026级 第3学期
 <a href="/majors/shared/2250612001" class="course-card"><div class="course-code">2250612001</div><div class="course-title">离散数学</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">3.5学分 · 56h · 专业教育</span></div></a>
 <a href="/majors/shared/1250657000" class="course-card"><div class="course-code">1250657000</div><div class="course-title">毛泽东思想和中国特色社会主义理论体系概论</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.5学分 · 40h · 通识教育</span></div></a>
 <a href="/majors/shared/2259920001" class="course-card"><div class="course-code">2259920001</div><div class="course-title">现代机械设计方法（研）</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">2.5学分 · 40h · 个性化教育</span></div></a>
-
 </div>
 
   </div>

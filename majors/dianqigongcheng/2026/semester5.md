@@ -23,7 +23,6 @@ title: 电气工程及其自动化 2026级 第5学期
 <a href="/majors/shared/4250181000" class="course-card"><div class="course-code">4250181000</div><div class="course-title">电气控制技术实验</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">1.0学分 · 16h · 个性化教育</span></div></a>
 <a href="/majors/shared/1259921902" class="course-card"><div class="course-code">1259921902</div><div class="course-title">试验设计与统计分析（研）</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">2.0学分 · 32h · 个性化教育</span></div></a>
 <a href="/majors/shared/1251217040" class="course-card"><div class="course-code">1251217040</div><div class="course-title">形势与政策Ⅳ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识教育</span></div></a>
-
 </div>
 
   </div>

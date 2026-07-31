@@ -119,9 +119,7 @@ course_name: {first["name"]}
 |------|------|:--:|:--:|:--:|
 {chr(10).join(offering_rows)}
 
-## 课程资料
-
-> 📂 资料建设中，欢迎[投稿](/contribute)。
+<CourseDetail name="{first['name']}" credits="{first['credits']}" semester="第{first['semester']}学期" nature="{first['type']}" />
 '''
     with open(os.path.join(out, 'shared', f'{code}.md'), 'w', encoding='utf-8') as f:
         f.write(md)

@@ -29,7 +29,6 @@ title: 电子科学与技术 2026级 第6学期
 <a href="/majors/shared/4259950000" class="course-card"><div class="course-code">4259950000</div><div class="course-title">嵌入式系统开发与应用实验</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">1.5学分 · 24h · 个性化教育</span></div></a>
 <a href="/majors/shared/2252567000" class="course-card"><div class="course-code">2252567000</div><div class="course-title">嵌入式系统与应用</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">3.0学分 · 48h · 个性化教育</span></div></a>
 <a href="/majors/shared/1259921902" class="course-card"><div class="course-code">1259921902</div><div class="course-title">试验设计与统计分析（研）</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">2.0学分 · 32h · 个性化教育</span></div></a>
-
 </div>
 
   </div>

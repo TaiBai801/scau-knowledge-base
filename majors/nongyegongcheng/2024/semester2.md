@@ -23,7 +23,6 @@ title: 农业工程 2024级 第2学期
 <a href="/majors/shared/1210656000" class="course-card"><div class="course-code">1210656000</div><div class="course-title">马克思主义基本原理概论</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.5学分 · 40h · 通识必修</span></div></a>
 <a href="/majors/shared/1215104001" class="course-card"><div class="course-code">1215104001</div><div class="course-title">线性代数</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.0学分 · 32h · 通识必修</span></div></a>
 <a href="/majors/shared/1211227020" class="course-card"><div class="course-code">1211227020</div><div class="course-title">形势与政策Ⅱ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识必修</span></div></a>
-
 </div>
 
   </div>

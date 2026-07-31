@@ -28,7 +28,6 @@ title: 电子科学与技术 2025级 第1学期
 <a href="/majors/shared/1211227010" class="course-card"><div class="course-code">1211227010</div><div class="course-title">形势与政策Ⅰ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识必修</span></div></a>
 <a href="/majors/shared/1215845000" class="course-card"><div class="course-code">1215845000</div><div class="course-title">中国近现代史纲要</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.5学分 · 40h · 通识必修</span></div></a>
 <a href="/majors/shared/1222111001" class="course-card"><div class="course-code">1222111001</div><div class="course-title">专业概论与新生研讨（电子）</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 专业基础课</span></div></a>
-
 </div>
 
   </div>

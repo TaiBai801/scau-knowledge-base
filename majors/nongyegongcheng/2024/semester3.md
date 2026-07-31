@@ -30,7 +30,6 @@ title: 农业工程 2024级 第3学期
 <a href="/majors/shared/4214419000" class="course-card"><div class="course-code">4214419000</div><div class="course-title">模拟电子技术实验</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 16h · 专业基础课</span></div></a>
 <a href="/majors/shared/2212677010" class="course-card"><div class="course-code">2212677010</div><div class="course-title">农业与生物系统工程导论</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.5学分 · 40h · 专业基础课</span></div></a>
 <a href="/majors/shared/1211217030" class="course-card"><div class="course-code">1211217030</div><div class="course-title">形势与政策Ⅲ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识必修</span></div></a>
-
 </div>
 
   </div>

@@ -25,7 +25,6 @@ title: 机器人工程 2026级 第6学期
 <a href="/majors/shared/2258520000" class="course-card"><div class="course-code">2258520000</div><div class="course-title">机器视觉</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">2.5学分 · 40h · 个性化教育</span></div></a>
 <a href="/majors/shared/1259950001" class="course-card"><div class="course-code">1259950001</div><div class="course-title">嵌入式系统开发与应用</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.5学分 · 40h · 专业教育</span></div></a>
 <a href="/majors/shared/4259950000" class="course-card"><div class="course-code">4259950000</div><div class="course-title">嵌入式系统开发与应用实验</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.5学分 · 24h · 专业教育</span></div></a>
-
 </div>
 
   </div>

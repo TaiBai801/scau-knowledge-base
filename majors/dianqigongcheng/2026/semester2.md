@@ -26,7 +26,6 @@ title: 电气工程及其自动化 2026级 第2学期
 <a href="/majors/shared/1250657000" class="course-card"><div class="course-code">1250657000</div><div class="course-title">毛泽东思想和中国特色社会主义理论体系概论</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.5学分 · 40h · 通识教育</span></div></a>
 <a href="/majors/shared/1255104001" class="course-card"><div class="course-code">1255104001</div><div class="course-title">线性代数</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.5学分 · 40h · 通识教育</span></div></a>
 <a href="/majors/shared/1251227020" class="course-card"><div class="course-code">1251227020</div><div class="course-title">形势与政策Ⅱ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识教育</span></div></a>
-
 </div>
 
   </div>

@@ -27,7 +27,6 @@ title: 机器人工程 2026级 第5学期
 <a href="/majors/shared/2251023000" class="course-card"><div class="course-code">2251023000</div><div class="course-title">算法分析与设计</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">2.5学分 · 40h · 个性化教育</span></div></a>
 <a href="/majors/shared/1255844000" class="course-card"><div class="course-code">1255844000</div><div class="course-title">习近平新时代中国特色社会主义思想概论</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">3.0学分 · 48h · 通识教育</span></div></a>
 <a href="/majors/shared/1251217040" class="course-card"><div class="course-code">1251217040</div><div class="course-title">形势与政策Ⅳ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识教育</span></div></a>
-
 </div>
 
   </div>

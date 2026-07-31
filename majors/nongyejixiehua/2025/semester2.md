@@ -24,7 +24,6 @@ title: 农业机械化及其自动化 2025级 第2学期
 <a href="/majors/shared/1215844000" class="course-card"><div class="course-code">1215844000</div><div class="course-title">习近平新时代中国特色社会主义思想概论</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">3.0学分 · 48h · 通识必修</span></div></a>
 <a href="/majors/shared/1211227020" class="course-card"><div class="course-code">1211227020</div><div class="course-title">形势与政策Ⅱ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识必修</span></div></a>
 <a href="/majors/shared/1215845000" class="course-card"><div class="course-code">1215845000</div><div class="course-title">中国近现代史纲要</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">2.5学分 · 40h · 通识必修</span></div></a>
-
 </div>
 
   </div>

@@ -31,7 +31,6 @@ title: 电子科学与技术 2026级 第5学期
 <a href="/majors/shared/1259956000" class="course-card"><div class="course-code">1259956000</div><div class="course-title">数据挖掘</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">2.0学分 · 32h · 个性化教育</span></div></a>
 <a href="/majors/shared/4259956000" class="course-card"><div class="course-code">4259956000</div><div class="course-title">数据挖掘实验</div><div class="course-meta"><span class="badge-elective">选修</span><span class="course-info">1.0学分 · 16h · 个性化教育</span></div></a>
 <a href="/majors/shared/1251217040" class="course-card"><div class="course-code">1251217040</div><div class="course-title">形势与政策Ⅳ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识教育</span></div></a>
-
 </div>
 
   </div>

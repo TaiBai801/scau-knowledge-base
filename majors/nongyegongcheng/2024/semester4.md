@@ -30,7 +30,6 @@ title: 农业工程 2024级 第4学期
 <a href="/majors/shared/1211478000" class="course-card"><div class="course-code">1211478000</div><div class="course-title">自动控制原理</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">3.0学分 · 48h · 专业基础课</span></div></a>
 <a href="/majors/shared/4214551000" class="course-card"><div class="course-code">4214551000</div><div class="course-title">自动控制原理实验</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 16h · 专业基础课</span></div></a>
 <a href="/majors/nongyegongcheng/2024/3215950040" class="course-card"><div class="course-code">3215950040</div><div class="course-title">自动控制原理综合实践</div><div class="course-meta"><span class="badge-practice">实践教学</span><span class="course-info">1.0学分 · 0h · 专业实践</span></div></a>
-
 </div>
 
   </div>

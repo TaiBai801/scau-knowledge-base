@@ -27,7 +27,6 @@ title: 农业机械化及其自动化 2024级 第3学期
 <a href="/majors/nongyejixiehua/2024/1215857000" class="course-card"><div class="course-code">1215857000</div><div class="course-title">劳动教育</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 16h · 通识必修</span></div></a>
 <a href="/majors/shared/2210613001" class="course-card"><div class="course-code">2210613001</div><div class="course-title">理论力学</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">3.0学分 · 48h · 专业基础课</span></div></a>
 <a href="/majors/shared/1211217030" class="course-card"><div class="course-code">1211217030</div><div class="course-title">形势与政策Ⅲ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识必修</span></div></a>
-
 </div>
 
   </div>

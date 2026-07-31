@@ -27,7 +27,6 @@ title: 电子科学与技术 2026级 第4学期
 <a href="/majors/shared/1251204000" class="course-card"><div class="course-code">1251204000</div><div class="course-title">信号与系统</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">3.0学分 · 48h · 专业教育</span></div></a>
 <a href="/majors/shared/4251204000" class="course-card"><div class="course-code">4251204000</div><div class="course-title">信号与系统实验</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">1.0学分 · 16h · 专业教育</span></div></a>
 <a href="/majors/shared/1251217030" class="course-card"><div class="course-code">1251217030</div><div class="course-title">形势与政策Ⅲ</div><div class="course-meta"><span class="badge-required">必修</span><span class="course-info">0.5学分 · 8h · 通识教育</span></div></a>
-
 </div>
 
   </div>
