@@ -22,14 +22,14 @@ features:
       dark: /icons/books-dark.svg
       alt: 课程
     title: 课程总览
-    details: 按专业和学期分类浏览四专业 346 门课程，找课只需三步。
+    details: 按专业和学期分类浏览五专业 325 门课程，找课只需三步。
     link: /majors/dianzikexue/
   - icon:
       light: /icons/compass.svg
       dark: /icons/compass-dark.svg
       alt: 地图
     title: 课程地图
-    details: 可视化全景查看四专业八学期的完整课程结构。
+    details: 可视化全景查看五专业八学期的完整课程结构。
     link: /map
   - icon:
       light: /icons/academic.svg
@@ -49,15 +49,15 @@ features:
 
 <div class="hero-stats">
   <div class="hero-stat">
-    <div class="stat-num">346</div>
+    <div class="stat-num">325</div>
     <div class="stat-label">收录课程</div>
   </div>
   <div class="hero-stat">
-    <div class="stat-num">4</div>
+    <div class="stat-num">5</div>
     <div class="stat-label">覆盖专业</div>
   </div>
   <div class="hero-stat">
-    <div class="stat-num">4</div>
+    <div class="stat-num">9</div>
     <div class="stat-label">学长分享</div>
   </div>
   <div class="hero-stat">
@@ -68,10 +68,10 @@ features:
 
 <div class="search-hot" style="justify-content:center;margin-top:1.25rem;">
   <span>热门搜索：</span>
-  <a href="/majors/shared/courses/c">C语言</a>
-  <a href="/majors/shared/courses/circuit">电路分析</a>
-  <a href="/majors/shared/courses/signal">信号与系统</a>
-  <a href="/majors/shared/courses/math-a1">高等数学</a>
-  <a href="/majors/shared/courses/physics-b">大学物理</a>
-  <a href="/majors/shared/courses/马克思主义基本原理概论">马原</a>
+  <a href="/majors/shared/1210004000">C语言</a>
+  <a href="/majors/shared/1250175001">电路分析</a>
+  <a href="/majors/shared/1211204000">信号与系统</a>
+  <a href="/majors/shared/1215607110">高等数学</a>
+  <a href="/majors/shared/1215749220">大学物理</a>
+  <a href="/majors/shared/1210656000">马原</a>
 </div>

@@ -11,7 +11,7 @@
           <img src="/emblem.png" alt="机电专业知识库" width="48" height="48" />
         </div>
         <div class="cf-site-name">机电专业知识库</div>
-        <div class="cf-desc">机电专业课程资源<br/>电子科学 · 电气工程 · 农业机械化 · 农业工程<br/>四专业全覆盖，开放共享。</div>
+        <div class="cf-desc">机电专业课程资源<br/>电子科学 · 电气工程 · 农业机械化 · 农业工程 · 机器人工程<br/>五专业全覆盖，开放共享。</div>
       </div>
 
       <!-- 快速链接 -->
@@ -21,13 +21,14 @@
         <a href="/majors/dianqigongcheng/">电气工程及其自动化</a>
         <a href="/majors/nongyejixiehua/">农业机械化</a>
         <a href="/majors/nongyegongcheng/">农业工程</a>
+        <a href="/majors/jiqirengongcheng/">机器人工程</a>
       </div>
 
       <!-- 关于 -->
       <div class="cf-col">
         <div class="cf-col-title">快捷导航</div>
         <a href="/map">课程地图</a>
-        <a href="/stories">学长说</a>
+        <a href="/stories">「Ta说」</a>
         <a href="/contribute">贡献指南</a>
         <a href="/about">关于本站</a>
         <a href="/admin/index.html">管理后台</a>

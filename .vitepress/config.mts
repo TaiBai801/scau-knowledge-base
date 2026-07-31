@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   lang: 'zh-CN',
   title: '机电专业知识库',
-  description: '机电专业课程资源 · 四专业346门课程',
+  description: '机电专业课程资源 · 五专业325门课程',
   head: [
     ['link', { rel: 'icon', href: '/emblem.png' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
