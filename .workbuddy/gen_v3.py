@@ -103,22 +103,6 @@ course_name: {first["name"]}
 
 > **课程编号**: {code} · **英文名称**: {first["name_en"]}
 
-## 基本信息
-
-| 项目 | 值 |
-|------|-----|
-| 课程性质 | {first["type"]} |
-| 课程体系 | {first["system"]} |
-| 学分 | {first["credits"]} |
-| 总学时 | {int(first["total_hours"])}h |
-| 讲课 | {first["lecture"]}h · 实验 | {first["lab"]}h · 实践 | {first["practice"]}h · 自修 | {first["self_study"]}h |
-
-## 开课信息
-
-| 年级 | 专业 | 学期 | 学分 | 学时 |
-|------|------|:--:|:--:|:--:|
-{chr(10).join(offering_rows)}
-
 <CourseDetail name="{first['name']}" credits="{first['credits']}" semester="第{first['semester']}学期" nature="{first['type']}" />
 '''
     with open(os.path.join(out, 'shared', f'{code}.md'), 'w', encoding='utf-8') as f:
