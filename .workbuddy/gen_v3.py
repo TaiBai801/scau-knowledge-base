@@ -57,6 +57,26 @@ courses = pd.DataFrame(rows)
 
 SPECIAL_KEYWORDS = ['毕业', '军训', '实习', '教学实习', '课程设计', '综合实践', '劳动教育', '思政课社会实践', '创新创业实践', '实践Ⅰ', '实践Ⅱ', '实践Ⅲ', '实践Ⅳ']
 
+# Old course materials (recovered from git history)
+MATERIALS = {
+    'C语言程序设计': [
+        ('C语言机考复习题（2018-12）','/files/c-lang/C-exam-review-2018-12.pdf'),
+        ('C语言机考复习题','/files/c-lang/C-exam-1.doc'),
+        ('C语言机考复习题（2012-12）','/files/c-lang/C-exam-2012-12.doc'),
+        ('C语言机考复习题详解','/files/c-lang/C-exam-detailed.docx'),
+        ('C语言机考答案（2016-11）','/files/c-lang/C-exam-answers-2016-11.doc'),
+    ],
+    '高等数学AⅠ': [
+        ('高等数学AI 测试题','/files/math/math-AI-exam-2.doc'),
+        ('高等数学B1 模拟题','/files/math/math-B1-mock-1.doc'),
+        ('清华大学数学测试题','/files/math/tsinghua-math-test.pdf'),
+        ('高等数学A 复习资料','/files/math/math-A-review.pdf'),
+    ],
+    '大学英语AⅠ': [
+        ('大学英语期末复习资料','/files/english/english-final-review.doc'),
+    ],
+}
+
 def is_special(name):
     nm = str(name)
     return any(kw in nm for kw in SPECIAL_KEYWORDS)
@@ -94,6 +114,20 @@ for code in shared_codes | (set(code_info['code']) - special_codes - shared_code
     first = group.iloc[0]
     offering_rows = [f'| {r["year"]} | {major_names[r["major"]]} | {r["semester"]} | {r["credits"]} | {int(r["total_hours"])} |' for _, r in group.iterrows()]
     marker = ' 🔗 共同必修课' if code in shared_codes else ''
+    # Build materials section if available
+    mat_section = ''
+    if first["name"] in MATERIALS:
+        mat_rows = []
+        for mname, murl in MATERIALS[first["name"]]:
+            ext = murl.rsplit('.',1)[-1].upper()
+            mat_rows.append(f'| {mname} | {ext} | [下载]({murl}) |')
+        mat_section = f'''
+## 📂 课程资料
+
+| 文件名 | 格式 | 下载 |
+|--------|------|------|
+{chr(10).join(mat_rows)}
+'''
     md = f'''---
 course_code: {code}
 course_name: {first["name"]}
@@ -102,7 +136,7 @@ course_name: {first["name"]}
 # {first["name"]}{marker}
 
 > **课程编号**: {code} · **英文名称**: {first["name_en"]}
-
+{mat_section}
 <CourseDetail name="{first['name']}" credits="{first['credits']}" semester="第{first['semester']}学期" nature="{first['type']}" />
 '''
     with open(os.path.join(out, 'shared', f'{code}.md'), 'w', encoding='utf-8') as f:
