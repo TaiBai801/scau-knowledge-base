@@ -26,8 +26,9 @@ export default defineConfig({
       { text: '课程总览', items: [
         { text: '电子科学与技术', link: '/majors/dianzikexue/' },
         { text: '电气工程及其自动化', link: '/majors/dianqigongcheng/' },
-        { text: '农业机械化', link: '/majors/nongyejixiehua/' },
+        { text: '农业机械化及其自动化', link: '/majors/nongyejixiehua/' },
         { text: '农业工程', link: '/majors/nongyegongcheng/' },
+        { text: '机器人工程', link: '/majors/jiqirengongcheng/' },
       ]},
       { text: '共享课程', link: '/majors/shared/' },
       { text: '课程地图', link: '/map' },
