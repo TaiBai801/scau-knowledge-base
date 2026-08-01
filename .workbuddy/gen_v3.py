@@ -135,9 +135,41 @@ course_name: {first["name"]}
 
 # {first["name"]}{marker}
 
-> **课程编号**: {code} · **英文名称**: {first["name_en"]}
-{mat_section}
-<CourseDetail name="{first['name']}" credits="{first['credits']}" semester="第{first['semester']}学期" nature="{first['type']}" />
+> **课程编号**: {code} · **英文名称**: {first["name_en"]} · **{first['credits']} 学分** · **{first['type']}** · **第 {first['semester']} 学期**
+
+<a href="javascript:history.back()" class="back-link">← 返回</a>
+
+## ① 课程介绍
+
+| 项目 | 内容 |
+|------|------|
+| 课程名称 | {first["name"]} |
+| 英文名称 | {first["name_en"]} |
+| 课程编号 | {code} |
+| 课程性质 | {first["type"]} |
+| 课程体系 | {first["system"]} |
+| 学分 | {first["credits"]} |
+| 总学时 | {int(first["total_hours"])}h（讲课 {first["lecture"]}h · 实验 {first["lab"]}h · 实践 {first["practice"]}h） |
+
+## ② 课程资料
+
+{('| 文件名 | 格式 | 下载 |\n|--------|------|------|\n' + chr(10).join(f'| {mname} | {murl.rsplit(".",1)[-1].upper()} | [下载]({murl}) |' for mname, murl in MATERIALS[first["name"]])) if first["name"] in MATERIALS else '> 📂 资料建设中，欢迎[投稿](/contribute)。'}
+
+## ③ 练习题
+
+> ✏️ 整理中，欢迎[投稿](/contribute)。
+
+## ④ 推荐资源
+
+> 🚧 待老师推荐，[投稿入口](/contribute)。
+
+## ⑤ 优秀学长「ta 说」
+
+> 💬 招募中！如果你是学过本课程且成绩不错的同学，欢迎[投稿](/contribute)。
+
+---
+
+> 📩 [联系管理员](mailto:2286318767@qq.com)参与共建 · 🔄 内容同步自 [腾讯文档](https://docs.qq.com/space/DZXBYSkhnRXRwSWpv)
 '''
     with open(os.path.join(out, 'shared', f'{code}.md'), 'w', encoding='utf-8') as f:
         f.write(md)
