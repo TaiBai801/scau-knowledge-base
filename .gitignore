@@ -9,3 +9,6 @@ stderr.txt
 build-output.txt
 create_*.py
 insert_templates.py
+.workbuddy/upload_cos.py
+.workbuddy/push_dist.py
+.workbuddy/upload_all.py
