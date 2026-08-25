@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>内容编辑 · 管理后台</title>
+<style>
+:root{--brand:#0D5C5A;--bg:#F7F5F0;--card:#fff;--line:#E8E4DB;--text:#4A5568;--green:#059669}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:var(--brand);color:#fff;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+header h1{font-size:1.2rem;font-weight:600}
+header a{color:#b2d9d6;font-size:0.85rem;text-decoration:none}
+header a:hover{color:#fff}
+main{max-width:860px;margin:0 auto;padding:2rem 1rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.25rem;margin-bottom:1.25rem}
+.card h2{font-size:1rem;font-weight:600;color:var(--brand);margin-bottom:0.75rem}
+textarea{width:100%;min-height:120px;padding:0.6rem 0.75rem;border:1px solid var(--line);border-radius:8px;font-size:0.9rem;font-family:inherit;line-height:1.6;resize:vertical}
+.btn{display:inline-block;padding:0.55rem 1.2rem;border:none;border-radius:8px;font-size:0.9rem;cursor:pointer;background:var(--brand);color:#fff;transition:opacity .15s}
+.btn:hover{opacity:.9}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-ghost{background:#fff;color:var(--brand);border:1px solid var(--brand)}
+.hint{font-size:0.78rem;color:#94a3b8;margin-top:0.4rem}
+.search-results{max-height:260px;overflow-y:auto;border:1px solid var(--line);border-radius:8px;margin-top:0.4rem}
+.search-results .item{padding:0.5rem 0.75rem;cursor:pointer;font-size:0.85rem;border-bottom:1px solid #f0ede6}
+.search-results .item:hover{background:#f0faf8}
+.search-results .item .code{color:#94a3b8;font-size:0.72rem;margin-left:0.4rem}
+.selected-course{display:flex;align-items:center;gap:0.6rem;padding:0.6rem 0.75rem;background:#f0faf8;border:1px solid #9fe1cb;border-radius:8px;margin-top:0.5rem;font-size:0.9rem}
+.selected-course .code{color:var(--brand);font-weight:600}
+.savebar{display:flex;align-items:center;gap:0.75rem;margin-top:1rem}
+.savebar .msg{font-size:0.85rem;color:var(--green)}
+</style>
+</head>
+<body>
+<script>
+(function(){
+  if (sessionStorage.getItem('admin_authed') === '1') return;
+  var pw = prompt('请输入管理密码');
+  if (pw !== '123456#') { alert('密码错误'); location.href = '/'; return; }
+  sessionStorage.setItem('admin_authed', '1');
+})();
+</script>
+<header>
+  <h1>📝 内容编辑后台</h1>
+  <a href="/">← 回站点</a>
+  <a href="/admin/index.html">课程管理</a>
+  <a href="/admin/upload.html">资料上传</a>
+</header>
+<main>
+
+  <div class="card">
+    <h2>选择课程</h2>
+    <input type="text" id="courseSearch" placeholder="输入课程名搜索，如「电路」" autocomplete="off" style="width:100%;padding:0.55rem 0.75rem;border:1px solid var(--line);border-radius:8px;font-size:0.9rem">
+    <div class="search-results" id="searchResults" style="display:none"></div>
+    <div class="selected-course" id="selectedCourse" style="display:none"></div>
+  </div>
+
+  <div class="card" id="editCard" style="display:none">
+    <h2>③ 练习题</h2>
+    <textarea id="ta-exercises" placeholder="输入练习题内容，支持 Markdown（**加粗**、- 列表、[链接](url)）"></textarea>
+
+    <h2 style="margin-top:1rem">④ 推荐资源</h2>
+    <textarea id="ta-resources" placeholder="输入推荐资源，支持 Markdown"></textarea>
+
+    <h2 style="margin-top:1rem">⑤ 优秀学长「ta 说」</h2>
+    <textarea id="ta-tasay" placeholder="输入学长经验分享，支持 Markdown"></textarea>
+
+    <div class="savebar">
+      <button class="btn" id="saveBtn">保存全部</button>
+      <span class="msg" id="saveMsg"></span>
+    </div>
+    <div class="hint">留空表示该板块不展示（显示「整理中」默认文案）。保存后课程页刷新即生效。</div>
+  </div>
+
+</main>
+
+<script>
+var API = '/api/content';
+var courses = [];
+var selectedCode = null;
+var FIELDS = ['exercises', 'resources', 'tasay'];
+
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
+fetch('/data/courses.json').then(function(r){return r.json();}).then(function(list){courses = list;});
+
+document.getElementById('courseSearch').addEventListener('input', function(){
+  var kw = this.value.trim().toLowerCase();
+  var box = document.getElementById('searchResults');
+  if (!kw) { box.style.display='none'; box.innerHTML=''; return; }
+  var matched = courses.filter(function(c){return c.name.toLowerCase().indexOf(kw)>=0;}).slice(0,30);
+  box.innerHTML = matched.map(function(c){
+    return '<div class="item" data-code="'+c.code+'">'+esc(c.name)+'<span class="code">'+c.code+'</span></div>';
+  }).join('');
+  box.style.display = matched.length ? 'block' : 'none';
+  box.querySelectorAll('.item').forEach(function(it){
+    it.addEventListener('click', function(){
+      selectCourse(it.dataset.code);
+      box.style.display='none';
+      document.getElementById('courseSearch').value = '';
+    });
+  });
+});
+
+function selectCourse(code){
+  selectedCode = code;
+  var c = courses.find(function(x){return x.code===code;});
+  var el = document.getElementById('selectedCourse');
+  el.style.display = 'flex';
+  el.innerHTML = '<span>'+esc(c?c.name:'')+'</span><span class="code">'+code+'</span>';
+  document.getElementById('editCard').style.display = 'block';
+  loadContent();
+}
+
+function loadContent(){
+  FIELDS.forEach(function(f){ document.getElementById('ta-'+f).value = ''; });
+  fetch(API, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({action:'getContent', courseCode:selectedCode})})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      var content = d.content || {};
+      FIELDS.forEach(function(f){ document.getElementById('ta-'+f).value = content[f] || ''; });
+    });
+}
+
+document.getElementById('saveBtn').addEventListener('click', function(){
+  if (!selectedCode){ alert('请先选择课程'); return; }
+  var btn = document.getElementById('saveBtn');
+  var msg = document.getElementById('saveMsg');
+  btn.disabled = true; msg.textContent = '保存中…';
+  var tasks = FIELDS.map(function(f){
+    var text = document.getElementById('ta-'+f).value;
+    return fetch(API, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({action:'saveContent', courseCode:selectedCode, field:f, text:text})})
+      .then(function(r){return r.json();});
+  });
+  Promise.all(tasks).then(function(results){
+    var allOk = results.every(function(r){return r.ok;});
+    msg.textContent = allOk ? '✓ 已保存' : '部分保存失败';
+    btn.disabled = false;
+    setTimeout(function(){ msg.textContent=''; }, 2000);
+  }).catch(function(){
+    msg.textContent = '保存失败';
+    btn.disabled = false;
+  });
+});
+</script>
+</body>
+</html>
