@@ -76,6 +76,15 @@ let courses=[];
 let codeMap={};
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 
+// 课程名规范化：罗马数字转字母 + 去括号 + 去空格，抹平两个数据源的命名差异
+function normName(s){
+  var romans={'Ⅰ':'I','Ⅱ':'II','Ⅲ':'III','Ⅳ':'IV','Ⅴ':'V','Ⅵ':'VI','Ⅶ':'VII','Ⅷ':'VIII','Ⅸ':'IX','Ⅹ':'X'};
+  s=String(s).replace(/[Ⅰ-Ⅹ]/g,function(m){return romans[m]||m;});
+  s=s.replace(/[（(][^（）()]*[）)]/g,'');
+  s=s.replace(/\s+/g,'');
+  return s;
+}
+
 async function init(){
   const res=await fetch('/course_metadata.txt');
   const text=await res.text();
@@ -86,7 +95,7 @@ async function init(){
   try{
     const cr=await fetch('/data/courses.json');
     const clist=await cr.json();
-    clist.forEach(c=>{codeMap[c.name]=c.code;});
+    clist.forEach(c=>{codeMap[normName(c.name)]=c.code;});
   }catch(e){}
   renderStats();
   renderFilters();
@@ -125,7 +134,7 @@ function renderTable(){
   tbody.innerHTML='';
   filtered.forEach(c=>{
     const tr=document.createElement('tr');
-    const code=codeMap[c.name]||'';
+    const code=codeMap[normName(c.name)]||'';
     const tb=esc(c.type==='必修'?'required':c.type==='专业方向课'?'core':'elective');
     const actBtns = code
       ? `<a class="btn btn-sm" href="/admin/upload.html?code=${code}&name=${encodeURIComponent(c.name)}">资料</a>
