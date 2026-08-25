@@ -53,6 +53,7 @@ tr:hover{background:#f0faf8}
   <a href="/">← 回站点</a>
   <a href="/admin/upload.html">📤 资料上传</a>
   <a href="/admin/content.html">📝 内容编辑</a>
+  <a href="/admin/stats.html">📊 数据统计</a>
   <a href="/课程任务分配表.xlsx">📥 任务分配表</a>
 </header>
 <main>
@@ -72,6 +73,7 @@ tr:hover{background:#f0faf8}
 
 <script>
 let courses=[];
+let codeMap={};
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 
 async function init(){
@@ -81,6 +83,11 @@ async function init(){
     const p=l.split('|');
     return {major:p[0],semester:p[1],name:p[2],credits:p[3],type:p[4],path:p[5]};
   });
+  try{
+    const cr=await fetch('/data/courses.json');
+    const clist=await cr.json();
+    clist.forEach(c=>{codeMap[c.name]=c.code;});
+  }catch(e){}
   renderStats();
   renderFilters();
   renderTable();
@@ -118,12 +125,16 @@ function renderTable(){
   tbody.innerHTML='';
   filtered.forEach(c=>{
     const tr=document.createElement('tr');
-    const params=new URLSearchParams({name:c.name,path:c.path,credits:c.credits,type:c.type,major:c.major,semester:c.semester});
+    const code=codeMap[c.name]||'';
     const tb=esc(c.type==='必修'?'required':c.type==='专业方向课'?'core':'elective');
+    const actBtns = code
+      ? `<a class="btn btn-sm" href="/admin/upload.html?code=${code}&name=${encodeURIComponent(c.name)}">资料</a>
+         <a class="btn btn-sm" href="/admin/content.html?code=${code}&name=${encodeURIComponent(c.name)}">内容</a>`
+      : `<span style="color:#94a3b8;font-size:0.75rem">—</span>`;
     tr.innerHTML=`<td>${esc(c.major)}</td><td>${esc(c.semester)}</td><td>${esc(c.name)}</td>
       <td style="text-align:center">${esc(c.credits)}</td>
       <td><span class="badge badge-${tb}">${esc(c.type)}</span></td>
-      <td><a class="btn btn-sm" href="/admin/edit.html?${params}">编辑</a></td>`;
+      <td style="white-space:nowrap">${actBtns}</td>`;
     tbody.appendChild(tr);
   });
 }

@@ -64,6 +64,7 @@ input[type=text],select{width:100%;padding:0.55rem 0.75rem;border:1px solid var(
   <a href="/">← 回站点</a>
   <a href="/admin/index.html">课程管理</a>
   <a href="/admin/content.html">📝 内容编辑</a>
+  <a href="/admin/stats.html">📊 数据统计</a>
 </header>
 <main>
 
@@ -122,6 +123,10 @@ function esc(s){var d=document.createElement('div');d.textContent=s;return d.inn
 // ── 课程搜索 ──
 fetch('/data/courses.json').then(function(r){return r.json();}).then(function(list){
   courses = list;
+  // URL 参数自动定位课程
+  var params = new URLSearchParams(location.search);
+  var code = params.get('code');
+  if (code) selectCourse(code);
 });
 document.getElementById('courseSearch').addEventListener('input', function(){
   var kw = this.value.trim().toLowerCase();
@@ -146,8 +151,20 @@ function selectCourse(code){
   var c = courses.find(function(x){return x.code===code;});
   var el = document.getElementById('selectedCourse');
   el.style.display = 'flex';
-  el.innerHTML = '<span>'+esc(c?c.name:'')+'</span><span class="code">'+code+'</span>';
+  el.innerHTML = '<span>'+esc(c?c.name:'')+'</span><span class="code">'+code+'</span>'+
+    '<button class="btn btn-sm btn-ghost" id="clearCourse" style="margin-left:auto">✕ 取消选择</button>';
+  document.getElementById('clearCourse').addEventListener('click', clearCourse);
   loadMaterials();
+}
+
+function clearCourse(){
+  selectedCode = null;
+  document.getElementById('selectedCourse').style.display = 'none';
+  document.getElementById('selectedCourse').innerHTML = '';
+  pendingFiles = [];
+  renderFiles();
+  document.getElementById('materialHint').textContent = '请先选择课程';
+  document.getElementById('materialList').innerHTML = '';
 }
 
 // ── 文件拖拽 ──

@@ -45,6 +45,7 @@ textarea{width:100%;min-height:120px;padding:0.6rem 0.75rem;border:1px solid var
   <a href="/">← 回站点</a>
   <a href="/admin/index.html">课程管理</a>
   <a href="/admin/upload.html">资料上传</a>
+  <a href="/admin/stats.html">📊 数据统计</a>
 </header>
 <main>
 
@@ -82,7 +83,12 @@ var FIELDS = ['exercises', 'resources', 'tasay'];
 
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 
-fetch('/data/courses.json').then(function(r){return r.json();}).then(function(list){courses = list;});
+fetch('/data/courses.json').then(function(r){return r.json();}).then(function(list){
+  courses = list;
+  var params = new URLSearchParams(location.search);
+  var code = params.get('code');
+  if (code) selectCourse(code);
+});
 
 document.getElementById('courseSearch').addEventListener('input', function(){
   var kw = this.value.trim().toLowerCase();
@@ -107,9 +113,18 @@ function selectCourse(code){
   var c = courses.find(function(x){return x.code===code;});
   var el = document.getElementById('selectedCourse');
   el.style.display = 'flex';
-  el.innerHTML = '<span>'+esc(c?c.name:'')+'</span><span class="code">'+code+'</span>';
+  el.innerHTML = '<span>'+esc(c?c.name:'')+'</span><span class="code">'+code+'</span>'+
+    '<button class="btn btn-sm btn-ghost" id="clearCourse" style="margin-left:auto">✕ 取消选择</button>';
+  document.getElementById('clearCourse').addEventListener('click', clearCourse);
   document.getElementById('editCard').style.display = 'block';
   loadContent();
+}
+
+function clearCourse(){
+  selectedCode = null;
+  document.getElementById('selectedCourse').style.display = 'none';
+  document.getElementById('selectedCourse').innerHTML = '';
+  document.getElementById('editCard').style.display = 'none';
 }
 
 function loadContent(){

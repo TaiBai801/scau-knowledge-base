@@ -61,9 +61,21 @@
         return '<tr><td>' + esc(m.name) + '</td>' +
           '<td style="text-align:center">' + (m.ext || '').toUpperCase() + '</td>' +
           '<td style="text-align:center">' + fmtSize(m.size) + '</td>' +
-          '<td style="text-align:center"><a href="' + esc(m.url) + '">下载</a></td></tr>';
+          '<td style="text-align:center"><a href="' + esc(m.url) + '" class="dl-link">下载</a></td></tr>';
       }).join('');
       el.innerHTML = '<table><thead><tr><th>文件名</th><th>格式</th><th>大小</th><th>下载</th></tr></thead><tbody>' + rows + '</tbody></table>';
+      // 下载埋点
+      el.querySelectorAll('.dl-link').forEach(function (a) {
+        a.addEventListener('click', function () {
+          try {
+            fetch('/api/stats', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ action: 'track', type: 'download' })
+            });
+          } catch (e) {}
+        });
+      });
     }).catch(function () {
       el.innerHTML = '<blockquote><p>📂 资料加载失败，请稍后刷新重试。</p></blockquote>';
     });

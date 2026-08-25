@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>数据统计 · 管理后台</title>
+<style>
+:root{--brand:#0D5C5A;--bg:#F7F5F0;--card:#fff;--line:#E8E4DB;--text:#4A5568;--green:#059669;--amber:#D97706}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:var(--brand);color:#fff;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+header h1{font-size:1.2rem;font-weight:600}
+header a{color:#b2d9d6;font-size:0.85rem;text-decoration:none}
+header a:hover{color:#fff}
+main{max-width:860px;margin:0 auto;padding:2rem 1rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:1.5rem}
+.stat-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.25rem}
+.stat-card .label{font-size:0.82rem;color:#94a3b8}
+.stat-card .nums{display:flex;gap:1.5rem;margin-top:0.6rem}
+.stat-card .num{font-size:1.6rem;font-weight:600;color:var(--brand)}
+.stat-card .num small{font-size:0.75rem;color:#94a3b8;font-weight:400}
+.stat-card .num.dl{color:var(--amber)}
+.table-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.25rem}
+.table-card h2{font-size:1rem;font-weight:600;color:var(--brand);margin-bottom:0.75rem}
+table{width:100%;border-collapse:collapse}
+th{background:var(--brand);color:#fff;padding:0.5rem 0.75rem;font-size:0.8rem;text-align:left}
+td{padding:0.5rem 0.75rem;font-size:0.85rem;border-bottom:1px solid var(--line)}
+.bar-cell{display:flex;align-items:center;gap:0.5rem}
+.bar{height:14px;border-radius:4px;min-width:2px}
+.bar.v{background:var(--brand)}
+.bar.d{background:var(--amber)}
+.refresh{font-size:0.78rem;color:#94a3b8;margin-top:0.75rem}
+</style>
+</head>
+<body>
+<script>
+(function(){
+  if (sessionStorage.getItem('admin_authed') === '1') return;
+  var pw = prompt('请输入管理密码');
+  if (pw !== '123456#') { alert('密码错误'); location.href = '/'; return; }
+  sessionStorage.setItem('admin_authed', '1');
+})();
+</script>
+<header>
+  <h1>📊 数据统计</h1>
+  <a href="/">← 回站点</a>
+  <a href="/admin/index.html">课程管理</a>
+  <a href="/admin/upload.html">资料上传</a>
+  <a href="/admin/content.html">内容编辑</a>
+</header>
+<main>
+  <div class="cards" id="cards"></div>
+  <div class="table-card">
+    <h2>最近 7 天趋势</h2>
+    <div id="detailTable"></div>
+    <div class="refresh" id="refreshTime"></div>
+  </div>
+</main>
+
+<script>
+var API = '/api/stats';
+
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
+function load(){
+  fetch(API, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({action:'getStats'})})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      renderCards(d);
+      renderDetail(d.detail || []);
+      document.getElementById('refreshTime').textContent = '数据更新于 ' + new Date().toLocaleString();
+    })
+    .catch(function(){
+      document.getElementById('cards').innerHTML = '<p style="color:#dc2626">加载失败</p>';
+    });
+}
+
+function renderCards(d){
+  var cards = [
+    {label:'今日', data:d.day},
+    {label:'本周', data:d.week},
+    {label:'本月', data:d.month}
+  ];
+  document.getElementById('cards').innerHTML = cards.map(function(c){
+    return '<div class="stat-card"><div class="label">'+c.label+'</div>'+
+      '<div class="nums">'+
+      '<div class="num">'+(c.data.visits||0)+'<small> 访问</small></div>'+
+      '<div class="num dl">'+(c.data.downloads||0)+'<small> 下载</small></div>'+
+      '</div></div>';
+  }).join('');
+}
+
+function renderDetail(detail){
+  var max = 1;
+  detail.forEach(function(x){ max = Math.max(max, x.visits, x.downloads); });
+  var rows = detail.map(function(x){
+    var vw = Math.max(2, Math.round(x.visits/max*100));
+    var dw = Math.max(2, Math.round(x.downloads/max*100));
+    var date = x.date.slice(5);
+    return '<tr><td>'+date+'</td>'+
+      '<td><div class="bar-cell"><div class="bar v" style="width:'+vw+'%"></div>'+x.visits+'</div></td>'+
+      '<td><div class="bar-cell"><div class="bar d" style="width:'+dw+'%"></div>'+x.downloads+'</div></td></tr>';
+  }).join('');
+  document.getElementById('detailTable').innerHTML =
+    '<table><thead><tr><th>日期</th><th>访问数</th><th>下载数</th></tr></thead><tbody>'+rows+'</tbody></table>';
+}
+
+load();
+</script>
+</body>
+</html>
