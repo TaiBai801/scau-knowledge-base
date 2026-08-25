@@ -12,3 +12,12 @@ insert_templates.py
 .workbuddy/upload_cos.py
 .workbuddy/push_dist.py
 .workbuddy/upload_all.py
+.workbuddy/upload_big.py
+.workbuddy/upload_resume.py
+.workbuddy/list_big.py
+.env
+.old-courses/
+.vitepress/config.mts.timestamp-*.mjs
+.vitepress/dist-old/
+.vitepress/dist-old2/
+.vitepress/dist-bak/

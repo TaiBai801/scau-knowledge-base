@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>资料上传 · 管理后台</title>
+<style>
+:root{--brand:#0D5C5A;--bg:#F7F5F0;--card:#fff;--line:#E8E4DB;--text:#4A5568;--red:#dc2626;--green:#059669;--amber:#D97706}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:var(--brand);color:#fff;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+header h1{font-size:1.2rem;font-weight:600}
+header a{color:#b2d9d6;font-size:0.85rem;text-decoration:none}
+header a:hover{color:#fff}
+main{max-width:860px;margin:0 auto;padding:2rem 1rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.25rem;margin-bottom:1.25rem}
+.card h2{font-size:1rem;font-weight:600;color:var(--brand);margin-bottom:0.75rem}
+label{display:block;font-size:0.82rem;color:#64748b;margin-bottom:0.3rem}
+input[type=text],select{width:100%;padding:0.55rem 0.75rem;border:1px solid var(--line);border-radius:8px;font-size:0.9rem;background:#fff}
+.btn{display:inline-block;padding:0.55rem 1.2rem;border:none;border-radius:8px;font-size:0.9rem;cursor:pointer;background:var(--brand);color:#fff;transition:opacity .15s}
+.btn:hover{opacity:.9}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-sm{padding:0.25rem 0.6rem;font-size:0.78rem;border-radius:6px}
+.btn-danger{background:#fff;color:var(--red);border:1px solid var(--red)}
+.btn-ghost{background:#fff;color:var(--brand);border:1px solid var(--brand)}
+.dropzone{border:2px dashed var(--line);border-radius:12px;padding:2rem;text-align:center;color:#94a3b8;cursor:pointer;transition:all .15s}
+.dropzone.drag{border-color:var(--brand);background:#f0faf8;color:var(--brand)}
+.file-row{display:flex;align-items:center;gap:0.6rem;padding:0.5rem;border-bottom:1px solid var(--line);font-size:0.85rem}
+.file-row .fname{flex:1;min-width:0}
+.file-row input{flex:1;min-width:0;padding:0.3rem 0.5rem;font-size:0.85rem}
+.file-row .fsize{color:#94a3b8;font-size:0.75rem;white-space:nowrap}
+.file-row .del{cursor:pointer;color:var(--red);border:none;background:none;font-size:0.9rem}
+.material-row{display:flex;align-items:center;gap:0.6rem;padding:0.5rem;border-bottom:1px solid var(--line);font-size:0.85rem}
+.material-row .mname{flex:1;min-width:0}
+.material-row a{color:var(--brand);text-decoration:none;font-size:0.8rem}
+.material-row a:hover{text-decoration:underline}
+.progress{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:0.5rem}
+.progress .bar{height:100%;background:var(--brand);width:0;transition:width .3s}
+.hint{font-size:0.78rem;color:#94a3b8;margin-top:0.4rem}
+.search-results{max-height:260px;overflow-y:auto;border:1px solid var(--line);border-radius:8px;margin-top:0.4rem}
+.search-results .item{padding:0.5rem 0.75rem;cursor:pointer;font-size:0.85rem;border-bottom:1px solid #f0ede6}
+.search-results .item:hover{background:#f0faf8}
+.search-results .item .code{color:#94a3b8;font-size:0.72rem;margin-left:0.4rem}
+.selected-course{display:flex;align-items:center;gap:0.6rem;padding:0.6rem 0.75rem;background:#f0faf8;border:1px solid #9fe1cb;border-radius:8px;margin-top:0.5rem;font-size:0.9rem}
+.selected-course .code{color:var(--brand);font-weight:600}
+.modal-mask{position:fixed;inset:0;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;z-index:99}
+.modal{background:#fff;border-radius:12px;padding:1.5rem;max-width:420px;width:90%}
+.modal h3{font-size:1rem;color:var(--text);margin-bottom:0.6rem}
+.modal p{font-size:0.85rem;color:#64748b;margin-bottom:1rem}
+.modal .actions{display:flex;gap:0.6rem;justify-content:flex-end}
+</style>
+</head>
+<body>
+<script>
+(function(){
+  if (sessionStorage.getItem('admin_authed') === '1') return;
+  var pw = prompt('请输入管理密码');
+  if (pw !== '123456#') { alert('密码错误'); location.href = '/'; return; }
+  sessionStorage.setItem('admin_authed', '1');
+})();
+</script>
+<header>
+  <h1>📤 资料上传后台</h1>
+  <a href="/">← 回站点</a>
+  <a href="/admin/index.html">课程管理</a>
+</header>
+<main>
+
+  <div class="card">
+    <h2>① 选择课程</h2>
+    <input type="text" id="courseSearch" placeholder="输入课程名搜索，如「C语言」" autocomplete="off">
+    <div class="search-results" id="searchResults" style="display:none"></div>
+    <div class="selected-course" id="selectedCourse" style="display:none"></div>
+  </div>
+
+  <div class="card">
+    <h2>② 拖入文件</h2>
+    <div class="dropzone" id="dropzone">点击或拖拽文件到这里（支持多文件）</div>
+    <input type="file" id="fileInput" multiple style="display:none">
+    <div id="fileList"></div>
+  </div>
+
+  <div class="card" id="uploadCard" style="display:none">
+    <h2>③ 上传</h2>
+    <button class="btn" id="uploadBtn">上传全部</button>
+    <div class="progress"><div class="bar" id="progressBar"></div></div>
+    <div class="hint" id="progressText"></div>
+  </div>
+
+  <div class="card">
+    <h2>④ 已有资料</h2>
+    <div class="hint" id="materialHint">请先选择课程</div>
+    <div id="materialList"></div>
+  </div>
+
+</main>
+
+<div class="modal-mask" id="modal" style="display:none">
+  <div class="modal">
+    <h3 id="modalTitle">同名文件</h3>
+    <p id="modalText"></p>
+    <div class="actions">
+      <button class="btn btn-ghost" id="modalCancel">取消</button>
+      <button class="btn btn-ghost" id="modalRename">换名重传</button>
+      <button class="btn" id="modalReplace">替换旧文件</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var MATERIALS_URL = 'https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/data/materials.json';
+var API = '/api/upload';
+
+var courses = [];
+var selectedCode = null;
+var pendingFiles = [];   // {file, displayName}
+var materialsCache = null;
+
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
+// ── 课程搜索 ──
+fetch('/data/courses.json').then(function(r){return r.json();}).then(function(list){
+  courses = list;
+});
+document.getElementById('courseSearch').addEventListener('input', function(){
+  var kw = this.value.trim().toLowerCase();
+  var box = document.getElementById('searchResults');
+  if (!kw) { box.style.display='none'; box.innerHTML=''; return; }
+  var matched = courses.filter(function(c){return c.name.toLowerCase().indexOf(kw)>=0;}).slice(0,30);
+  box.innerHTML = matched.map(function(c){
+    return '<div class="item" data-code="'+c.code+'">'+esc(c.name)+'<span class="code">'+c.code+'</span></div>';
+  }).join('');
+  box.style.display = matched.length ? 'block' : 'none';
+  box.querySelectorAll('.item').forEach(function(it){
+    it.addEventListener('click', function(){
+      selectCourse(it.dataset.code);
+      box.style.display='none';
+      document.getElementById('courseSearch').value = '';
+    });
+  });
+});
+
+function selectCourse(code){
+  selectedCode = code;
+  var c = courses.find(function(x){return x.code===code;});
+  var el = document.getElementById('selectedCourse');
+  el.style.display = 'flex';
+  el.innerHTML = '<span>'+esc(c?c.name:'')+'</span><span class="code">'+code+'</span>';
+  loadMaterials();
+}
+
+// ── 文件拖拽 ──
+var dz = document.getElementById('dropzone');
+var fi = document.getElementById('fileInput');
+dz.addEventListener('click', function(){fi.click();});
+dz.addEventListener('dragover', function(e){e.preventDefault();dz.classList.add('drag');});
+dz.addEventListener('dragleave', function(){dz.classList.remove('drag');});
+dz.addEventListener('drop', function(e){e.preventDefault();dz.classList.remove('drag');addFiles(e.dataTransfer.files);});
+fi.addEventListener('change', function(){addFiles(fi.files);fi.value='';});
+
+function addFiles(fileList){
+  for (var i=0;i<fileList.length;i++){
+    var f = fileList[i];
+    var base = f.name.replace(/\.[^.]+$/,'');
+    pendingFiles.push({file:f, displayName:base});
+  }
+  renderFiles();
+}
+
+function renderFiles(){
+  var box = document.getElementById('fileList');
+  box.innerHTML = pendingFiles.map(function(item,idx){
+    return '<div class="file-row">'+
+      '<input value="'+esc(item.displayName)+'" data-idx="'+idx+'" class="fname-input">'+
+      '<span class="fsize">'+fmtSize(item.file.size)+'</span>'+
+      '<button class="del" data-idx="'+idx+'">✕</button>'+
+      '</div>';
+  }).join('');
+  box.querySelectorAll('.fname-input').forEach(function(inp){
+    inp.addEventListener('input', function(){pendingFiles[+inp.dataset.idx].displayName = inp.value;});
+  });
+  box.querySelectorAll('.del').forEach(function(b){
+    b.addEventListener('click', function(){pendingFiles.splice(+b.dataset.idx,1);renderFiles();});
+  });
+  document.getElementById('uploadCard').style.display = pendingFiles.length ? 'block' : 'none';
+}
+
+function fmtSize(b){
+  if(b<1024)return b+' B';
+  if(b<1048576)return (b/1024).toFixed(1)+' KB';
+  return (b/1048576).toFixed(1)+' MB';
+}
+
+// ── materials 读取 ──
+function getMaterials(){
+  if (materialsCache) return Promise.resolve(materialsCache);
+  return fetch(MATERIALS_URL,{cache:'no-store'}).then(function(r){return r.ok?r.json():{};}).then(function(d){materialsCache=d;return d;});
+}
+
+function loadMaterials(){
+  var hint = document.getElementById('materialHint');
+  var box = document.getElementById('materialList');
+  if (!selectedCode){box.innerHTML='';hint.textContent='请先选择课程';return;}
+  getMaterials().then(function(data){
+    var list = (data && data[selectedCode]) || [];
+    if (!list.length){hint.textContent='该课程暂无资料';box.innerHTML='';return;}
+    hint.textContent = '共 '+list.length+' 份资料';
+    box.innerHTML = list.map(function(m){
+      return '<div class="material-row">'+
+        '<span class="mname" data-url="'+esc(m.url)+'">'+esc(m.name)+'</span>'+
+        '<span class="fsize">'+(m.ext||'').toUpperCase()+'</span>'+
+        '<a href="'+esc(m.url)+'" target="_blank">下载</a>'+
+        '<button class="btn btn-sm btn-ghost act-rename" data-url="'+esc(m.url)+'" data-name="'+esc(m.name)+'">改名</button>'+
+        '<button class="btn btn-sm btn-danger act-del" data-url="'+esc(m.url)+'">删除</button>'+
+        '</div>';
+    }).join('');
+    box.querySelectorAll('.act-del').forEach(function(b){
+      b.addEventListener('click', function(){
+        if(!confirm('确认删除「'+b.dataset.url.split('/').pop()+'」？'))return;
+        call({action:'remove',courseCode:selectedCode,url:b.dataset.url}).then(function(){materialsCache=null;loadMaterials();});
+      });
+    });
+    box.querySelectorAll('.act-rename').forEach(function(b){
+      b.addEventListener('click', function(){
+        var nn = prompt('新的显示名', b.dataset.name);
+        if(!nn || nn===b.dataset.name)return;
+        call({action:'rename',courseCode:selectedCode,url:b.dataset.url,newName:nn}).then(function(){materialsCache=null;loadMaterials();});
+      });
+    });
+  });
+}
+
+function call(body){
+  return fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+    .then(function(r){return r.json();})
+    .then(function(d){if(d.error)throw new Error(d.error);return d;});
+}
+
+// ── 同名弹窗 ──
+function askConflict(displayName){
+  return new Promise(function(resolve){
+    var modal = document.getElementById('modal');
+    document.getElementById('modalText').textContent = '课程中已存在同名资料「'+displayName+'」，如何处理？';
+    modal.style.display='flex';
+    var done = function(v){modal.style.display='none';resolve(v);};
+    document.getElementById('modalReplace').onclick=function(){done('replace');};
+    document.getElementById('modalRename').onclick=function(){done('rename');};
+    document.getElementById('modalCancel').onclick=function(){done('cancel');};
+  });
+}
+
+// ── 上传 ──
+document.getElementById('uploadBtn').addEventListener('click', function(){
+  if (!selectedCode){alert('请先选择课程');return;}
+  if (!pendingFiles.length){alert('请先拖入文件');return;}
+  runUpload();
+});
+
+async function runUpload(){
+  var btn = document.getElementById('uploadBtn');
+  var bar = document.getElementById('progressBar');
+  var txt = document.getElementById('progressText');
+  btn.disabled = true;
+  var total = pendingFiles.length;
+  var done = 0;
+
+  var data = await getMaterials();
+  var existing = (data && data[selectedCode]) || [];
+  var existingNames = existing.map(function(m){return m.name;});
+
+  var queue = pendingFiles.slice();
+  pendingFiles = [];
+
+  for (var item of queue){
+    txt.textContent = '上传中：'+item.displayName+'（'+(done+1)+'/'+total+'）';
+    try {
+      // 同名检查
+      var conflict = existingNames.indexOf(item.displayName) >= 0 ? await askConflict(item.displayName) : 'upload';
+      if (conflict === 'cancel'){ done++; continue; }
+      if (conflict === 'rename'){
+        var nn = prompt('新文件名（显示名）', item.displayName);
+        if (!nn){ done++; continue; }
+        item.displayName = nn;
+      }
+      // 拿预签名 URL
+      var ext = item.file.name.split('.').pop() || '';
+      var pre = await call({action:'presign', filename:item.file.name, courseCode:selectedCode});
+      // 直传 COS
+      var put = await fetch(pre.uploadUrl, {method:'PUT', body:item.file});
+      if (!put.ok) throw new Error('直传失败 HTTP '+put.status);
+      // 写映射（替换则先删旧的同名）
+      var replaceUrl = conflict==='replace' ? existing.find(function(m){return m.name===item.displayName;}).url : null;
+      await call({action:'save', courseCode:selectedCode, name:item.displayName, key:pre.key, ext:ext, size:item.file.size, replaceUrl:replaceUrl});
+      if (replaceUrl){
+        existing = existing.filter(function(m){return m.url!==replaceUrl;});
+      }
+      existing.push({name:item.displayName, url:'https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/'+pre.key, ext:ext, size:item.file.size});
+      existingNames = existing.map(function(m){return m.name;});
+    } catch(e){
+      txt.textContent = '上传失败：'+item.displayName+' — '+e.message;
+      done++; continue;
+    }
+    done++;
+    bar.style.width = (done/total*100)+'%';
+  }
+
+  bar.style.width = '100%';
+  txt.textContent = '完成：'+done+'/'+total;
+  btn.disabled = false;
+  materialsCache = null;
+  loadMaterials();
+  renderFiles();
+}
+</script>
+</body>
+</html>

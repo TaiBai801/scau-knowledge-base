@@ -16,6 +16,7 @@ export default defineConfig({
     ['meta', { property: 'og:title', content: '机电专业知识库' }],
     ['meta', { property: 'og:description', content: '机电专业课程资源 · 电子/电气/农机/农业工程四专业全覆盖 · 开放共享' }],
     ['meta', { property: 'og:site_name', content: '机电专业知识库' }],
+    ['script', { src: '/materials-loader.js', defer: '' }],
   ],
   sitemap: { hostname: 'https://sicau-jdxy-resource.cn' },
   srcExclude: ['cloud-function/**', '**/node_modules/**'],
