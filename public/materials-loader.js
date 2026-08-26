@@ -100,13 +100,13 @@
 
   function scan() {
     var m = document.getElementById('course-materials');
-    if (m && !m.dataset.rendered) { m.dataset.rendered = '1'; renderMaterials(m, m.dataset.code); }
+    if (m && !m.dataset.rendered) { m.dataset.rendered = '1'; renderMaterials(m, m.dataset.key); }
     var e = document.getElementById('course-exercises');
-    if (e && !e.dataset.rendered) { e.dataset.rendered = '1'; renderSection(e, e.dataset.code, 'exercises'); }
+    if (e && !e.dataset.rendered) { e.dataset.rendered = '1'; renderSection(e, e.dataset.key, 'exercises'); }
     var r = document.getElementById('course-resources');
-    if (r && !r.dataset.rendered) { r.dataset.rendered = '1'; renderSection(r, r.dataset.code, 'resources'); }
+    if (r && !r.dataset.rendered) { r.dataset.rendered = '1'; renderSection(r, r.dataset.key, 'resources'); }
     var t = document.getElementById('course-tasay');
-    if (t && !t.dataset.rendered) { t.dataset.rendered = '1'; renderSection(t, t.dataset.code, 'tasay'); }
+    if (t && !t.dataset.rendered) { t.dataset.rendered = '1'; renderSection(t, t.dataset.key, 'tasay'); }
   }
 
   if (document.readyState === 'loading') {

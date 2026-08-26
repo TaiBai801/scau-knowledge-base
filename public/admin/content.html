@@ -79,9 +79,18 @@ textarea{width:100%;min-height:120px;padding:0.6rem 0.75rem;border:1px solid var
 var API = '/api/content';
 var courses = [];
 var selectedCode = null;
+var selectedKey = null;
 var FIELDS = ['exercises', 'resources', 'tasay'];
 
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
+// 归一化课程名：罗马数字转字母 + 去空格（保留括号），与后端一致
+function normName(s){
+  var romans = {'Ⅰ':'I','Ⅱ':'II','Ⅲ':'III','Ⅳ':'IV','Ⅴ':'V','Ⅵ':'VI','Ⅶ':'VII','Ⅷ':'VIII','Ⅸ':'IX','Ⅹ':'X'};
+  s = String(s);
+  for (var r in romans) s = s.split(r).join(romans[r]);
+  return s.replace(/\s+/g,'').replace(/\u3000/g,'');
+}
 
 fetch('/data/courses.json').then(function(r){return r.json();}).then(function(list){
   courses = list;
@@ -111,6 +120,7 @@ document.getElementById('courseSearch').addEventListener('input', function(){
 function selectCourse(code){
   selectedCode = code;
   var c = courses.find(function(x){return x.code===code;});
+  selectedKey = c ? normName(c.name) : null;
   var el = document.getElementById('selectedCourse');
   el.style.display = 'flex';
   el.innerHTML = '<span>'+esc(c?c.name:'')+'</span><span class="code">'+code+'</span>'+
@@ -122,6 +132,7 @@ function selectCourse(code){
 
 function clearCourse(){
   selectedCode = null;
+  selectedKey = null;
   document.getElementById('selectedCourse').style.display = 'none';
   document.getElementById('selectedCourse').innerHTML = '';
   document.getElementById('editCard').style.display = 'none';
@@ -129,7 +140,7 @@ function clearCourse(){
 
 function loadContent(){
   FIELDS.forEach(function(f){ document.getElementById('ta-'+f).value = ''; });
-  fetch(API, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({action:'getContent', courseCode:selectedCode})})
+  fetch(API, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({action:'getContent', courseKey:selectedKey})})
     .then(function(r){return r.json();})
     .then(function(d){
       var content = d.content || {};
@@ -144,7 +155,7 @@ document.getElementById('saveBtn').addEventListener('click', function(){
   btn.disabled = true; msg.textContent = '保存中…';
   var tasks = FIELDS.map(function(f){
     var text = document.getElementById('ta-'+f).value;
-    return fetch(API, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({action:'saveContent', courseCode:selectedCode, field:f, text:text})})
+    return fetch(API, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({action:'saveContent', courseKey:selectedKey, field:f, text:text})})
       .then(function(r){return r.json();});
   });
   Promise.all(tasks).then(function(results){

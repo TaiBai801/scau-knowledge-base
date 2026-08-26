@@ -101,34 +101,34 @@ export async function onRequestPost({ request }) {
     }
 
     if (action === 'save') {
-      const { courseCode, name, key, ext, size, replaceUrl } = body;
-      if (!courseCode || !name || !key) return json({ error: '缺参数' }, 400);
+      const { courseKey, name, key, ext, size, replaceUrl } = body;
+      if (!courseKey || !name || !key) return json({ error: '缺参数' }, 400);
       const data = await readMaterials();
-      let list = data[courseCode] || [];
+      let list = data[courseKey] || [];
       if (replaceUrl) {
         list = list.filter((m) => m.url !== replaceUrl);
       }
       list.push({ name, url: `https://${HOST}/${key}`, ext: ext || '', size: size || null });
-      data[courseCode] = list;
+      data[courseKey] = list;
       const ok = await writeMaterials(data);
       return json({ ok });
     }
 
     if (action === 'remove') {
-      const { courseCode, url } = body;
+      const { courseKey, url } = body;
       const data = await readMaterials();
-      const list = (data[courseCode] || []).filter((m) => m.url !== url);
-      if (list.length) data[courseCode] = list;
-      else delete data[courseCode];
+      const list = (data[courseKey] || []).filter((m) => m.url !== url);
+      if (list.length) data[courseKey] = list;
+      else delete data[courseKey];
       const ok = await writeMaterials(data);
       return json({ ok });
     }
 
     if (action === 'rename') {
-      const { courseCode, url, newName } = body;
+      const { courseKey, url, newName } = body;
       const data = await readMaterials();
-      const list = (data[courseCode] || []).map((m) => (m.url === url ? { ...m, name: newName } : m));
-      data[courseCode] = list;
+      const list = (data[courseKey] || []).map((m) => (m.url === url ? { ...m, name: newName } : m));
+      data[courseKey] = list;
       const ok = await writeMaterials(data);
       return json({ ok });
     }

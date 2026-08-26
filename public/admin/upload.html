@@ -115,10 +115,19 @@ var API = '/api/upload';
 
 var courses = [];
 var selectedCode = null;
+var selectedKey = null;
 var pendingFiles = [];   // {file, displayName}
 var materialsCache = null;
 
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
+// 归一化课程名：罗马数字转字母 + 去空格（保留括号），与后端一致
+function normName(s){
+  var romans = {'Ⅰ':'I','Ⅱ':'II','Ⅲ':'III','Ⅳ':'IV','Ⅴ':'V','Ⅵ':'VI','Ⅶ':'VII','Ⅷ':'VIII','Ⅸ':'IX','Ⅹ':'X'};
+  s = String(s);
+  for (var r in romans) s = s.split(r).join(romans[r]);
+  return s.replace(/\s+/g,'').replace(/\u3000/g,'');
+}
 
 // ── 课程搜索 ──
 fetch('/data/courses.json').then(function(r){return r.json();}).then(function(list){
@@ -149,6 +158,7 @@ document.getElementById('courseSearch').addEventListener('input', function(){
 function selectCourse(code){
   selectedCode = code;
   var c = courses.find(function(x){return x.code===code;});
+  selectedKey = c ? normName(c.name) : null;
   var el = document.getElementById('selectedCourse');
   el.style.display = 'flex';
   el.innerHTML = '<span>'+esc(c?c.name:'')+'</span><span class="code">'+code+'</span>'+
@@ -159,6 +169,7 @@ function selectCourse(code){
 
 function clearCourse(){
   selectedCode = null;
+  selectedKey = null;
   document.getElementById('selectedCourse').style.display = 'none';
   document.getElementById('selectedCourse').innerHTML = '';
   pendingFiles = [];
@@ -220,7 +231,7 @@ function loadMaterials(){
   var box = document.getElementById('materialList');
   if (!selectedCode){box.innerHTML='';hint.textContent='请先选择课程';return;}
   getMaterials().then(function(data){
-    var list = (data && data[selectedCode]) || [];
+    var list = (data && data[selectedKey]) || [];
     if (!list.length){hint.textContent='该课程暂无资料';box.innerHTML='';return;}
     hint.textContent = '共 '+list.length+' 份资料';
     box.innerHTML = list.map(function(m){
@@ -235,14 +246,14 @@ function loadMaterials(){
     box.querySelectorAll('.act-del').forEach(function(b){
       b.addEventListener('click', function(){
         if(!confirm('确认删除「'+b.dataset.url.split('/').pop()+'」？'))return;
-        call({action:'remove',courseCode:selectedCode,url:b.dataset.url}).then(function(){materialsCache=null;loadMaterials();});
+        call({action:'remove',courseKey:selectedKey,url:b.dataset.url}).then(function(){materialsCache=null;loadMaterials();});
       });
     });
     box.querySelectorAll('.act-rename').forEach(function(b){
       b.addEventListener('click', function(){
         var nn = prompt('新的显示名', b.dataset.name);
         if(!nn || nn===b.dataset.name)return;
-        call({action:'rename',courseCode:selectedCode,url:b.dataset.url,newName:nn}).then(function(){materialsCache=null;loadMaterials();});
+        call({action:'rename',courseKey:selectedKey,url:b.dataset.url,newName:nn}).then(function(){materialsCache=null;loadMaterials();});
       });
     });
   });
@@ -283,7 +294,7 @@ async function runUpload(){
   var done = 0;
 
   var data = await getMaterials();
-  var existing = (data && data[selectedCode]) || [];
+  var existing = (data && data[selectedKey]) || [];
   var existingNames = existing.map(function(m){return m.name;});
 
   var queue = pendingFiles.slice();
@@ -308,7 +319,7 @@ async function runUpload(){
       if (!put.ok) throw new Error('直传失败 HTTP '+put.status);
       // 写映射（替换则先删旧的同名）
       var replaceUrl = conflict==='replace' ? existing.find(function(m){return m.name===item.displayName;}).url : null;
-      await call({action:'save', courseCode:selectedCode, name:item.displayName, key:pre.key, ext:ext, size:item.file.size, replaceUrl:replaceUrl});
+      await call({action:'save', courseKey:selectedKey, name:item.displayName, key:pre.key, ext:ext, size:item.file.size, replaceUrl:replaceUrl});
       if (replaceUrl){
         existing = existing.filter(function(m){return m.url!==replaceUrl;});
       }

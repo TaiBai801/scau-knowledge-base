@@ -31,18 +31,18 @@ export async function onRequestPost({ request }) {
 
     if (action === 'getContent') {
       const data = (await readJson(DATA_KEY)) || {};
-      const entry = data[body.courseCode] || {};
+      const entry = data[body.courseKey] || {};
       const content = {};
       for (const f of FIELDS) content[f] = entry[f] || '';
       return json({ content });
     }
 
     if (action === 'saveContent') {
-      const { courseCode, field, text } = body;
-      if (!courseCode || !FIELDS.includes(field)) return json({ error: '缺参数或字段非法' }, 400);
+      const { courseKey, field, text } = body;
+      if (!courseKey || !FIELDS.includes(field)) return json({ error: '缺参数或字段非法' }, 400);
       const data = (await readJson(DATA_KEY)) || {};
-      if (!data[courseCode]) data[courseCode] = { exercises: '', resources: '', tasay: '' };
-      data[courseCode][field] = text || '';
+      if (!data[courseKey]) data[courseKey] = { exercises: '', resources: '', tasay: '' };
+      data[courseKey][field] = text || '';
       const ok = await writeJson(DATA_KEY, data);
       return json({ ok });
     }

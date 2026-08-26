@@ -1,5 +1,5 @@
 {
-  "1210004000": [
+  "C语言程序设计": [
     {
       "name": "机考复习题（2018-12）",
       "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/c-lang/C-exam-review-2018-12.pdf",
@@ -29,131 +29,89 @@
       "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/c-lang/C-exam-answers-2016-11.doc",
       "ext": "doc",
       "size": null
-    }
-  ],
-  "1215607110": [
-    {
-      "name": "高等数学AI 测试题",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/math/math-AI-exam-2.doc",
-      "ext": "doc",
-      "size": null
     },
     {
-      "name": "高等数学B1 模拟题",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/math/math-B1-mock-1.doc",
-      "ext": "doc",
-      "size": null
-    },
-    {
-      "name": "清华大学数学测试题",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/math/tsinghua-math-test.pdf",
+      "name": "测试",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/test.pdf",
       "ext": "pdf",
+      "size": 1024
+    }
+  ],
+  "电路分析": [
+    {
+      "name": "电路分析期末复习",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/电路分析复习.pptx",
+      "ext": "pptx",
       "size": null
     },
     {
-      "name": "高等数学A 复习资料",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/math/math-A-review.pdf",
+      "name": "ch1",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/1210175201/1787666149468-r002rn.pdf",
       "ext": "pdf",
-      "size": null
+      "size": 3111661
+    },
+    {
+      "name": "ch2",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/1210175201/1787666151721-wkhku1.pdf",
+      "ext": "pdf",
+      "size": 3256529
+    },
+    {
+      "name": "ch3",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/1210175201/1787666153267-90q6qs.pdf",
+      "ext": "pdf",
+      "size": 2586936
+    },
+    {
+      "name": "ch4",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/1210175201/1787666154519-852bpd.pdf",
+      "ext": "pdf",
+      "size": 2527852
+    },
+    {
+      "name": "ch5",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/1210175201/1787666155558-ytywo9.pdf",
+      "ext": "pdf",
+      "size": 3341278
+    },
+    {
+      "name": "ch6",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/1210175201/1787666156852-wjngva.pdf",
+      "ext": "pdf",
+      "size": 4840680
+    },
+    {
+      "name": "ch7",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/1210175201/1787666158630-peazle.pdf",
+      "ext": "pdf",
+      "size": 2017638
+    },
+    {
+      "name": "ch8",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/1210175201/1787666159561-z87viu.pdf",
+      "ext": "pdf",
+      "size": 2618827
+    },
+    {
+      "name": "ch9",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/1210175201/1787666160598-ni9bs6.pdf",
+      "ext": "pdf",
+      "size": 2247906
+    },
+    {
+      "name": "ch10（自修章节、个别高校考研考）",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/1210175201/1787666161702-x8p7e0.pdf",
+      "ext": "pdf",
+      "size": 2456699
+    },
+    {
+      "name": "ch11（自修章节、个别高校考研考）",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/1210175201/1787666163176-33rdu4.pdf",
+      "ext": "pdf",
+      "size": 1365933
     }
   ],
-  "2210141110": [
-    {
-      "name": "大学英语期末复习资料",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/english/english-final-review.doc",
-      "ext": "doc",
-      "size": null
-    }
-  ],
-  "1215845000": [
-    {
-      "name": "近代史知识点整理",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/jindaishi/history-points.doc",
-      "ext": "doc",
-      "size": null
-    },
-    {
-      "name": "近代史全面复习",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/jindaishi/jindaishi-full-review.doc",
-      "ext": "doc",
-      "size": null
-    },
-    {
-      "name": "近代史重点归纳",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/jindaishi/jindaishi-key-points.doc",
-      "ext": "doc",
-      "size": null
-    },
-    {
-      "name": "近代史提纲",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/jindaishi/jindaishi-outline.doc",
-      "ext": "doc",
-      "size": null
-    },
-    {
-      "name": "近代史历年真题",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/jindaishi/jindaishi-past-exams.doc",
-      "ext": "doc",
-      "size": null
-    },
-    {
-      "name": "近代史题库",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/jindaishi/jindaishi-question-bank.doc",
-      "ext": "doc",
-      "size": null
-    },
-    {
-      "name": "近代史复习资料1",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/jindaishi/jindaishi-review-1.doc",
-      "ext": "doc",
-      "size": null
-    },
-    {
-      "name": "近代史复习资料2",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/jindaishi/jindaishi-review.docx",
-      "ext": "docx",
-      "size": null
-    }
-  ],
-  "1215841000": [
-    {
-      "name": "思修复习题答案",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/sixiu/sixiu-exam-answers.zip",
-      "ext": "zip",
-      "size": null
-    },
-    {
-      "name": "思修期末考试复习",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/sixiu/sixiu-final-review.docx",
-      "ext": "docx",
-      "size": null
-    },
-    {
-      "name": "思修选择题库",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/sixiu/sixiu-mcq.doc",
-      "ext": "doc",
-      "size": null
-    },
-    {
-      "name": "思修模拟卷",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/sixiu/sixiu-mock-18p.docx",
-      "ext": "docx",
-      "size": null
-    },
-    {
-      "name": "思修笔记",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/sixiu/sixiu-notes.docx",
-      "ext": "docx",
-      "size": null
-    },
-    {
-      "name": "思修提纲",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/sixiu/sixiu-outline.docx",
-      "ext": "docx",
-      "size": null
-    }
-  ],
-  "1210656000": [
+  "马克思主义基本原理概论": [
     {
       "name": "基本原理复习1",
       "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/basic/basic-review-2018-1.docx",
@@ -167,15 +125,21 @@
       "size": null
     }
   ],
-  "1210175201": [
+  "数字电子技术": [
     {
-      "name": "电路分析期末复习",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/电路分析复习.pptx",
-      "ext": "pptx",
+      "name": "模拟考题2025",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/数电模拟考题2025.pdf",
+      "ext": "pdf",
+      "size": null
+    },
+    {
+      "name": "门电路及组合逻辑实验",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/还原Word_第2章门电路及组合逻辑电路实验.docx",
+      "ext": "docx",
       "size": null
     }
   ],
-  "1211478000": [
+  "自动控制原理": [
     {
       "name": "试卷全大题答案（17页）",
       "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/自动控制原理/自动控制原理_试卷_全大题_完整答案（17页）.doc",
@@ -225,21 +189,135 @@
       "size": null
     }
   ],
-  "1210969000": [
+  "高等数学AI": [
     {
-      "name": "模拟考题2025",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/数电模拟考题2025.pdf",
+      "name": "高等数学AI 测试题",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/math/math-AI-exam-2.doc",
+      "ext": "doc",
+      "size": null
+    },
+    {
+      "name": "高等数学B1 模拟题",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/math/math-B1-mock-1.doc",
+      "ext": "doc",
+      "size": null
+    },
+    {
+      "name": "清华大学数学测试题",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/math/tsinghua-math-test.pdf",
       "ext": "pdf",
       "size": null
     },
     {
-      "name": "门电路及组合逻辑实验",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/还原Word_第2章门电路及组合逻辑电路实验.docx",
+      "name": "高等数学A 复习资料",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/math/math-A-review.pdf",
+      "ext": "pdf",
+      "size": null
+    }
+  ],
+  "大学物理B": [
+    {
+      "name": "电磁学题",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电磁学/电磁学题.docx",
+      "ext": "docx",
+      "size": null
+    },
+    {
+      "name": "考点整理",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电磁学/考点.docx",
       "ext": "docx",
       "size": null
     }
   ],
-  "1251204000": [
+  "思想道德与法治": [
+    {
+      "name": "思修复习题答案",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/sixiu/sixiu-exam-answers.zip",
+      "ext": "zip",
+      "size": null
+    },
+    {
+      "name": "思修期末考试复习",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/sixiu/sixiu-final-review.docx",
+      "ext": "docx",
+      "size": null
+    },
+    {
+      "name": "思修选择题库",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/sixiu/sixiu-mcq.doc",
+      "ext": "doc",
+      "size": null
+    },
+    {
+      "name": "思修模拟卷",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/sixiu/sixiu-mock-18p.docx",
+      "ext": "docx",
+      "size": null
+    },
+    {
+      "name": "思修笔记",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/sixiu/sixiu-notes.docx",
+      "ext": "docx",
+      "size": null
+    },
+    {
+      "name": "思修提纲",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/sixiu/sixiu-outline.docx",
+      "ext": "docx",
+      "size": null
+    }
+  ],
+  "中国近现代史纲要": [
+    {
+      "name": "近代史知识点整理",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/jindaishi/history-points.doc",
+      "ext": "doc",
+      "size": null
+    },
+    {
+      "name": "近代史全面复习",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/jindaishi/jindaishi-full-review.doc",
+      "ext": "doc",
+      "size": null
+    },
+    {
+      "name": "近代史重点归纳",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/jindaishi/jindaishi-key-points.doc",
+      "ext": "doc",
+      "size": null
+    },
+    {
+      "name": "近代史提纲",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/jindaishi/jindaishi-outline.doc",
+      "ext": "doc",
+      "size": null
+    },
+    {
+      "name": "近代史历年真题",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/jindaishi/jindaishi-past-exams.doc",
+      "ext": "doc",
+      "size": null
+    },
+    {
+      "name": "近代史题库",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/jindaishi/jindaishi-question-bank.doc",
+      "ext": "doc",
+      "size": null
+    },
+    {
+      "name": "近代史复习资料1",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/jindaishi/jindaishi-review-1.doc",
+      "ext": "doc",
+      "size": null
+    },
+    {
+      "name": "近代史复习资料2",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/jindaishi/jindaishi-review.docx",
+      "ext": "docx",
+      "size": null
+    }
+  ],
+  "信号与系统": [
     {
       "name": "平时作业（选择判断题）",
       "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/信号与系统/信号与系统平时作业（选择判断题）.docx",
@@ -271,17 +349,11 @@
       "size": null
     }
   ],
-  "1215749220": [
+  "大学英语AI": [
     {
-      "name": "电磁学题",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电磁学/电磁学题.docx",
-      "ext": "docx",
-      "size": null
-    },
-    {
-      "name": "考点整理",
-      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电磁学/考点.docx",
-      "ext": "docx",
+      "name": "大学英语期末复习资料",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/english/english-final-review.doc",
+      "ext": "doc",
       "size": null
     }
   ]

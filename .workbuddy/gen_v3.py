@@ -61,6 +61,13 @@ def is_special(name):
     nm = str(name)
     return any(kw in nm for kw in SPECIAL_KEYWORDS)
 
+# 归一化课程名：罗马数字转字母 + 去空格（保留括号，作为资料/内容的共享 key）
+def norm_name(s):
+    s = str(s)
+    for r, a in [('Ⅰ','I'),('Ⅱ','II'),('Ⅲ','III'),('Ⅳ','IV'),('Ⅴ','V'),('Ⅵ','VI'),('Ⅶ','VII'),('Ⅷ','VIII'),('Ⅸ','IX'),('Ⅹ','X')]:
+        s = s.replace(r, a)
+    return s.replace(' ', '').replace('\u3000', '')
+
 code_info = courses.groupby('code').agg(
     name=('name','first'),
     mcount=('major','nunique'),
@@ -93,6 +100,7 @@ for code in shared_codes | (set(code_info['code']) - special_codes - shared_code
     group = courses[courses['code'] == code]
     first = group.iloc[0]
     marker = ' 🔗 共同必修课' if code in shared_codes else ''
+    nkey = norm_name(first["name"])
     md = f'''---
 course_code: {code}
 course_name: {first["name"]}
@@ -118,19 +126,19 @@ course_name: {first["name"]}
 
 ## ② 课程资料
 
-<div id="course-materials" data-code="{code}">正在加载资料…</div>
+<div id="course-materials" data-key="{nkey}">正在加载资料…</div>
 
 ## ③ 练习题
 
-<div id="course-exercises" data-code="{code}">正在加载…</div>
+<div id="course-exercises" data-key="{nkey}">正在加载…</div>
 
 ## ④ 推荐资源
 
-<div id="course-resources" data-code="{code}">正在加载…</div>
+<div id="course-resources" data-key="{nkey}">正在加载…</div>
 
 ## ⑤ 优秀学长「ta 说」
 
-<div id="course-tasay" data-code="{code}">正在加载…</div>
+<div id="course-tasay" data-key="{nkey}">正在加载…</div>
 
 ---
 
