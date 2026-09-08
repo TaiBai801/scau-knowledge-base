@@ -8,7 +8,7 @@ const PRIZES = [
   { name: '一等奖 · 魔方', emoji: '🧊', total: 10 },
   { name: '二等奖 · 毛绒挂件', emoji: '🧸', total: 60 },
   { name: '三等奖 · 碱水面包挂件', emoji: '🥨', total: 100 },
-  { name: '参与奖', emoji: '🎁', total: 800 },
+  { name: '参与奖', emoji: '🎁', total: 500 },
 ];
 const TOTAL = PRIZES.reduce((a, p) => a + p.total, 0);
 
@@ -79,6 +79,23 @@ export async function onRequestPost({ request }) {
         const wr = await writeJsonIfMatch(DATA_KEY, state, etag);
         if (wr.ok) return json({ prize, ...summarize(state) });
         // 412 冲突 → 重读重试
+      }
+      return json({ error: 'conflict', message: '并发冲突，请重试' }, 409);
+    }
+
+    if (action === 'adjust') {
+      // 后台调整某档奖品剩余数量（如把参与奖 800 调到 500）
+      const tier = Number(body.tier);
+      const count = Number(body.count);
+      if (isNaN(tier) || tier < 0 || tier >= PRIZES.length || isNaN(count) || count < 0) {
+        return json({ error: '参数非法' }, 400);
+      }
+      for (let attempt = 0; attempt < 5; attempt++) {
+        const { data, etag } = await readJsonWithEtag(DATA_KEY);
+        const state = data || freshState();
+        state.remaining[tier] = count;
+        const wr = await writeJsonIfMatch(DATA_KEY, state, etag);
+        if (wr.ok) return json({ ok: true, ...summarize(state) });
       }
       return json({ error: 'conflict', message: '并发冲突，请重试' }, 409);
     }
