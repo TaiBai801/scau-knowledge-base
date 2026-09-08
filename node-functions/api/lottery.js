@@ -55,6 +55,8 @@ export async function onRequestPost({ request }) {
     }
 
     if (action === 'draw') {
+      // 抽奖人标识（姓名/学号），前端必填，缺省为「匿名」
+      const by = (body.name && String(body.name).trim()) || '匿名';
       // 乐观并发：读→抽→带 If-Match 写，冲突则重试，保证「抽一份少一份」精确
       for (let attempt = 0; attempt < 5; attempt++) {
         const { data, etag } = await readJsonWithEtag(DATA_KEY);
@@ -70,7 +72,7 @@ export async function onRequestPost({ request }) {
           r -= state.remaining[i];
         }
         state.remaining[idx]--;
-        const prize = { name: PRIZES[idx].name, emoji: PRIZES[idx].emoji, tier: idx, time: Date.now() };
+        const prize = { name: PRIZES[idx].name, emoji: PRIZES[idx].emoji, tier: idx, time: Date.now(), by };
         state.history.unshift(prize);
         if (state.history.length > 2000) state.history = state.history.slice(0, 2000);
 

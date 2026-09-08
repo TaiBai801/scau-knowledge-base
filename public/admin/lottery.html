@@ -55,7 +55,17 @@ main{max-width:860px;margin:0 auto;padding:2rem 1rem}
 .hrow .hn{flex:1;min-width:0}
 .hrow .ht{color:#94a3b8;font-size:0.72rem;flex-shrink:0}
 .empty-tip{text-align:center;color:#94a3b8;font-size:0.85rem;padding:1rem 0}
-@media(max-width:768px){main{padding:1rem 0.75rem}.result{font-size:1.25rem}.draw-btn{padding:0.8rem 2.2rem;font-size:1.05rem}}
+.name-row{display:flex;align-items:center;justify-content:center;gap:0.6rem;margin-bottom:1rem}
+.name-row .name-label{font-size:0.85rem;color:#64748b;white-space:nowrap}
+.name-row input{padding:0.5rem 0.9rem;border:1px solid var(--line);border-radius:8px;font-size:0.9rem;width:220px;max-width:60%;text-align:center;background:#fff}
+.name-row input:focus{outline:none;border-color:var(--brand)}
+.hrow .hwho{color:var(--brand);font-size:0.78rem;flex-shrink:0;max-width:30%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.stats-table{width:100%;border-collapse:collapse;font-size:0.82rem}
+.stats-table th{background:var(--brand);color:#fff;padding:0.5rem 0.6rem;text-align:center;font-size:0.78rem}
+.stats-table td{padding:0.45rem 0.6rem;text-align:center;border-bottom:1px solid var(--line)}
+.stats-table tr:hover{background:#f0faf8}
+.stats-table td:first-child{text-align:left;font-weight:600}
+@media(max-width:768px){main{padding:1rem 0.75rem}.result{font-size:1.25rem}.draw-btn{padding:0.8rem 2.2rem;font-size:1.05rem}.name-row input{width:60%}}
 </style>
 </head>
 <body>
@@ -85,9 +95,18 @@ main{max-width:860px;margin:0 auto;padding:2rem 1rem}
   <div class="pool-grid" id="poolGrid"></div>
 
   <div class="draw-panel">
+    <div class="name-row">
+      <span class="name-label">🎯 抽奖人</span>
+      <input type="text" id="drawerName" placeholder="输入姓名 / 学号" autocomplete="off">
+    </div>
     <div class="result" id="result"><span class="sub">正在连接云端…</span></div>
     <button class="draw-btn" id="drawBtn">🎲 抽 奖</button>
     <div><button class="reset-btn" id="resetBtn">↺ 重置奖池</button></div>
+  </div>
+
+  <div class="card" id="statsCard" style="display:none">
+    <h2>🏆 中奖统计</h2>
+    <div style="overflow-x:auto"><table class="stats-table" id="statsTable"></table></div>
   </div>
 
   <div class="card">
@@ -109,6 +128,7 @@ var API = '/api/lottery';
 var state = { remaining: PRIZES.map(function(p){return p.total;}), history: [] };
 var rolling = false;
 var lastSync = null;
+var NAME_KEY = 'lottery_name';
 
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 
@@ -184,14 +204,48 @@ function render(){
       var ts = t ? (pad(t.getHours())+':'+pad(t.getMinutes())+':'+pad(t.getSeconds())) : '';
       return '<div class="hrow"><span class="idx">#'+(state.history.length-i)+'</span>'+
         '<span class="hn">'+h.emoji+' '+esc(h.name)+'</span>'+
+        '<span class="hwho">'+esc(h.by||'匿名')+'</span>'+
         '<span class="ht">'+ts+'</span></div>';
     }).join('');
   }
+  renderStats();
 }
 function pad(n){return (n<10?'0':'')+n;}
 
+function renderStats(){
+  var tally = {};
+  state.history.forEach(function(h){
+    var by = (h.by && String(h.by).trim()) || '匿名';
+    if (!tally[by]) tally[by] = { t1:0, t2:0, t3:0, t4:0 };
+    tally[by]['t' + ((h.tier||3)+1)]++;
+  });
+  var names = Object.keys(tally);
+  names.sort(function(a,b){
+    if (tally[b].t1 !== tally[a].t1) return tally[b].t1 - tally[a].t1;
+    if (tally[b].t2 !== tally[a].t2) return tally[b].t2 - tally[a].t2;
+    if (tally[b].t3 !== tally[a].t3) return tally[b].t3 - tally[a].t3;
+    return a.localeCompare(b);
+  });
+  var card = document.getElementById('statsCard');
+  if (!names.length){ card.style.display = 'none'; return; }
+  card.style.display = 'block';
+  document.getElementById('statsTable').innerHTML =
+    '<thead><tr><th>姓名/学号</th><th>🥇一等</th><th>🥈二等</th><th>🥉三等</th><th>🎁参与</th><th>合计</th></tr></thead><tbody>' +
+    names.map(function(n){
+      var t = tally[n];
+      return '<tr><td>'+esc(n)+'</td><td>'+t.t1+'</td><td>'+t.t2+'</td><td>'+t.t3+'</td><td>'+t.t4+'</td><td><b>'+(t.t1+t.t2+t.t3+t.t4)+'</b></td></tr>';
+    }).join('') + '</tbody>';
+}
+
 function draw(){
   if (rolling) return;
+  var nm = document.getElementById('drawerName').value.trim();
+  if (!nm){
+    alert('请先输入你的姓名或学号');
+    document.getElementById('drawerName').focus();
+    return;
+  }
+  try{ localStorage.setItem(NAME_KEY, nm); }catch(e){}
   if (totalRemaining() <= 0){ alert('奖池已抽空！请点击「重置奖池」。'); return; }
 
   rolling = true;
@@ -234,7 +288,7 @@ function draw(){
     render();
   }
 
-  call('draw').then(function(d){
+  call('draw', { name: nm }).then(function(d){
     if (d.error){ serverErr = d; }
     else { serverPrize = d.prize || null; serverState = d; }
     settled = true;
@@ -273,6 +327,7 @@ document.getElementById('resetBtn').addEventListener('click', function(){
 });
 
 // 初始加载
+try{ document.getElementById('drawerName').value = localStorage.getItem(NAME_KEY) || ''; }catch(e){}
 refresh().then(function(){ render(); }).catch(function(){ render(); });
 
 // 轮询同步：每 3 秒拉一次云端，保证多设备共用（抽奖中不打扰）
