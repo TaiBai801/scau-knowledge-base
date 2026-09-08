@@ -44,8 +44,27 @@ main{max-width:860px;margin:0 auto;padding:2rem 1rem}
 .draw-btn:hover{transform:translateY(-2px);opacity:.94}
 .draw-btn:active{transform:translateY(0)}
 .draw-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
-.reset-btn{display:inline-block;margin-top:0.9rem;padding:0.4rem 1rem;border:1px solid var(--line);border-radius:6px;font-size:0.82rem;cursor:pointer;background:#fff;color:var(--red)}
-.reset-btn:hover{border-color:var(--red)}
+.fab-reset{position:fixed;right:1.25rem;bottom:1.25rem;z-index:50;display:flex;align-items:center;gap:0.35rem;padding:0.7rem 1.15rem;border:1px solid #f3d5d5;border-radius:50px;background:#fff;color:var(--red);cursor:pointer;font-size:0.85rem;box-shadow:0 6px 20px rgba(0,0,0,.14);transition:all .2s}
+.fab-reset:hover{transform:translateY(-2px);border-color:var(--red);box-shadow:0 10px 26px rgba(220,38,38,.2)}
+.fab-reset:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.modal-mask{position:fixed;inset:0;background:rgba(15,23,42,.5);display:flex;align-items:center;justify-content:center;z-index:100;padding:1rem;opacity:0;transition:opacity .25s ease}
+.modal-mask.show{opacity:1}
+.modal{background:#fff;border-radius:22px;padding:2.1rem 1.8rem 1.6rem;width:min(380px,92vw);text-align:center;transform:scale(.55) translateY(40px);opacity:0;transition:transform .38s cubic-bezier(.18,.89,.32,1.28),opacity .22s ease;box-shadow:0 24px 64px rgba(0,0,0,.28)}
+.modal-mask.show .modal{transform:scale(1) translateY(0);opacity:1}
+.modal-emoji{font-size:4.2rem;line-height:1;margin-bottom:.55rem;animation:popIn .55s cubic-bezier(.18,.89,.32,1.5) .15s both}
+.modal-title{font-size:1.3rem;font-weight:700;color:var(--text);margin-bottom:.5rem}
+.modal-text{font-size:.9rem;color:#64748b;margin-bottom:1.1rem;line-height:1.7}
+.modal .prize-name{font-size:1.55rem;font-weight:800;color:var(--amber);margin:.2rem 0}
+.modal .winner{font-size:.85rem;color:#94a3b8;margin-top:.25rem}
+.modal-actions{display:flex;gap:.6rem;justify-content:center;margin-top:.4rem}
+.mbtn{padding:.55rem 1.7rem;border:none;border-radius:50px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .15s}
+.mbtn-primary{background:var(--brand);color:#fff;box-shadow:0 4px 14px rgba(13,92,90,.25)}
+.mbtn-primary:hover{opacity:.9;transform:translateY(-1px)}
+.mbtn-ghost{background:#fff;color:var(--text);border:1px solid var(--line)}
+.mbtn-ghost:hover{border-color:#94a3b8}
+.mbtn-danger{background:var(--red);color:#fff}
+.mbtn-danger:hover{opacity:.9}
+@keyframes popIn{0%{transform:scale(0) rotate(-8deg)}55%{transform:scale(1.3) rotate(4deg)}100%{transform:scale(1) rotate(0)}}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.25rem;margin-bottom:1.25rem}
 .card h2{font-size:1rem;font-weight:600;color:var(--brand);margin-bottom:0.75rem}
 .history{max-height:360px;overflow-y:auto}
@@ -101,7 +120,6 @@ main{max-width:860px;margin:0 auto;padding:2rem 1rem}
     </div>
     <div class="result" id="result"><span class="sub">正在连接云端…</span></div>
     <button class="draw-btn" id="drawBtn">🎲 抽 奖</button>
-    <div><button class="reset-btn" id="resetBtn">↺ 重置奖池</button></div>
   </div>
 
   <div class="card" id="statsCard" style="display:none">
@@ -115,6 +133,17 @@ main{max-width:860px;margin:0 auto;padding:2rem 1rem}
   </div>
 
 </main>
+
+<button class="fab-reset" id="resetBtn" title="重置奖池">↺<span>重置奖池</span></button>
+
+<div class="modal-mask" id="modalMask" style="display:none">
+  <div class="modal" id="modal">
+    <div class="modal-emoji" id="modalEmoji"></div>
+    <h3 class="modal-title" id="modalTitle"></h3>
+    <div class="modal-text" id="modalText"></div>
+    <div class="modal-actions" id="modalActions"></div>
+  </div>
+</div>
 
 <script>
 var PRIZES = [
@@ -155,6 +184,36 @@ function applyServer(d){
     lastSync = new Date().toTimeString().slice(0,8);
     setSync(true);
   }
+}
+
+// 弹窗：带缩放弹入动画，支持自定义内容 + 按钮
+function showModal(opts){
+  var mask = document.getElementById('modalMask');
+  document.getElementById('modalEmoji').textContent = opts.emoji || '';
+  document.getElementById('modalTitle').textContent = opts.title || '';
+  var textEl = document.getElementById('modalText');
+  if (opts.html) textEl.innerHTML = opts.html; else textEl.textContent = opts.text || '';
+  var actions = document.getElementById('modalActions');
+  actions.innerHTML = '';
+  (opts.actions || []).forEach(function(a){
+    var b = document.createElement('button');
+    b.className = 'mbtn ' + (a.cls || 'mbtn-primary');
+    b.textContent = a.label;
+    b.onclick = function(){ hideModal(); if (a.onClick) a.onClick(); };
+    actions.appendChild(b);
+  });
+  // 点击遮罩关闭（dismissable 默认 true）
+  mask.onclick = function(e){
+    if (opts.dismissable === false) return;
+    if (e.target === mask) hideModal();
+  };
+  mask.style.display = 'flex';
+  requestAnimationFrame(function(){ mask.classList.add('show'); });
+}
+function hideModal(){
+  var mask = document.getElementById('modalMask');
+  mask.classList.remove('show');
+  setTimeout(function(){ mask.style.display = 'none'; }, 300);
 }
 
 function refresh(){
@@ -276,6 +335,9 @@ function draw(){
       resultEl.textContent = serverErr.error === 'empty' ? '🎉 奖池已抽空' : '⚠️ ' + (serverErr.message || '请求失败');
       resultEl.className = 'result';
       if (serverErr.error === 'empty') state.remaining = PRIZES.map(function(){return 0;});
+      if (serverErr.error !== 'empty' && serverErr.error !== 'timeout'){
+        showModal({emoji:'⚠️', title:'抽奖失败', text:serverErr.message || '请求失败', actions:[{label:'知道了', cls:'mbtn-primary'}]});
+      }
     } else if (serverPrize){
       resultEl.textContent = serverPrize.emoji + ' ' + serverPrize.name;
       resultEl.className = 'result won';
@@ -283,6 +345,14 @@ function draw(){
       if (serverState.history) state.history = serverState.history;
       lastSync = new Date().toTimeString().slice(0,8);
       setSync(true);
+      // 中奖弹窗动画
+      var isTop = serverPrize.tier === 0;
+      showModal({
+        emoji: serverPrize.emoji,
+        title: isTop ? '🎉 恭喜中大奖！' : '🎉 恭喜中奖！',
+        html: '<div class="prize-name">'+esc(serverPrize.name)+'</div><div class="winner">'+esc(nm)+' 抽中</div>',
+        actions: [{label: isTop ? '太棒了！' : '继续抽奖', cls:'mbtn-primary'}]
+      });
     }
     rolling = false;
     render();
@@ -311,18 +381,31 @@ function draw(){
 
 document.getElementById('drawBtn').addEventListener('click', draw);
 
-document.getElementById('resetBtn').addEventListener('click', function(){
-  if (!confirm('确定要重置奖池吗？\n所有奖品数量将恢复，抽奖记录将被清空（云端同步生效）。')) return;
-  this.disabled = true;
+function doReset(){
+  var btn = document.getElementById('resetBtn');
+  btn.disabled = true;
   call('reset').then(function(d){
-    if (d.error){ alert('重置失败：' + (d.message || d.error)); return; }
+    if (d.error){ showModal({emoji:'⚠️', title:'重置失败', text:d.message || d.error, actions:[{label:'知道了', cls:'mbtn-primary'}]}); return; }
     applyServer(d);
     document.getElementById('result').innerHTML = '<span class="sub">奖池已重置，点击下方按钮开始抽奖</span>';
     render();
   }).catch(function(e){
-    alert('重置失败：网络错误');
+    showModal({emoji:'⚠️', title:'重置失败', text:'网络错误', actions:[{label:'知道了', cls:'mbtn-primary'}]});
   }).finally(function(){
-    document.getElementById('resetBtn').disabled = false;
+    btn.disabled = false;
+  });
+}
+
+document.getElementById('resetBtn').addEventListener('click', function(){
+  showModal({
+    emoji: '⚠️',
+    title: '确认重置奖池',
+    text: '所有奖品数量将恢复，抽奖记录将被清空（云端同步生效），确定要重置吗？',
+    dismissable: false,
+    actions: [
+      {label:'取消', cls:'mbtn-ghost'},
+      {label:'确认重置', cls:'mbtn-danger', onClick: doReset}
+    ]
   });
 });
 
