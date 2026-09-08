@@ -17,6 +17,9 @@ main{max-width:860px;margin:0 auto;padding:2rem 1rem}
 .banner .t{font-size:1.05rem;font-weight:600}
 .banner .n{font-size:0.85rem;color:#b2d9d6}
 .banner .n b{color:#fff;font-size:1.1rem}
+.sync{display:inline-flex;align-items:center;gap:0.35rem;font-size:0.75rem;color:#b2d9d6}
+.sync .dot{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block}
+.sync.err .dot{background:var(--amber)}
 .pool-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0.9rem;margin-bottom:1.25rem}
 .pool-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem;text-align:center;position:relative;overflow:hidden}
 .pool-card.empty{opacity:.5}
@@ -76,13 +79,13 @@ main{max-width:860px;margin:0 auto;padding:2rem 1rem}
 
   <div class="banner">
     <div class="t">🎉 奖池总览</div>
-    <div class="n">剩余 <b id="totalLeft">0</b> 份 · 已抽出 <b id="totalDrawn">0</b> 份</div>
+    <div class="n">剩余 <b id="totalLeft">0</b> 份 · 已抽出 <b id="totalDrawn">0</b> 份　<span class="sync" id="sync"><span class="dot"></span>云端同步中</span></div>
   </div>
 
   <div class="pool-grid" id="poolGrid"></div>
 
   <div class="draw-panel">
-    <div class="result" id="result"><span class="sub">点击下方按钮开始抽奖</span></div>
+    <div class="result" id="result"><span class="sub">正在连接云端…</span></div>
     <button class="draw-btn" id="drawBtn">🎲 抽 奖</button>
     <div><button class="reset-btn" id="resetBtn">↺ 重置奖池</button></div>
   </div>
@@ -101,31 +104,45 @@ var PRIZES = [
   {name:'三等奖 · 碱水面包挂件', emoji:'🥨', total:100, tier:'tier3'},
   {name:'参与奖', emoji:'🎁', total:800, tier:''}
 ];
-var STORE_KEY = 'lottery_state_v1';
+var API = '/api/lottery';
 
-function loadState(){
-  try{
-    var s = localStorage.getItem(STORE_KEY);
-    if (s){
-      var o = JSON.parse(s);
-      if (o && o.remaining && o.remaining.length === PRIZES.length){
-        return {remaining:o.remaining, history:o.history||[]};
-      }
-    }
-  }catch(e){}
-  return {remaining:PRIZES.map(function(p){return p.total;}), history:[]};
-}
-function save(){
-  try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){}
-}
-
-var state = loadState();
+var state = { remaining: PRIZES.map(function(p){return p.total;}), history: [] };
 var rolling = false;
-var rollTimer = null;
+var lastSync = null;
 
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 
+function call(action, extra){
+  return fetch(API, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(Object.assign({action:action}, extra||{}))
+  }).then(function(r){return r.json();});
+}
+
 function totalRemaining(){return state.remaining.reduce(function(a,b){return a+b;},0);}
+
+function setSync(ok){
+  var el = document.getElementById('sync');
+  el.className = 'sync' + (ok ? '' : ' err');
+  el.innerHTML = '<span class="dot"></span>' + (ok ? '云端已同步' + (lastSync?' · '+lastSync:'') : '离线 · 重试中');
+}
+
+function applyServer(d){
+  if (d && d.remaining && d.remaining.length === PRIZES.length){
+    state.remaining = d.remaining;
+    if (d.history) state.history = d.history;
+    lastSync = new Date().toTimeString().slice(0,8);
+    setSync(true);
+  }
+}
+
+function refresh(){
+  return call('getState').then(function(d){
+    if (d.error){ setSync(false); throw new Error(d.error); }
+    applyServer(d);
+  }).catch(function(e){ setSync(false); });
+}
 
 function render(){
   var left = totalRemaining();
@@ -150,13 +167,11 @@ function render(){
   if (left <= 0){
     btn.disabled = true;
     btn.textContent = '🎉 奖池已抽空';
-    document.getElementById('result').innerHTML = '<span class="sub">所有奖品已抽完，点击「重置奖池」重新开始</span>';
   } else {
     btn.disabled = rolling;
     btn.textContent = rolling ? '抽奖中…' : '🎲 抽 奖';
   }
 
-  // 历史记录
   var hist = document.getElementById('history');
   var hc = document.getElementById('histCount');
   if (!state.history.length){
@@ -175,59 +190,96 @@ function render(){
 }
 function pad(n){return (n<10?'0':'')+n;}
 
-function pick(){
-  var total = totalRemaining();
-  var r = Math.floor(Math.random()*total);
-  for (var i=0;i<PRIZES.length;i++){
-    if (r < state.remaining[i]) return i;
-    r -= state.remaining[i];
-  }
-  return PRIZES.length-1;
-}
-
-document.getElementById('drawBtn').addEventListener('click', function(){
+function draw(){
   if (rolling) return;
-  var left = totalRemaining();
-  if (left <= 0){ alert('奖池已抽空！请点击「重置奖池」。'); return; }
+  if (totalRemaining() <= 0){ alert('奖池已抽空！请点击「重置奖池」。'); return; }
 
-  var winIdx = pick();
   rolling = true;
-  this.disabled = true;
-  this.textContent = '抽奖中…';
+  var btn = document.getElementById('drawBtn');
+  btn.disabled = true;
+  btn.textContent = '抽奖中…';
 
   var resultEl = document.getElementById('result');
-  var ticks = 0, maxTicks = 16;
-  rollTimer = setInterval(function(){
-    ticks++;
+  var minDuration = 1400;
+  var startTime = Date.now();
+  var rollDone = false;
+  var settled = false;
+  var serverPrize = null, serverState = null, serverErr = null;
+
+  var rollTimer = setInterval(function(){
     var tmp = PRIZES[Math.floor(Math.random()*PRIZES.length)];
     resultEl.textContent = tmp.emoji + ' ' + tmp.name;
     resultEl.className = 'result rolling';
-    if (ticks >= maxTicks){
+    if (Date.now() - startTime >= minDuration){
+      rollDone = true;
       clearInterval(rollTimer);
-      rollTimer = null;
-      state.remaining[winIdx]--;
-      resultEl.textContent = PRIZES[winIdx].emoji + ' ' + PRIZES[winIdx].name;
-      resultEl.className = 'result won';
-      state.history.unshift({name:PRIZES[winIdx].name, emoji:PRIZES[winIdx].emoji, time:Date.now()});
-      if (state.history.length > 1200) state.history = state.history.slice(0,1200);
-      save();
-      rolling = false;
-      render();
+      if (settled) finishDraw();
     }
   }, 90);
-});
+
+  function finishDraw(){
+    if (serverErr){
+      resultEl.textContent = serverErr.error === 'empty' ? '🎉 奖池已抽空' : '⚠️ ' + (serverErr.message || '请求失败');
+      resultEl.className = 'result';
+      if (serverErr.error === 'empty') state.remaining = PRIZES.map(function(){return 0;});
+    } else if (serverPrize){
+      resultEl.textContent = serverPrize.emoji + ' ' + serverPrize.name;
+      resultEl.className = 'result won';
+      if (serverState.remaining) state.remaining = serverState.remaining;
+      if (serverState.history) state.history = serverState.history;
+      lastSync = new Date().toTimeString().slice(0,8);
+      setSync(true);
+    }
+    rolling = false;
+    render();
+  }
+
+  call('draw').then(function(d){
+    if (d.error){ serverErr = d; }
+    else { serverPrize = d.prize || null; serverState = d; }
+    settled = true;
+    if (rollDone) finishDraw();
+  }).catch(function(e){
+    serverErr = { error:'network', message: e && e.message ? e.message : '网络错误' };
+    settled = true;
+    if (rollDone) finishDraw();
+  });
+
+  // 兜底：8 秒无响应强制结束
+  setTimeout(function(){
+    if (!settled){
+      serverErr = { error:'timeout', message:'请求超时' };
+      settled = true;
+      if (rollDone) finishDraw();
+    }
+  }, 8000);
+}
+
+document.getElementById('drawBtn').addEventListener('click', draw);
 
 document.getElementById('resetBtn').addEventListener('click', function(){
-  if (!confirm('确定要重置奖池吗？\n所有奖品数量将恢复，抽奖记录将被清空。')) return;
-  if (rollTimer){ clearInterval(rollTimer); rollTimer = null; rolling = false; }
-  state.remaining = PRIZES.map(function(p){return p.total;});
-  state.history = [];
-  save();
-  document.getElementById('result').innerHTML = '<span class="sub">奖池已重置，点击下方按钮开始抽奖</span>';
-  render();
+  if (!confirm('确定要重置奖池吗？\n所有奖品数量将恢复，抽奖记录将被清空（云端同步生效）。')) return;
+  this.disabled = true;
+  call('reset').then(function(d){
+    if (d.error){ alert('重置失败：' + (d.message || d.error)); return; }
+    applyServer(d);
+    document.getElementById('result').innerHTML = '<span class="sub">奖池已重置，点击下方按钮开始抽奖</span>';
+    render();
+  }).catch(function(e){
+    alert('重置失败：网络错误');
+  }).finally(function(){
+    document.getElementById('resetBtn').disabled = false;
+  });
 });
 
-render();
+// 初始加载
+refresh().then(function(){ render(); }).catch(function(){ render(); });
+
+// 轮询同步：每 3 秒拉一次云端，保证多设备共用（抽奖中不打扰）
+setInterval(function(){
+  if (rolling) return;
+  refresh().then(function(){ render(); }).catch(function(){});
+}, 3000);
 </script>
 </body>
 </html>
