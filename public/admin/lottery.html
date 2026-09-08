@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>抽奖 · 管理后台</title>
+<style>
+:root{--brand:#0D5C5A;--bg:#F7F5F0;--card:#fff;--line:#E8E4DB;--text:#4A5568;--red:#dc2626;--green:#059669;--amber:#D97706;--gold:#C9A227;--silver:#8C9299;--bronze:#B87333}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:var(--brand);color:#fff;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+header h1{font-size:1.2rem;font-weight:600}
+header a{color:#b2d9d6;font-size:0.85rem;text-decoration:none}
+header a:hover{color:#fff}
+main{max-width:860px;margin:0 auto;padding:2rem 1rem}
+.banner{background:var(--brand);color:#fff;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
+.banner .t{font-size:1.05rem;font-weight:600}
+.banner .n{font-size:0.85rem;color:#b2d9d6}
+.banner .n b{color:#fff;font-size:1.1rem}
+.pool-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0.9rem;margin-bottom:1.25rem}
+.pool-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem;text-align:center;position:relative;overflow:hidden}
+.pool-card.empty{opacity:.5}
+.pool-card .emoji{font-size:2.2rem;line-height:1;margin-bottom:0.4rem}
+.pool-card .name{font-size:0.9rem;font-weight:600;color:var(--text)}
+.pool-card .count{font-size:1.6rem;font-weight:700;color:var(--brand);margin-top:0.3rem}
+.pool-card .count small{font-size:0.75rem;font-weight:400;color:#94a3b8}
+.pool-card .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-top:0.5rem}
+.pool-card .bar i{display:block;height:100%;background:var(--brand);border-radius:3px;transition:width .3s}
+.pool-card.tier1 .count{color:var(--gold)}
+.pool-card.tier2 .count{color:var(--silver)}
+.pool-card.tier3 .count{color:var(--bronze)}
+.pool-card.tier1 .bar i{background:var(--gold)}
+.pool-card.tier2 .bar i{background:var(--silver)}
+.pool-card.tier3 .bar i{background:var(--bronze)}
+.draw-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:2rem 1.5rem;text-align:center;margin-bottom:1.25rem}
+.result{min-height:3.5rem;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700;color:var(--text);margin-bottom:1.25rem;transition:all .2s}
+.result.rolling{color:var(--brand);transform:scale(1.02)}
+.result.won{color:var(--amber)}
+.result .sub{font-size:0.85rem;color:#94a3b8;font-weight:400}
+.draw-btn{display:inline-block;padding:0.9rem 3rem;border:none;border-radius:50px;font-size:1.15rem;font-weight:600;cursor:pointer;background:var(--brand);color:#fff;transition:all .15s;box-shadow:0 4px 14px rgba(13,92,90,.25)}
+.draw-btn:hover{transform:translateY(-2px);opacity:.94}
+.draw-btn:active{transform:translateY(0)}
+.draw-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.reset-btn{display:inline-block;margin-top:0.9rem;padding:0.4rem 1rem;border:1px solid var(--line);border-radius:6px;font-size:0.82rem;cursor:pointer;background:#fff;color:var(--red)}
+.reset-btn:hover{border-color:var(--red)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.25rem;margin-bottom:1.25rem}
+.card h2{font-size:1rem;font-weight:600;color:var(--brand);margin-bottom:0.75rem}
+.history{max-height:360px;overflow-y:auto}
+.hrow{display:flex;align-items:center;gap:0.6rem;padding:0.45rem 0.5rem;border-bottom:1px solid #f0ede6;font-size:0.85rem}
+.hrow:nth-child(odd){background:#faf9f6}
+.hrow .idx{color:#94a3b8;font-size:0.75rem;width:2.4rem;text-align:right;flex-shrink:0}
+.hrow .hn{flex:1;min-width:0}
+.hrow .ht{color:#94a3b8;font-size:0.72rem;flex-shrink:0}
+.empty-tip{text-align:center;color:#94a3b8;font-size:0.85rem;padding:1rem 0}
+@media(max-width:768px){main{padding:1rem 0.75rem}.result{font-size:1.25rem}.draw-btn{padding:0.8rem 2.2rem;font-size:1.05rem}}
+</style>
+</head>
+<body>
+<script>
+(function(){
+  if (sessionStorage.getItem('admin_authed') === '1') return;
+  var pw = prompt('请输入管理密码');
+  if (pw !== '123456#') { alert('密码错误'); location.href = '/'; return; }
+  sessionStorage.setItem('admin_authed', '1');
+})();
+</script>
+<header>
+  <h1>🎲 抽奖后台</h1>
+  <a href="/">← 回站点</a>
+  <a href="/admin/index.html">课程管理</a>
+  <a href="/admin/upload.html">📤 资料上传</a>
+  <a href="/admin/content.html">📝 内容编辑</a>
+  <a href="/admin/stats.html">📊 数据统计</a>
+</header>
+<main>
+
+  <div class="banner">
+    <div class="t">🎉 奖池总览</div>
+    <div class="n">剩余 <b id="totalLeft">0</b> 份 · 已抽出 <b id="totalDrawn">0</b> 份</div>
+  </div>
+
+  <div class="pool-grid" id="poolGrid"></div>
+
+  <div class="draw-panel">
+    <div class="result" id="result"><span class="sub">点击下方按钮开始抽奖</span></div>
+    <button class="draw-btn" id="drawBtn">🎲 抽 奖</button>
+    <div><button class="reset-btn" id="resetBtn">↺ 重置奖池</button></div>
+  </div>
+
+  <div class="card">
+    <h2>抽奖记录 <span style="color:#94a3b8;font-weight:400;font-size:0.8rem" id="histCount"></span></h2>
+    <div class="history" id="history"><div class="empty-tip">暂无记录</div></div>
+  </div>
+
+</main>
+
+<script>
+var PRIZES = [
+  {name:'一等奖 · 魔方', emoji:'🧊', total:10, tier:'tier1'},
+  {name:'二等奖 · 毛绒挂件', emoji:'🧸', total:60, tier:'tier2'},
+  {name:'三等奖 · 碱水面包挂件', emoji:'🥨', total:100, tier:'tier3'},
+  {name:'参与奖', emoji:'🎁', total:800, tier:''}
+];
+var STORE_KEY = 'lottery_state_v1';
+
+function loadState(){
+  try{
+    var s = localStorage.getItem(STORE_KEY);
+    if (s){
+      var o = JSON.parse(s);
+      if (o && o.remaining && o.remaining.length === PRIZES.length){
+        return {remaining:o.remaining, history:o.history||[]};
+      }
+    }
+  }catch(e){}
+  return {remaining:PRIZES.map(function(p){return p.total;}), history:[]};
+}
+function save(){
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){}
+}
+
+var state = loadState();
+var rolling = false;
+var rollTimer = null;
+
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
+function totalRemaining(){return state.remaining.reduce(function(a,b){return a+b;},0);}
+
+function render(){
+  var left = totalRemaining();
+  var totalInit = PRIZES.reduce(function(a,p){return a+p.total;},0);
+  document.getElementById('totalLeft').textContent = left;
+  document.getElementById('totalDrawn').textContent = totalInit - left;
+
+  var grid = document.getElementById('poolGrid');
+  grid.innerHTML = PRIZES.map(function(p,i){
+    var rem = state.remaining[i];
+    var pct = p.total ? Math.round(rem/p.total*100) : 0;
+    var empty = rem <= 0;
+    return '<div class="pool-card '+p.tier+(empty?' empty':'')+'">'+
+      '<div class="emoji">'+p.emoji+'</div>'+
+      '<div class="name">'+esc(p.name)+'</div>'+
+      '<div class="count">'+rem+'<small> / '+p.total+'</small></div>'+
+      '<div class="bar"><i style="width:'+pct+'%"></i></div>'+
+      '</div>';
+  }).join('');
+
+  var btn = document.getElementById('drawBtn');
+  if (left <= 0){
+    btn.disabled = true;
+    btn.textContent = '🎉 奖池已抽空';
+    document.getElementById('result').innerHTML = '<span class="sub">所有奖品已抽完，点击「重置奖池」重新开始</span>';
+  } else {
+    btn.disabled = rolling;
+    btn.textContent = rolling ? '抽奖中…' : '🎲 抽 奖';
+  }
+
+  // 历史记录
+  var hist = document.getElementById('history');
+  var hc = document.getElementById('histCount');
+  if (!state.history.length){
+    hist.innerHTML = '<div class="empty-tip">暂无记录</div>';
+    hc.textContent = '';
+  } else {
+    hc.textContent = '（最近 '+Math.min(state.history.length,100)+' / 共 '+state.history.length+' 次）';
+    hist.innerHTML = state.history.slice(0,100).map(function(h,i){
+      var t = h.time ? new Date(h.time) : null;
+      var ts = t ? (pad(t.getHours())+':'+pad(t.getMinutes())+':'+pad(t.getSeconds())) : '';
+      return '<div class="hrow"><span class="idx">#'+(state.history.length-i)+'</span>'+
+        '<span class="hn">'+h.emoji+' '+esc(h.name)+'</span>'+
+        '<span class="ht">'+ts+'</span></div>';
+    }).join('');
+  }
+}
+function pad(n){return (n<10?'0':'')+n;}
+
+function pick(){
+  var total = totalRemaining();
+  var r = Math.floor(Math.random()*total);
+  for (var i=0;i<PRIZES.length;i++){
+    if (r < state.remaining[i]) return i;
+    r -= state.remaining[i];
+  }
+  return PRIZES.length-1;
+}
+
+document.getElementById('drawBtn').addEventListener('click', function(){
+  if (rolling) return;
+  var left = totalRemaining();
+  if (left <= 0){ alert('奖池已抽空！请点击「重置奖池」。'); return; }
+
+  var winIdx = pick();
+  rolling = true;
+  this.disabled = true;
+  this.textContent = '抽奖中…';
+
+  var resultEl = document.getElementById('result');
+  var ticks = 0, maxTicks = 16;
+  rollTimer = setInterval(function(){
+    ticks++;
+    var tmp = PRIZES[Math.floor(Math.random()*PRIZES.length)];
+    resultEl.textContent = tmp.emoji + ' ' + tmp.name;
+    resultEl.className = 'result rolling';
+    if (ticks >= maxTicks){
+      clearInterval(rollTimer);
+      rollTimer = null;
+      state.remaining[winIdx]--;
+      resultEl.textContent = PRIZES[winIdx].emoji + ' ' + PRIZES[winIdx].name;
+      resultEl.className = 'result won';
+      state.history.unshift({name:PRIZES[winIdx].name, emoji:PRIZES[winIdx].emoji, time:Date.now()});
+      if (state.history.length > 1200) state.history = state.history.slice(0,1200);
+      save();
+      rolling = false;
+      render();
+    }
+  }, 90);
+});
+
+document.getElementById('resetBtn').addEventListener('click', function(){
+  if (!confirm('确定要重置奖池吗？\n所有奖品数量将恢复，抽奖记录将被清空。')) return;
+  if (rollTimer){ clearInterval(rollTimer); rollTimer = null; rolling = false; }
+  state.remaining = PRIZES.map(function(p){return p.total;});
+  state.history = [];
+  save();
+  document.getElementById('result').innerHTML = '<span class="sub">奖池已重置，点击下方按钮开始抽奖</span>';
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
