@@ -150,8 +150,10 @@ var PRIZES = [
   {name:'一等奖 · 魔方', emoji:'🧊', total:10, tier:'tier1'},
   {name:'二等奖 · 毛绒挂件', emoji:'🧸', total:60, tier:'tier2'},
   {name:'三等奖 · 碱水面包挂件', emoji:'🥨', total:100, tier:'tier3'},
-  {name:'参与奖', emoji:'🎁', total:270, tier:''}
+  {name:'参与奖', emoji:'🎁', total:0, tier:''}
 ];
+// 有效奖池（total>0 的奖项，参与奖已删除不再参与）
+var ACTIVE = PRIZES.filter(function(p){return p.total>0;});
 var API = '/api/lottery';
 
 var state = { remaining: PRIZES.map(function(p){return p.total;}), history: [] };
@@ -231,8 +233,9 @@ function render(){
 
   var grid = document.getElementById('poolGrid');
   grid.innerHTML = PRIZES.map(function(p,i){
+    if (p.total === 0) return '';
     var rem = state.remaining[i];
-    var pct = p.total ? Math.round(rem/p.total*100) : 0;
+    var pct = Math.round(rem/p.total*100);
     var empty = rem <= 0;
     return '<div class="pool-card '+p.tier+(empty?' empty':'')+'">'+
       '<div class="emoji">'+p.emoji+'</div>'+
@@ -274,25 +277,25 @@ function pad(n){return (n<10?'0':'')+n;}
 function renderStats(){
   var tally = {};
   state.history.forEach(function(h){
+    if (h.tier === 3) return; // 参与奖已删除，不计入统计
     var by = (h.by && String(h.by).trim()) || '匿名';
-    if (!tally[by]) tally[by] = { t1:0, t2:0, t3:0, t4:0 };
-    tally[by]['t' + ((h.tier||3)+1)]++;
+    if (!tally[by]) tally[by] = { t1:0, t2:0, t3:0 };
+    tally[by]['t' + (h.tier + 1)]++;
   });
   var names = Object.keys(tally);
   names.sort(function(a,b){
     if (tally[b].t1 !== tally[a].t1) return tally[b].t1 - tally[a].t1;
     if (tally[b].t2 !== tally[a].t2) return tally[b].t2 - tally[a].t2;
-    if (tally[b].t3 !== tally[a].t3) return tally[b].t3 - tally[a].t3;
     return a.localeCompare(b);
   });
   var card = document.getElementById('statsCard');
   if (!names.length){ card.style.display = 'none'; return; }
   card.style.display = 'block';
   document.getElementById('statsTable').innerHTML =
-    '<thead><tr><th>姓名/学号</th><th>🥇一等</th><th>🥈二等</th><th>🥉三等</th><th>🎁参与</th><th>合计</th></tr></thead><tbody>' +
+    '<thead><tr><th>姓名/学号</th><th>🥇一等</th><th>🥈二等</th><th>🥉三等</th><th>合计</th></tr></thead><tbody>' +
     names.map(function(n){
       var t = tally[n];
-      return '<tr><td>'+esc(n)+'</td><td>'+t.t1+'</td><td>'+t.t2+'</td><td>'+t.t3+'</td><td>'+t.t4+'</td><td><b>'+(t.t1+t.t2+t.t3+t.t4)+'</b></td></tr>';
+      return '<tr><td>'+esc(n)+'</td><td>'+t.t1+'</td><td>'+t.t2+'</td><td>'+t.t3+'</td><td><b>'+(t.t1+t.t2+t.t3)+'</b></td></tr>';
     }).join('') + '</tbody>';
 }
 
@@ -320,7 +323,7 @@ function draw(){
   var serverPrize = null, serverState = null, serverErr = null;
 
   var rollTimer = setInterval(function(){
-    var tmp = PRIZES[Math.floor(Math.random()*PRIZES.length)];
+    var tmp = ACTIVE[Math.floor(Math.random()*ACTIVE.length)];
     resultEl.textContent = tmp.emoji + ' ' + tmp.name;
     resultEl.className = 'result rolling';
     if (Date.now() - startTime >= minDuration){

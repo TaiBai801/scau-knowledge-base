@@ -8,7 +8,7 @@ const PRIZES = [
   { name: '一等奖 · 魔方', emoji: '🧊', total: 10 },
   { name: '二等奖 · 毛绒挂件', emoji: '🧸', total: 60 },
   { name: '三等奖 · 碱水面包挂件', emoji: '🥨', total: 100 },
-  { name: '参与奖', emoji: '🎁', total: 270 },
+  { name: '参与奖', emoji: '🎁', total: 0 },
 ];
 const TOTAL = PRIZES.reduce((a, p) => a + p.total, 0);
 
