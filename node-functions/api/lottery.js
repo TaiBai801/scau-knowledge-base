@@ -26,12 +26,12 @@ function json(data, status = 200) {
 }
 
 function freshState() {
-  return { remaining: PRIZES.map((p) => p.total), history: [], resetCount: 0 };
+  return { remaining: PRIZES.map((p) => p.total), history: [], resetCount: 0, closed: false };
 }
 
 function summarize(state) {
   const left = state.remaining.reduce((a, b) => a + b, 0);
-  return { remaining: state.remaining, history: state.history, left, drawn: TOTAL - left, total: TOTAL };
+  return { remaining: state.remaining, history: state.history, left, drawn: TOTAL - left, total: TOTAL, closed: !!state.closed };
 }
 
 export function onRequestOptions() {
@@ -61,6 +61,7 @@ export async function onRequestPost({ request }) {
       for (let attempt = 0; attempt < 5; attempt++) {
         const { data, etag } = await readJsonWithEtag(DATA_KEY);
         const state = data || freshState();
+        if (state.closed) return json({ error: 'closed', message: '抽奖已关闭' }, 403);
         const left = state.remaining.reduce((a, b) => a + b, 0);
         if (left <= 0) return json({ error: 'empty', message: '奖池已抽空' }, 409);
 
@@ -94,6 +95,19 @@ export async function onRequestPost({ request }) {
         const { data, etag } = await readJsonWithEtag(DATA_KEY);
         const state = data || freshState();
         state.remaining[tier] = count;
+        const wr = await writeJsonIfMatch(DATA_KEY, state, etag);
+        if (wr.ok) return json({ ok: true, ...summarize(state) });
+      }
+      return json({ error: 'conflict', message: '并发冲突，请重试' }, 409);
+    }
+
+    if (action === 'setClosed') {
+      // 开关抽奖：closed=true 关闭，false 重新开启
+      const closed = !!body.closed;
+      for (let attempt = 0; attempt < 5; attempt++) {
+        const { data, etag } = await readJsonWithEtag(DATA_KEY);
+        const state = data || freshState();
+        state.closed = closed;
         const wr = await writeJsonIfMatch(DATA_KEY, state, etag);
         if (wr.ok) return json({ ok: true, ...summarize(state) });
       }

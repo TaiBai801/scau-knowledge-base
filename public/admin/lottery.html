@@ -156,7 +156,7 @@ var PRIZES = [
 var ACTIVE = PRIZES.filter(function(p){return p.total>0;});
 var API = '/api/lottery';
 
-var state = { remaining: PRIZES.map(function(p){return p.total;}), history: [] };
+var state = { remaining: PRIZES.map(function(p){return p.total;}), history: [], closed: false };
 var rolling = false;
 var lastSync = null;
 var NAME_KEY = 'lottery_name';
@@ -183,6 +183,7 @@ function applyServer(d){
   if (d && d.remaining && d.remaining.length === PRIZES.length){
     state.remaining = d.remaining;
     if (d.history) state.history = d.history;
+    state.closed = !!d.closed;
     lastSync = new Date().toTimeString().slice(0,8);
     setSync(true);
   }
@@ -246,12 +247,19 @@ function render(){
   }).join('');
 
   var btn = document.getElementById('drawBtn');
-  if (left <= 0){
+  if (state.closed){
+    btn.disabled = true;
+    btn.textContent = '🚫 抽奖已关闭';
+    document.getElementById('result').innerHTML = '<span class="sub">🚫 抽奖已关闭</span>';
+    document.getElementById('drawerName').disabled = true;
+  } else if (left <= 0){
     btn.disabled = true;
     btn.textContent = '🎉 奖池已抽空';
+    document.getElementById('drawerName').disabled = false;
   } else {
     btn.disabled = rolling;
     btn.textContent = rolling ? '抽奖中…' : '🎲 抽 奖';
+    document.getElementById('drawerName').disabled = rolling;
   }
 
   var hist = document.getElementById('history');
@@ -301,6 +309,7 @@ function renderStats(){
 
 function draw(){
   if (rolling) return;
+  if (state.closed){ alert('抽奖已关闭'); return; }
   var nm = document.getElementById('drawerName').value.trim();
   if (!nm){
     alert('请先输入你的姓名或学号');
