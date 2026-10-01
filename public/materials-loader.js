@@ -58,7 +58,11 @@
   function previewInfo(m) {
     var ext = String(m.ext || '').toLowerCase();
     if (IMG.indexOf(ext) >= 0) return { type: 'image', url: m.url };
-    if (ext === 'pdf') return { type: 'iframe', url: m.url };
+    // PDF：走 /api/preview 代理，强制 Content-Disposition: inline（COS 默认 attachment 会触发下载）
+    if (ext === 'pdf') {
+      var key = m.url.replace(BASE + '/', '');
+      return { type: 'iframe', url: '/api/preview?key=' + encodeURIComponent(key) };
+    }
     if (OFFICE.indexOf(ext) >= 0) {
       return { type: 'iframe', url: 'https://view.officeapps.live.com/op/view.aspx?src=' + encodeURIComponent(m.url) };
     }
