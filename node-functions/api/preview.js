@@ -1,8 +1,10 @@
 // EdgeOne Pages 云函数 — 文件预览代理
 // 路由: /api/preview?key=<cos对象key>
-// 作用：COS 对 PDF 强制返回 Content-Disposition: attachment（下载），导致 iframe 无法内联预览。
-//       本函数从 COS 拉取文件并强制返回 inline，让浏览器原生渲染（PDF）或走前端 iframe。
-import { HOST } from './_cos.js';
+// - PDF/图片：COS 原样返回并强制 Content-Disposition: inline
+// - Office(doc/docx/ppt/pptx/xls/xlsx)：调腾讯云数据万象文档预览(ci-process=doc-preview)转 PDF
+import { HOST, presignGetUrl, hasSecret } from './_cos.js';
+
+const OFFICE = ['doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx'];
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -29,16 +31,39 @@ export async function onRequestGet({ request }) {
     return new Response('bad key', { status: 400 });
   }
 
-  // 透传 COS 的下载参数（如 response-content-disposition 等，供扩展）
+  const ext = String(key.split('.').pop() || '').toLowerCase();
   const cosUrl = `https://${HOST}/` + encodeURI(key).replace(/%2F/g, '/');
 
+  // ── Office 文件 → 数据万象文档预览转 PDF ──
+  if (OFFICE.indexOf(ext) >= 0) {
+    if (!hasSecret()) return new Response('CI 密钥未配置', { status: 500 });
+    try {
+      const ciUrl = presignGetUrl(key, { 'ci-process': 'doc-preview', 'dstType': 'pdf' });
+      const ciRes = await fetch(ciUrl);
+      if (!ciRes.ok) {
+        const errText = await ciRes.text().catch(() => '');
+        return new Response('CI preview failed (' + ciRes.status + '): ' + errText.slice(0, 400), { status: ciRes.status });
+      }
+      return new Response(ciRes.body, {
+        headers: {
+          'content-type': 'application/pdf',
+          'content-disposition': 'inline; filename*=UTF-8\'\'' + encodeURIComponent(key.split('/').pop() || 'preview.pdf'),
+          'cache-control': 'public, max-age=3600',
+          'access-control-allow-origin': '*',
+        },
+      });
+    } catch (e) {
+      return new Response('preview error: ' + String((e && e.message) || e), { status: 500 });
+    }
+  }
+
+  // ── PDF / 图片 → 原样返回（inline） ──
   try {
     const res = await fetch(cosUrl);
     if (!res.ok) return new Response('file not found', { status: res.status });
     return new Response(res.body, {
       headers: {
         'content-type': res.headers.get('content-type') || 'application/octet-stream',
-        // 关键：强制 inline，覆盖 COS 的 attachment
         'content-disposition': 'inline; filename*=UTF-8\'\'' + encodeURIComponent(key.split('/').pop() || 'file'),
         'cache-control': 'public, max-age=3600',
         'access-control-allow-origin': '*',

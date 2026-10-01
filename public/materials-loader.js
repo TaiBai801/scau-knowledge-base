@@ -58,17 +58,10 @@
   function previewInfo(m) {
     var ext = String(m.ext || '').toLowerCase();
     if (IMG.indexOf(ext) >= 0) return { type: 'image', url: m.url };
-    // PDF：走 /api/preview 代理，强制 Content-Disposition: inline（COS 默认 attachment 会触发下载）
-    if (ext === 'pdf') {
+    // PDF 与 Office：都走 /api/preview 代理（PDF 强制 inline；Office 由数据万象转 PDF）
+    if (ext === 'pdf' || OFFICE.indexOf(ext) >= 0) {
       var key = m.url.replace(BASE + '/', '');
       return { type: 'iframe', url: '/api/preview?key=' + encodeURIComponent(key) };
-    }
-    if (OFFICE.indexOf(ext) >= 0) {
-      // 微软服务器拉不到腾讯 COS（跨国），改走自己域名（EdgeOne 全球 CDN）的代理给微软拉
-      var okey = m.url.replace(BASE + '/', '');
-      var fname = okey.split('/').pop();
-      var fileUrl = location.origin + '/api/preview?key=' + encodeURIComponent(okey) + '&n=' + encodeURIComponent(fname);
-      return { type: 'iframe', url: 'https://view.officeapps.live.com/op/view.aspx?src=' + encodeURIComponent(fileUrl) };
     }
     return null;
   }

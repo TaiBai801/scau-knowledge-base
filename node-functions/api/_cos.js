@@ -28,6 +28,27 @@ export function cosAuth(method, key) {
   return `q-sign-algorithm=sha1&q-ak=${SECRET_ID}&q-sign-time=${keyTime}&q-key-time=${keyTime}&q-header-list=host&q-url-param-list=&q-signature=${signature}`;
 }
 
+// 生成带查询参数的签名 GET URL（用于数据万象文档预览等 ci-process 操作）
+export function presignGetUrl(key, params) {
+  const now = Math.floor(Date.now() / 1000);
+  const keyTime = `${now};${now + 1800}`;
+  const signKey = hmacSha1(SECRET_KEY, keyTime);
+
+  const sortedKeys = Object.keys(params).sort();
+  // HttpParameters：key=value 按 key 字典序排序（key 保持原大小写，value URL 编码）
+  const queryString = sortedKeys.map((k) => `${k}=${encodeURIComponent(params[k])}`).join('&');
+  // q-url-param-list：key 小写、排序、分号连接
+  const paramList = sortedKeys.map((k) => k.toLowerCase()).join(';');
+
+  const encodedKey = encodeURI(key);
+  const httpString = `get\n/${encodedKey}\n${queryString}\nhost=${HOST}\n`;
+  const stringToSign = `sha1\n${keyTime}\n${sha1Hex(httpString)}\n`;
+  const signature = hmacSha1(signKey, stringToSign);
+
+  const auth = `q-sign-algorithm=sha1&q-ak=${SECRET_ID}&q-sign-time=${keyTime}&q-key-time=${keyTime}&q-header-list=host&q-url-param-list=${paramList}&q-signature=${signature}`;
+  return `https://${HOST}/${encodedKey}?${queryString}&${auth}`;
+}
+
 export async function readJson(key) {
   const res = await fetch(`https://${HOST}/${key}`, { cache: 'no-store' });
   if (!res.ok) return null;
