@@ -64,7 +64,11 @@
       return { type: 'iframe', url: '/api/preview?key=' + encodeURIComponent(key) };
     }
     if (OFFICE.indexOf(ext) >= 0) {
-      return { type: 'iframe', url: 'https://view.officeapps.live.com/op/view.aspx?src=' + encodeURIComponent(m.url) };
+      // 微软服务器拉不到腾讯 COS（跨国），改走自己域名（EdgeOne 全球 CDN）的代理给微软拉
+      var okey = m.url.replace(BASE + '/', '');
+      var fname = okey.split('/').pop();
+      var fileUrl = location.origin + '/api/preview?key=' + encodeURIComponent(okey) + '&n=' + encodeURIComponent(fname);
+      return { type: 'iframe', url: 'https://view.officeapps.live.com/op/view.aspx?src=' + encodeURIComponent(fileUrl) };
     }
     return null;
   }
