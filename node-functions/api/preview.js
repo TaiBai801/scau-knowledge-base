@@ -34,24 +34,12 @@ export async function onRequestGet({ request }) {
   const ext = String(key.split('.').pop() || '').toLowerCase();
   const cosUrl = `https://${HOST}/` + encodeURI(key).replace(/%2F/g, '/');
 
-  // ── Office 文件 → 数据万象文档预览转 PDF ──
+  // ── Office 文件 → 302 跳转到数据万象文档预览（dstType=html） ──
   if (OFFICE.indexOf(ext) >= 0) {
     if (!hasSecret()) return new Response('CI 密钥未配置', { status: 500 });
     try {
-      const ciUrl = presignGetUrl(key, { 'ci-process': 'doc-preview', 'dstType': 'pdf' });
-      const ciRes = await fetch(ciUrl);
-      if (!ciRes.ok) {
-        const errText = await ciRes.text().catch(() => '');
-        return new Response('CI preview failed (' + ciRes.status + '): ' + errText.slice(0, 400), { status: ciRes.status });
-      }
-      return new Response(ciRes.body, {
-        headers: {
-          'content-type': 'application/pdf',
-          'content-disposition': 'inline; filename*=UTF-8\'\'' + encodeURIComponent(key.split('/').pop() || 'preview.pdf'),
-          'cache-control': 'public, max-age=3600',
-          'access-control-allow-origin': '*',
-        },
-      });
+      const ciUrl = presignGetUrl(key, { 'ci-process': 'doc-preview', 'dstType': 'html' });
+      return new Response(null, { status: 302, headers: { location: ciUrl } });
     } catch (e) {
       return new Response('preview error: ' + String((e && e.message) || e), { status: 500 });
     }
