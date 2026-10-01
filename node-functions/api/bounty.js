@@ -36,6 +36,7 @@ function publicItem(r, fp) {
     id: r.id,
     content: r.content,
     by: r.by || '匿名',
+    course: r.course || '',
     completed: !!r.completed,
     likes: likedBy.length,
     liked: fp ? likedBy.includes(fp) : false,
@@ -76,11 +77,12 @@ export async function onRequestPost({ request }) {
       if (!content) return json({ error: '请输入想要的资料' }, 400);
       if (content.length > MAX_CONTENT) return json({ error: '内容过长（最多 ' + MAX_CONTENT + ' 字）' }, 400);
       const by = String(body.by || '').trim().slice(0, 30) || '匿名';
+      const course = String(body.course || '').trim().slice(0, 30);
       for (let i = 0; i < 5; i++) {
         const { data, etag } = await readJsonWithEtag(DATA_KEY);
         const state = data || fresh();
         state.requests = state.requests || [];
-        state.requests.push({ id: genId(), content, by, status: 'pending', completed: false, likedBy: [], time: Date.now() });
+        state.requests.push({ id: genId(), content, by, course, status: 'pending', completed: false, likedBy: [], time: Date.now() });
         const wr = await writeJsonIfMatch(DATA_KEY, state, etag);
         if (wr.ok) return json({ ok: true, message: '已提交，等待审核通过后上墙' });
       }
@@ -114,7 +116,7 @@ export async function onRequestPost({ request }) {
       const state = (await readJson(DATA_KEY)) || fresh();
       const list = (state.requests || []).slice().sort((a, b) => b.time - a.time);
       return json({ items: list.map((r) => ({
-        id: r.id, content: r.content, by: r.by || '匿名',
+        id: r.id, content: r.content, by: r.by || '匿名', course: r.course || '',
         status: r.status, completed: !!r.completed,
         likes: (r.likedBy || []).length, time: r.time,
       })) });

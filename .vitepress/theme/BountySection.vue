@@ -1,11 +1,20 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 
 const content = ref('')
 const name = ref('')
+const course = ref('')
 const items = ref([])
 const submitting = ref(false)
 const pause = ref(false)
+const sortBy = ref('hot') // hot=按点赞数, new=按时间
+
+const sortedItems = computed(() => {
+  const arr = items.value.slice()
+  if (sortBy.value === 'new') arr.sort((a, b) => b.time - a.time)
+  else arr.sort((a, b) => (b.likes || 0) - (a.likes || 0) || b.time - a.time)
+  return arr
+})
 
 const wall = ref(null)
 let timer = null
@@ -35,11 +44,11 @@ async function submit() {
     const r = await fetch('/api/bounty', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'submit', content: content.value, by: name.value })
+      body: JSON.stringify({ action: 'submit', content: content.value, by: name.value, course: course.value })
     })
     const d = await r.json()
     if (d.error) { alert(d.message || d.error) }
-    else { alert(d.message || '已提交，等待审核通过后上墙'); content.value = ''; name.value = '' }
+    else { alert(d.message || '已提交，等待审核通过后上墙'); content.value = ''; name.value = ''; course.value = '' }
   } catch (e) { alert('提交失败，请稍后重试') }
   submitting.value = false
 }
@@ -92,6 +101,13 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
         class="bounty-input"
       />
       <input
+        v-model="course"
+        type="text"
+        maxlength="30"
+        placeholder="关联课程（可选）"
+        class="bounty-course"
+      />
+      <input
         v-model="name"
         type="text"
         maxlength="20"
@@ -103,14 +119,22 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
       </button>
     </form>
 
+    <div class="bounty-sortbar">
+      <button class="sort-btn" :class="{ active: sortBy === 'hot' }" @click="sortBy = 'hot'">🔥 最热</button>
+      <button class="sort-btn" :class="{ active: sortBy === 'new' }" @click="sortBy = 'new'">🕒 最新</button>
+    </div>
+
     <div class="bounty-wall" ref="wall" @mouseenter="pause = true" @mouseleave="pause = false">
-      <div class="bounty-item" v-for="r in items" :key="r.id">
+      <div class="bounty-item" v-for="r in sortedItems" :key="r.id">
         <div class="bi-top">
           <span class="bi-content">{{ r.content }}</span>
           <span class="bi-badge" :class="{ done: r.completed }">{{ r.completed ? '✅ 已完成' : '⏳ 待补充' }}</span>
         </div>
         <div class="bi-bottom">
-          <span class="bi-by">{{ r.by }}</span>
+          <span class="bi-meta">
+            <span class="bi-by">{{ r.by }}</span>
+            <span v-if="r.course" class="bi-course">📚 {{ r.course }}</span>
+          </span>
           <button class="bi-like" :class="{ liked: r.liked }" @click="like(r)">
             👍 <span>{{ r.likes }}</span>
           </button>
@@ -132,21 +156,31 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
 .bounty-desc { font-size: 0.88rem; color: #94a3b8; margin-top: 0.4rem; }
 .bounty-form {
   display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center;
-  max-width: 720px; margin: 0 auto 1.4rem;
+  max-width: 760px; margin: 0 auto 0.8rem;
 }
-.bounty-input, .bounty-name {
+.bounty-input, .bounty-course, .bounty-name {
   padding: 0.65rem 0.9rem; border: 1px solid #E8E4DB; border-radius: 10px;
   font-size: 0.9rem; background: #fff; color: #4A5568; outline: none;
 }
 .bounty-input { flex: 1 1 300px; min-width: 0; }
-.bounty-name { flex: 0 0 130px; }
-.bounty-input:focus, .bounty-name:focus { border-color: #0D5C5A; }
+.bounty-course { flex: 0 0 150px; }
+.bounty-name { flex: 0 0 120px; }
+.bounty-input:focus, .bounty-course:focus, .bounty-name:focus { border-color: #0D5C5A; }
 .bounty-btn {
   padding: 0.65rem 1.4rem; border: none; border-radius: 10px; font-size: 0.9rem;
   background: #0D5C5A; color: #fff; cursor: pointer; font-weight: 600; transition: opacity .15s;
 }
 .bounty-btn:hover { opacity: .9; }
 .bounty-btn:disabled { opacity: .5; cursor: not-allowed; }
+.bounty-sortbar {
+  display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1rem;
+}
+.sort-btn {
+  padding: 0.28rem 0.9rem; border: 1px solid #E8E4DB; border-radius: 999px;
+  font-size: 0.8rem; background: #fff; color: #64748b; cursor: pointer; transition: all .15s;
+}
+.sort-btn:hover { border-color: #0D5C5A; color: #0D5C5A; }
+.sort-btn.active { background: #0D5C5A; border-color: #0D5C5A; color: #fff; }
 .bounty-wall {
   max-height: 320px; overflow-y: auto;
   border: 1px solid #E8E4DB; border-radius: 14px; background: #fff;
@@ -164,7 +198,11 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
 }
 .bi-badge.done { background: #e6f7ef; color: #059669; }
 .bi-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 0.35rem; }
+.bi-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 .bi-by { font-size: 0.75rem; color: #94a3b8; }
+.bi-course {
+  font-size: 0.72rem; color: #0D5C5A; background: #eef6f5; border-radius: 999px; padding: 0.05rem 0.55rem;
+}
 .bi-like {
   display: inline-flex; align-items: center; gap: 0.25rem;
   border: 1px solid #E8E4DB; background: #fff; color: #64748b;
@@ -176,7 +214,7 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
 .bounty-empty { text-align: center; color: #94a3b8; font-size: 0.85rem; padding: 2rem 0; }
 
 @media (max-width: 640px) {
-  .bounty-name { flex: 1 1 100%; }
   .bounty-input { flex: 1 1 100%; }
+  .bounty-course, .bounty-name { flex: 1 1 45%; }
 }
 </style>

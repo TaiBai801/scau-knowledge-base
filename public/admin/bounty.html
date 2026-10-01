@@ -119,7 +119,7 @@ function render(){
     acts += '<button class="btn btn-red" data-act="remove" data-id="'+it.id+'">删除</button>';
     return '<div class="card">'+
       '<div class="c-top"><span class="c-content">'+esc(it.content)+'</span>'+badge+doneBadge+'</div>'+
-      '<div class="c-meta">'+esc(it.by)+' · '+fmtTime(it.time)+' · 👍 '+it.likes+'</div>'+
+      '<div class="c-meta">'+esc(it.by)+(it.course?' · 📚 '+esc(it.course):'')+' · '+fmtTime(it.time)+' · 👍 '+it.likes+'</div>'+
       '<div class="c-actions">'+acts+'</div>'+
       '</div>';
   }).join('');
