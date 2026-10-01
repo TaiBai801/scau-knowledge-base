@@ -75,3 +75,6 @@ features:
   <a href="/majors/shared/1215749220">大学物理</a>
   <a href="/majors/shared/1210656000">马原</a>
 </div>
+
+<BountySection />
+

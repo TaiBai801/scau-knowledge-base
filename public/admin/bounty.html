@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>资料悬赏审核 · 管理后台</title>
+<style>
+:root{--brand:#0D5C5A;--bg:#F7F5F0;--card:#fff;--line:#E8E4DB;--text:#4A5568;--red:#dc2626;--green:#059669;--amber:#D97706}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:var(--brand);color:#fff;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+header h1{font-size:1.2rem;font-weight:600}
+header a{color:#b2d9d6;font-size:0.85rem;text-decoration:none}
+header a:hover{color:#fff}
+main{max-width:900px;margin:0 auto;padding:2rem 1rem}
+.tabs{display:flex;gap:0.5rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.tab{padding:0.4rem 1rem;border:1px solid var(--line);border-radius:999px;font-size:0.85rem;cursor:pointer;background:var(--card);color:var(--text)}
+.tab.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.count-badge{display:inline-block;min-width:1.4rem;text-align:center;background:#e6f7ef;color:var(--green);border-radius:999px;font-size:0.72rem;padding:0 0.35rem;margin-left:0.3rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;margin-bottom:0.8rem}
+.card .c-top{display:flex;align-items:flex-start;gap:0.8rem}
+.card .c-content{flex:1;min-width:0;font-size:0.95rem;color:var(--text);word-break:break-word}
+.badge{flex-shrink:0;font-size:0.72rem;padding:0.14rem 0.55rem;border-radius:999px;white-space:nowrap;font-weight:500}
+.badge.pending{background:#fef3e2;color:var(--amber)}
+.badge.approved{background:#e6f7ef;color:var(--green)}
+.badge.rejected{background:#fef2f2;color:var(--red)}
+.badge.done{background:#e6f7ef;color:var(--green)}
+.card .c-meta{font-size:0.75rem;color:#94a3b8;margin-top:0.4rem}
+.card .c-actions{display:flex;gap:0.5rem;margin-top:0.7rem;flex-wrap:wrap}
+.btn{padding:0.3rem 0.8rem;border-radius:6px;font-size:0.78rem;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--text);transition:all .15s}
+.btn:hover{opacity:.85}
+.btn-primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+.btn-green{background:#fff;color:var(--green);border-color:var(--green)}
+.btn-amber{background:#fff;color:var(--amber);border-color:var(--amber)}
+.btn-red{background:#fff;color:var(--red);border-color:var(--red)}
+.empty{text-align:center;color:#94a3b8;padding:2.5rem 0;font-size:0.9rem}
+.hint{font-size:0.8rem;color:#94a3b8;margin-bottom:1rem}
+</style>
+</head>
+<body>
+<script>
+(function(){
+  if (sessionStorage.getItem('admin_authed') === '1') return;
+  var pw = prompt('请输入管理密码');
+  if (pw !== '123456#') { alert('密码错误'); location.href = '/'; return; }
+  sessionStorage.setItem('admin_authed', '1');
+})();
+</script>
+<header>
+  <h1>📮 资料悬赏审核</h1>
+  <a href="/">← 回站点</a>
+  <a href="/admin/index.html">课程管理</a>
+  <a href="/admin/upload.html">📤 资料上传</a>
+  <a href="/admin/content.html">📝 内容编辑</a>
+  <a href="/admin/stats.html">📊 数据统计</a>
+</header>
+<main>
+  <div class="hint">同学提交的悬赏会先进入「待审核」，通过后才会出现在首页滚动展示区。</div>
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-f="all">全部</button>
+    <button class="tab" data-f="pending">待审核</button>
+    <button class="tab" data-f="approved">已通过</button>
+    <button class="tab" data-f="rejected">已拒绝</button>
+  </div>
+  <div id="list"><div class="empty">加载中…</div></div>
+</main>
+
+<script>
+var API = '/api/bounty';
+var PW = '123456#';
+var items = [];
+var filter = 'all';
+
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+function fmtTime(t){var d=new Date(t);return (d.getMonth()+1)+'-'+d.getDate()+' '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);}
+
+function call(action, extra){
+  var body = Object.assign({action:action, pw:PW}, extra||{});
+  return fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+    .then(function(r){return r.json();});
+}
+
+function refresh(){
+  call('adminList').then(function(d){
+    if (d.error){ alert(d.message||d.error); return; }
+    items = d.items || [];
+    render();
+  }).catch(function(){ document.getElementById('list').innerHTML='<div class="empty">加载失败，请重试</div>'; });
+}
+
+function render(){
+  var counts = {all:items.length, pending:0, approved:0, rejected:0};
+  items.forEach(function(it){ counts[it.status]++; });
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.innerHTML = t.getAttribute('data-f')==='all' ? '全部' : ({pending:'待审核',approved:'已通过',rejected:'已拒绝'})[t.getAttribute('data-f')];
+    var c = counts[t.getAttribute('data-f')];
+    if (c) t.innerHTML += '<span class="count-badge">'+c+'</span>';
+  });
+
+  var list = items.filter(function(it){ return filter==='all' || it.status===filter; });
+  var box = document.getElementById('list');
+  if (!list.length){ box.innerHTML = '<div class="empty">暂无内容</div>'; return; }
+  box.innerHTML = list.map(function(it){
+    var badge = it.status==='pending' ? '<span class="badge pending">待审核</span>'
+      : it.status==='approved' ? '<span class="badge approved">已通过</span>'
+      : '<span class="badge rejected">已拒绝</span>';
+    var doneBadge = it.status==='approved' ? (it.completed ? '<span class="badge done">✅ 已完成</span>' : '<span class="badge pending">⏳ 待补充</span>') : '';
+    var acts = '';
+    if (it.status === 'pending'){
+      acts += '<button class="btn btn-primary" data-act="review" data-id="'+it.id+'" data-s="approved">✅ 通过</button>';
+      acts += '<button class="btn btn-red" data-act="review" data-id="'+it.id+'" data-s="rejected">✕ 拒绝</button>';
+    }
+    if (it.status === 'approved'){
+      acts += '<button class="btn '+(it.completed?'btn-amber':'btn-green')+'" data-act="completed" data-id="'+it.id+'" data-c="'+(it.completed?'false':'true')+'">'+(it.completed?'↩ 标记待补充':'✓ 标记已完成')+'</button>';
+    }
+    if (it.status === 'rejected'){
+      acts += '<button class="btn btn-primary" data-act="review" data-id="'+it.id+'" data-s="approved">重新通过</button>';
+    }
+    acts += '<button class="btn btn-red" data-act="remove" data-id="'+it.id+'">删除</button>';
+    return '<div class="card">'+
+      '<div class="c-top"><span class="c-content">'+esc(it.content)+'</span>'+badge+doneBadge+'</div>'+
+      '<div class="c-meta">'+esc(it.by)+' · '+fmtTime(it.time)+' · 👍 '+it.likes+'</div>'+
+      '<div class="c-actions">'+acts+'</div>'+
+      '</div>';
+  }).join('');
+
+  box.querySelectorAll('[data-act]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var id = b.dataset.id;
+      var act = b.dataset.act;
+      if (act === 'review'){
+        call('review', {id:id, status:b.dataset.s}).then(function(d){ if(d.error)alert(d.message||d.error); refresh(); });
+      } else if (act === 'completed'){
+        call('setCompleted', {id:id, completed:b.dataset.c==='true'}).then(function(d){ if(d.error)alert(d.message||d.error); refresh(); });
+      } else if (act === 'remove'){
+        if (!confirm('确认删除这条悬赏？')) return;
+        call('remove', {id:id}).then(function(d){ if(d.error)alert(d.message||d.error); refresh(); });
+      }
+    });
+  });
+}
+
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click', function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active');});
+    t.classList.add('active');
+    filter = t.dataset.f;
+    render();
+  });
+});
+
+refresh();
+</script>
+</body>
+</html>
