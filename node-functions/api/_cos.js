@@ -35,18 +35,22 @@ export function presignGetUrl(key, params) {
   const signKey = hmacSha1(SECRET_KEY, keyTime);
 
   const sortedKeys = Object.keys(params).sort();
-  // HttpParameters：key=value 按 key 字典序排序（key 保持原大小写，value URL 编码）
-  const queryString = sortedKeys.map((k) => `${k}=${encodeURIComponent(params[k])}`).join('&');
-  // q-url-param-list：key 小写、排序、分号连接
+  // 签名里的 HttpParameters：参数名【小写】（COS 会把 URL 参数名转小写参与签名）
+  const signQuery = sortedKeys.map((k) => `${k.toLowerCase()}=${encodeURIComponent(params[k])}`).join('&');
+  // q-url-param-list：参数名小写、排序、分号连接
   const paramList = sortedKeys.map((k) => k.toLowerCase()).join(';');
 
-  const encodedKey = encodeURI(key);
-  const httpString = `get\n/${encodedKey}\n${queryString}\nhost=${HOST}\n`;
+  // 签名里 key 用【原始路径】（不做 URL 编码）
+  const httpString = `get\n/${key}\n${signQuery}\nhost=${HOST}\n`;
   const stringToSign = `sha1\n${keyTime}\n${sha1Hex(httpString)}\n`;
   const signature = hmacSha1(signKey, stringToSign);
 
   const auth = `q-sign-algorithm=sha1&q-ak=${SECRET_ID}&q-sign-time=${keyTime}&q-key-time=${keyTime}&q-header-list=host&q-url-param-list=${paramList}&q-signature=${signature}`;
-  return `https://${HOST}/${encodedKey}?${queryString}&${auth}`;
+
+  // 请求 URL：key 做 URL 编码，参数名保持原大小写（如 dstType）
+  const encodedKey = encodeURI(key);
+  const reqQuery = sortedKeys.map((k) => `${k}=${encodeURIComponent(params[k])}`).join('&');
+  return `https://${HOST}/${encodedKey}?${reqQuery}&${auth}`;
 }
 
 export async function readJson(key) {
