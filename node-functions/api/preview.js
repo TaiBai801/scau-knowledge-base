@@ -34,8 +34,9 @@ export async function onRequestGet({ request }) {
   const ext = String(key.split('.').pop() || '').toLowerCase();
   const cosUrl = `https://${HOST}/` + encodeURI(key).replace(/%2F/g, '/');
 
-  // ── Office 文件 → 302 跳转到数据万象文档预览（dstType=html） ──
-  if (OFFICE.indexOf(ext) >= 0) {
+  // ── Office 文件 / PDF → 302 跳转到数据万象文档预览（dstType=html） ──
+  // 浏览器原生 PDF 查看器对某些 PDF（扫描件/特殊编码）渲染会出错，统一走 CI 更稳
+  if (OFFICE.indexOf(ext) >= 0 || ext === 'pdf') {
     if (!hasSecret()) return new Response('CI 密钥未配置', { status: 500 });
     try {
       const ciUrl = presignGetUrl(key, { 'ci-process': 'doc-preview', 'dstType': 'html' });
@@ -45,7 +46,7 @@ export async function onRequestGet({ request }) {
     }
   }
 
-  // ── PDF / 图片 → 原样返回（inline） ──
+  // ── 图片 / 其它 → 原样返回（inline） ──
   try {
     const res = await fetch(cosUrl);
     if (!res.ok) return new Response('file not found', { status: res.status });
