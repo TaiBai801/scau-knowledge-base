@@ -1,0 +1,181 @@
+{
+  "C语言程序设计": {
+    "course": "C语言程序设计",
+    "code": "1210004000",
+    "units": [
+      {
+        "id": "u1",
+        "title": "C语言概述与开发环境",
+        "weight": 1,
+        "durationMin": 90,
+        "points": [
+          "程序结构",
+          "main函数",
+          "编译与运行"
+        ],
+        "materials": [
+          "课后练习题 1"
+        ],
+        "quizScope": [
+          "C语言概述"
+        ]
+      },
+      {
+        "id": "u2",
+        "title": "数据类型、运算符与表达式",
+        "weight": 2,
+        "durationMin": 150,
+        "points": [
+          "基本数据类型",
+          "算术/关系/逻辑运算符",
+          "优先级与结合性",
+          "类型转换"
+        ],
+        "materials": [
+          "课后练习题 1"
+        ],
+        "quizScope": [
+          "数据类型与表达式"
+        ]
+      },
+      {
+        "id": "u3",
+        "title": "顺序结构与输入输出",
+        "weight": 1,
+        "durationMin": 90,
+        "points": [
+          "printf",
+          "scanf",
+          "格式控制符"
+        ],
+        "materials": [
+          "课后练习题 2"
+        ],
+        "quizScope": [
+          "输入输出"
+        ]
+      },
+      {
+        "id": "u4",
+        "title": "选择结构",
+        "weight": 2,
+        "durationMin": 150,
+        "points": [
+          "if-else",
+          "switch",
+          "条件表达式"
+        ],
+        "materials": [
+          "课后练习题 2"
+        ],
+        "quizScope": [
+          "选择结构"
+        ]
+      },
+      {
+        "id": "u5",
+        "title": "循环结构",
+        "weight": 3,
+        "durationMin": 200,
+        "points": [
+          "while",
+          "do-while",
+          "for",
+          "break/continue",
+          "嵌套循环"
+        ],
+        "materials": [
+          "课后练习题 3"
+        ],
+        "quizScope": [
+          "循环结构"
+        ]
+      },
+      {
+        "id": "u6",
+        "title": "数组",
+        "weight": 2,
+        "durationMin": 180,
+        "points": [
+          "一维数组",
+          "二维数组",
+          "数组越界"
+        ],
+        "materials": [
+          "课后练习题 3"
+        ],
+        "quizScope": [
+          "数组"
+        ]
+      },
+      {
+        "id": "u7",
+        "title": "函数",
+        "weight": 2,
+        "durationMin": 180,
+        "points": [
+          "函数定义与调用",
+          "参数传递",
+          "递归",
+          "作用域"
+        ],
+        "materials": [
+          "课后练习题 4"
+        ],
+        "quizScope": [
+          "函数"
+        ]
+      },
+      {
+        "id": "u8",
+        "title": "指针",
+        "weight": 3,
+        "durationMin": 240,
+        "points": [
+          "指针概念",
+          "指针与数组",
+          "指针与函数"
+        ],
+        "materials": [
+          "课后练习题 4"
+        ],
+        "quizScope": [
+          "指针"
+        ]
+      },
+      {
+        "id": "u9",
+        "title": "字符串处理",
+        "weight": 1,
+        "durationMin": 90,
+        "points": [
+          "字符数组",
+          "字符串函数"
+        ],
+        "materials": [
+          "课后练习题 5"
+        ],
+        "quizScope": [
+          "字符串"
+        ]
+      },
+      {
+        "id": "u10",
+        "title": "结构体与文件",
+        "weight": 2,
+        "durationMin": 150,
+        "points": [
+          "结构体",
+          "文件读写",
+          "typedef"
+        ],
+        "materials": [
+          "课后练习题 5"
+        ],
+        "quizScope": [
+          "结构体与文件"
+        ]
+      }
+    ]
+  }
+}

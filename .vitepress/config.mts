@@ -35,6 +35,8 @@ export default defineConfig({
       { text: '共享课程', link: '/majors/shared/' },
       { text: '课程地图', link: '/map' },
       { text: '「Ta说」', link: '/stories' },
+      { text: '组题练习', link: '/quiz' },
+      { text: '学习计划', link: '/plan' },
       { text: '转专业', link: '/transfer' },
       { text: '贡献指南', link: '/contribute' },
       { text: '全导航', link: '/nav' },

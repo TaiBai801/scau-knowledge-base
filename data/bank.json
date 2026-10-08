@@ -1,0 +1,539 @@
+{
+  "C语言程序设计": {
+    "course": "C语言程序设计",
+    "code": "1210004000",
+    "questions": [
+      {
+        "id": "c-001",
+        "type": "single",
+        "difficulty": 1,
+        "knowledge": "C语言概述",
+        "stem": "一个完整的 C 语言程序必须包含的函数是（　）。",
+        "options": [
+          "A. main()",
+          "B. printf()",
+          "C. scanf()",
+          "D. start()"
+        ],
+        "answer": "A",
+        "analysis": "C 程序从 main 函数开始执行，也以 main 函数为入口，每个可执行程序必须有且仅有一个 main 函数。"
+      },
+      {
+        "id": "c-002",
+        "type": "judge",
+        "difficulty": 1,
+        "knowledge": "C语言概述",
+        "stem": "C 语言属于编译型高级语言，源程序需经过编译、链接后才能生成可执行文件。",
+        "answer": "对",
+        "analysis": "C 语言是编译型语言，源文件（.c）经编译生成目标文件（.obj），再链接成可执行文件（.exe）。"
+      },
+      {
+        "id": "c-003",
+        "type": "single",
+        "difficulty": 1,
+        "knowledge": "C语言概述",
+        "stem": "C 语言源程序文件的扩展名通常是（　）。",
+        "options": [
+          "A. .obj",
+          "B. .c",
+          "C. .exe",
+          "D. .cpp"
+        ],
+        "answer": "B",
+        "analysis": "C 源文件扩展名为 .c；.obj 是目标文件，.exe 是可执行文件，.cpp 是 C++ 源文件。"
+      },
+      {
+        "id": "c-004",
+        "type": "single",
+        "difficulty": 1,
+        "knowledge": "数据类型与表达式",
+        "stem": "在 32 位系统中，int 型数据通常占用的字节数是（　）。",
+        "options": [
+          "A. 1",
+          "B. 2",
+          "C. 4",
+          "D. 8"
+        ],
+        "answer": "C",
+        "analysis": "在常见的 32/64 位系统中，int 通常占 4 个字节（32 位）。char 占 1 字节，short 占 2 字节，long long 占 8 字节。"
+      },
+      {
+        "id": "c-005",
+        "type": "single",
+        "difficulty": 2,
+        "knowledge": "数据类型与表达式",
+        "stem": "表达式 5 % 2 的值是（　）。",
+        "options": [
+          "A. 2",
+          "B. 2.5",
+          "C. 1",
+          "D. 0"
+        ],
+        "answer": "C",
+        "analysis": "% 是求余（取模）运算符，5 除以 2 商 2 余 1，结果为 1。注意 % 要求两个操作数都是整数。"
+      },
+      {
+        "id": "c-006",
+        "type": "single",
+        "difficulty": 2,
+        "knowledge": "数据类型与表达式",
+        "stem": "下列运算符中，优先级最高的是（　）。",
+        "options": [
+          "A. +",
+          "B. *",
+          "C. ==",
+          "D. &&"
+        ],
+        "answer": "B",
+        "analysis": "优先级从高到低大致为：算术（* / % 高于 + -）> 关系（== 等）> 逻辑与（&&）。所以 * 最高。"
+      },
+      {
+        "id": "c-007",
+        "type": "judge",
+        "difficulty": 1,
+        "knowledge": "数据类型与表达式",
+        "stem": "char 类型变量占用 1 个字节的存储空间。",
+        "answer": "对",
+        "analysis": "C 标准规定 char 类型的大小为 1 字节（8 位），可表示 -128~127（有符号）或 0~255。"
+      },
+      {
+        "id": "c-008",
+        "type": "calc",
+        "difficulty": 2,
+        "knowledge": "数据类型与表达式",
+        "stem": "已知 int a = 5; 执行 a = a + 1; 后，a 的值为（　）。",
+        "answer": "6",
+        "analysis": "a + 1 得 6，再赋回给 a，a 的值更新为 6。"
+      },
+      {
+        "id": "c-009",
+        "type": "single",
+        "difficulty": 2,
+        "knowledge": "数据类型与表达式",
+        "stem": "表达式 10 / 3 的值为（　）。",
+        "options": [
+          "A. 3.333333",
+          "B. 3",
+          "C. 1",
+          "D. 编译错误"
+        ],
+        "answer": "B",
+        "analysis": "两个整数相除结果为整数（整除），小数部分被截断，10/3 = 3。要得到 3.333 需写成 10.0/3 或 10/3.0。"
+      },
+      {
+        "id": "c-010",
+        "type": "single",
+        "difficulty": 1,
+        "knowledge": "输入输出",
+        "stem": "printf 函数中，格式控制符 %d 用于输出（　）。",
+        "options": [
+          "A. 字符",
+          "B. 十进制整数",
+          "C. 浮点数",
+          "D. 字符串"
+        ],
+        "answer": "B",
+        "analysis": "%d 输出十进制有符号整数；%c 输出字符，%f 输出浮点数，%s 输出字符串。"
+      },
+      {
+        "id": "c-011",
+        "type": "single",
+        "difficulty": 2,
+        "knowledge": "输入输出",
+        "stem": "用 scanf 从键盘输入一个整数存入变量 x，正确的写法是（　）。",
+        "options": [
+          "A. scanf(\"%d\", x);",
+          "B. scanf(\"%d\", &x);",
+          "C. scanf(\"%d\", *x);",
+          "D. scanf(\"%d\", &x)"
+        ],
+        "answer": "B",
+        "analysis": "scanf 要求传入变量的地址，用取地址符 &，即 &x。选项 A 少了 &，选项 D 少了分号。"
+      },
+      {
+        "id": "c-012",
+        "type": "blank",
+        "difficulty": 2,
+        "knowledge": "输入输出",
+        "stem": "执行 printf(\"%d %d\", 3, 3+4); 的输出结果是（　）。",
+        "answer": "3 7",
+        "analysis": "3+4 先计算得 7，按 %d %d 顺序输出，中间有空格，故输出“3 7”。"
+      },
+      {
+        "id": "c-013",
+        "type": "single",
+        "difficulty": 2,
+        "knowledge": "选择结构",
+        "stem": "在 if-else 嵌套中，else 总是与（　）配对。",
+        "options": [
+          "A. 最近的未配对的 if",
+          "B. 最前面的 if",
+          "C. 缩进对齐的 if",
+          "D. 最后一个 if"
+        ],
+        "answer": "A",
+        "analysis": "C 语言规定 else 与它前面最近的一个尚未配对的 if 配对（就近原则），与缩进无关。"
+      },
+      {
+        "id": "c-014",
+        "type": "single",
+        "difficulty": 2,
+        "knowledge": "选择结构",
+        "stem": "switch 语句中，break 语句的作用是（　）。",
+        "options": [
+          "A. 结束本次循环",
+          "B. 跳出 switch 结构",
+          "C. 跳过下一条语句",
+          "D. 结束整个程序"
+        ],
+        "answer": "B",
+        "analysis": "switch 中的 break 用于跳出 switch 结构，防止“贯穿”到下一个 case。continue 不用于 switch。"
+      },
+      {
+        "id": "c-015",
+        "type": "judge",
+        "difficulty": 2,
+        "knowledge": "选择结构",
+        "stem": "switch 语句中 case 后面的表达式可以是浮点数。",
+        "answer": "错",
+        "analysis": "switch 的表达式和 case 常量必须是整型（包括字符型），浮点数不允许。"
+      },
+      {
+        "id": "c-016",
+        "type": "calc",
+        "difficulty": 2,
+        "knowledge": "选择结构",
+        "stem": "int x = 2; if (x > 3) x = 1; else x = 4; 执行后 x 的值为（　）。",
+        "answer": "4",
+        "analysis": "x=2，条件 x>3 为假，执行 else 分支，x 赋值为 4。"
+      },
+      {
+        "id": "c-017",
+        "type": "blank",
+        "difficulty": 2,
+        "knowledge": "选择结构",
+        "stem": "条件运算符的一般形式为：表达式1 ? 表达式2 : 表达式3。当表达式1为真时，整个表达式的值是（　）。",
+        "answer": "表达式2",
+        "analysis": "三目运算符：条件为真取表达式2 的值，为假取表达式3 的值。"
+      },
+      {
+        "id": "c-018",
+        "type": "single",
+        "difficulty": 2,
+        "knowledge": "循环结构",
+        "stem": "do-while 循环与 while 循环的主要区别是（　）。",
+        "options": [
+          "A. do-while 至少执行一次循环体",
+          "B. do-while 执行次数更多",
+          "C. do-while 不能嵌套",
+          "D. do-while 速度更快"
+        ],
+        "answer": "A",
+        "analysis": "do-while 先执行循环体再判断条件，因此循环体至少执行一次；while 先判断条件，可能一次也不执行。"
+      },
+      {
+        "id": "c-019",
+        "type": "single",
+        "difficulty": 2,
+        "knowledge": "循环结构",
+        "stem": "在循环体中，continue 语句的作用是（　）。",
+        "options": [
+          "A. 结束整个循环",
+          "B. 结束本次循环，进入下一次循环",
+          "C. 暂停程序",
+          "D. 跳出所有嵌套循环"
+        ],
+        "answer": "B",
+        "analysis": "continue 跳过本次循环中剩余的语句，直接进入下一次循环判断；break 才是结束整个循环。"
+      },
+      {
+        "id": "c-020",
+        "type": "judge",
+        "difficulty": 1,
+        "knowledge": "循环结构",
+        "stem": "for 循环的循环体至少执行一次。",
+        "answer": "错",
+        "analysis": "for 循环先判断条件，条件初始即为假时循环体一次也不执行。"
+      },
+      {
+        "id": "c-021",
+        "type": "calc",
+        "difficulty": 2,
+        "knowledge": "循环结构",
+        "stem": "int s = 0; for (int i = 1; i <= 100; i++) s += i; 执行后 s 的值为（　）。",
+        "answer": "5050",
+        "analysis": "1 到 100 求和，利用公式 (1+100)*100/2 = 5050。"
+      },
+      {
+        "id": "c-022",
+        "type": "blank",
+        "difficulty": 2,
+        "knowledge": "循环结构",
+        "stem": "int i = 0; while (i < 5) i++; 循环结束后 i 的值为（　）。",
+        "answer": "5",
+        "analysis": "i 从 0 递增，当 i=5 时条件 i<5 为假退出，此时 i=5。"
+      },
+      {
+        "id": "c-023",
+        "type": "calc",
+        "difficulty": 3,
+        "knowledge": "循环结构",
+        "stem": "int n = 123, cnt = 0; while (n) { cnt++; n /= 10; } 执行后 cnt 的值为（　）。",
+        "answer": "3",
+        "analysis": "n 每次除以 10 去掉个位：123→12→1→0，循环 3 次，cnt=3，即统计了整数的位数。"
+      },
+      {
+        "id": "c-024",
+        "type": "single",
+        "difficulty": 1,
+        "knowledge": "数组",
+        "stem": "C 语言中，数组元素的下标从（　）开始。",
+        "options": [
+          "A. 1",
+          "B. 0",
+          "C. -1",
+          "D. 任意"
+        ],
+        "answer": "B",
+        "analysis": "C 语言数组下标从 0 开始，int a[5] 的合法下标是 0~4。"
+      },
+      {
+        "id": "c-025",
+        "type": "judge",
+        "difficulty": 2,
+        "knowledge": "数组",
+        "stem": "数组名本身代表数组首元素的地址。",
+        "answer": "对",
+        "analysis": "数组名是数组首元素的地址（指针常量），如 a 等价于 &a[0]。"
+      },
+      {
+        "id": "c-026",
+        "type": "single",
+        "difficulty": 2,
+        "knowledge": "数组",
+        "stem": "定义 int a[10]; 访问 a[10] 将导致（　）。",
+        "options": [
+          "A. 语法错误",
+          "B. 数组越界（未定义行为）",
+          "C. 自动扩展数组",
+          "D. 程序正常"
+        ],
+        "answer": "B",
+        "analysis": "下标合法范围是 0~9，a[10] 越界，C 不进行越界检查，会产生未定义行为（可能崩溃或读到错误数据）。"
+      },
+      {
+        "id": "c-027",
+        "type": "calc",
+        "difficulty": 2,
+        "knowledge": "数组",
+        "stem": "int a[5] = {1, 2, 3, 4, 5}; int s = 0; for (int i = 0; i < 5; i++) s += a[i]; 执行后 s 的值为（　）。",
+        "answer": "15",
+        "analysis": "1+2+3+4+5 = 15。"
+      },
+      {
+        "id": "c-028",
+        "type": "blank",
+        "difficulty": 2,
+        "knowledge": "数组",
+        "stem": "int a[5] = {1, 2}; 则 a[3] 的值为（　）。",
+        "answer": "0",
+        "analysis": "初始化时只给了前两个元素，其余元素自动初始化为 0，所以 a[3]=0。"
+      },
+      {
+        "id": "c-029",
+        "type": "single",
+        "difficulty": 2,
+        "knowledge": "函数",
+        "stem": "C 语言中函数参数传递的默认方式是（　）。",
+        "options": [
+          "A. 值传递",
+          "B. 地址传递",
+          "C. 引用传递",
+          "D. 名称传递"
+        ],
+        "answer": "A",
+        "analysis": "C 语言默认是值传递，把实参的值复制一份给形参，函数内对形参的修改不影响实参。"
+      },
+      {
+        "id": "c-030",
+        "type": "judge",
+        "difficulty": 2,
+        "knowledge": "函数",
+        "stem": "递归是指一个函数直接或间接地调用自身。",
+        "answer": "对",
+        "analysis": "递归就是函数调用自身，例如求阶乘 factorial(n) = n * factorial(n-1)。"
+      },
+      {
+        "id": "c-031",
+        "type": "single",
+        "difficulty": 2,
+        "knowledge": "函数",
+        "stem": "若函数定义时没有返回值，则其返回值类型应声明为（　）。",
+        "options": [
+          "A. int",
+          "B. void",
+          "C. null",
+          "D. 0"
+        ],
+        "answer": "B",
+        "analysis": "无返回值的函数用 void 声明，函数体内用 return;（不带值）返回。"
+      },
+      {
+        "id": "c-032",
+        "type": "calc",
+        "difficulty": 2,
+        "knowledge": "函数",
+        "stem": "int f(int n) { return n * n; } 则 f(3) 的值为（　）。",
+        "answer": "9",
+        "analysis": "f(3) = 3 * 3 = 9。"
+      },
+      {
+        "id": "c-033",
+        "type": "short",
+        "difficulty": 2,
+        "knowledge": "函数",
+        "stem": "简述形参与实参的区别。",
+        "answer": "形参是函数定义时括号内声明的变量，只在函数被调用时才分配内存；实参是调用函数时传入的具体值。调用时实参的值赋给形参（值传递），函数内对形参的修改不影响实参。",
+        "analysis": "考察对函数参数传递本质的理解。"
+      },
+      {
+        "id": "c-034",
+        "type": "single",
+        "difficulty": 2,
+        "knowledge": "指针",
+        "stem": "指针变量中存放的是（　）。",
+        "options": [
+          "A. 数据本身",
+          "B. 数据的地址",
+          "C. 数据的类型",
+          "D. 数据的值"
+        ],
+        "answer": "B",
+        "analysis": "指针变量专门存放内存地址，通过它间接访问所指向的数据。"
+      },
+      {
+        "id": "c-035",
+        "type": "single",
+        "difficulty": 2,
+        "knowledge": "指针",
+        "stem": "int a = 10; int *p = &a; 则表达式 *p 的值是（　）。",
+        "options": [
+          "A. a 的地址",
+          "B. 10",
+          "C. 指针变量 p 的地址",
+          "D. 0"
+        ],
+        "answer": "B",
+        "analysis": "p 指向 a，*p 是解引用，取出 p 所指向变量的值，即 a 的值 10。"
+      },
+      {
+        "id": "c-036",
+        "type": "judge",
+        "difficulty": 2,
+        "knowledge": "指针",
+        "stem": "指针变量必须先初始化（或赋给合法地址）后才能使用。",
+        "answer": "对",
+        "analysis": "未初始化的指针（野指针）指向不确定的内存，解引用会引发未定义行为或程序崩溃。"
+      },
+      {
+        "id": "c-037",
+        "type": "calc",
+        "difficulty": 3,
+        "knowledge": "指针",
+        "stem": "int a[] = {10, 20, 30}; int *p = a; 则 *(p + 2) 的值为（　）。",
+        "answer": "30",
+        "analysis": "p 指向 a[0]，p+2 指向 a[2]，解引用得 30。指针加 1 移动一个元素大小。"
+      },
+      {
+        "id": "c-038",
+        "type": "blank",
+        "difficulty": 2,
+        "knowledge": "指针",
+        "stem": "取变量 x 的地址用运算符（　），解引用指针 p 用运算符（　）。",
+        "answer": "& 和 *",
+        "analysis": "& 是取地址运算符，* 是间接访问（解引用）运算符。"
+      },
+      {
+        "id": "c-039",
+        "type": "single",
+        "difficulty": 2,
+        "knowledge": "字符串",
+        "stem": "C 语言中字符串的结束标志是（　）。",
+        "options": [
+          "A. '\\n'",
+          "B. '\\0'",
+          "C. 空格",
+          "D. EOF"
+        ],
+        "answer": "B",
+        "analysis": "字符串以空字符 '\\0'（ASCII 码 0）作为结束标志，字符串函数据此判断结尾。"
+      },
+      {
+        "id": "c-040",
+        "type": "judge",
+        "difficulty": 2,
+        "knowledge": "字符串",
+        "stem": "strcmp(s1, s2) 返回 0 表示两个字符串相等。",
+        "answer": "对",
+        "analysis": "strcmp 比较两字符串，相等返回 0，s1 小于 s2 返回负数，大于返回正数。"
+      },
+      {
+        "id": "c-041",
+        "type": "calc",
+        "difficulty": 2,
+        "knowledge": "字符串",
+        "stem": "char s[] = \"hello\"; 则 strlen(s) 的值为（　）。",
+        "answer": "5",
+        "analysis": "strlen 统计字符串有效字符个数（不含结束符 '\\0'），\"hello\" 有 5 个字符。"
+      },
+      {
+        "id": "c-042",
+        "type": "single",
+        "difficulty": 2,
+        "knowledge": "结构体与文件",
+        "stem": "通过结构体变量访问其成员用运算符（　）。",
+        "options": [
+          "A. .",
+          "B. ->",
+          "C. *",
+          "D. &"
+        ],
+        "answer": "A",
+        "analysis": "结构体变量用 . 访问成员（如 stu.name）；指向结构体的指针用 -> 访问成员（如 p->name）。"
+      },
+      {
+        "id": "c-043",
+        "type": "single",
+        "difficulty": 2,
+        "knowledge": "结构体与文件",
+        "stem": "fopen 函数以只读方式打开文件，模式字符串应写（　）。",
+        "options": [
+          "A. \"w\"",
+          "B. \"r\"",
+          "C. \"a\"",
+          "D. \"rw\""
+        ],
+        "answer": "B",
+        "analysis": "\"r\" 只读，\"w\" 只写（覆盖），\"a\" 追加，\"r+\" 读写。"
+      },
+      {
+        "id": "c-044",
+        "type": "judge",
+        "difficulty": 2,
+        "knowledge": "结构体与文件",
+        "stem": "typedef 可以为已有类型定义一个新的名字（别名）。",
+        "answer": "对",
+        "analysis": "typedef 给类型起别名，如 typedef int INTEGER; 之后 INTEGER 等价于 int。"
+      },
+      {
+        "id": "c-045",
+        "type": "short",
+        "difficulty": 2,
+        "knowledge": "结构体与文件",
+        "stem": "简述结构体与数组的主要区别。",
+        "answer": "数组是由同类型元素组成的有序集合，通过下标访问；结构体可以把不同类型的数据组合成一个整体，通过成员名访问。数组强调同类数据的批量处理，结构体强调异构数据的封装描述。",
+        "analysis": "考察对两种构造数据类型的理解。"
+      }
+    ]
+  }
+}
