@@ -1,0 +1,4098 @@
+{
+ "version": 2,
+ "generatedAt": "2026-10-11",
+ "clusters": [
+  {
+   "canonical": "军训",
+   "aliases": [
+    {
+     "name": "军训",
+     "relation": "主课",
+     "path": "/majors/dianqigongcheng/2024/3215858000"
+    },
+    {
+     "name": "军训(军事技能)",
+     "relation": "系列",
+     "path": "/majors/dianqigongcheng/2025/3217002010"
+    }
+   ],
+   "codes": [
+    "3215858000",
+    "3217002010",
+    "3257002010"
+   ],
+   "lookupNames": [
+    "军训",
+    "军训(军事技能)",
+    "军训（军事技能）"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "劳动教育",
+   "aliases": [
+    {
+     "name": "劳动教育",
+     "relation": "主课",
+     "path": "/majors/dianqigongcheng/2024/1215857000"
+    },
+    {
+     "name": "劳动教育实践",
+     "relation": "系列",
+     "path": "/majors/dianqigongcheng/2026/3255857000"
+    },
+    {
+     "name": "大学生劳动教育（实践I）",
+     "relation": "系列",
+     "path": "/majors/dianqigongcheng/2024/4215858000"
+    },
+    {
+     "name": "大学生劳动教育（实践II）",
+     "relation": "系列",
+     "path": "/majors/dianqigongcheng/2024/4215859000"
+    }
+   ],
+   "codes": [
+    "1215857000",
+    "1255857000",
+    "3255857000",
+    "4215858000",
+    "4215859000"
+   ],
+   "lookupNames": [
+    "劳动教育",
+    "劳动教育实践",
+    "大学生劳动教育(实践I)",
+    "大学生劳动教育(实践II)",
+    "大学生劳动教育（实践II）",
+    "大学生劳动教育（实践I）",
+    "大学生劳动教育（实践Ⅰ）",
+    "大学生劳动教育（实践Ⅱ）"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "专业概论与新生研讨",
+   "aliases": [
+    {
+     "name": "专业概论与新生研讨",
+     "relation": "主课",
+     "path": "/majors/shared/1215838010"
+    },
+    {
+     "name": "专业概论与新生研讨（农机）",
+     "relation": "系列",
+     "path": "/majors/shared/1222111003"
+    },
+    {
+     "name": "专业概论与新生研讨（机器人工程）",
+     "relation": "系列",
+     "path": "/majors/shared/2258514000"
+    },
+    {
+     "name": "专业概论与新生研讨（电子）",
+     "relation": "系列",
+     "path": "/majors/shared/1222111001"
+    },
+    {
+     "name": "专业概论与新生研讨（电气）",
+     "relation": "系列",
+     "path": "/majors/shared/1222111004"
+    },
+    {
+     "name": "专业概论与新生研讨（农工）",
+     "relation": "系列",
+     "path": "/majors/shared/1222111002"
+    }
+   ],
+   "codes": [
+    "1215838010",
+    "1215947000",
+    "1222111001",
+    "1222111002",
+    "1222111003",
+    "1222111004",
+    "1251167005",
+    "1251167006",
+    "2258514000"
+   ],
+   "lookupNames": [
+    "专业概论与新生研讨",
+    "专业概论与新生研讨(农工)",
+    "专业概论与新生研讨(农机)",
+    "专业概论与新生研讨(机器人工程)",
+    "专业概论与新生研讨(电子)",
+    "专业概论与新生研讨(电气)",
+    "专业概论与新生研讨（农工）",
+    "专业概论与新生研讨（农机）",
+    "专业概论与新生研讨（机器人工程）",
+    "专业概论与新生研讨（电子）",
+    "专业概论与新生研讨（电气）"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "大学生心理健康与职业发展",
+   "aliases": [
+    {
+     "name": "大学生心理健康与职业发展Ⅰ（国防安全卫生）",
+     "relation": "系列",
+     "path": "/majors/shared/1212418010"
+    },
+    {
+     "name": "大学生心理健康与职业发展Ⅰ（心理健康）",
+     "relation": "系列",
+     "path": "/majors/shared/1252417010"
+    },
+    {
+     "name": "大学生心理健康与职业发展Ⅱ（心理健康教育）",
+     "relation": "系列",
+     "path": "/majors/shared/1212418020"
+    },
+    {
+     "name": "大学生心理健康与职业发展Ⅱ（职业发展）",
+     "relation": "系列",
+     "path": "/majors/shared/1252417021"
+    },
+    {
+     "name": "大学生心理健康与职业发展Ⅲ（大学生职业生涯规划）",
+     "relation": "系列",
+     "path": "/majors/shared/1212418030"
+    },
+    {
+     "name": "大学生心理健康与职业发展Ⅳ（大学生就业指导）",
+     "relation": "系列",
+     "path": "/majors/shared/1212418040"
+    }
+   ],
+   "codes": [
+    "1212418010",
+    "1212418020",
+    "1212418030",
+    "1212418040",
+    "1252417010",
+    "1252417021"
+   ],
+   "lookupNames": [
+    "大学生心理健康与职业发展",
+    "大学生心理健康与职业发展III（大学生职业生涯规划）",
+    "大学生心理健康与职业发展II（心理健康教育）",
+    "大学生心理健康与职业发展II（职业发展）",
+    "大学生心理健康与职业发展IV（大学生就业指导）",
+    "大学生心理健康与职业发展I（国防安全卫生）",
+    "大学生心理健康与职业发展I（心理健康）",
+    "大学生心理健康与职业发展Ⅰ(国防安全卫生)",
+    "大学生心理健康与职业发展Ⅰ(心理健康)",
+    "大学生心理健康与职业发展Ⅰ（国防安全卫生）",
+    "大学生心理健康与职业发展Ⅰ（心理健康）",
+    "大学生心理健康与职业发展Ⅱ(心理健康教育)",
+    "大学生心理健康与职业发展Ⅱ(职业发展)",
+    "大学生心理健康与职业发展Ⅱ（心理健康教育）",
+    "大学生心理健康与职业发展Ⅱ（职业发展）",
+    "大学生心理健康与职业发展Ⅲ(大学生职业生涯规划)",
+    "大学生心理健康与职业发展Ⅲ（大学生职业生涯规划）",
+    "大学生心理健康与职业发展Ⅳ(大学生就业指导)",
+    "大学生心理健康与职业发展Ⅳ（大学生就业指导）"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "形势与政策",
+   "aliases": [
+    {
+     "name": "形势与政策Ⅰ",
+     "relation": "系列",
+     "path": "/majors/shared/1211227010"
+    },
+    {
+     "name": "形势与政策Ⅱ",
+     "relation": "系列",
+     "path": "/majors/shared/1211227020"
+    },
+    {
+     "name": "形势与政策Ⅲ",
+     "relation": "系列",
+     "path": "/majors/shared/1211217030"
+    },
+    {
+     "name": "形势与政策Ⅳ",
+     "relation": "系列",
+     "path": "/majors/shared/1211217040"
+    },
+    {
+     "name": "形势与政策Ⅴ",
+     "relation": "系列",
+     "path": "/majors/shared/1211227050"
+    },
+    {
+     "name": "形势与政策Ⅵ",
+     "relation": "系列",
+     "path": "/majors/shared/1211227060"
+    },
+    {
+     "name": "形势与政策Ⅶ",
+     "relation": "系列",
+     "path": "/majors/shared/1211217070"
+    }
+   ],
+   "codes": [
+    "1211217030",
+    "1211217040",
+    "1211217070",
+    "1211227010",
+    "1211227020",
+    "1211227050",
+    "1211227060",
+    "1251217030",
+    "1251217040",
+    "1251227010",
+    "1251227020"
+   ],
+   "lookupNames": [
+    "形势与政策",
+    "形势与政策I",
+    "形势与政策II",
+    "形势与政策III",
+    "形势与政策IV",
+    "形势与政策V",
+    "形势与政策VI",
+    "形势与政策VII",
+    "形势与政策Ⅰ",
+    "形势与政策Ⅱ",
+    "形势与政策Ⅲ",
+    "形势与政策Ⅳ",
+    "形势与政策Ⅴ",
+    "形势与政策Ⅵ",
+    "形势与政策Ⅶ"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "高等数学A",
+   "aliases": [
+    {
+     "name": "高等数学AⅠ",
+     "relation": "系列",
+     "path": "/majors/shared/1215607110"
+    },
+    {
+     "name": "高等数学AⅡ",
+     "relation": "系列",
+     "path": "/majors/shared/1210267121"
+    }
+   ],
+   "codes": [
+    "1210267121",
+    "1215607110",
+    "1250267110",
+    "1250267121"
+   ],
+   "lookupNames": [
+    "高等数学A",
+    "高等数学AI",
+    "高等数学AII",
+    "高等数学AⅠ",
+    "高等数学AⅡ"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "大学英语A",
+   "aliases": [
+    {
+     "name": "大学英语AⅠ",
+     "relation": "系列",
+     "path": "/majors/shared/2210141110"
+    },
+    {
+     "name": "大学英语AⅡ",
+     "relation": "系列",
+     "path": "/majors/shared/2210141120"
+    }
+   ],
+   "codes": [
+    "2210141110",
+    "2210141120",
+    "2250141110",
+    "2250141120"
+   ],
+   "lookupNames": [
+    "大学英语A",
+    "大学英语AI",
+    "大学英语AII",
+    "大学英语AⅠ",
+    "大学英语AⅡ"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "大学体育",
+   "aliases": [
+    {
+     "name": "大学体育Ⅰ",
+     "relation": "系列",
+     "path": "/majors/shared/1215787000"
+    },
+    {
+     "name": "大学体育Ⅱ",
+     "relation": "系列",
+     "path": "/majors/shared/1215788000"
+    },
+    {
+     "name": "大学体育Ⅲ",
+     "relation": "系列",
+     "path": "/majors/shared/1211045000"
+    },
+    {
+     "name": "大学体育实践Ⅰ",
+     "relation": "系列",
+     "path": "/majors/dianqigongcheng/2026/3251045010"
+    },
+    {
+     "name": "大学体育实践Ⅱ",
+     "relation": "系列",
+     "path": "/majors/dianqigongcheng/2026/3251045020"
+    }
+   ],
+   "codes": [
+    "1211045000",
+    "1215787000",
+    "1215788000",
+    "1251045010",
+    "1251045020",
+    "3251045010",
+    "3251045020"
+   ],
+   "lookupNames": [
+    "大学体育",
+    "大学体育I",
+    "大学体育II",
+    "大学体育III",
+    "大学体育Ⅰ",
+    "大学体育Ⅱ",
+    "大学体育Ⅲ",
+    "大学体育实践I",
+    "大学体育实践II",
+    "大学体育实践Ⅰ",
+    "大学体育实践Ⅱ"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "毕业实习",
+   "aliases": [
+    {
+     "name": "毕业实习",
+     "relation": "主课",
+     "path": "/majors/dianqigongcheng/2024/3219930000"
+    },
+    {
+     "name": "毕业实习Ⅰ",
+     "relation": "系列",
+     "path": "/majors/dianqigongcheng/2026/3254126012"
+    },
+    {
+     "name": "毕业实习Ⅱ",
+     "relation": "系列",
+     "path": "/majors/dianqigongcheng/2026/3254126023"
+    }
+   ],
+   "codes": [
+    "3219930000",
+    "3254126012",
+    "3254126023"
+   ],
+   "lookupNames": [
+    "毕业实习",
+    "毕业实习I",
+    "毕业实习II",
+    "毕业实习Ⅰ",
+    "毕业实习Ⅱ"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "毕业论文",
+   "aliases": [
+    {
+     "name": "毕业论文（毕业设计）",
+     "relation": "系列",
+     "path": "/majors/dianqigongcheng/2024/3212676000"
+    },
+    {
+     "name": "毕业论文（设计）",
+     "relation": "系列",
+     "path": "/majors/dianqigongcheng/2026/3254123001"
+    }
+   ],
+   "codes": [
+    "3212676000",
+    "3254123001"
+   ],
+   "lookupNames": [
+    "毕业论文",
+    "毕业论文(毕业设计)",
+    "毕业论文(设计)",
+    "毕业论文（毕业设计）",
+    "毕业论文（设计）"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "大学物理",
+   "aliases": [
+    {
+     "name": "大学物理A",
+     "relation": "系列",
+     "path": "/majors/shared/1250134100"
+    },
+    {
+     "name": "大学物理B",
+     "relation": "系列",
+     "path": "/majors/shared/1215749220"
+    },
+    {
+     "name": "大学物理C",
+     "relation": "系列",
+     "path": "/majors/shared/1215750320"
+    }
+   ],
+   "codes": [
+    "1215749220",
+    "1215750320",
+    "1250134100",
+    "1250134200"
+   ],
+   "lookupNames": [
+    "大学物理",
+    "大学物理A",
+    "大学物理B",
+    "大学物理C"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "大学物理实验",
+   "aliases": [
+    {
+     "name": "大学物理实验A",
+     "relation": "系列",
+     "path": "/majors/shared/4250134100"
+    },
+    {
+     "name": "大学物理实验B",
+     "relation": "系列",
+     "path": "/majors/shared/4215752220"
+    },
+    {
+     "name": "大学物理实验C",
+     "relation": "系列",
+     "path": "/majors/shared/4215753320"
+    }
+   ],
+   "codes": [
+    "4215752220",
+    "4215753320",
+    "4250134100",
+    "4250134200"
+   ],
+   "lookupNames": [
+    "大学物理实验",
+    "大学物理实验A",
+    "大学物理实验B",
+    "大学物理实验C"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "机械设计基础",
+   "aliases": [
+    {
+     "name": "机械设计基础",
+     "relation": "主课",
+     "path": "/majors/shared/1252467002"
+    },
+    {
+     "name": "机械设计基础B",
+     "relation": "系列",
+     "path": "/majors/shared/2210433201"
+    },
+    {
+     "name": "机械设计基础课程设计",
+     "relation": "系列",
+     "path": "/majors/jiqirengongcheng/2026/3252467000"
+    },
+    {
+     "name": "机械设计基础实验",
+     "relation": "实验",
+     "path": "/majors/shared/4252467000"
+    }
+   ],
+   "codes": [
+    "1252467002",
+    "2210433201",
+    "3212467000",
+    "3252467000",
+    "4252467000"
+   ],
+   "lookupNames": [
+    "机械设计基础",
+    "机械设计基础B",
+    "机械设计基础实验",
+    "机械设计基础课程设计"
+   ],
+   "related": [
+    {
+     "name": "机械设计",
+     "note": "简化版/完整版关系",
+     "path": "/majors/shared/2210432001"
+    },
+    {
+     "name": "液压与气压传动技术",
+     "note": "传动基础",
+     "path": "/majors/shared/2211273000"
+    }
+   ]
+  },
+  {
+   "canonical": "传感器技术",
+   "aliases": [
+    {
+     "name": "传感器技术",
+     "relation": "主课",
+     "path": "/majors/shared/1210121001"
+    },
+    {
+     "name": "传感器技术（双轨制）",
+     "relation": "系列",
+     "path": "/majors/shared/1250121002"
+    },
+    {
+     "name": "传感器技术教学实习",
+     "relation": "系列",
+     "path": "/majors/nongyegongcheng/2024/3212418050"
+    },
+    {
+     "name": "传感器技术实验",
+     "relation": "实验",
+     "path": "/majors/shared/4214657000"
+    }
+   ],
+   "codes": [
+    "1210121001",
+    "1250121002",
+    "3212418050",
+    "4214657000",
+    "4250121000"
+   ],
+   "lookupNames": [
+    "传感器技术",
+    "传感器技术(双轨制)",
+    "传感器技术实验",
+    "传感器技术教学实习",
+    "传感器技术（双轨制）"
+   ],
+   "related": [
+    {
+     "name": "工程测试技术",
+     "note": "同领域课程",
+     "path": "/majors/shared/2210283001"
+    }
+   ]
+  },
+  {
+   "canonical": "电力系统自动化",
+   "aliases": [
+    {
+     "name": "电力系统自动化",
+     "relation": "主课",
+     "path": "/majors/shared/2210174000"
+    },
+    {
+     "name": "电力系统自动化（MOOC）",
+     "relation": "系列",
+     "path": "/majors/shared/2250174002"
+    }
+   ],
+   "codes": [
+    "2210174000",
+    "2250174002"
+   ],
+   "lookupNames": [
+    "电力系统自动化",
+    "电力系统自动化(MOOC)",
+    "电力系统自动化（MOOC）"
+   ],
+   "related": [
+    {
+     "name": "电力系统分析",
+     "note": "后续专业课",
+     "path": "/majors/shared/1210172001"
+    },
+    {
+     "name": "水电站",
+     "note": "同领域课程",
+     "path": "/majors/shared/2210985000"
+    }
+   ]
+  },
+  {
+   "canonical": "现代机械设计方法",
+   "aliases": [
+    {
+     "name": "现代机械设计方法",
+     "relation": "主课",
+     "path": "/majors/shared/2211170000"
+    },
+    {
+     "name": "现代机械设计方法（研）",
+     "relation": "系列",
+     "path": "/majors/shared/2259920001"
+    }
+   ],
+   "codes": [
+    "2211170000",
+    "2259920001"
+   ],
+   "lookupNames": [
+    "现代机械设计方法",
+    "现代机械设计方法(研)",
+    "现代机械设计方法（研）"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "农业机器人",
+   "aliases": [
+    {
+     "name": "农业机器人（研）",
+     "relation": "系列",
+     "path": "/majors/shared/2259989900"
+    }
+   ],
+   "codes": [
+    "2259989900"
+   ],
+   "lookupNames": [
+    "农业机器人",
+    "农业机器人(研)",
+    "农业机器人（研）"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "试验设计与统计分析",
+   "aliases": [
+    {
+     "name": "试验设计与统计分析（研）",
+     "relation": "系列",
+     "path": "/majors/shared/1219921902"
+    }
+   ],
+   "codes": [
+    "1219921902",
+    "1259921902"
+   ],
+   "lookupNames": [
+    "试验设计与统计分析",
+    "试验设计与统计分析(研)",
+    "试验设计与统计分析（研）"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "电子专业综合实践",
+   "aliases": [
+    {
+     "name": "电子专业综合实践I",
+     "relation": "系列",
+     "path": "/majors/dianzikexue/2026/3258455010"
+    },
+    {
+     "name": "电子专业综合实践II",
+     "relation": "系列",
+     "path": "/majors/dianzikexue/2026/3258455020"
+    }
+   ],
+   "codes": [
+    "3258455010",
+    "3258455020"
+   ],
+   "lookupNames": [
+    "电子专业综合实践",
+    "电子专业综合实践I",
+    "电子专业综合实践II",
+    "电子专业综合实践Ⅰ",
+    "电子专业综合实践Ⅱ"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "汽车拖拉机学",
+   "aliases": [
+    {
+     "name": "汽车拖拉机学",
+     "relation": "主课",
+     "path": "/majors/shared/2210770001"
+    },
+    {
+     "name": "汽车拖拉机学实验",
+     "relation": "系列",
+     "path": "/majors/shared/4219935000"
+    },
+    {
+     "name": "汽车与拖拉机学教学实习",
+     "relation": "系列",
+     "path": "/majors/nongyegongcheng/2024/3219941000"
+    }
+   ],
+   "codes": [
+    "2210770001",
+    "3219941000",
+    "4219935000"
+   ],
+   "lookupNames": [
+    "汽车与拖拉机学教学实习",
+    "汽车拖拉机学",
+    "汽车拖拉机学实验"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "CAD计算机辅助设计实验",
+   "aliases": [
+    {
+     "name": "CAD计算机辅助设计实验",
+     "relation": "主课",
+     "path": "/majors/shared/4211119000"
+    }
+   ],
+   "codes": [
+    "4211119000"
+   ],
+   "lookupNames": [
+    "CAD计算机辅助设计实验"
+   ],
+   "related": [
+    {
+     "name": "计算机辅助设计B",
+     "note": "同领域课程",
+     "path": "/majors/shared/2210469201"
+    }
+   ]
+  },
+  {
+   "canonical": "C语言程序设计",
+   "aliases": [
+    {
+     "name": "C语言程序设计",
+     "relation": "主课",
+     "path": "/majors/shared/1210004000"
+    },
+    {
+     "name": "C语言程序设计实验",
+     "relation": "实验",
+     "path": "/majors/shared/4210004000"
+    }
+   ],
+   "codes": [
+    "1210004000",
+    "4210004000"
+   ],
+   "lookupNames": [
+    "C语言程序设计",
+    "C语言程序设计实验"
+   ],
+   "related": [
+    {
+     "name": "高级语言程序设计I",
+     "note": "同类基础编程课",
+     "path": "/majors/shared/1259953010"
+    },
+    {
+     "name": "Python语言及应用",
+     "note": "程序设计基础",
+     "path": "/majors/shared/1215689001"
+    },
+    {
+     "name": "数据结构",
+     "note": "后续课程",
+     "path": "/majors/shared/1259911000"
+    }
+   ]
+  },
+  {
+   "canonical": "EDA技术",
+   "aliases": [
+    {
+     "name": "EDA技术",
+     "relation": "主课",
+     "path": "/majors/shared/1210005001"
+    },
+    {
+     "name": "EDA技术实验",
+     "relation": "实验",
+     "path": "/majors/shared/4214413000"
+    },
+    {
+     "name": "EDA技术综合实践",
+     "relation": "实践",
+     "path": "/majors/dianzikexue/2024/3214430000"
+    }
+   ],
+   "codes": [
+    "1210005001",
+    "1250005001",
+    "3214430000",
+    "4214413000",
+    "4250005000"
+   ],
+   "lookupNames": [
+    "EDA技术",
+    "EDA技术实验",
+    "EDA技术综合实践"
+   ],
+   "related": [
+    {
+     "name": "数字电子技术",
+     "note": "开发工具课",
+     "path": "/majors/shared/1210969000"
+    },
+    {
+     "name": "电子电路设计与仿真",
+     "note": "同领域课程",
+     "path": "/majors/shared/1210184001"
+    }
+   ]
+  },
+  {
+   "canonical": "MATLAB程序设计",
+   "aliases": [
+    {
+     "name": "MATLAB程序设计",
+     "relation": "主课",
+     "path": "/majors/shared/1210008001"
+    },
+    {
+     "name": "MATLAB程序设计实验",
+     "relation": "实验",
+     "path": "/majors/shared/4214493000"
+    }
+   ],
+   "codes": [
+    "1210008001",
+    "1250008001",
+    "4214493000",
+    "4250008000"
+   ],
+   "lookupNames": [
+    "MATLAB程序设计",
+    "MATLAB程序设计实验"
+   ],
+   "related": [
+    {
+     "name": "系统仿真技术",
+     "note": "工具链课程",
+     "path": "/majors/shared/2219924000"
+    },
+    {
+     "name": "电力系统仿真技术",
+     "note": "工具链课程",
+     "path": "/majors/shared/1210171001"
+    },
+    {
+     "name": "机器人系统仿真",
+     "note": "工具链课程",
+     "path": "/majors/shared/2258518000"
+    }
+   ]
+  },
+  {
+   "canonical": "Python语言及应用",
+   "aliases": [
+    {
+     "name": "Python语言及应用",
+     "relation": "主课",
+     "path": "/majors/shared/1215689001"
+    },
+    {
+     "name": "Python语言及应用实验",
+     "relation": "实验",
+     "path": "/majors/shared/4215689002"
+    }
+   ],
+   "codes": [
+    "1215689001",
+    "1255689001",
+    "4215689002",
+    "4255689002"
+   ],
+   "lookupNames": [
+    "Python语言及应用",
+    "Python语言及应用实验"
+   ],
+   "related": [
+    {
+     "name": "C语言程序设计",
+     "note": "程序设计基础",
+     "path": "/majors/shared/1210004000"
+    }
+   ]
+  },
+  {
+   "canonical": "中国近现代史纲要",
+   "aliases": [
+    {
+     "name": "中国近现代史纲要",
+     "relation": "主课",
+     "path": "/majors/shared/1215845000"
+    }
+   ],
+   "codes": [
+    "1215845000",
+    "1255845000"
+   ],
+   "lookupNames": [
+    "中国近现代史纲要"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "习近平新时代中国特色社会主义思想概论",
+   "aliases": [
+    {
+     "name": "习近平新时代中国特色社会主义思想概论",
+     "relation": "主课",
+     "path": "/majors/shared/1215844000"
+    }
+   ],
+   "codes": [
+    "1215844000",
+    "1255844000"
+   ],
+   "lookupNames": [
+    "习近平新时代中国特色社会主义思想概论"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "互换性与测量技术",
+   "aliases": [
+    {
+     "name": "互换性与测量技术",
+     "relation": "主课",
+     "path": "/majors/shared/2210376001"
+    }
+   ],
+   "codes": [
+    "2210376001"
+   ],
+   "lookupNames": [
+    "互换性与测量技术"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "产业创新",
+   "aliases": [
+    {
+     "name": "产业创新",
+     "relation": "主课",
+     "path": "/majors/shared/1250001000"
+    }
+   ],
+   "codes": [
+    "1250001000"
+   ],
+   "lookupNames": [
+    "产业创新"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "产业创新实践",
+   "aliases": [
+    {
+     "name": "产业创新实践",
+     "relation": "主课",
+     "path": "/majors/shared/3250001001"
+    }
+   ],
+   "codes": [
+    "3250001001"
+   ],
+   "lookupNames": [
+    "产业创新实践"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "人工智能",
+   "aliases": [
+    {
+     "name": "人工智能",
+     "relation": "主课",
+     "path": "/majors/shared/1217001000"
+    }
+   ],
+   "codes": [
+    "1217001000"
+   ],
+   "lookupNames": [
+    "人工智能"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "人工智能原理及应用",
+   "aliases": [
+    {
+     "name": "人工智能原理及应用",
+     "relation": "主课",
+     "path": "/majors/shared/2216406000"
+    }
+   ],
+   "codes": [
+    "2216406000",
+    "2257001005"
+   ],
+   "lookupNames": [
+    "人工智能原理及应用"
+   ],
+   "related": [
+    {
+     "name": "机器学习",
+     "note": "同领域课程",
+     "path": "/majors/shared/1219760000"
+    }
+   ]
+  },
+  {
+   "canonical": "信号与系统",
+   "aliases": [
+    {
+     "name": "信号与系统",
+     "relation": "主课",
+     "path": "/majors/shared/1211204000"
+    },
+    {
+     "name": "信号与系统实验",
+     "relation": "实验",
+     "path": "/majors/shared/4211204000"
+    },
+    {
+     "name": "信号与系统综合实践",
+     "relation": "实践",
+     "path": "/majors/dianzikexue/2024/3211204000"
+    }
+   ],
+   "codes": [
+    "1211204000",
+    "1251204000",
+    "3211204000",
+    "4211204000",
+    "4251204000"
+   ],
+   "lookupNames": [
+    "信号与系统",
+    "信号与系统实验",
+    "信号与系统综合实践"
+   ],
+   "related": [
+    {
+     "name": "自动控制原理",
+     "note": "理论基础相关",
+     "path": "/majors/shared/1211478000"
+    },
+    {
+     "name": "电磁场与电磁波",
+     "note": "专业基础相关",
+     "path": "/majors/shared/2210166001"
+    },
+    {
+     "name": "工程测试技术",
+     "note": "应用课程",
+     "path": "/majors/shared/2210283001"
+    },
+    {
+     "name": "复变函数与积分变换",
+     "note": "数学基础",
+     "path": "/majors/shared/1210254001"
+    }
+   ]
+  },
+  {
+   "canonical": "光电子技术",
+   "aliases": [
+    {
+     "name": "光电子技术",
+     "relation": "主课",
+     "path": "/majors/shared/1210342001"
+    },
+    {
+     "name": "光电子技术实验",
+     "relation": "实验",
+     "path": "/majors/shared/4214414000"
+    },
+    {
+     "name": "光电子技术综合实践",
+     "relation": "实践",
+     "path": "/majors/dianzikexue/2024/3212463000"
+    }
+   ],
+   "codes": [
+    "1210342001",
+    "1250342001",
+    "3212463000",
+    "4214414000",
+    "4250342000"
+   ],
+   "lookupNames": [
+    "光电子技术",
+    "光电子技术实验",
+    "光电子技术综合实践"
+   ],
+   "related": [
+    {
+     "name": "激光原理与技术",
+     "note": "同领域课程",
+     "path": "/majors/shared/1210455001"
+    }
+   ]
+  },
+  {
+   "canonical": "军事理论",
+   "aliases": [
+    {
+     "name": "军事理论",
+     "relation": "主课",
+     "path": "/majors/shared/1217002010"
+    }
+   ],
+   "codes": [
+    "1217002010",
+    "1257002010"
+   ],
+   "lookupNames": [
+    "军事理论"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "农业与生物系统工程导论",
+   "aliases": [
+    {
+     "name": "农业与生物系统工程导论",
+     "relation": "主课",
+     "path": "/majors/shared/2212677010"
+    }
+   ],
+   "codes": [
+    "2212677010"
+   ],
+   "lookupNames": [
+    "农业与生物系统工程导论"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "农业机械化学",
+   "aliases": [
+    {
+     "name": "农业机械化学",
+     "relation": "主课",
+     "path": "/majors/shared/2210719001"
+    },
+    {
+     "name": "农业机械化学教学实习",
+     "relation": "实习",
+     "path": "/majors/nongyejixiehua/2024/3219943000"
+    }
+   ],
+   "codes": [
+    "2210719001",
+    "3219943000"
+   ],
+   "lookupNames": [
+    "农业机械化学",
+    "农业机械化学教学实习"
+   ],
+   "related": [
+    {
+     "name": "农业机械学",
+     "note": "同领域课程",
+     "path": "/majors/shared/2210720001"
+    }
+   ]
+  },
+  {
+   "canonical": "农业机械化管理",
+   "aliases": [
+    {
+     "name": "农业机械化管理",
+     "relation": "主课",
+     "path": "/majors/shared/2210718001"
+    }
+   ],
+   "codes": [
+    "2210718001"
+   ],
+   "lookupNames": [
+    "农业机械化管理"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "农业机械学",
+   "aliases": [
+    {
+     "name": "农业机械学",
+     "relation": "主课",
+     "path": "/majors/shared/2210720001"
+    },
+    {
+     "name": "农业机械学教学实习",
+     "relation": "实习",
+     "path": "/majors/nongyejixiehua/2024/3219944000"
+    }
+   ],
+   "codes": [
+    "2210720001",
+    "3219944000"
+   ],
+   "lookupNames": [
+    "农业机械学",
+    "农业机械学教学实习"
+   ],
+   "related": [
+    {
+     "name": "农业机械化学",
+     "note": "同领域课程",
+     "path": "/majors/shared/2210719001"
+    },
+    {
+     "name": "农业机械设计与计算",
+     "note": "设计深化课",
+     "path": "/majors/shared/2219920000"
+    }
+   ]
+  },
+  {
+   "canonical": "农业机械设计与计算",
+   "aliases": [
+    {
+     "name": "农业机械设计与计算",
+     "relation": "主课",
+     "path": "/majors/shared/2219920000"
+    }
+   ],
+   "codes": [
+    "2219920000"
+   ],
+   "lookupNames": [
+    "农业机械设计与计算"
+   ],
+   "related": [
+    {
+     "name": "农业机械学",
+     "note": "设计深化课",
+     "path": "/majors/shared/2210720001"
+    }
+   ]
+  },
+  {
+   "canonical": "农产品加工机械",
+   "aliases": [
+    {
+     "name": "农产品加工机械",
+     "relation": "主课",
+     "path": "/majors/shared/2219949000"
+    }
+   ],
+   "codes": [
+    "2219949000"
+   ],
+   "lookupNames": [
+    "农产品加工机械"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "农学概论",
+   "aliases": [
+    {
+     "name": "农学概论",
+     "relation": "主课",
+     "path": "/majors/shared/2210710001"
+    }
+   ],
+   "codes": [
+    "2210710001"
+   ],
+   "lookupNames": [
+    "农学概论"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "创新创业实践",
+   "aliases": [
+    {
+     "name": "创新创业实践",
+     "relation": "主课",
+     "path": "/majors/dianqigongcheng/2024/3215859000"
+    }
+   ],
+   "codes": [
+    "3215859000"
+   ],
+   "lookupNames": [
+    "创新创业实践"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "半导体器件与集成电路综合实践",
+   "aliases": [
+    {
+     "name": "半导体器件与集成电路综合实践",
+     "relation": "主课",
+     "path": "/majors/dianzikexue/2024/3215864002"
+    }
+   ],
+   "codes": [
+    "3215864002"
+   ],
+   "lookupNames": [
+    "半导体器件与集成电路综合实践"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "半导体物理",
+   "aliases": [
+    {
+     "name": "半导体物理",
+     "relation": "主课",
+     "path": "/majors/shared/1210020002"
+    },
+    {
+     "name": "半导体物理实验",
+     "relation": "实验",
+     "path": "/majors/shared/4214409000"
+    },
+    {
+     "name": "半导体物理综合实践",
+     "relation": "实践",
+     "path": "/majors/dianzikexue/2024/3212466000"
+    }
+   ],
+   "codes": [
+    "1210020002",
+    "1250002002",
+    "3212466000",
+    "4214409000",
+    "4250002000"
+   ],
+   "lookupNames": [
+    "半导体物理",
+    "半导体物理实验",
+    "半导体物理综合实践"
+   ],
+   "related": [
+    {
+     "name": "模拟电子技术",
+     "note": "器件理论基础",
+     "path": "/majors/shared/1210672001"
+    },
+    {
+     "name": "固态电子器件",
+     "note": "器件后续课",
+     "path": "/majors/shared/1214170000"
+    },
+    {
+     "name": "固体物理学",
+     "note": "理论基础课",
+     "path": "/majors/shared/1210326001"
+    },
+    {
+     "name": "半导体集成电路",
+     "note": "后续专业课",
+     "path": "/majors/shared/1210019000"
+    }
+   ]
+  },
+  {
+   "canonical": "半导体集成电路",
+   "aliases": [
+    {
+     "name": "半导体集成电路",
+     "relation": "主课",
+     "path": "/majors/shared/1210019000"
+    },
+    {
+     "name": "半导体集成电路实验",
+     "relation": "实验",
+     "path": "/majors/shared/4210019000"
+    }
+   ],
+   "codes": [
+    "1210019000",
+    "1250019002",
+    "4210019000",
+    "4250019000"
+   ],
+   "lookupNames": [
+    "半导体集成电路",
+    "半导体集成电路实验"
+   ],
+   "related": [
+    {
+     "name": "半导体物理",
+     "note": "后续专业课",
+     "path": "/majors/shared/1210020002"
+    }
+   ]
+  },
+  {
+   "canonical": "单片机原理与应用",
+   "aliases": [
+    {
+     "name": "单片机原理与应用",
+     "relation": "主课",
+     "path": "/majors/shared/1215949001"
+    },
+    {
+     "name": "单片机原理与应用实验",
+     "relation": "实验",
+     "path": "/majors/shared/4215949000"
+    },
+    {
+     "name": "单片机原理与应用综合实践",
+     "relation": "实践",
+     "path": "/majors/dianqigongcheng/2024/3215949000"
+    }
+   ],
+   "codes": [
+    "1215949001",
+    "1255949001",
+    "3215949000",
+    "3255949000",
+    "4215949000",
+    "4255949000"
+   ],
+   "lookupNames": [
+    "单片机原理与应用",
+    "单片机原理与应用实验",
+    "单片机原理与应用综合实践"
+   ],
+   "related": [
+    {
+     "name": "基于STM32的嵌入式系统设计",
+     "note": "进阶实践课",
+     "path": "/majors/shared/1258527000"
+    },
+    {
+     "name": "嵌入式系统与应用",
+     "note": "同领域课程",
+     "path": "/majors/shared/2252567000"
+    }
+   ]
+  },
+  {
+   "canonical": "变电工程设计",
+   "aliases": [
+    {
+     "name": "变电工程设计",
+     "relation": "主课",
+     "path": "/majors/shared/1210038002"
+    },
+    {
+     "name": "变电工程设计实验",
+     "relation": "实验",
+     "path": "/majors/shared/4214587000"
+    },
+    {
+     "name": "变电工程设计综合实践",
+     "relation": "实践",
+     "path": "/majors/dianqigongcheng/2024/3214601000"
+    }
+   ],
+   "codes": [
+    "1210038002",
+    "3214601000",
+    "4214587000"
+   ],
+   "lookupNames": [
+    "变电工程设计",
+    "变电工程设计实验",
+    "变电工程设计综合实践"
+   ],
+   "related": [
+    {
+     "name": "电力系统分析",
+     "note": "工程应用课",
+     "path": "/majors/shared/1210172001"
+    }
+   ]
+  },
+  {
+   "canonical": "固体物理学",
+   "aliases": [
+    {
+     "name": "固体物理学",
+     "relation": "主课",
+     "path": "/majors/shared/1210326001"
+    }
+   ],
+   "codes": [
+    "1210326001",
+    "1252385001"
+   ],
+   "lookupNames": [
+    "固体物理学"
+   ],
+   "related": [
+    {
+     "name": "半导体物理",
+     "note": "理论基础课",
+     "path": "/majors/shared/1210020002"
+    }
+   ]
+  },
+  {
+   "canonical": "固态电子器件",
+   "aliases": [
+    {
+     "name": "固态电子器件",
+     "relation": "主课",
+     "path": "/majors/shared/1214170000"
+    },
+    {
+     "name": "固态电子器件实验",
+     "relation": "实验",
+     "path": "/majors/shared/4258498000"
+    }
+   ],
+   "codes": [
+    "1214170000",
+    "1254170000",
+    "4258498000"
+   ],
+   "lookupNames": [
+    "固态电子器件",
+    "固态电子器件实验"
+   ],
+   "related": [
+    {
+     "name": "半导体物理",
+     "note": "器件后续课",
+     "path": "/majors/shared/1210020002"
+    }
+   ]
+  },
+  {
+   "canonical": "国家安全教育",
+   "aliases": [
+    {
+     "name": "国家安全教育",
+     "relation": "主课",
+     "path": "/majors/shared/1217000010"
+    }
+   ],
+   "codes": [
+    "1217000010",
+    "1257000010"
+   ],
+   "lookupNames": [
+    "国家安全教育"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "基于STM32的嵌入式系统设计",
+   "aliases": [
+    {
+     "name": "基于STM32的嵌入式系统设计",
+     "relation": "主课",
+     "path": "/majors/shared/1258527000"
+    },
+    {
+     "name": "基于STM32的嵌入式系统设计实验",
+     "relation": "实验",
+     "path": "/majors/shared/4258527000"
+    }
+   ],
+   "codes": [
+    "1258527000",
+    "4258527000"
+   ],
+   "lookupNames": [
+    "基于STM32的嵌入式系统设计",
+    "基于STM32的嵌入式系统设计实验"
+   ],
+   "related": [
+    {
+     "name": "单片机原理与应用",
+     "note": "进阶实践课",
+     "path": "/majors/shared/1215949001"
+    }
+   ]
+  },
+  {
+   "canonical": "复变函数与积分变换",
+   "aliases": [
+    {
+     "name": "复变函数与积分变换",
+     "relation": "主课",
+     "path": "/majors/shared/1210254001"
+    }
+   ],
+   "codes": [
+    "1210254001",
+    "1250254001"
+   ],
+   "lookupNames": [
+    "复变函数与积分变换"
+   ],
+   "related": [
+    {
+     "name": "信号与系统",
+     "note": "数学基础",
+     "path": "/majors/shared/1211204000"
+    },
+    {
+     "name": "自动控制原理",
+     "note": "数学基础",
+     "path": "/majors/shared/1211478000"
+    }
+   ]
+  },
+  {
+   "canonical": "大数据处理技术",
+   "aliases": [
+    {
+     "name": "大数据处理技术",
+     "relation": "主课",
+     "path": "/majors/shared/1219796000"
+    },
+    {
+     "name": "大数据处理技术实验",
+     "relation": "实验",
+     "path": "/majors/shared/4219797000"
+    }
+   ],
+   "codes": [
+    "1219796000",
+    "4219797000"
+   ],
+   "lookupNames": [
+    "大数据处理技术",
+    "大数据处理技术实验"
+   ],
+   "related": [
+    {
+     "name": "机器学习",
+     "note": "同领域课程",
+     "path": "/majors/shared/1219760000"
+    }
+   ]
+  },
+  {
+   "canonical": "嵌入式系统与应用",
+   "aliases": [
+    {
+     "name": "嵌入式系统与应用",
+     "relation": "主课",
+     "path": "/majors/shared/2252567000"
+    }
+   ],
+   "codes": [
+    "2252567000"
+   ],
+   "lookupNames": [
+    "嵌入式系统与应用"
+   ],
+   "related": [
+    {
+     "name": "单片机原理与应用",
+     "note": "同领域课程",
+     "path": "/majors/shared/1215949001"
+    },
+    {
+     "name": "嵌入式系统开发与应用",
+     "note": "同领域课程",
+     "path": "/majors/shared/1210771001"
+    }
+   ]
+  },
+  {
+   "canonical": "嵌入式系统开发与应用",
+   "aliases": [
+    {
+     "name": "嵌入式系统开发与应用",
+     "relation": "主课",
+     "path": "/majors/shared/1210771001"
+    },
+    {
+     "name": "嵌入式系统开发与应用实验",
+     "relation": "实验",
+     "path": "/majors/shared/4219950000"
+    }
+   ],
+   "codes": [
+    "1210771001",
+    "1259950001",
+    "4219950000",
+    "4259950000"
+   ],
+   "lookupNames": [
+    "嵌入式系统开发与应用",
+    "嵌入式系统开发与应用实验"
+   ],
+   "related": [
+    {
+     "name": "嵌入式系统与应用",
+     "note": "同领域课程",
+     "path": "/majors/shared/2252567000"
+    }
+   ]
+  },
+  {
+   "canonical": "工程制图（机电）",
+   "aliases": [
+    {
+     "name": "工程制图（机电）",
+     "relation": "主课",
+     "path": "/majors/shared/1250023000"
+    },
+    {
+     "name": "工程制图实验（机电）",
+     "relation": "实验",
+     "path": "/majors/shared/4250024000"
+    },
+    {
+     "name": "工程制图教学实习（机电）",
+     "relation": "实习",
+     "path": "/majors/jiqirengongcheng/2026/3250025000"
+    }
+   ],
+   "codes": [
+    "1250023000",
+    "3250025000",
+    "4250024000"
+   ],
+   "lookupNames": [
+    "工程制图(机电)",
+    "工程制图实验(机电)",
+    "工程制图实验（机电）",
+    "工程制图教学实习(机电)",
+    "工程制图教学实习（机电）",
+    "工程制图（机电）"
+   ],
+   "related": [
+    {
+     "name": "机械制图",
+     "note": "图学基础",
+     "path": "/majors/shared/1210436000"
+    }
+   ]
+  },
+  {
+   "canonical": "工程力学（机电）",
+   "aliases": [
+    {
+     "name": "工程力学（机电）",
+     "relation": "主课",
+     "path": "/majors/shared/1250029000"
+    },
+    {
+     "name": "工程力学实验（机电）",
+     "relation": "实验",
+     "path": "/majors/shared/4250051000"
+    }
+   ],
+   "codes": [
+    "1250029000",
+    "4250051000"
+   ],
+   "lookupNames": [
+    "工程力学(机电)",
+    "工程力学实验(机电)",
+    "工程力学实验（机电）",
+    "工程力学（机电）"
+   ],
+   "related": [
+    {
+     "name": "理论力学",
+     "note": "力学基础",
+     "path": "/majors/shared/2210613001"
+    },
+    {
+     "name": "材料力学B",
+     "note": "力学基础",
+     "path": "/majors/shared/2170043204"
+    }
+   ]
+  },
+  {
+   "canonical": "工程技术经济学",
+   "aliases": [
+    {
+     "name": "工程技术经济学",
+     "relation": "主课",
+     "path": "/majors/shared/2212680070"
+    }
+   ],
+   "codes": [
+    "2212680070"
+   ],
+   "lookupNames": [
+    "工程技术经济学"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "工程材料与机械制造基础",
+   "aliases": [
+    {
+     "name": "工程材料与机械制造基础",
+     "relation": "主课",
+     "path": "/majors/shared/1258480000"
+    },
+    {
+     "name": "工程材料与机械制造基础实验",
+     "relation": "实验",
+     "path": "/majors/shared/4258480000"
+    }
+   ],
+   "codes": [
+    "1258480000",
+    "4258480000"
+   ],
+   "lookupNames": [
+    "工程材料与机械制造基础",
+    "工程材料与机械制造基础实验"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "工程测试技术",
+   "aliases": [
+    {
+     "name": "工程测试技术",
+     "relation": "主课",
+     "path": "/majors/shared/2210283001"
+    }
+   ],
+   "codes": [
+    "2210283001"
+   ],
+   "lookupNames": [
+    "工程测试技术"
+   ],
+   "related": [
+    {
+     "name": "信号与系统",
+     "note": "应用课程",
+     "path": "/majors/shared/1211204000"
+    },
+    {
+     "name": "传感器技术",
+     "note": "同领域课程",
+     "path": "/majors/shared/1210121001"
+    }
+   ]
+  },
+  {
+   "canonical": "工程电磁学",
+   "aliases": [
+    {
+     "name": "工程电磁学",
+     "relation": "主课",
+     "path": "/majors/shared/2210288001"
+    }
+   ],
+   "codes": [
+    "2210288001",
+    "2250288001"
+   ],
+   "lookupNames": [
+    "工程电磁学"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "思想道德与法治",
+   "aliases": [
+    {
+     "name": "思想道德与法治",
+     "relation": "主课",
+     "path": "/majors/shared/1215841000"
+    }
+   ],
+   "codes": [
+    "1215841000",
+    "1255841000"
+   ],
+   "lookupNames": [
+    "思想道德与法治"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "思政课社会实践",
+   "aliases": [
+    {
+     "name": "思政课社会实践",
+     "relation": "主课",
+     "path": "/majors/dianqigongcheng/2024/3218038002"
+    }
+   ],
+   "codes": [
+    "3218038001",
+    "3218038002",
+    "3258038001"
+   ],
+   "lookupNames": [
+    "思政课社会实践"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "控制工程",
+   "aliases": [
+    {
+     "name": "控制工程",
+     "relation": "主课",
+     "path": "/majors/shared/1210596002"
+    },
+    {
+     "name": "控制工程实验",
+     "relation": "实验",
+     "path": "/majors/shared/4214582000"
+    }
+   ],
+   "codes": [
+    "1210596002",
+    "4214582000"
+   ],
+   "lookupNames": [
+    "控制工程",
+    "控制工程实验"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "控制工程基础",
+   "aliases": [
+    {
+     "name": "控制工程基础",
+     "relation": "主课",
+     "path": "/majors/shared/2210597000"
+    }
+   ],
+   "codes": [
+    "2210597000"
+   ],
+   "lookupNames": [
+    "控制工程基础"
+   ],
+   "related": [
+    {
+     "name": "自动控制原理",
+     "note": "非电类对应课程",
+     "path": "/majors/shared/1211478000"
+    }
+   ]
+  },
+  {
+   "canonical": "数字电子技术",
+   "aliases": [
+    {
+     "name": "数字电子技术",
+     "relation": "主课",
+     "path": "/majors/shared/1210969000"
+    },
+    {
+     "name": "数字电子技术实验",
+     "relation": "实验",
+     "path": "/majors/shared/4214418000"
+    }
+   ],
+   "codes": [
+    "1210969000",
+    "1250969000",
+    "4214418000",
+    "4250969000"
+   ],
+   "lookupNames": [
+    "数字电子技术",
+    "数字电子技术实验"
+   ],
+   "related": [
+    {
+     "name": "电路分析",
+     "note": "后续课程",
+     "path": "/majors/shared/1210175201"
+    },
+    {
+     "name": "模拟电子技术",
+     "note": "并列核心课",
+     "path": "/majors/shared/1210672001"
+    },
+    {
+     "name": "EDA技术",
+     "note": "开发工具课",
+     "path": "/majors/shared/1210005001"
+    },
+    {
+     "name": "电子电路设计与仿真",
+     "note": "仿真工具课",
+     "path": "/majors/shared/1210184001"
+    },
+    {
+     "name": "电子技术综合实践",
+     "note": "综合运用",
+     "path": "/majors/dianzikexue/2024/3214429000"
+    },
+    {
+     "name": "电子电路综合实践",
+     "note": "综合运用",
+     "path": "/majors/dianqigongcheng/2024/3214599000"
+    }
+   ]
+  },
+  {
+   "canonical": "数据挖掘",
+   "aliases": [
+    {
+     "name": "数据挖掘",
+     "relation": "主课",
+     "path": "/majors/shared/1210961000"
+    },
+    {
+     "name": "数据挖掘实验",
+     "relation": "实验",
+     "path": "/majors/shared/4219951000"
+    }
+   ],
+   "codes": [
+    "1210961000",
+    "1259956000",
+    "4219951000",
+    "4259956000"
+   ],
+   "lookupNames": [
+    "数据挖掘",
+    "数据挖掘实验"
+   ],
+   "related": [
+    {
+     "name": "机器学习",
+     "note": "同领域课程",
+     "path": "/majors/shared/1219760000"
+    }
+   ]
+  },
+  {
+   "canonical": "数据结构",
+   "aliases": [
+    {
+     "name": "数据结构",
+     "relation": "主课",
+     "path": "/majors/shared/1259911000"
+    },
+    {
+     "name": "数据结构实验",
+     "relation": "实验",
+     "path": "/majors/shared/4259911000"
+    }
+   ],
+   "codes": [
+    "1259911000",
+    "4259911000"
+   ],
+   "lookupNames": [
+    "数据结构",
+    "数据结构实验"
+   ],
+   "related": [
+    {
+     "name": "C语言程序设计",
+     "note": "后续课程",
+     "path": "/majors/shared/1210004000"
+    },
+    {
+     "name": "算法分析与设计",
+     "note": "进阶课程",
+     "path": "/majors/shared/2251023000"
+    },
+    {
+     "name": "离散数学",
+     "note": "理论基础",
+     "path": "/majors/shared/2210612001"
+    }
+   ]
+  },
+  {
+   "canonical": "新能源发电技术",
+   "aliases": [
+    {
+     "name": "新能源发电技术",
+     "relation": "主课",
+     "path": "/majors/shared/1251198002"
+    },
+    {
+     "name": "新能源发电技术实验",
+     "relation": "实验",
+     "path": "/majors/shared/4251198000"
+    }
+   ],
+   "codes": [
+    "1251198002",
+    "2211198000",
+    "4251198000"
+   ],
+   "lookupNames": [
+    "新能源发电技术",
+    "新能源发电技术实验"
+   ],
+   "related": [
+    {
+     "name": "电力系统分析",
+     "note": "后续专业课",
+     "path": "/majors/shared/1210172001"
+    }
+   ]
+  },
+  {
+   "canonical": "新能源并网电力系统项目式综合实践",
+   "aliases": [
+    {
+     "name": "新能源并网电力系统项目式综合实践",
+     "relation": "主课",
+     "path": "/majors/dianqigongcheng/2026/3258633000"
+    }
+   ],
+   "codes": [
+    "3258633000"
+   ],
+   "lookupNames": [
+    "新能源并网电力系统项目式综合实践"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "机器人传感与检测技术",
+   "aliases": [
+    {
+     "name": "机器人传感与检测技术",
+     "relation": "主课",
+     "path": "/majors/shared/2258512000"
+    }
+   ],
+   "codes": [
+    "2258512000"
+   ],
+   "lookupNames": [
+    "机器人传感与检测技术"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "机器人学",
+   "aliases": [
+    {
+     "name": "机器人学",
+     "relation": "主课",
+     "path": "/majors/shared/2258519000"
+    }
+   ],
+   "codes": [
+    "2258519000"
+   ],
+   "lookupNames": [
+    "机器人学"
+   ],
+   "related": [
+    {
+     "name": "机器人机构学",
+     "note": "后续课程",
+     "path": "/majors/shared/2258515000"
+    },
+    {
+     "name": "机器人驱动与运动控制",
+     "note": "后续课程",
+     "path": "/majors/shared/2258516000"
+    }
+   ]
+  },
+  {
+   "canonical": "机器人导航技术",
+   "aliases": [
+    {
+     "name": "机器人导航技术",
+     "relation": "主课",
+     "path": "/majors/shared/2258513000"
+    }
+   ],
+   "codes": [
+    "2258513000"
+   ],
+   "lookupNames": [
+    "机器人导航技术"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "机器人操作系统",
+   "aliases": [
+    {
+     "name": "机器人操作系统",
+     "relation": "主课",
+     "path": "/majors/shared/2258510000"
+    },
+    {
+     "name": "机器人操作系统综合实践",
+     "relation": "实践",
+     "path": "/majors/jiqirengongcheng/2026/3258510000"
+    }
+   ],
+   "codes": [
+    "2258510000",
+    "3258510000"
+   ],
+   "lookupNames": [
+    "机器人操作系统",
+    "机器人操作系统综合实践"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "机器人机构学",
+   "aliases": [
+    {
+     "name": "机器人机构学",
+     "relation": "主课",
+     "path": "/majors/shared/2258515000"
+    }
+   ],
+   "codes": [
+    "2258515000"
+   ],
+   "lookupNames": [
+    "机器人机构学"
+   ],
+   "related": [
+    {
+     "name": "机器人学",
+     "note": "后续课程",
+     "path": "/majors/shared/2258519000"
+    }
+   ]
+  },
+  {
+   "canonical": "机器人系统仿真",
+   "aliases": [
+    {
+     "name": "机器人系统仿真",
+     "relation": "主课",
+     "path": "/majors/shared/2258518000"
+    }
+   ],
+   "codes": [
+    "2258518000"
+   ],
+   "lookupNames": [
+    "机器人系统仿真"
+   ],
+   "related": [
+    {
+     "name": "MATLAB程序设计",
+     "note": "工具链课程",
+     "path": "/majors/shared/1210008001"
+    }
+   ]
+  },
+  {
+   "canonical": "机器人设计与实现综合实践",
+   "aliases": [
+    {
+     "name": "机器人设计与实现综合实践",
+     "relation": "主课",
+     "path": "/majors/jiqirengongcheng/2026/3258517000"
+    }
+   ],
+   "codes": [
+    "3258517000"
+   ],
+   "lookupNames": [
+    "机器人设计与实现综合实践"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "机器人驱动与运动控制",
+   "aliases": [
+    {
+     "name": "机器人驱动与运动控制",
+     "relation": "主课",
+     "path": "/majors/shared/2258516000"
+    }
+   ],
+   "codes": [
+    "2258516000"
+   ],
+   "lookupNames": [
+    "机器人驱动与运动控制"
+   ],
+   "related": [
+    {
+     "name": "机器人学",
+     "note": "后续课程",
+     "path": "/majors/shared/2258519000"
+    }
+   ]
+  },
+  {
+   "canonical": "机器学习",
+   "aliases": [
+    {
+     "name": "机器学习",
+     "relation": "主课",
+     "path": "/majors/shared/1219760000"
+    },
+    {
+     "name": "机器学习实验",
+     "relation": "实验",
+     "path": "/majors/shared/4219761000"
+    }
+   ],
+   "codes": [
+    "1219760000",
+    "1259761000",
+    "4219761000",
+    "4259761000"
+   ],
+   "lookupNames": [
+    "机器学习",
+    "机器学习实验"
+   ],
+   "related": [
+    {
+     "name": "人工智能原理及应用",
+     "note": "同领域课程",
+     "path": "/majors/shared/2216406000"
+    },
+    {
+     "name": "数据挖掘",
+     "note": "同领域课程",
+     "path": "/majors/shared/1210961000"
+    },
+    {
+     "name": "大数据处理技术",
+     "note": "同领域课程",
+     "path": "/majors/shared/1219796000"
+    }
+   ]
+  },
+  {
+   "canonical": "机器视觉",
+   "aliases": [
+    {
+     "name": "机器视觉",
+     "relation": "主课",
+     "path": "/majors/shared/2258520000"
+    }
+   ],
+   "codes": [
+    "2258520000"
+   ],
+   "lookupNames": [
+    "机器视觉"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "机械制图",
+   "aliases": [
+    {
+     "name": "机械制图",
+     "relation": "主课",
+     "path": "/majors/shared/1210436000"
+    },
+    {
+     "name": "机械制图实验",
+     "relation": "实验",
+     "path": "/majors/shared/4210436000"
+    },
+    {
+     "name": "机械制图教学实习",
+     "relation": "实习",
+     "path": "/majors/nongyejixiehua/2024/3210436000"
+    }
+   ],
+   "codes": [
+    "1210436000",
+    "3210436000",
+    "4210436000"
+   ],
+   "lookupNames": [
+    "机械制图",
+    "机械制图实验",
+    "机械制图教学实习"
+   ],
+   "related": [
+    {
+     "name": "工程制图（机电）",
+     "note": "图学基础",
+     "path": "/majors/shared/1250023000"
+    }
+   ]
+  },
+  {
+   "canonical": "机械制造基础",
+   "aliases": [
+    {
+     "name": "机械制造基础",
+     "relation": "主课",
+     "path": "/majors/shared/2210438001"
+    },
+    {
+     "name": "机械制造基础实验",
+     "relation": "实验",
+     "path": "/majors/shared/4219933000"
+    },
+    {
+     "name": "机械制造基础教学实习",
+     "relation": "实习",
+     "path": "/majors/nongyegongcheng/2024/3219939000"
+    }
+   ],
+   "codes": [
+    "2210438001",
+    "3219939000",
+    "4219933000"
+   ],
+   "lookupNames": [
+    "机械制造基础",
+    "机械制造基础实验",
+    "机械制造基础教学实习"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "机械制造工艺学",
+   "aliases": [
+    {
+     "name": "机械制造工艺学",
+     "relation": "主课",
+     "path": "/majors/shared/2210437001"
+    },
+    {
+     "name": "机械制造工艺学教学实习",
+     "relation": "实习",
+     "path": "/majors/nongyegongcheng/2024/3219942000"
+    }
+   ],
+   "codes": [
+    "2210437001",
+    "3219942000"
+   ],
+   "lookupNames": [
+    "机械制造工艺学",
+    "机械制造工艺学教学实习"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "机械原理",
+   "aliases": [
+    {
+     "name": "机械原理",
+     "relation": "主课",
+     "path": "/majors/shared/2210434001"
+    }
+   ],
+   "codes": [
+    "2210434001"
+   ],
+   "lookupNames": [
+    "机械原理"
+   ],
+   "related": [
+    {
+     "name": "机械设计",
+     "note": "后续课程",
+     "path": "/majors/shared/2210432001"
+    }
+   ]
+  },
+  {
+   "canonical": "机械工程三维建模与仿真",
+   "aliases": [
+    {
+     "name": "机械工程三维建模与仿真",
+     "relation": "主课",
+     "path": "/majors/shared/2210431000"
+    }
+   ],
+   "codes": [
+    "2210431000",
+    "2259700001"
+   ],
+   "lookupNames": [
+    "机械工程三维建模与仿真"
+   ],
+   "related": [
+    {
+     "name": "计算机辅助设计B",
+     "note": "同领域课程",
+     "path": "/majors/shared/2210469201"
+    }
+   ]
+  },
+  {
+   "canonical": "机械工程材料",
+   "aliases": [
+    {
+     "name": "机械工程材料",
+     "relation": "主课",
+     "path": "/majors/shared/2219917000"
+    }
+   ],
+   "codes": [
+    "2219917000"
+   ],
+   "lookupNames": [
+    "机械工程材料"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "机械电子学",
+   "aliases": [
+    {
+     "name": "机械电子学",
+     "relation": "主课",
+     "path": "/majors/shared/2210430000"
+    }
+   ],
+   "codes": [
+    "2210430000"
+   ],
+   "lookupNames": [
+    "机械电子学"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "机械系统动力学",
+   "aliases": [
+    {
+     "name": "机械系统动力学",
+     "relation": "主课",
+     "path": "/majors/shared/2219922000"
+    }
+   ],
+   "codes": [
+    "2219922000"
+   ],
+   "lookupNames": [
+    "机械系统动力学"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "机械设计",
+   "aliases": [
+    {
+     "name": "机械设计",
+     "relation": "主课",
+     "path": "/majors/shared/2210432001"
+    },
+    {
+     "name": "机械设计教学实习",
+     "relation": "实习",
+     "path": "/majors/nongyejixiehua/2024/3219945000"
+    }
+   ],
+   "codes": [
+    "2210432001",
+    "3219945000"
+   ],
+   "lookupNames": [
+    "机械设计",
+    "机械设计教学实习"
+   ],
+   "related": [
+    {
+     "name": "机械原理",
+     "note": "后续课程",
+     "path": "/majors/shared/2210434001"
+    },
+    {
+     "name": "机械设计基础",
+     "note": "简化版/完整版关系",
+     "path": "/majors/shared/1252467002"
+    }
+   ]
+  },
+  {
+   "canonical": "材料力学B",
+   "aliases": [
+    {
+     "name": "材料力学B",
+     "relation": "主课",
+     "path": "/majors/shared/2170043204"
+    }
+   ],
+   "codes": [
+    "2170043204"
+   ],
+   "lookupNames": [
+    "材料力学B"
+   ],
+   "related": [
+    {
+     "name": "理论力学",
+     "note": "力学基础系列",
+     "path": "/majors/shared/2210613001"
+    },
+    {
+     "name": "工程力学（机电）",
+     "note": "力学基础",
+     "path": "/majors/shared/1250029000"
+    }
+   ]
+  },
+  {
+   "canonical": "概率论与数理统计B",
+   "aliases": [
+    {
+     "name": "概率论与数理统计B",
+     "relation": "主课",
+     "path": "/majors/shared/1210255207"
+    }
+   ],
+   "codes": [
+    "1210255207",
+    "1250255207"
+   ],
+   "lookupNames": [
+    "概率论与数理统计B"
+   ],
+   "related": [
+    {
+     "name": "线性代数",
+     "note": "数学基础系列",
+     "path": "/majors/shared/1215104001"
+    }
+   ]
+  },
+  {
+   "canonical": "模拟电子技术",
+   "aliases": [
+    {
+     "name": "模拟电子技术",
+     "relation": "主课",
+     "path": "/majors/shared/1210672001"
+    },
+    {
+     "name": "模拟电子技术实验",
+     "relation": "实验",
+     "path": "/majors/shared/4214419000"
+    }
+   ],
+   "codes": [
+    "1210672001",
+    "1250672001",
+    "4214419000",
+    "4254419000"
+   ],
+   "lookupNames": [
+    "模拟电子技术",
+    "模拟电子技术实验"
+   ],
+   "related": [
+    {
+     "name": "电工电子学",
+     "note": "电类对应课程",
+     "path": "/majors/shared/2258447000"
+    },
+    {
+     "name": "电路分析",
+     "note": "后续课程",
+     "path": "/majors/shared/1210175201"
+    },
+    {
+     "name": "数字电子技术",
+     "note": "并列核心课",
+     "path": "/majors/shared/1210969000"
+    },
+    {
+     "name": "半导体物理",
+     "note": "器件理论基础",
+     "path": "/majors/shared/1210020002"
+    },
+    {
+     "name": "电子电路设计与仿真",
+     "note": "仿真工具课",
+     "path": "/majors/shared/1210184001"
+    },
+    {
+     "name": "电子技术综合实践",
+     "note": "综合运用",
+     "path": "/majors/dianzikexue/2024/3214429000"
+    },
+    {
+     "name": "电子电路综合实践",
+     "note": "综合运用",
+     "path": "/majors/dianqigongcheng/2024/3214599000"
+    }
+   ]
+  },
+  {
+   "canonical": "毛泽东思想和中国特色社会主义理论体系概论",
+   "aliases": [
+    {
+     "name": "毛泽东思想和中国特色社会主义理论体系概论",
+     "relation": "主课",
+     "path": "/majors/shared/1210657000"
+    }
+   ],
+   "codes": [
+    "1210657000",
+    "1250657000"
+   ],
+   "lookupNames": [
+    "毛泽东思想和中国特色社会主义理论体系概论"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "水电站",
+   "aliases": [
+    {
+     "name": "水电站",
+     "relation": "主课",
+     "path": "/majors/shared/2210985000"
+    }
+   ],
+   "codes": [
+    "2210985000"
+   ],
+   "lookupNames": [
+    "水电站"
+   ],
+   "related": [
+    {
+     "name": "电力系统自动化",
+     "note": "同领域课程",
+     "path": "/majors/shared/2210174000"
+    }
+   ]
+  },
+  {
+   "canonical": "汽车拖拉机理论",
+   "aliases": [
+    {
+     "name": "汽车拖拉机理论",
+     "relation": "主课",
+     "path": "/majors/shared/2210769001"
+    }
+   ],
+   "codes": [
+    "2210769001"
+   ],
+   "lookupNames": [
+    "汽车拖拉机理论"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "液压与气压传动技术",
+   "aliases": [
+    {
+     "name": "液压与气压传动技术",
+     "relation": "主课",
+     "path": "/majors/shared/2211273000"
+    }
+   ],
+   "codes": [
+    "2211273000"
+   ],
+   "lookupNames": [
+    "液压与气压传动技术"
+   ],
+   "related": [
+    {
+     "name": "机械设计基础",
+     "note": "传动基础",
+     "path": "/majors/shared/1252467002"
+    }
+   ]
+  },
+  {
+   "canonical": "激光原理与技术",
+   "aliases": [
+    {
+     "name": "激光原理与技术",
+     "relation": "主课",
+     "path": "/majors/shared/1210455001"
+    },
+    {
+     "name": "激光原理与技术实验",
+     "relation": "实验",
+     "path": "/majors/shared/4210455000"
+    }
+   ],
+   "codes": [
+    "1210455001",
+    "1250455001",
+    "4210455000",
+    "4250455000"
+   ],
+   "lookupNames": [
+    "激光原理与技术",
+    "激光原理与技术实验"
+   ],
+   "related": [
+    {
+     "name": "光电子技术",
+     "note": "同领域课程",
+     "path": "/majors/shared/1210342001"
+    }
+   ]
+  },
+  {
+   "canonical": "现代控制理论",
+   "aliases": [
+    {
+     "name": "现代控制理论",
+     "relation": "主课",
+     "path": "/majors/shared/2211172000"
+    }
+   ],
+   "codes": [
+    "2211172000"
+   ],
+   "lookupNames": [
+    "现代控制理论"
+   ],
+   "related": [
+    {
+     "name": "自动控制原理",
+     "note": "进阶课程",
+     "path": "/majors/shared/1211478000"
+    }
+   ]
+  },
+  {
+   "canonical": "理论力学",
+   "aliases": [
+    {
+     "name": "理论力学",
+     "relation": "主课",
+     "path": "/majors/shared/2210613001"
+    }
+   ],
+   "codes": [
+    "2210613001"
+   ],
+   "lookupNames": [
+    "理论力学"
+   ],
+   "related": [
+    {
+     "name": "材料力学B",
+     "note": "力学基础系列",
+     "path": "/majors/shared/2170043204"
+    },
+    {
+     "name": "工程力学（机电）",
+     "note": "力学基础",
+     "path": "/majors/shared/1250029000"
+    }
+   ]
+  },
+  {
+   "canonical": "生物系统模拟",
+   "aliases": [
+    {
+     "name": "生物系统模拟",
+     "relation": "主课",
+     "path": "/majors/shared/1212681060"
+    },
+    {
+     "name": "生物系统模拟实验",
+     "relation": "实验",
+     "path": "/majors/shared/4212681060"
+    }
+   ],
+   "codes": [
+    "1212681060",
+    "4212681060"
+   ],
+   "lookupNames": [
+    "生物系统模拟",
+    "生物系统模拟实验"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "电力电子技术",
+   "aliases": [
+    {
+     "name": "电力电子技术",
+     "relation": "主课",
+     "path": "/majors/shared/1210170001"
+    },
+    {
+     "name": "电力电子技术实验",
+     "relation": "实验",
+     "path": "/majors/shared/4214554000"
+    },
+    {
+     "name": "电力电子技术综合实践",
+     "relation": "实践",
+     "path": "/majors/dianqigongcheng/2024/3214603000"
+    }
+   ],
+   "codes": [
+    "1210170001",
+    "1250170001",
+    "3214603000",
+    "4214554000",
+    "4250170000"
+   ],
+   "lookupNames": [
+    "电力电子技术",
+    "电力电子技术实验",
+    "电力电子技术综合实践"
+   ],
+   "related": [
+    {
+     "name": "电机学",
+     "note": "后续专业课",
+     "path": "/majors/shared/1210169001"
+    }
+   ]
+  },
+  {
+   "canonical": "电力系统仿真技术",
+   "aliases": [
+    {
+     "name": "电力系统仿真技术",
+     "relation": "主课",
+     "path": "/majors/shared/1210171001"
+    },
+    {
+     "name": "电力系统仿真技术实验",
+     "relation": "实验",
+     "path": "/majors/shared/4214703000"
+    }
+   ],
+   "codes": [
+    "1210171001",
+    "2250171002",
+    "4214703000"
+   ],
+   "lookupNames": [
+    "电力系统仿真技术",
+    "电力系统仿真技术实验"
+   ],
+   "related": [
+    {
+     "name": "MATLAB程序设计",
+     "note": "工具链课程",
+     "path": "/majors/shared/1210008001"
+    }
+   ]
+  },
+  {
+   "canonical": "电力系统分析",
+   "aliases": [
+    {
+     "name": "电力系统分析",
+     "relation": "主课",
+     "path": "/majors/shared/1210172001"
+    },
+    {
+     "name": "电力系统分析实验",
+     "relation": "实验",
+     "path": "/majors/shared/4214589000"
+    },
+    {
+     "name": "电力系统分析综合实践",
+     "relation": "实践",
+     "path": "/majors/dianqigongcheng/2024/3214604000"
+    }
+   ],
+   "codes": [
+    "1210172001",
+    "3214604000",
+    "3250172000",
+    "4214589000"
+   ],
+   "lookupNames": [
+    "电力系统分析",
+    "电力系统分析实验",
+    "电力系统分析综合实践"
+   ],
+   "related": [
+    {
+     "name": "电力系统稳态分析",
+     "note": "内容对应（合讲版）",
+     "path": "/majors/shared/2258449000"
+    },
+    {
+     "name": "电力系统暂态及稳定性分析",
+     "note": "内容对应（合讲版）",
+     "path": "/majors/shared/2258450000"
+    },
+    {
+     "name": "电力系统继电保护",
+     "note": "后续专业课",
+     "path": "/majors/shared/1210173001"
+    },
+    {
+     "name": "电力系统自动化",
+     "note": "后续专业课",
+     "path": "/majors/shared/2210174000"
+    },
+    {
+     "name": "高电压技术",
+     "note": "后续专业课",
+     "path": "/majors/shared/2258474000"
+    },
+    {
+     "name": "新能源发电技术",
+     "note": "后续专业课",
+     "path": "/majors/shared/1251198002"
+    },
+    {
+     "name": "变电工程设计",
+     "note": "工程应用课",
+     "path": "/majors/shared/1210038002"
+    }
+   ]
+  },
+  {
+   "canonical": "电力系统暂态及稳定性分析",
+   "aliases": [
+    {
+     "name": "电力系统暂态及稳定性分析",
+     "relation": "主课",
+     "path": "/majors/shared/2258450000"
+    }
+   ],
+   "codes": [
+    "2258450000"
+   ],
+   "lookupNames": [
+    "电力系统暂态及稳定性分析"
+   ],
+   "related": [
+    {
+     "name": "电力系统分析",
+     "note": "内容对应（合讲版）",
+     "path": "/majors/shared/1210172001"
+    },
+    {
+     "name": "电力系统稳态分析",
+     "note": "上下游课程",
+     "path": "/majors/shared/2258449000"
+    }
+   ]
+  },
+  {
+   "canonical": "电力系统稳态分析",
+   "aliases": [
+    {
+     "name": "电力系统稳态分析",
+     "relation": "主课",
+     "path": "/majors/shared/2258449000"
+    }
+   ],
+   "codes": [
+    "2258449000"
+   ],
+   "lookupNames": [
+    "电力系统稳态分析"
+   ],
+   "related": [
+    {
+     "name": "电力系统分析",
+     "note": "内容对应（合讲版）",
+     "path": "/majors/shared/1210172001"
+    },
+    {
+     "name": "电力系统暂态及稳定性分析",
+     "note": "上下游课程",
+     "path": "/majors/shared/2258450000"
+    }
+   ]
+  },
+  {
+   "canonical": "电力系统继电保护",
+   "aliases": [
+    {
+     "name": "电力系统继电保护",
+     "relation": "主课",
+     "path": "/majors/shared/1210173001"
+    },
+    {
+     "name": "电力系统继电保护实验",
+     "relation": "实验",
+     "path": "/majors/shared/4214592000"
+    }
+   ],
+   "codes": [
+    "1210173001",
+    "2250173002",
+    "4214592000"
+   ],
+   "lookupNames": [
+    "电力系统继电保护",
+    "电力系统继电保护实验"
+   ],
+   "related": [
+    {
+     "name": "电力系统分析",
+     "note": "后续专业课",
+     "path": "/majors/shared/1210172001"
+    }
+   ]
+  },
+  {
+   "canonical": "电子工艺综合实践",
+   "aliases": [
+    {
+     "name": "电子工艺综合实践",
+     "relation": "主课",
+     "path": "/majors/dianzikexue/2026/3258454000"
+    }
+   ],
+   "codes": [
+    "3258454000"
+   ],
+   "lookupNames": [
+    "电子工艺综合实践"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "电子技术综合实践",
+   "aliases": [
+    {
+     "name": "电子技术综合实践",
+     "relation": "主课",
+     "path": "/majors/dianzikexue/2024/3214429000"
+    }
+   ],
+   "codes": [
+    "3214429000",
+    "3254429000"
+   ],
+   "lookupNames": [
+    "电子技术综合实践"
+   ],
+   "related": [
+    {
+     "name": "模拟电子技术",
+     "note": "综合运用",
+     "path": "/majors/shared/1210672001"
+    },
+    {
+     "name": "数字电子技术",
+     "note": "综合运用",
+     "path": "/majors/shared/1210969000"
+    }
+   ]
+  },
+  {
+   "canonical": "电子材料",
+   "aliases": [
+    {
+     "name": "电子材料",
+     "relation": "主课",
+     "path": "/majors/shared/1250182002"
+    },
+    {
+     "name": "电子材料实验",
+     "relation": "实验",
+     "path": "/majors/shared/4250182000"
+    }
+   ],
+   "codes": [
+    "1250182002",
+    "2210182001",
+    "4250182000"
+   ],
+   "lookupNames": [
+    "电子材料",
+    "电子材料实验"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "电子电路综合实践",
+   "aliases": [
+    {
+     "name": "电子电路综合实践",
+     "relation": "主课",
+     "path": "/majors/dianqigongcheng/2024/3214599000"
+    }
+   ],
+   "codes": [
+    "3214599000",
+    "3250184001"
+   ],
+   "lookupNames": [
+    "电子电路综合实践"
+   ],
+   "related": [
+    {
+     "name": "模拟电子技术",
+     "note": "综合运用",
+     "path": "/majors/shared/1210672001"
+    },
+    {
+     "name": "数字电子技术",
+     "note": "综合运用",
+     "path": "/majors/shared/1210969000"
+    }
+   ]
+  },
+  {
+   "canonical": "电子电路设计与仿真",
+   "aliases": [
+    {
+     "name": "电子电路设计与仿真",
+     "relation": "主课",
+     "path": "/majors/shared/1210184001"
+    },
+    {
+     "name": "电子电路设计与仿真实验",
+     "relation": "实验",
+     "path": "/majors/shared/4214411000"
+    }
+   ],
+   "codes": [
+    "1210184001",
+    "1250184001",
+    "4214411000",
+    "4250184000"
+   ],
+   "lookupNames": [
+    "电子电路设计与仿真",
+    "电子电路设计与仿真实验"
+   ],
+   "related": [
+    {
+     "name": "模拟电子技术",
+     "note": "仿真工具课",
+     "path": "/majors/shared/1210672001"
+    },
+    {
+     "name": "数字电子技术",
+     "note": "仿真工具课",
+     "path": "/majors/shared/1210969000"
+    },
+    {
+     "name": "EDA技术",
+     "note": "同领域课程",
+     "path": "/majors/shared/1210005001"
+    }
+   ]
+  },
+  {
+   "canonical": "电工学",
+   "aliases": [
+    {
+     "name": "电工学",
+     "relation": "主课",
+     "path": "/majors/shared/1211497000"
+    },
+    {
+     "name": "电工学实验",
+     "relation": "实验",
+     "path": "/majors/shared/4214509000"
+    }
+   ],
+   "codes": [
+    "1211497000",
+    "4214509000"
+   ],
+   "lookupNames": [
+    "电工学",
+    "电工学实验"
+   ],
+   "related": [
+    {
+     "name": "电工电子学",
+     "note": "非电类专业同源电工课",
+     "path": "/majors/shared/2258447000"
+    },
+    {
+     "name": "电路分析",
+     "note": "电类对应课程",
+     "path": "/majors/shared/1210175201"
+    }
+   ]
+  },
+  {
+   "canonical": "电工电子学",
+   "aliases": [
+    {
+     "name": "电工电子学",
+     "relation": "主课",
+     "path": "/majors/shared/2258447000"
+    }
+   ],
+   "codes": [
+    "2258447000"
+   ],
+   "lookupNames": [
+    "电工电子学"
+   ],
+   "related": [
+    {
+     "name": "电工学",
+     "note": "非电类专业同源电工课",
+     "path": "/majors/shared/1211497000"
+    },
+    {
+     "name": "电路分析",
+     "note": "电类对应课程",
+     "path": "/majors/shared/1210175201"
+    },
+    {
+     "name": "模拟电子技术",
+     "note": "电类对应课程",
+     "path": "/majors/shared/1210672001"
+    }
+   ]
+  },
+  {
+   "canonical": "电机学",
+   "aliases": [
+    {
+     "name": "电机学",
+     "relation": "主课",
+     "path": "/majors/shared/1210169001"
+    },
+    {
+     "name": "电机学实验",
+     "relation": "实验",
+     "path": "/majors/shared/4214563000"
+    }
+   ],
+   "codes": [
+    "1210169001",
+    "1250169001",
+    "4214563000",
+    "4250169000"
+   ],
+   "lookupNames": [
+    "电机学",
+    "电机学实验"
+   ],
+   "related": [
+    {
+     "name": "电力电子技术",
+     "note": "后续专业课",
+     "path": "/majors/shared/1210170001"
+    },
+    {
+     "name": "电气控制技术",
+     "note": "控制对象相关",
+     "path": "/majors/shared/1210181000"
+    }
+   ]
+  },
+  {
+   "canonical": "电气控制技术",
+   "aliases": [
+    {
+     "name": "电气控制技术",
+     "relation": "主课",
+     "path": "/majors/shared/1210181000"
+    },
+    {
+     "name": "电气控制技术实验",
+     "relation": "实验",
+     "path": "/majors/shared/4210181000"
+    }
+   ],
+   "codes": [
+    "1210181000",
+    "1250181000",
+    "4210181000",
+    "4250181000"
+   ],
+   "lookupNames": [
+    "电气控制技术",
+    "电气控制技术实验"
+   ],
+   "related": [
+    {
+     "name": "电机学",
+     "note": "控制对象相关",
+     "path": "/majors/shared/1210169001"
+    }
+   ]
+  },
+  {
+   "canonical": "电气测量技术",
+   "aliases": [
+    {
+     "name": "电气测量技术",
+     "relation": "主课",
+     "path": "/majors/shared/1210179001"
+    },
+    {
+     "name": "电气测量技术实验",
+     "relation": "实验",
+     "path": "/majors/shared/4214566000"
+    }
+   ],
+   "codes": [
+    "1210179001",
+    "4214566000"
+   ],
+   "lookupNames": [
+    "电气测量技术",
+    "电气测量技术实验"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "电磁场与电磁波",
+   "aliases": [
+    {
+     "name": "电磁场与电磁波",
+     "relation": "主课",
+     "path": "/majors/shared/2210166001"
+    }
+   ],
+   "codes": [
+    "2210166001",
+    "2250166001"
+   ],
+   "lookupNames": [
+    "电磁场与电磁波"
+   ],
+   "related": [
+    {
+     "name": "信号与系统",
+     "note": "专业基础相关",
+     "path": "/majors/shared/1211204000"
+    }
+   ]
+  },
+  {
+   "canonical": "电路分析",
+   "aliases": [
+    {
+     "name": "电路分析",
+     "relation": "主课",
+     "path": "/majors/shared/1210175201"
+    },
+    {
+     "name": "电路分析实验",
+     "relation": "实验",
+     "path": "/majors/shared/4214496000"
+    }
+   ],
+   "codes": [
+    "1210175201",
+    "1250175001",
+    "4214496000",
+    "4254496000"
+   ],
+   "lookupNames": [
+    "电路分析",
+    "电路分析实验"
+   ],
+   "related": [
+    {
+     "name": "电工学",
+     "note": "电类对应课程",
+     "path": "/majors/shared/1211497000"
+    },
+    {
+     "name": "电工电子学",
+     "note": "电类对应课程",
+     "path": "/majors/shared/2258447000"
+    },
+    {
+     "name": "模拟电子技术",
+     "note": "后续课程",
+     "path": "/majors/shared/1210672001"
+    },
+    {
+     "name": "数字电子技术",
+     "note": "后续课程",
+     "path": "/majors/shared/1210969000"
+    }
+   ]
+  },
+  {
+   "canonical": "离散数学",
+   "aliases": [
+    {
+     "name": "离散数学",
+     "relation": "主课",
+     "path": "/majors/shared/2210612001"
+    }
+   ],
+   "codes": [
+    "2210612001",
+    "2250612001"
+   ],
+   "lookupNames": [
+    "离散数学"
+   ],
+   "related": [
+    {
+     "name": "数据结构",
+     "note": "理论基础",
+     "path": "/majors/shared/1259911000"
+    }
+   ]
+  },
+  {
+   "canonical": "科研素养与学术写作",
+   "aliases": [
+    {
+     "name": "科研素养与学术写作",
+     "relation": "主课",
+     "path": "/majors/shared/1258753000"
+    }
+   ],
+   "codes": [
+    "1258753000"
+   ],
+   "lookupNames": [
+    "科研素养与学术写作"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "算法分析与设计",
+   "aliases": [
+    {
+     "name": "算法分析与设计",
+     "relation": "主课",
+     "path": "/majors/shared/2251023000"
+    }
+   ],
+   "codes": [
+    "2251023000"
+   ],
+   "lookupNames": [
+    "算法分析与设计"
+   ],
+   "related": [
+    {
+     "name": "数据结构",
+     "note": "进阶课程",
+     "path": "/majors/shared/1259911000"
+    }
+   ]
+  },
+  {
+   "canonical": "系统仿真技术",
+   "aliases": [
+    {
+     "name": "系统仿真技术",
+     "relation": "主课",
+     "path": "/majors/shared/2219924000"
+    }
+   ],
+   "codes": [
+    "2219924000"
+   ],
+   "lookupNames": [
+    "系统仿真技术"
+   ],
+   "related": [
+    {
+     "name": "MATLAB程序设计",
+     "note": "工具链课程",
+     "path": "/majors/shared/1210008001"
+    }
+   ]
+  },
+  {
+   "canonical": "线性代数",
+   "aliases": [
+    {
+     "name": "线性代数",
+     "relation": "主课",
+     "path": "/majors/shared/1215104001"
+    }
+   ],
+   "codes": [
+    "1215104001",
+    "1255104001"
+   ],
+   "lookupNames": [
+    "线性代数"
+   ],
+   "related": [
+    {
+     "name": "概率论与数理统计B",
+     "note": "数学基础系列",
+     "path": "/majors/shared/1210255207"
+    }
+   ]
+  },
+  {
+   "canonical": "自动控制原理",
+   "aliases": [
+    {
+     "name": "自动控制原理",
+     "relation": "主课",
+     "path": "/majors/shared/1211478000"
+    },
+    {
+     "name": "自动控制原理实验",
+     "relation": "实验",
+     "path": "/majors/shared/4214551000"
+    },
+    {
+     "name": "自动控制原理综合实践",
+     "relation": "实践",
+     "path": "/majors/dianqigongcheng/2024/3215950040"
+    }
+   ],
+   "codes": [
+    "1211478000",
+    "1251478000",
+    "3215950040",
+    "3251478000",
+    "4214551000",
+    "4251478000"
+   ],
+   "lookupNames": [
+    "自动控制原理",
+    "自动控制原理实验",
+    "自动控制原理综合实践"
+   ],
+   "related": [
+    {
+     "name": "现代控制理论",
+     "note": "进阶课程",
+     "path": "/majors/shared/2211172000"
+    },
+    {
+     "name": "信号与系统",
+     "note": "理论基础相关",
+     "path": "/majors/shared/1211204000"
+    },
+    {
+     "name": "控制工程基础",
+     "note": "非电类对应课程",
+     "path": "/majors/shared/2210597000"
+    },
+    {
+     "name": "复变函数与积分变换",
+     "note": "数学基础",
+     "path": "/majors/shared/1210254001"
+    }
+   ]
+  },
+  {
+   "canonical": "虚拟仪器技术",
+   "aliases": [
+    {
+     "name": "虚拟仪器技术",
+     "relation": "主课",
+     "path": "/majors/shared/1211234000"
+    },
+    {
+     "name": "虚拟仪器技术实验",
+     "relation": "实验",
+     "path": "/majors/shared/4211234000"
+    }
+   ],
+   "codes": [
+    "1211234000",
+    "1251234000",
+    "4211234000",
+    "4251234000"
+   ],
+   "lookupNames": [
+    "虚拟仪器技术",
+    "虚拟仪器技术实验"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "计算机辅助设计B",
+   "aliases": [
+    {
+     "name": "计算机辅助设计B",
+     "relation": "主课",
+     "path": "/majors/shared/2210469201"
+    }
+   ],
+   "codes": [
+    "2210469201"
+   ],
+   "lookupNames": [
+    "计算机辅助设计B"
+   ],
+   "related": [
+    {
+     "name": "CAD计算机辅助设计实验",
+     "note": "同领域课程",
+     "path": "/majors/shared/4211119000"
+    },
+    {
+     "name": "机械工程三维建模与仿真",
+     "note": "同领域课程",
+     "path": "/majors/shared/2210431000"
+    }
+   ]
+  },
+  {
+   "canonical": "设施农业工程及其装备",
+   "aliases": [
+    {
+     "name": "设施农业工程及其装备",
+     "relation": "主课",
+     "path": "/majors/shared/2212678060"
+    },
+    {
+     "name": "设施农业工程及其装备教学实习",
+     "relation": "实习",
+     "path": "/majors/nongyegongcheng/2024/3212648060"
+    }
+   ],
+   "codes": [
+    "2212678060",
+    "3212648060"
+   ],
+   "lookupNames": [
+    "设施农业工程及其装备",
+    "设施农业工程及其装备教学实习"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "马克思主义基本原理概论",
+   "aliases": [
+    {
+     "name": "马克思主义基本原理概论",
+     "relation": "主课",
+     "path": "/majors/shared/1210656000"
+    }
+   ],
+   "codes": [
+    "1210656000",
+    "1250656000"
+   ],
+   "lookupNames": [
+    "马克思主义基本原理概论"
+   ],
+   "related": []
+  },
+  {
+   "canonical": "高电压技术",
+   "aliases": [
+    {
+     "name": "高电压技术",
+     "relation": "主课",
+     "path": "/majors/shared/2258474000"
+    }
+   ],
+   "codes": [
+    "2258474000"
+   ],
+   "lookupNames": [
+    "高电压技术"
+   ],
+   "related": [
+    {
+     "name": "电力系统分析",
+     "note": "后续专业课",
+     "path": "/majors/shared/1210172001"
+    }
+   ]
+  },
+  {
+   "canonical": "高级语言程序设计I",
+   "aliases": [
+    {
+     "name": "高级语言程序设计I",
+     "relation": "主课",
+     "path": "/majors/shared/1259953010"
+    },
+    {
+     "name": "高级语言程序设计I实验",
+     "relation": "实验",
+     "path": "/majors/shared/4259953010"
+    }
+   ],
+   "codes": [
+    "1259953010",
+    "4259953010"
+   ],
+   "lookupNames": [
+    "高级语言程序设计I",
+    "高级语言程序设计I实验",
+    "高级语言程序设计Ⅰ",
+    "高级语言程序设计Ⅰ实验"
+   ],
+   "related": [
+    {
+     "name": "C语言程序设计",
+     "note": "同类基础编程课",
+     "path": "/majors/shared/1210004000"
+    }
+   ]
+  }
+ ],
+ "byName": {
+  "军训": "军训",
+  "军训(军事技能)": "军训",
+  "劳动教育": "劳动教育",
+  "劳动教育实践": "劳动教育",
+  "大学生劳动教育（实践I）": "劳动教育",
+  "大学生劳动教育（实践II）": "劳动教育",
+  "专业概论与新生研讨": "专业概论与新生研讨",
+  "专业概论与新生研讨（农机）": "专业概论与新生研讨",
+  "专业概论与新生研讨（机器人工程）": "专业概论与新生研讨",
+  "专业概论与新生研讨（电子）": "专业概论与新生研讨",
+  "专业概论与新生研讨（电气）": "专业概论与新生研讨",
+  "专业概论与新生研讨（农工）": "专业概论与新生研讨",
+  "大学生心理健康与职业发展Ⅰ（国防安全卫生）": "大学生心理健康与职业发展",
+  "大学生心理健康与职业发展Ⅰ（心理健康）": "大学生心理健康与职业发展",
+  "大学生心理健康与职业发展Ⅱ（心理健康教育）": "大学生心理健康与职业发展",
+  "大学生心理健康与职业发展Ⅱ（职业发展）": "大学生心理健康与职业发展",
+  "大学生心理健康与职业发展Ⅲ（大学生职业生涯规划）": "大学生心理健康与职业发展",
+  "大学生心理健康与职业发展Ⅳ（大学生就业指导）": "大学生心理健康与职业发展",
+  "形势与政策Ⅰ": "形势与政策",
+  "形势与政策Ⅱ": "形势与政策",
+  "形势与政策Ⅲ": "形势与政策",
+  "形势与政策Ⅳ": "形势与政策",
+  "形势与政策Ⅴ": "形势与政策",
+  "形势与政策Ⅵ": "形势与政策",
+  "形势与政策Ⅶ": "形势与政策",
+  "高等数学AⅠ": "高等数学A",
+  "高等数学AⅡ": "高等数学A",
+  "大学英语AⅠ": "大学英语A",
+  "大学英语AⅡ": "大学英语A",
+  "大学体育Ⅰ": "大学体育",
+  "大学体育Ⅱ": "大学体育",
+  "大学体育Ⅲ": "大学体育",
+  "大学体育实践Ⅰ": "大学体育",
+  "大学体育实践Ⅱ": "大学体育",
+  "毕业实习": "毕业实习",
+  "毕业实习Ⅰ": "毕业实习",
+  "毕业实习Ⅱ": "毕业实习",
+  "毕业论文（毕业设计）": "毕业论文",
+  "毕业论文（设计）": "毕业论文",
+  "大学物理A": "大学物理",
+  "大学物理B": "大学物理",
+  "大学物理C": "大学物理",
+  "大学物理实验A": "大学物理实验",
+  "大学物理实验B": "大学物理实验",
+  "大学物理实验C": "大学物理实验",
+  "机械设计基础": "机械设计基础",
+  "机械设计基础B": "机械设计基础",
+  "机械设计基础课程设计": "机械设计基础",
+  "传感器技术": "传感器技术",
+  "传感器技术（双轨制）": "传感器技术",
+  "传感器技术教学实习": "传感器技术",
+  "电力系统自动化": "电力系统自动化",
+  "电力系统自动化（MOOC）": "电力系统自动化",
+  "现代机械设计方法": "现代机械设计方法",
+  "现代机械设计方法（研）": "现代机械设计方法",
+  "农业机器人（研）": "农业机器人",
+  "试验设计与统计分析（研）": "试验设计与统计分析",
+  "电子专业综合实践I": "电子专业综合实践",
+  "电子专业综合实践II": "电子专业综合实践",
+  "汽车拖拉机学": "汽车拖拉机学",
+  "汽车拖拉机学实验": "汽车拖拉机学",
+  "汽车与拖拉机学教学实习": "汽车拖拉机学",
+  "CAD计算机辅助设计实验": "CAD计算机辅助设计实验",
+  "C语言程序设计": "C语言程序设计",
+  "EDA技术": "EDA技术",
+  "MATLAB程序设计": "MATLAB程序设计",
+  "Python语言及应用": "Python语言及应用",
+  "中国近现代史纲要": "中国近现代史纲要",
+  "习近平新时代中国特色社会主义思想概论": "习近平新时代中国特色社会主义思想概论",
+  "互换性与测量技术": "互换性与测量技术",
+  "产业创新": "产业创新",
+  "产业创新实践": "产业创新实践",
+  "人工智能": "人工智能",
+  "人工智能原理及应用": "人工智能原理及应用",
+  "信号与系统": "信号与系统",
+  "光电子技术": "光电子技术",
+  "军事理论": "军事理论",
+  "农业与生物系统工程导论": "农业与生物系统工程导论",
+  "农业机械化学": "农业机械化学",
+  "农业机械化管理": "农业机械化管理",
+  "农业机械学": "农业机械学",
+  "农业机械设计与计算": "农业机械设计与计算",
+  "农产品加工机械": "农产品加工机械",
+  "农学概论": "农学概论",
+  "创新创业实践": "创新创业实践",
+  "半导体器件与集成电路综合实践": "半导体器件与集成电路综合实践",
+  "半导体物理": "半导体物理",
+  "半导体集成电路": "半导体集成电路",
+  "单片机原理与应用": "单片机原理与应用",
+  "变电工程设计": "变电工程设计",
+  "固体物理学": "固体物理学",
+  "固态电子器件": "固态电子器件",
+  "国家安全教育": "国家安全教育",
+  "基于STM32的嵌入式系统设计": "基于STM32的嵌入式系统设计",
+  "复变函数与积分变换": "复变函数与积分变换",
+  "大数据处理技术": "大数据处理技术",
+  "嵌入式系统与应用": "嵌入式系统与应用",
+  "嵌入式系统开发与应用": "嵌入式系统开发与应用",
+  "工程制图（机电）": "工程制图（机电）",
+  "工程力学（机电）": "工程力学（机电）",
+  "工程技术经济学": "工程技术经济学",
+  "工程材料与机械制造基础": "工程材料与机械制造基础",
+  "工程测试技术": "工程测试技术",
+  "工程电磁学": "工程电磁学",
+  "思想道德与法治": "思想道德与法治",
+  "思政课社会实践": "思政课社会实践",
+  "控制工程": "控制工程",
+  "控制工程基础": "控制工程基础",
+  "数字电子技术": "数字电子技术",
+  "数据挖掘": "数据挖掘",
+  "数据结构": "数据结构",
+  "新能源发电技术": "新能源发电技术",
+  "新能源并网电力系统项目式综合实践": "新能源并网电力系统项目式综合实践",
+  "机器人传感与检测技术": "机器人传感与检测技术",
+  "机器人学": "机器人学",
+  "机器人导航技术": "机器人导航技术",
+  "机器人操作系统": "机器人操作系统",
+  "机器人机构学": "机器人机构学",
+  "机器人系统仿真": "机器人系统仿真",
+  "机器人设计与实现综合实践": "机器人设计与实现综合实践",
+  "机器人驱动与运动控制": "机器人驱动与运动控制",
+  "机器学习": "机器学习",
+  "机器视觉": "机器视觉",
+  "机械制图": "机械制图",
+  "机械制造基础": "机械制造基础",
+  "机械制造工艺学": "机械制造工艺学",
+  "机械原理": "机械原理",
+  "机械工程三维建模与仿真": "机械工程三维建模与仿真",
+  "机械工程材料": "机械工程材料",
+  "机械电子学": "机械电子学",
+  "机械系统动力学": "机械系统动力学",
+  "机械设计": "机械设计",
+  "材料力学B": "材料力学B",
+  "概率论与数理统计B": "概率论与数理统计B",
+  "模拟电子技术": "模拟电子技术",
+  "毛泽东思想和中国特色社会主义理论体系概论": "毛泽东思想和中国特色社会主义理论体系概论",
+  "水电站": "水电站",
+  "汽车拖拉机理论": "汽车拖拉机理论",
+  "液压与气压传动技术": "液压与气压传动技术",
+  "激光原理与技术": "激光原理与技术",
+  "现代控制理论": "现代控制理论",
+  "理论力学": "理论力学",
+  "生物系统模拟": "生物系统模拟",
+  "电力电子技术": "电力电子技术",
+  "电力系统仿真技术": "电力系统仿真技术",
+  "电力系统分析": "电力系统分析",
+  "电力系统暂态及稳定性分析": "电力系统暂态及稳定性分析",
+  "电力系统稳态分析": "电力系统稳态分析",
+  "电力系统继电保护": "电力系统继电保护",
+  "电子工艺综合实践": "电子工艺综合实践",
+  "电子技术综合实践": "电子技术综合实践",
+  "电子材料": "电子材料",
+  "电子电路综合实践": "电子电路综合实践",
+  "电子电路设计与仿真": "电子电路设计与仿真",
+  "电工学": "电工学",
+  "电工电子学": "电工电子学",
+  "电机学": "电机学",
+  "电气控制技术": "电气控制技术",
+  "电气测量技术": "电气测量技术",
+  "电磁场与电磁波": "电磁场与电磁波",
+  "电路分析": "电路分析",
+  "离散数学": "离散数学",
+  "科研素养与学术写作": "科研素养与学术写作",
+  "算法分析与设计": "算法分析与设计",
+  "系统仿真技术": "系统仿真技术",
+  "线性代数": "线性代数",
+  "自动控制原理": "自动控制原理",
+  "虚拟仪器技术": "虚拟仪器技术",
+  "计算机辅助设计B": "计算机辅助设计B",
+  "设施农业工程及其装备": "设施农业工程及其装备",
+  "马克思主义基本原理概论": "马克思主义基本原理概论",
+  "高电压技术": "高电压技术",
+  "高级语言程序设计I": "高级语言程序设计I",
+  "C语言程序设计实验": "C语言程序设计",
+  "EDA技术实验": "EDA技术",
+  "EDA技术综合实践": "EDA技术",
+  "MATLAB程序设计实验": "MATLAB程序设计",
+  "Python语言及应用实验": "Python语言及应用",
+  "传感器技术实验": "传感器技术",
+  "信号与系统实验": "信号与系统",
+  "信号与系统综合实践": "信号与系统",
+  "光电子技术实验": "光电子技术",
+  "光电子技术综合实践": "光电子技术",
+  "农业机械化学教学实习": "农业机械化学",
+  "农业机械学教学实习": "农业机械学",
+  "半导体物理实验": "半导体物理",
+  "半导体物理综合实践": "半导体物理",
+  "半导体集成电路实验": "半导体集成电路",
+  "单片机原理与应用实验": "单片机原理与应用",
+  "单片机原理与应用综合实践": "单片机原理与应用",
+  "变电工程设计实验": "变电工程设计",
+  "变电工程设计综合实践": "变电工程设计",
+  "固态电子器件实验": "固态电子器件",
+  "基于STM32的嵌入式系统设计实验": "基于STM32的嵌入式系统设计",
+  "大数据处理技术实验": "大数据处理技术",
+  "嵌入式系统开发与应用实验": "嵌入式系统开发与应用",
+  "工程制图实验（机电）": "工程制图（机电）",
+  "工程制图教学实习（机电）": "工程制图（机电）",
+  "工程力学实验（机电）": "工程力学（机电）",
+  "工程材料与机械制造基础实验": "工程材料与机械制造基础",
+  "控制工程实验": "控制工程",
+  "数字电子技术实验": "数字电子技术",
+  "数据挖掘实验": "数据挖掘",
+  "数据结构实验": "数据结构",
+  "新能源发电技术实验": "新能源发电技术",
+  "机器人操作系统综合实践": "机器人操作系统",
+  "机器学习实验": "机器学习",
+  "机械制图实验": "机械制图",
+  "机械制图教学实习": "机械制图",
+  "机械制造基础实验": "机械制造基础",
+  "机械制造基础教学实习": "机械制造基础",
+  "机械制造工艺学教学实习": "机械制造工艺学",
+  "机械设计基础实验": "机械设计基础",
+  "机械设计教学实习": "机械设计",
+  "模拟电子技术实验": "模拟电子技术",
+  "激光原理与技术实验": "激光原理与技术",
+  "生物系统模拟实验": "生物系统模拟",
+  "电力电子技术实验": "电力电子技术",
+  "电力电子技术综合实践": "电力电子技术",
+  "电力系统仿真技术实验": "电力系统仿真技术",
+  "电力系统分析实验": "电力系统分析",
+  "电力系统分析综合实践": "电力系统分析",
+  "电力系统继电保护实验": "电力系统继电保护",
+  "电子材料实验": "电子材料",
+  "电子电路设计与仿真实验": "电子电路设计与仿真",
+  "电工学实验": "电工学",
+  "电机学实验": "电机学",
+  "电气控制技术实验": "电气控制技术",
+  "电气测量技术实验": "电气测量技术",
+  "电路分析实验": "电路分析",
+  "自动控制原理实验": "自动控制原理",
+  "自动控制原理综合实践": "自动控制原理",
+  "虚拟仪器技术实验": "虚拟仪器技术",
+  "设施农业工程及其装备教学实习": "设施农业工程及其装备",
+  "高级语言程序设计I实验": "高级语言程序设计I"
+ }
+}
