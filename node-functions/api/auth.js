@@ -42,7 +42,7 @@ export async function onRequestPost({ request }) {
         return json({ error: '账号或密码错误' }, 401);
       }
       await auditLog(username, adm.role, 'login', '登录后台');
-      return json({ ok: true, token: signToken(username, adm.role), role: adm.role, username });
+      return json({ ok: true, token: signToken(username, Number(adm.role)), role: Number(adm.role), username });
     }
 
     // ── 一次性种子（仅当 admins 为空）──
@@ -68,8 +68,8 @@ export async function onRequestPost({ request }) {
       return json({ valid: true, role: who.role, username: who.username });
     }
 
-    // ── 仅二级管理员 ──
-    if (who.role !== 2) return json({ error: '无权限（需二级管理员）' }, 403);
+    // ── 仅二级管理员（role 强制数字比较，杜绝字符串 "2" 误判）──
+    if (Number(who.role) !== 2) return json({ error: '无权限（需二级管理员）' }, 403);
 
     if (action === 'listAdmins') {
       const data = (await readJson(ADMIN_KEY)) || { admins: [] };
@@ -106,7 +106,7 @@ export async function onRequestPost({ request }) {
       const state = data || { admins: [] };
       const target = (state.admins || []).find((a) => a.username === username);
       if (!target) return json({ error: '账号不存在' }, 404);
-      if (target.role === 2) return json({ error: '不能删除二级管理员' }, 400);
+      if (Number(target.role) === 2) return json({ error: '不能删除二级管理员' }, 400);
       state.admins = (state.admins || []).filter((a) => a.username !== username);
       const r = await writeJsonIfMatch(ADMIN_KEY, state, etag);
       if (!r.ok) return json({ error: '写入冲突，请重试', status: r.status }, 409);

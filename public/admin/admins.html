@@ -38,8 +38,8 @@ th{color:#94a3b8;font-weight:500}
 <body>
 <script src="/admin/auth-check.js"></script>
 <script>
-// 仅二级管理员可进
-if (window.ADMIN && window.ADMIN.role !== 2) { location.replace('/admin/index.html'); }
+// 仅二级管理员可进（role 强制数字比较）
+if (window.ADMIN && Number(window.ADMIN.role) !== 2) { location.replace('/admin/index.html'); }
 </script>
 <header>
   <h1>👥 管理员管理</h1>

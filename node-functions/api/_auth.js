@@ -26,10 +26,12 @@ export function verifyPassword(pw, salt, hash) {
 }
 
 // ── 会话 token（无状态 HMAC）──
+// role 强制转数字：防止 token 中 role 以字符串形式落地后被严格比较 `!== 2` 误判为「非二级」而 403
 export function signToken(username, role) {
+  const r = Number(role) || 0;
   const payload = Buffer.from(JSON.stringify({
     u: username,
-    r: role,
+    r,
     exp: Math.floor(Date.now() / 1000) + TOKEN_TTL,
   })).toString('base64url');
   const sig = crypto.createHmac('sha256', SECRET).update(payload).digest('hex');
@@ -50,7 +52,7 @@ export function verifyToken(token) {
     const d = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8'));
     if (!d || !d.u || !d.r || !d.exp) return null;
     if (d.exp < Math.floor(Date.now() / 1000)) return null;
-    return { username: d.u, role: d.r };
+    return { username: d.u, role: Number(d.r) || 0 };
   } catch (e) {
     return null;
   }

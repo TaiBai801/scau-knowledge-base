@@ -47,7 +47,7 @@ tr:hover{background:#f0faf8}
   <a href="/课程任务分配表.xlsx">📥 任务分配表</a>
 <a href="javascript:;" onclick="logout()">退出</a>
 </header>
-<script>if(window.ADMIN && window.ADMIN.role!==2){var el=document.getElementById("adminsLink"); if(el) el.style.display="none";}</script>
+<script>if(window.ADMIN && Number(window.ADMIN.role)!==2){var el=document.getElementById("adminsLink"); if(el) el.style.display="none";}</script>
 <main>
   <div class="stats" id="stats"></div>
 
