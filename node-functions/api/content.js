@@ -1,6 +1,7 @@
 // EdgeOne Pages 云函数 — 课程内容（③练习题 ④推荐资源 ⑤ta说）读写
 // 路由: /api/content
 import { readJson, writeJson, hasSecret } from './_cos.js';
+import { verifyToken, auditLog } from './_auth.js';
 
 const DATA_KEY = 'data/content.json';
 const FIELDS = ['exercises', 'resources', 'tasay'];
@@ -28,6 +29,9 @@ export async function onRequestPost({ request }) {
   try {
     const body = await request.json();
     const action = body.action;
+  const who = verifyToken(body.token);
+    if (!who) return json({ error: '未登录或登录已过期' }, 401);
+    await auditLog(who.username, who.role, action, '');
 
     if (action === 'getContent') {
       const data = (await readJson(DATA_KEY)) || {};

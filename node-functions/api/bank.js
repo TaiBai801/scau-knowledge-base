@@ -2,6 +2,7 @@
 // 路由: /api/bank
 // 数据: COS data/bank.json（key = 归一化课程名）
 import { readJson, readJsonWithEtag, writeJsonIfMatch, hasSecret } from './_cos.js';
+import { verifyToken, auditLog } from './_auth.js';
 
 const DATA_KEY = 'data/bank.json';
 const VALID_TYPES = ['single', 'multi', 'judge', 'blank', 'calc', 'short'];
@@ -41,6 +42,9 @@ export async function onRequestPost({ request }) {
   try {
     const body = await request.json();
     const action = body.action;
+  const who = verifyToken(body.token);
+    if (!who) return json({ error: '未登录或登录已过期' }, 401);
+    await auditLog(who.username, who.role, action, '');
 
     // 读取某课程题库
     if (action === 'getBank') {

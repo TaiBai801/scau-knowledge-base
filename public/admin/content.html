@@ -32,14 +32,7 @@ textarea{width:100%;min-height:120px;padding:0.6rem 0.75rem;border:1px solid var
 </style>
 </head>
 <body>
-<script>
-(function(){
-  if (sessionStorage.getItem('admin_authed') === '1') return;
-  var pw = prompt('请输入管理密码');
-  if (pw !== '123456#') { alert('密码错误'); location.href = '/'; return; }
-  sessionStorage.setItem('admin_authed', '1');
-})();
-</script>
+<script src="/admin/auth-check.js"></script>
 <header>
   <h1>📝 内容编辑后台</h1>
   <a href="/">← 回站点</a>
@@ -47,6 +40,7 @@ textarea{width:100%;min-height:120px;padding:0.6rem 0.75rem;border:1px solid var
   <a href="/admin/upload.html">资料上传</a>
   <a href="/admin/bank.html">🧩 题库录入</a>
   <a href="/admin/stats.html">📊 数据统计</a>
+<a href="javascript:;" onclick="logout()">退出</a>
 </header>
 <main>
 
@@ -141,7 +135,7 @@ function clearCourse(){
 
 function loadContent(){
   FIELDS.forEach(function(f){ document.getElementById('ta-'+f).value = ''; });
-  fetch(API, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({action:'getContent', courseKey:selectedKey})})
+  fetch(API, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(Object.assign({token:window.ADMIN.token},{action:'getContent', courseKey:selectedKey}))})
     .then(function(r){return r.json();})
     .then(function(d){
       var content = d.content || {};
@@ -156,7 +150,7 @@ document.getElementById('saveBtn').addEventListener('click', function(){
   btn.disabled = true; msg.textContent = '保存中…';
   var tasks = FIELDS.map(function(f){
     var text = document.getElementById('ta-'+f).value;
-    return fetch(API, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({action:'saveContent', courseKey:selectedKey, field:f, text:text})})
+    return fetch(API, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(Object.assign({token:window.ADMIN.token},{action:'saveContent', courseKey:selectedKey, field:f, text:text}))})
       .then(function(r){return r.json();});
   });
   Promise.all(tasks).then(function(results){

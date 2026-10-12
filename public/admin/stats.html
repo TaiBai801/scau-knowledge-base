@@ -33,20 +33,14 @@ td{padding:0.5rem 0.75rem;font-size:0.85rem;border-bottom:1px solid var(--line)}
 </style>
 </head>
 <body>
-<script>
-(function(){
-  if (sessionStorage.getItem('admin_authed') === '1') return;
-  var pw = prompt('请输入管理密码');
-  if (pw !== '123456#') { alert('密码错误'); location.href = '/'; return; }
-  sessionStorage.setItem('admin_authed', '1');
-})();
-</script>
+<script src="/admin/auth-check.js"></script>
 <header>
   <h1>📊 数据统计</h1>
   <a href="/">← 回站点</a>
   <a href="/admin/index.html">课程管理</a>
   <a href="/admin/upload.html">资料上传</a>
   <a href="/admin/content.html">内容编辑</a>
+<a href="javascript:;" onclick="logout()">退出</a>
 </header>
 <main>
   <div class="cards" id="cards"></div>
@@ -63,7 +57,7 @@ var API = '/api/stats';
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 
 function load(){
-  fetch(API, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({action:'getStats'})})
+  fetch(API, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(Object.assign({token:window.ADMIN.token},{action:'getStats'}))})
     .then(function(r){return r.json();})
     .then(function(d){
       renderCards(d);

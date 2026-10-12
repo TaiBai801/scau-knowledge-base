@@ -1,6 +1,7 @@
 // EdgeOne Pages 云函数 — 站点统计（访问数 / 下载数）
 // 路由: /api/stats
 import { readJson, writeJson, hasSecret } from './_cos.js';
+import { verifyToken, auditLog } from './_auth.js';
 
 const DATA_KEY = 'data/stats.json';
 
@@ -42,6 +43,9 @@ export async function onRequestPost({ request }) {
     }
 
     if (action === 'getStats') {
+      const who = verifyToken(body.token);
+      if (!who) return json({ error: '未登录或登录已过期' }, 401);
+      await auditLog(who.username, who.role, action, '');
       const data = (await readJson(DATA_KEY)) || { visits: {}, downloads: {} };
       function sum(n) {
         let v = 0, d = 0;

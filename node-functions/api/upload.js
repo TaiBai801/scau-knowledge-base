@@ -3,6 +3,7 @@
 // 环境变量: COS_SECRET_ID, COS_SECRET_KEY, COS_BUCKET, COS_REGION
 
 import * as crypto from 'node:crypto';
+import { verifyToken, auditLog } from './_auth.js';
 
 const REGION = process.env.COS_REGION || 'ap-chengdu';
 const BUCKET = process.env.COS_BUCKET || 'scau-files-1440179010';
@@ -90,6 +91,9 @@ export async function onRequestPost({ request }) {
   try {
     const body = await request.json();
     const action = body.action;
+  const who = verifyToken(body.token);
+    if (!who) return json({ error: '未登录或登录已过期' }, 401);
+    await auditLog(who.username, who.role, action, '');
 
     if (action === 'presign') {
       const ext = String(body.filename || '').split('.').pop().toLowerCase();

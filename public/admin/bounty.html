@@ -38,14 +38,7 @@ main{max-width:900px;margin:0 auto;padding:2rem 1rem}
 </style>
 </head>
 <body>
-<script>
-(function(){
-  if (sessionStorage.getItem('admin_authed') === '1') return;
-  var pw = prompt('请输入管理密码');
-  if (pw !== '123456#') { alert('密码错误'); location.href = '/'; return; }
-  sessionStorage.setItem('admin_authed', '1');
-})();
-</script>
+<script src="/admin/auth-check.js"></script>
 <header>
   <h1>📮 资料悬赏审核</h1>
   <a href="/">← 回站点</a>
@@ -53,6 +46,7 @@ main{max-width:900px;margin:0 auto;padding:2rem 1rem}
   <a href="/admin/upload.html">📤 资料上传</a>
   <a href="/admin/content.html">📝 内容编辑</a>
   <a href="/admin/stats.html">📊 数据统计</a>
+<a href="javascript:;" onclick="logout()">退出</a>
 </header>
 <main>
   <div class="hint">同学提交的悬赏会先进入「待审核」，通过后才会出现在首页滚动展示区。</div>
@@ -67,7 +61,6 @@ main{max-width:900px;margin:0 auto;padding:2rem 1rem}
 
 <script>
 var API = '/api/bounty';
-var PW = '123456#';
 var items = [];
 var filter = 'all';
 
@@ -75,8 +68,8 @@ function esc(s){var d=document.createElement('div');d.textContent=s;return d.inn
 function fmtTime(t){var d=new Date(t);return (d.getMonth()+1)+'-'+d.getDate()+' '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);}
 
 function call(action, extra){
-  var body = Object.assign({action:action, pw:PW}, extra||{});
-  return fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+  var body = Object.assign({action:action, token:window.ADMIN.token}, extra||{});
+  return fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({token:window.ADMIN.token},body))})
     .then(function(r){return r.json();});
 }
 

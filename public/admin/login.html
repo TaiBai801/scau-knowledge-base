@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>登录 · 管理后台</title>
+<style>
+:root{--brand:#0D5C5A;--bg:#F7F5F0;--card:#fff;--line:#E8E4DB;--text:#4A5568;--err:#dc2626}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1.5rem}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:2.2rem 2rem;width:100%;max-width:380px;box-shadow:0 4px 24px rgba(0,0,0,.06)}
+h1{font-size:1.25rem;font-weight:600;color:var(--text);text-align:center;margin-bottom:.3rem}
+.sub{font-size:.82rem;color:#94a3b8;text-align:center;margin-bottom:1.6rem}
+label{display:block;font-size:.82rem;color:var(--text);margin:0 0 .35rem}
+input{width:100%;padding:.65rem .85rem;border:1px solid var(--line);border-radius:10px;font-size:.92rem;margin-bottom:1rem;background:#fff;color:var(--text);outline:none}
+input:focus{border-color:var(--brand)}
+button{width:100%;padding:.68rem;border:none;border-radius:10px;font-size:.95rem;font-weight:600;background:var(--brand);color:#fff;cursor:pointer;transition:opacity .15s}
+button:hover{opacity:.9}
+button:disabled{opacity:.5;cursor:not-allowed}
+.err{color:var(--err);font-size:.8rem;min-height:1.2rem;margin-bottom:.4rem;text-align:center}
+.back{display:block;text-align:center;font-size:.8rem;color:#94a3b8;margin-top:1rem;text-decoration:none}
+.back:hover{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>⚙️ 知识库管理后台</h1>
+  <p class="sub">请使用管理员账号登录</p>
+  <div class="err" id="err"></div>
+  <label for="u">账号</label>
+  <input id="u" type="text" autocomplete="username" placeholder="请输入账号" />
+  <label for="p">密码</label>
+  <input id="p" type="password" autocomplete="current-password" placeholder="请输入密码" />
+  <button id="btn" onclick="login()">登 录</button>
+  <a class="back" href="/">← 返回站点</a>
+</div>
+<script>
+function login(){
+  var u=document.getElementById('u').value.trim();
+  var p=document.getElementById('p').value;
+  var err=document.getElementById('err');
+  if(!u||!p){ err.textContent='请输入账号和密码'; return; }
+  var btn=document.getElementById('btn'); btn.disabled=true; btn.textContent='登录中…';
+  fetch('/api/auth',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'login',username:u,password:p})})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(d.ok){
+        sessionStorage.setItem('admin_token',d.token);
+        sessionStorage.setItem('admin_role',String(d.role));
+        sessionStorage.setItem('admin_username',d.username);
+        location.replace('/admin/index.html');
+      } else {
+        err.textContent=d.message||d.error||'登录失败';
+        btn.disabled=false; btn.textContent='登 录';
+      }
+    })
+    .catch(function(){ err.textContent='网络错误，请重试'; btn.disabled=false; btn.textContent='登 录'; });
+}
+document.getElementById('p').addEventListener('keydown',function(e){ if(e.key==='Enter') login(); });
+</script>
+</body>
+</html>

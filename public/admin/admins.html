@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>管理员管理 · 后台</title>
+<style>
+:root{--brand:#0D5C5A;--bg:#F7F5F0;--card:#fff;--line:#E8E4DB;--text:#4A5568;--red:#dc2626;--green:#059669}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:var(--brand);color:#fff;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+header h1{font-size:1.2rem;font-weight:600}
+header a{color:#b2d9d6;font-size:.85rem;text-decoration:none}
+header a:hover{color:#fff}
+header .who{margin-left:auto;font-size:.85rem;color:#e6f7ef}
+main{max-width:900px;margin:0 auto;padding:2rem 1rem}
+h2{font-size:1.05rem;font-weight:600;color:var(--text);margin:1.4rem 0 .8rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;margin-bottom:.8rem}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid #f0ede6}
+th{color:#94a3b8;font-weight:500}
+.badge{padding:.1rem .55rem;border-radius:999px;font-size:.72rem;font-weight:500}
+.badge.l2{background:#e6f7ef;color:var(--green)}
+.badge.l1{background:#eef3fb;color:#3b6fb6}
+.btn{padding:.3rem .8rem;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--text)}
+.btn-primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+.btn-red{color:var(--red);border-color:var(--red)}
+.btn:hover{opacity:.85}
+.form-row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.form-row input{padding:.5rem .8rem;border:1px solid var(--line);border-radius:8px;font-size:.88rem;outline:none}
+.form-row input:focus{border-color:var(--brand)}
+.log-item{padding:.5rem 0;border-bottom:1px solid #f0ede6;font-size:.85rem}
+.log-item:last-child{border-bottom:none}
+.log-time{color:#94a3b8;font-size:.78rem}
+.hint{font-size:.8rem;color:#94a3b8;margin-bottom:.5rem}
+</style>
+</head>
+<body>
+<script src="/admin/auth-check.js"></script>
+<script>
+// 仅二级管理员可进
+if (window.ADMIN && window.ADMIN.role !== 2) { location.replace('/admin/index.html'); }
+</script>
+<header>
+  <h1>👥 管理员管理</h1>
+  <a href="/">← 回站点</a>
+  <a href="/admin/index.html">课程管理</a>
+  <span class="who" id="who"></span>
+  <a href="javascript:;" onclick="logout()">退出</a>
+</header>
+<main>
+  <h2>管理员账号</h2>
+  <div class="card" id="adminList"><div class="hint">加载中…</div></div>
+
+  <h2>添加一级管理员</h2>
+  <div class="card">
+    <div class="hint">一级管理员可进入后台做常规操作（操作记日志），但不能管理账号或查看日志。</div>
+    <div class="form-row">
+      <input id="nu" placeholder="账号" />
+      <input id="np" type="password" placeholder="密码" />
+      <button class="btn btn-primary" onclick="addAdmin()">添加</button>
+    </div>
+    <div id="addErr" style="color:var(--red);font-size:.8rem;margin-top:.5rem;"></div>
+  </div>
+
+  <h2>操作日志</h2>
+  <div class="card" id="logList"><div class="hint">加载中…</div></div>
+</main>
+
+<script>
+var API = '/api/auth';
+function token(){ return window.ADMIN ? window.ADMIN.token : ''; }
+document.getElementById('who').textContent = (window.ADMIN ? window.ADMIN.username : '') + ' · 二级管理员';
+function logout(){ sessionStorage.clear(); location.replace('/admin/login.html'); }
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+function fmt(t){var d=new Date(t);return (d.getMonth()+1)+'-'+d.getDate()+' '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);}
+function call(action, extra){
+  return fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({action:action,token:token()},extra||{}))})
+    .then(function(r){return r.json();});
+}
+
+function loadAdmins(){
+  call('listAdmins').then(function(d){
+    if(d.error){ document.getElementById('adminList').innerHTML='<div class="hint">'+esc(d.error)+'</div>'; return; }
+    var rows=(d.admins||[]).map(function(a){
+      var b=a.role===2?'<span class="badge l2">二级</span>':'<span class="badge l1">一级</span>';
+      var del=a.role===1?'<button class="btn btn-red" onclick="removeAdmin(\''+esc(a.username)+'\')">删除</button>':'';
+      return '<tr><td>'+esc(a.username)+'</td><td>'+b+'</td><td>'+esc(a.createdBy||'-')+'</td><td>'+fmt(a.createdAt)+'</td><td>'+del+'</td></tr>';
+    }).join('');
+    document.getElementById('adminList').innerHTML='<table><thead><tr><th>账号</th><th>角色</th><th>创建人</th><th>创建时间</th><th></th></tr></thead><tbody>'+rows+'</tbody></table>';
+  });
+}
+function addAdmin(){
+  var u=document.getElementById('nu').value.trim();
+  var p=document.getElementById('np').value;
+  var e=document.getElementById('addErr'); e.textContent='';
+  if(!u||!p){ e.textContent='请填写账号和密码'; return; }
+  call('addAdmin',{username:u,password:p,role:1}).then(function(d){
+    if(d.error){ e.textContent=d.message||d.error; }
+    else { e.textContent=''; document.getElementById('nu').value=''; document.getElementById('np').value=''; loadAdmins(); }
+  });
+}
+function removeAdmin(u){
+  if(!confirm('确认删除管理员「'+u+'」？')) return;
+  call('removeAdmin',{username:u}).then(function(d){ if(d.error){ alert(d.message||d.error); } loadAdmins(); });
+}
+function loadLogs(){
+  call('getLogs').then(function(d){
+    if(d.error){ document.getElementById('logList').innerHTML='<div class="hint">'+esc(d.error)+'</div>'; return; }
+    var items=(d.logs||[]).map(function(l){
+      return '<div class="log-item"><span class="log-time">'+fmt(l.time)+'</span> <b>'+esc(l.username)+'</b>('+(l.role===2?'二级':'一级')+') '+esc(l.action)+(l.detail?' · '+esc(l.detail):'')+'</div>';
+    }).join('');
+    document.getElementById('logList').innerHTML=items||'<div class="hint">暂无日志</div>';
+  });
+}
+loadAdmins(); loadLogs();
+</script>
+</body>
+</html>

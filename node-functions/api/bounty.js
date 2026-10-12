@@ -3,9 +3,9 @@
 // 同学提交想要的资料 → 管理员审核 → 通过后上墙滚动展示，支持点赞、完成标记
 // 状态存 COS data/bounties.json
 import { readJson, readJsonWithEtag, writeJsonIfMatch, hasSecret } from './_cos.js';
+import { verifyToken, auditLog } from './_auth.js';
 
 const DATA_KEY = 'data/bounties.json';
-const ADMIN_PW = '123456#';
 const MAX_CONTENT = 200;
 
 function json(data, status = 200) {
@@ -110,7 +110,9 @@ export async function onRequestPost({ request }) {
     }
 
     // ── 后台接口（需密码） ──
-    if (body.pw !== ADMIN_PW) return json({ error: '无权限' }, 403);
+      const who = verifyToken(body.token);
+    if (!who) return json({ error: '未登录或登录已过期' }, 401);
+    await auditLog(who.username, who.role, action, '');
 
     if (action === 'adminList') {
       const state = (await readJson(DATA_KEY)) || fresh();
