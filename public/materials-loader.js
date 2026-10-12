@@ -1,11 +1,30 @@
 // 课程页动态内容加载器
-// ②课程资料 ← data/materials.json（含在线预览）
+// ②课程资料 ← data/materials.json（含在线预览，支持同名/实验课等别名兜底）
 // ③练习题 ④推荐资源 ⑤ta说 ← data/content.json
+// 🔗相似课程索引 ← /data/course-index.json（静态课程簇索引）
 (function () {
   var BASE = 'https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com';
   var MATERIALS_URL = BASE + '/data/materials.json';
   var CONTENT_URL = BASE + '/data/content.json';
+  var INDEX_URL = '/data/course-index.json';
   var cache = {};
+
+  // 课程簇索引：{ byName: {课程名→canonical}, clusters: [{canonical, aliases:[{name,relation,path}], related:[{name,note,path}], lookupNames}] }
+  function getIndex() {
+    if (cache[INDEX_URL]) return Promise.resolve(cache[INDEX_URL]);
+    return fetch(INDEX_URL, { cache: 'no-store' })
+      .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
+      .then(function (d) { cache[INDEX_URL] = d; return d; })
+      .catch(function () { cache[INDEX_URL] = null; return null; });
+  }
+  function findCluster(index, key) {
+    if (!index || !index.byName) return null;
+    var canon = index.byName[key];
+    if (!canon) return null;
+    var list = index.clusters || [];
+    for (var i = 0; i < list.length; i++) if (list[i].canonical === canon) return list[i];
+    return null;
+  }
 
   function esc(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
@@ -138,11 +157,30 @@
   }
 
   function renderMaterials(el, code) {
-    getJson(MATERIALS_URL).then(function (data) {
-      var list = (data && data[code]) || [];
+    Promise.all([getJson(MATERIALS_URL), getIndex()]).then(function (rs) {
+      var data = rs[0] || {};
+      var index = rs[1];
+      var list = data[code] || [];
+      var source = code;
+      // 本课无资料 → 沿课程簇别名兜底（同名课/理论课配套等）
+      if (!list.length && index) {
+        var cluster = findCluster(index, code);
+        var names = (cluster && cluster.lookupNames) || [];
+        for (var i = 0; i < names.length; i++) {
+          if (names[i] !== code && data[names[i]] && data[names[i]].length) {
+            list = data[names[i]];
+            source = names[i];
+            break;
+          }
+        }
+      }
       if (!list.length) {
         el.innerHTML = '<blockquote><p>📂 资料建设中，欢迎<a href="/contribute">投稿</a>。</p></blockquote>';
         return;
+      }
+      var note = '';
+      if (source !== code) {
+        note = '<div class="mat-alias-note">📎 本课暂无独立资料，已为你调出同类课程 <strong>《' + esc(source) + '》</strong> 的资料：</div>';
       }
       var rows = list.map(function (m, i) {
         var pv = previewInfo(m);
@@ -152,7 +190,7 @@
           '<td style="text-align:center">' + fmtSize(m.size) + '</td>' +
           '<td style="text-align:center;white-space:nowrap">' + pvLink + '<a href="' + esc(m.url) + '" class="dl-link">下载</a></td></tr>';
       }).join('');
-      el.innerHTML = '<table><thead><tr><th>文件名</th><th>格式</th><th>大小</th><th>操作</th></tr></thead><tbody>' + rows + '</tbody></table>';
+      el.innerHTML = note + '<table><thead><tr><th>文件名</th><th>格式</th><th>大小</th><th>操作</th></tr></thead><tbody>' + rows + '</tbody></table>';
       // 预览
       el.querySelectorAll('.pv-link').forEach(function (a) {
         a.addEventListener('click', function () { openPreview(list[+a.dataset.i]); });
@@ -191,9 +229,71 @@
     });
   }
 
+  // ── 相似课程交叉索引（挂在课程资料区块之后） ──
+  var RELATION_LABEL = { '主课': '理论课', '实验': '实验课', '实习': '教学实习', '实践': '综合实践', '课设': '课程设计', '系列': '系列课' };
+
+  function ensureRelatedStyle() {
+    if (document.getElementById('related-block-style')) return;
+    var st = document.createElement('style');
+    st.id = 'related-block-style';
+    st.textContent =
+      '.mat-alias-note{margin:0 0 10px;padding:8px 12px;background:#F0F7F5;border:1px solid #CBE3DD;border-radius:8px;font-size:.85rem;color:#3F6B62}' +
+      '.course-related-block{margin:24px 0;padding:16px 18px;border:1px solid #E5E0D6;border-radius:12px;background:#FAF8F4}' +
+      '.course-related-block h4{margin:0 0 10px;font-size:.95rem;color:#0D5C5A}' +
+      '.course-related-chips{display:flex;flex-wrap:wrap;gap:8px}' +
+      '.cr-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid #0D5C5A33;border-radius:16px;' +
+      'font-size:.85rem;color:#0D5C5A;text-decoration:none;background:#fff;transition:all .15s}' +
+      '.cr-chip:hover{background:#0D5C5A;color:#fff;text-decoration:none}' +
+      '.cr-chip .cr-rel{font-size:.72rem;opacity:.75}' +
+      '.cr-note{font-size:.78rem;color:#8A8578;margin-left:2px}';
+    document.head.appendChild(st);
+  }
+
+  function renderRelated(key) {
+    getIndex().then(function (index) {
+      if (!index) return;
+      var cluster = findCluster(index, key);
+      if (!cluster) return;
+      var siblings = (cluster.aliases || []).filter(function (a) {
+        return a.name !== key && a.path;
+      });
+      var related = (cluster.related || []).filter(function (r) { return r.path; });
+      if (!siblings.length && !related.length) return;
+      ensureRelatedStyle();
+
+      var html = '<div class="course-related-block"><h4>🔗 同类课程索引</h4>';
+      if (siblings.length) {
+        html += '<div class="course-related-chips">';
+        siblings.forEach(function (a) {
+          var rel = RELATION_LABEL[a.relation] || a.relation || '';
+          html += '<a class="cr-chip" href="' + esc(a.path) + '">' + esc(a.name) +
+            (rel ? '<span class="cr-rel">' + esc(rel) + '</span>' : '') + '</a>';
+        });
+        html += '</div>';
+      }
+      if (related.length) {
+        if (siblings.length) html += '<div style="height:10px"></div>';
+        html += '<div class="course-related-chips">';
+        related.forEach(function (r) {
+          html += '<a class="cr-chip" href="' + esc(r.path) + '">' + esc(r.name) +
+            (r.note ? '<span class="cr-rel">' + esc(r.note) + '</span>' : '') + '</a>';
+        });
+        html += '</div>';
+      }
+      html += '</div>';
+
+      var anchor = document.getElementById('course-materials');
+      if (anchor && anchor.parentNode) {
+        var holder = document.createElement('div');
+        holder.innerHTML = html;
+        anchor.parentNode.insertBefore(holder.firstChild, anchor.nextSibling);
+      }
+    });
+  }
+
   function scan() {
     var m = document.getElementById('course-materials');
-    if (m && !m.dataset.rendered) { m.dataset.rendered = '1'; renderMaterials(m, m.dataset.key); }
+    if (m && !m.dataset.rendered) { m.dataset.rendered = '1'; renderMaterials(m, m.dataset.key); renderRelated(m.dataset.key); }
     var e = document.getElementById('course-exercises');
     if (e && !e.dataset.rendered) { e.dataset.rendered = '1'; renderSection(e, e.dataset.key, 'exercises'); }
     var r = document.getElementById('course-resources');
