@@ -107,7 +107,7 @@ export async function onRequestPost({ request }) {
       if (err) return err;
 
       const { data } = await readJsonWithEtagSigned(DATA_KEY);
-      const stats = calcStats((data.data || { records: {} }).records[username] || {});
+      const stats = calcStats((data || { records: {} }).records[username] || {});
       return json({ ok: true, day: result, stats });
     }
 
@@ -115,7 +115,7 @@ export async function onRequestPost({ request }) {
     if (action === 'list') {
       const range = Math.min(Math.max(Number(body.days) || 90, 1), 366);
       const { data } = await readJsonWithEtagSigned(DATA_KEY);
-      const rec = (data.data || { records: {} }).records[username] || { days: {} };
+      const rec = (data || { records: {} }).records[username] || { days: {} };
       const cutoff = todayStr(-range + 1);
       const days = {};
       Object.keys(rec.days || {})
@@ -127,7 +127,7 @@ export async function onRequestPost({ request }) {
     // ── 统计 ──
     if (action === 'stats') {
       const { data } = await readJsonWithEtagSigned(DATA_KEY);
-      const rec = (data.data || { records: {} }).records[username] || { days: {} };
+      const rec = (data || { records: {} }).records[username] || { days: {} };
       return json({ stats: calcStats(rec) });
     }
 
@@ -147,7 +147,7 @@ export async function onRequestPost({ request }) {
       });
       if (err) return err;
       const { data } = await readJsonWithEtagSigned(DATA_KEY);
-      const stats = calcStats((data.data || { records: {} }).records[username] || {});
+      const stats = calcStats((data || { records: {} }).records[username] || {});
       return json({ ok: true, stats });
     }
 
