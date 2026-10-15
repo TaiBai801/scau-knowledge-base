@@ -1,6 +1,7 @@
 // EdgeOne Pages 云函数 — 贡献者墙（列表公开 / 增删改排序隐藏需管理员）
 // 路由: /api/contributors
 // 数据存 COS data/contributors.json（私有读：本文件走签名通道读写）
+// 自举：COS 上对象不存在时，首次访问自动用内置 SEED 创建，无需手工入库
 //
 // 接口契约：
 //   POST { action: 'list' }
@@ -21,6 +22,16 @@ const DATA_KEY = 'data/contributors.json';
 const TYPES = ['core', 'content', 'review', 'design', 'other'];
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 
+// 首次上线时的种子数据：COS 上还没有 data/contributors.json 时自动创建（与 data/contributors.json 同源）
+const SEED = [
+  { id: 'c1', name: '杨彬', avatar: '', role: '创始人 / 全栈开发', type: 'core', desc: '搭建全站架构与云函数体系，整理五专业培养方案与课程资料', count: 346, weight: 100, joinedAt: '2026-07-01', hidden: false },
+  { id: 'c2', name: '17级张学长', avatar: '', role: '内容贡献', type: 'content', desc: '', count: 8, weight: 90, joinedAt: '', hidden: false },
+  { id: 'c3', name: '18级李学姐', avatar: '', role: '内容贡献', type: 'content', desc: '', count: 5, weight: 80, joinedAt: '', hidden: false },
+  { id: 'c4', name: '19级王学长', avatar: '', role: '内容贡献', type: 'content', desc: '', count: 4, weight: 70, joinedAt: '', hidden: false },
+  { id: 'c5', name: '20级陈学姐', avatar: '', role: '内容贡献', type: 'content', desc: '', count: 3, weight: 60, joinedAt: '', hidden: false },
+  { id: 'c6', name: '20级刘学长', avatar: '', role: '内容贡献', type: 'content', desc: '', count: 2, weight: 50, joinedAt: '', hidden: false },
+];
+
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
@@ -36,6 +47,24 @@ function json(data, status = 200) {
 
 function sortByWeight(list) {
   return [...list].sort((a, b) => (Number(b.weight) || 0) - (Number(a.weight) || 0));
+}
+
+// 读取状态；对象不存在时用内置种子首次创建（只发生一次，之后读取命中即不再写入）
+async function ensureState() {
+  let got = await readJsonWithEtagSigned(DATA_KEY);
+  if (got.data && Array.isArray(got.data.contributors)) return got;
+  const fresh = { version: 1, updatedAt: Date.now(), contributors: SEED.map((c) => ({ ...c })) };
+  // If-None-Match:* —— 并发请求同时自举时只有一次能创建成功，其余自然失败后走重读
+  await writeJsonIfMatch(DATA_KEY, fresh, null, 'private');
+  got = await readJsonWithEtagSigned(DATA_KEY);
+  if (got.data && Array.isArray(got.data.contributors)) return got;
+  return { data: fresh, etag: null };
+}
+
+// 统一落盘：刷新更新时间 + 私有读 ACL + ETag 乐观锁
+async function save(state, etag) {
+  state.updatedAt = Date.now();
+  return await writeJsonIfMatch(DATA_KEY, state, etag, 'private');
 }
 
 // 校验/规整单条贡献者字段（partial 模式只校验出现的键）
@@ -89,7 +118,7 @@ export async function onRequestPost({ request }) {
   // ── 公开列表 ──
   if (action === 'list') {
     try {
-      const { data } = await readJsonWithEtagSigned(DATA_KEY);
+      const { data } = await ensureState();
       const all = (data && data.contributors) || [];
       return json({ contributors: sortByWeight(all.filter((c) => c && !c.hidden)) });
     } catch (e) {
@@ -103,7 +132,7 @@ export async function onRequestPost({ request }) {
     if (!who) return json({ error: '未登录或登录已过期' }, 401);
     const admin = who.username;
 
-    const { data, etag } = await readJsonWithEtagSigned(DATA_KEY);
+    const { data, etag } = await ensureState();
     const state = data || { version: 1, updatedAt: 0, contributors: [] };
     if (!Array.isArray(state.contributors)) state.contributors = [];
     const list = state.contributors;
@@ -122,7 +151,7 @@ export async function onRequestPost({ request }) {
         ...chk.fields,
       };
       list.push(item);
-      const r = await writeJsonIfMatch(DATA_KEY, state, etag, 'private');
+      const r = await save(state, etag);
       if (!r.ok) return json({ error: '写入冲突，请重试', status: r.status }, 409);
       await auditLog(admin, who.role, 'contribAdd', '新增贡献者 ' + item.name);
       return json({ ok: true, id: item.id });
@@ -135,7 +164,7 @@ export async function onRequestPost({ request }) {
       const chk = normalizeFields(body.patch || {}, true);
       if (chk.error) return json({ error: chk.error }, 400);
       list[i] = { ...list[i], ...chk.fields };
-      const r = await writeJsonIfMatch(DATA_KEY, state, etag, 'private');
+      const r = await save(state, etag);
       if (!r.ok) return json({ error: '写入冲突，请重试', status: r.status }, 409);
       await auditLog(admin, who.role, 'contribUpdate', '更新贡献者 ' + list[i].name);
       return json({ ok: true });
@@ -147,7 +176,7 @@ export async function onRequestPost({ request }) {
       if (i < 0) return json({ error: '贡献者不存在' }, 404);
       const name = list[i].name;
       list.splice(i, 1);
-      const r = await writeJsonIfMatch(DATA_KEY, state, etag, 'private');
+      const r = await save(state, etag);
       if (!r.ok) return json({ error: '写入冲突，请重试', status: r.status }, 409);
       await auditLog(admin, who.role, 'contribRemove', '删除贡献者 ' + name);
       return json({ ok: true });
@@ -158,7 +187,7 @@ export async function onRequestPost({ request }) {
       const i = findIdx(id);
       if (i < 0) return json({ error: '贡献者不存在' }, 404);
       list[i].hidden = !list[i].hidden;
-      const r = await writeJsonIfMatch(DATA_KEY, state, etag, 'private');
+      const r = await save(state, etag);
       if (!r.ok) return json({ error: '写入冲突，请重试', status: r.status }, 409);
       await auditLog(admin, who.role, 'contribToggle', (list[i].hidden ? '下线 ' : '恢复 ') + list[i].name);
       return json({ ok: true, hidden: list[i].hidden });
@@ -172,7 +201,7 @@ export async function onRequestPost({ request }) {
       if (missing.length) return json({ error: '包含未知 id' }, 400);
       const n = order.length;
       order.forEach((id, idx) => { byId.get(id).weight = (n - idx) * 10; });
-      const r = await writeJsonIfMatch(DATA_KEY, state, etag, 'private');
+      const r = await save(state, etag);
       if (!r.ok) return json({ error: '写入冲突，请重试', status: r.status }, 409);
       await auditLog(admin, who.role, 'contribSort', '调整贡献者排序');
       return json({ ok: true });
