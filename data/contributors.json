@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "updatedAt": 0,
+  "contributors": [
+    {
+      "id": "c1",
+      "name": "杨彬",
+      "avatar": "",
+      "role": "创始人 / 全栈开发",
+      "type": "core",
+      "desc": "搭建全站架构与云函数体系，整理五专业培养方案与课程资料",
+      "count": 346,
+      "weight": 100,
+      "joinedAt": "2026-07-01",
+      "hidden": false
+    },
+    {
+      "id": "c2",
+      "name": "17级张学长",
+      "avatar": "",
+      "role": "内容贡献",
+      "type": "content",
+      "desc": "",
+      "count": 8,
+      "weight": 90,
+      "joinedAt": "",
+      "hidden": false
+    },
+    {
+      "id": "c3",
+      "name": "18级李学姐",
+      "avatar": "",
+      "role": "内容贡献",
+      "type": "content",
+      "desc": "",
+      "count": 5,
+      "weight": 80,
+      "joinedAt": "",
+      "hidden": false
+    },
+    {
+      "id": "c4",
+      "name": "19级王学长",
+      "avatar": "",
+      "role": "内容贡献",
+      "type": "content",
+      "desc": "",
+      "count": 4,
+      "weight": 70,
+      "joinedAt": "",
+      "hidden": false
+    },
+    {
+      "id": "c5",
+      "name": "20级陈学姐",
+      "avatar": "",
+      "role": "内容贡献",
+      "type": "content",
+      "desc": "",
+      "count": 3,
+      "weight": 60,
+      "joinedAt": "",
+      "hidden": false
+    },
+    {
+      "id": "c6",
+      "name": "20级刘学长",
+      "avatar": "",
+      "role": "内容贡献",
+      "type": "content",
+      "desc": "",
+      "count": 2,
+      "weight": 50,
+      "joinedAt": "",
+      "hidden": false
+    }
+  ]
+}

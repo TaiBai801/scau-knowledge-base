@@ -1783,6 +1783,118 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   display: inline-block;
 }
 
+/* 贡献者墙：类型徽章 / 说明 / 元信息 / 图片头像 */
+.ardot-contrib-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 999px;
+  display: inline-block;
+  margin-top: 2px;
+}
+.ardot-contrib-badge[data-type="core"]    { background: #e6f7ef; color: #0d7a52; }
+.ardot-contrib-badge[data-type="content"] { background: #eef3fb; color: #3b6fb6; }
+.ardot-contrib-badge[data-type="review"]  { background: #fdf3e7; color: #b0731f; }
+.ardot-contrib-badge[data-type="design"]  { background: #f5edfb; color: #7a4bab; }
+.ardot-contrib-badge[data-type="other"]   { background: #f0ede6; color: #6b6455; }
+
+.ardot-contrib-avatar.is-img {
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--line);
+}
+.ardot-contrib-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-top: 6px;
+}
+.ardot-contrib-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+}
+.ardot-contrib-join {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* 更新日志时间轴 */
+.ardot-timeline { position: relative; padding-left: 28px; }
+.ardot-timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px; top: 6px; bottom: 6px;
+  width: 2px;
+  background: var(--line);
+}
+.ardot-timeline-item { position: relative; padding-bottom: 34px; }
+.ardot-timeline-item:last-child { padding-bottom: 0; }
+.ardot-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -26px; top: 6px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--brand);
+  box-shadow: 0 0 0 3px var(--brand-pale);
+}
+.ardot-timeline-version {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+.ardot-timeline-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-left: 10px;
+  font-weight: 400;
+}
+.ardot-timeline-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 999px;
+  display: inline-block;
+  margin-left: 10px;
+  background: var(--brand-pale);
+  color: var(--brand);
+  vertical-align: 1px;
+}
+.ardot-timeline-tag[data-kind="milestone"] { background: #F4EBDC; color: #8A5A2B; }
+.ardot-timeline-tag[data-kind="feature"] { background: var(--brand-pale); color: var(--brand); }
+.ardot-timeline-tag[data-kind="fix"] { background: #FBECEC; color: #B23B36; }
+.ardot-timeline-head { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 0; margin-bottom: 2px; }
+.ardot-timeline-title { font-size: 0.95rem; font-weight: 600; color: var(--text-heading); margin-top: 4px; }
+.ardot-changelog-foot {
+  margin: 34px 0 0;
+  padding: 16px 18px;
+  background: var(--brand-pale);
+  border-radius: 10px;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text-body);
+}
+.ardot-changelog-foot strong { color: var(--brand); font-weight: 600; }
+.ardot-changelog-foot a { color: var(--brand); text-decoration: underline; text-decoration-color: rgba(13, 92, 90, 0.35); }
+.ardot-changelog-foot a:hover { text-decoration-color: var(--brand); }
+.ardot-timeline-item ul { margin: 10px 0 0; padding-left: 20px; }
+.ardot-timeline-item li { margin: 5px 0; font-size: 0.92rem; color: var(--text-body); }
+.ardot-timeline-item li strong { color: var(--text-heading); font-weight: 600; }
+/* 列表项前缀：功能 / 修复 / 里程碑 */
+.ardot-timeline-item li[data-kind="feature"]::marker { color: var(--brand); }
+.ardot-timeline-item li[data-kind="fix"]::marker { color: #B23B36; }
+.ardot-timeline-item li[data-kind="milestone"]::marker { color: #8A5A2B; }
+@media (max-width: 640px) {
+  .ardot-timeline { padding-left: 22px; }
+  .ardot-timeline::before { left: 6px; }
+  .ardot-timeline-item::before { left: -22px; width: 10px; height: 10px; }
+  .ardot-timeline-item { padding-bottom: 26px; }
+}
+
 /* 关于本站 */
 .ardot-about-section {
   background: #fff;

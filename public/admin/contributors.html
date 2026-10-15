@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>贡献者管理 · 后台</title>
+<style>
+:root{--brand:#0D5C5A;--bg:#F7F5F0;--card:#fff;--line:#E8E4DB;--text:#4A5568;--red:#dc2626;--green:#059669}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:var(--brand);color:#fff;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+header h1{font-size:1.2rem;font-weight:600}
+header a{color:#b2d9d6;font-size:.85rem;text-decoration:none}
+header a:hover{color:#fff}
+header .who{margin-left:auto;font-size:.85rem;color:#e6f7ef}
+main{max-width:1080px;margin:0 auto;padding:2rem 1rem}
+h2{font-size:1.05rem;font-weight:600;color:var(--text);margin:1.4rem 0 .8rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;margin-bottom:.8rem}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid #f0ede6;vertical-align:middle}
+th{color:#94a3b8;font-weight:500;white-space:nowrap}
+.badge{padding:.1rem .55rem;border-radius:999px;font-size:.72rem;font-weight:600;display:inline-block}
+.badge.core{background:#e6f7ef;color:#0d7a52}
+.badge.content{background:#eef3fb;color:#3b6fb6}
+.badge.review{background:#fdf3e7;color:#b0731f}
+.badge.design{background:#f5edfb;color:#7a4bab}
+.badge.other{background:#f0ede6;color:#6b6455}
+.badge.off{background:#fee2e2;color:var(--red)}
+.btn{padding:.3rem .8rem;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--text)}
+.btn-primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+.btn-red{color:var(--red);border-color:var(--red)}
+.btn:hover{opacity:.85}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.7rem}
+.form-grid label{font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem}
+.form-grid input,.form-grid select,.form-grid textarea{width:100%;padding:.5rem .7rem;border:1px solid var(--line);border-radius:8px;font-size:.85rem;outline:none;font-family:inherit;background:#fff;color:var(--text)}
+.form-grid input:focus,.form-grid select:focus,.form-grid textarea:focus{border-color:var(--brand)}
+.form-grid .full{grid-column:1/-1}
+.form-actions{display:flex;gap:.6rem;margin-top:.9rem;flex-wrap:wrap;align-items:center}
+.err{color:var(--red);font-size:.8rem;min-height:1.1rem}
+.ok-msg{color:var(--green);font-size:.8rem}
+.hint{font-size:.8rem;color:#94a3b8;margin-bottom:.5rem}
+/* 实时预览（与前台贡献者卡片同款视觉） */
+.preview-wrap{display:flex;gap:1.2rem;flex-wrap:wrap;align-items:flex-start}
+.preview-card{flex:0 0 230px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:1.4rem 1rem;text-align:center;box-shadow:0 2px 10px rgba(13,92,90,.06)}
+.preview-card .avatar{width:52px;height:52px;border-radius:50%;margin:0 auto .6rem;display:flex;align-items:center;justify-content:center;font-size:1.25rem;font-weight:700;overflow:hidden}
+.preview-card .avatar img{width:100%;height:100%;object-fit:cover}
+.preview-card .name{font-size:.98rem;font-weight:700;color:var(--text)}
+.preview-card .pbadge{font-size:.7rem;font-weight:600;padding:2px 10px;border-radius:999px;display:inline-block;margin-top:4px}
+.preview-card .prole{font-size:.78rem;color:#94a3b8;margin-top:4px}
+.preview-card .pdesc{font-size:.78rem;color:#94a3b8;line-height:1.55;margin-top:6px}
+.preview-card .pmeta{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.preview-card .pcount{font-size:.75rem;background:var(--brand-pale,#e6f2f0);color:var(--brand);padding:2px 10px;border-radius:12px;display:inline-block}
+.preview-card .pjoin{font-size:.7rem;color:#94a3b8}
+@media (max-width:640px){ th,td{padding:.4rem .35rem} .btn{padding:.25rem .5rem} }
+</style>
+</head>
+<body>
+<script src="/admin/auth-check.js"></script>
+<header>
+  <h1>🌟 贡献者管理</h1>
+  <a href="/">← 回站点</a>
+  <a href="/admin/index.html">课程管理</a>
+  <span class="who" id="who"></span>
+  <a href="javascript:;" onclick="logout()">退出</a>
+</header>
+<main>
+  <h2>贡献者列表</h2>
+  <div class="card" id="list"><div class="hint">加载中…</div></div>
+
+  <h2 id="formTitle">添加贡献者</h2>
+  <div class="card preview-wrap">
+    <div style="flex:1;min-width:300px;">
+      <div class="form-grid">
+        <div><label>姓名 *</label><input id="fName" maxlength="20" placeholder="如：杨彬" oninput="renderPreview()"></div>
+        <div><label>头像 URL（留空用首字色块）</label><input id="fAvatar" placeholder="https://… 或 /avatars/x.png" oninput="renderPreview()"></div>
+        <div><label>头衔 / 角色</label><input id="fRole" maxlength="30" placeholder="如：创始人 / 全栈开发" oninput="renderPreview()"></div>
+        <div><label>贡献类型 *</label>
+          <select id="fType" onchange="renderPreview()">
+            <option value="core">核心建设</option>
+            <option value="content" selected>内容贡献</option>
+            <option value="review">内容审校</option>
+            <option value="design">设计支持</option>
+            <option value="other">其他贡献</option>
+          </select>
+        </div>
+        <div><label>贡献数</label><input id="fCount" type="number" min="0" max="100000" value="0" oninput="renderPreview()"></div>
+        <div><label>排序权重（大在前）</label><input id="fWeight" type="number" min="0" max="10000" value="50" oninput="renderPreview()"></div>
+        <div><label>加入时间</label><input id="fJoined" type="date" onchange="renderPreview()"></div>
+        <div class="full"><label>贡献说明（≤120 字）</label><textarea id="fDesc" rows="2" maxlength="120" placeholder="一句话介绍 TA 做了什么" oninput="renderPreview()"></textarea></div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-primary" id="submitBtn" onclick="submitForm()">保存</button>
+        <button class="btn" id="resetBtn" onclick="resetForm()" style="display:none;">取消编辑</button>
+        <span class="err" id="formErr"></span>
+        <span class="ok-msg" id="formOk"></span>
+      </div>
+    </div>
+    <div class="preview-card" id="preview"></div>
+  </div>
+</main>
+
+<script>
+var API='/api/contributors';
+var TYPE_LABEL={core:'核心建设',content:'内容贡献',review:'内容审校',design:'设计支持',other:'其他贡献'};
+var list=[]; var editingId=null;
+document.getElementById('who').textContent=(window.ADMIN?window.ADMIN.username:'')+' · '+(window.ADMIN&&window.ADMIN.role===2?'二级管理员':'一级管理员');
+function esc(s){var d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML;}
+function call(action,extra){
+  return fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({action:action,token:window.ADMIN.token},extra||{}))})
+    .then(function(r){return r.json().then(function(d){return {status:r.status,d:d};});});
+}
+function hue(name){var h=0;name=String(name||'');for(var i=0;i<name.length;i++)h=(h*31+name.charCodeAt(i))%360;return h;}
+function formItem(){
+  return {
+    name:document.getElementById('fName').value.trim(),
+    avatar:document.getElementById('fAvatar').value.trim(),
+    role:document.getElementById('fRole').value.trim(),
+    type:document.getElementById('fType').value,
+    desc:document.getElementById('fDesc').value.trim(),
+    count:Number(document.getElementById('fCount').value)||0,
+    weight:Number(document.getElementById('fWeight').value)||0,
+    joinedAt:document.getElementById('fJoined').value||''
+  };
+}
+function renderPreview(){
+  var c=formItem();
+  var av=c.avatar
+    ? '<img src="'+esc(c.avatar)+'" alt="" onerror="this.style.display=\'none\'">'
+    : esc((c.name||'?').slice(0,1));
+  var avStyle=c.avatar?'':'background:hsl('+hue(c.name)+',32%,92%);color:hsl('+hue(c.name)+',45%,30%);';
+  document.getElementById('preview').innerHTML=
+    '<div class="avatar" style="'+avStyle+'">'+av+'</div>'+
+    '<div class="name">'+(esc(c.name)||'姓名')+'</div>'+
+    '<span class="pbadge" style="background:#eef3fb;color:#3b6fb6;">'+TYPE_LABEL[c.type]+'</span>'+
+    (c.role?'<div class="prole">'+esc(c.role)+'</div>':'')+
+    (c.desc?'<div class="pdesc">'+esc(c.desc)+'</div>':'')+
+    '<div class="pmeta"><span class="pcount">'+(c.count||0)+' 项贡献</span>'+(c.joinedAt?'<span class="pjoin">'+esc(c.joinedAt)+' 加入</span>':'')+'</div>';
+}
+renderPreview();
+function loadList(){
+  call('listAll').then(function(res){
+    if(res.d.error){ document.getElementById('list').innerHTML='<div class="hint">'+esc(res.d.error)+'</div>'; return; }
+    list=res.d.contributors||[];
+    var rows=list.map(function(c){
+      var b='<span class="badge '+esc(c.type||'other')+'">'+(TYPE_LABEL[c.type]||c.type)+'</span>';
+      var st=c.hidden?'<span class="badge off">已下线</span>':'<span class="badge core">展示中</span>';
+      return '<tr>'
+        +'<td>'+esc(c.name)+'</td><td>'+b+'</td><td>'+esc(c.role||'-')+'</td>'
+        +'<td>'+(c.count||0)+'</td><td>'+(c.weight||0)+'</td><td>'+esc(c.joinedAt||'—')+'</td>'
+        +'<td>'+st+'</td>'
+        +'<td style="white-space:nowrap;">'
+        +'<button class="btn" onclick="startEdit(\''+c.id+'\')">编辑</button> '
+        +'<button class="btn" onclick="toggleItem(\''+c.id+'\')">'+(c.hidden?'恢复':'下线')+'</button> '
+        +'<button class="btn btn-red" onclick="removeItem(\''+c.id+'\',\''+esc(c.name)+'\')">删除</button>'
+        +'</td></tr>';
+    }).join('');
+    document.getElementById('list').innerHTML='<table><thead><tr><th>姓名</th><th>类型</th><th>头衔</th><th>贡献数</th><th>权重</th><th>加入时间</th><th>状态</th><th>操作</th></tr></thead><tbody>'+rows+'</tbody></table>';
+  });
+}
+function startEdit(id){
+  var c=list.find(function(x){return x.id===id;}); if(!c) return;
+  editingId=id;
+  document.getElementById('formTitle').textContent='编辑：'+c.name;
+  document.getElementById('fName').value=c.name||'';
+  document.getElementById('fAvatar').value=c.avatar||'';
+  document.getElementById('fRole').value=c.role||'';
+  document.getElementById('fType').value=c.type||'content';
+  document.getElementById('fDesc').value=c.desc||'';
+  document.getElementById('fCount').value=c.count||0;
+  document.getElementById('fWeight').value=c.weight||0;
+  document.getElementById('fJoined').value=c.joinedAt||'';
+  document.getElementById('resetBtn').style.display='';
+  document.getElementById('formErr').textContent='';
+  document.getElementById('formOk').textContent='';
+  renderPreview();
+  window.scrollTo({top:document.getElementById('formTitle').offsetTop-80,behavior:'smooth'});
+}
+function resetForm(){
+  editingId=null;
+  ['fName','fAvatar','fRole','fDesc','fJoined'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('fType').value='content';
+  document.getElementById('fCount').value=0;
+  document.getElementById('fWeight').value=50;
+  document.getElementById('formTitle').textContent='添加贡献者';
+  document.getElementById('resetBtn').style.display='none';
+  document.getElementById('formErr').textContent='';
+  document.getElementById('formOk').textContent='';
+  renderPreview();
+}
+function submitForm(){
+  var err=document.getElementById('formErr'), ok=document.getElementById('formOk');
+  err.textContent=''; ok.textContent='';
+  var c=formItem();
+  if(!c.name){ err.textContent='请填写姓名'; return; }
+  var btn=document.getElementById('submitBtn'); btn.disabled=true;
+  var req=editingId
+    ? call('update',{id:editingId,patch:c})
+    : call('add',{item:c});
+  req.then(function(res){
+    btn.disabled=false;
+    if(res.d.error){ err.textContent=res.d.error; return; }
+    ok.textContent=editingId?'已更新 ✓':'已添加 ✓';
+    resetForm(); loadList();
+  }).catch(function(){ btn.disabled=false; err.textContent='网络错误，请重试'; });
+}
+function toggleItem(id){
+  call('toggle',{id:id}).then(function(res){ if(res.d.error){ alert(res.d.error); } loadList(); });
+}
+function removeItem(id,name){
+  if(!confirm('确认删除贡献者「'+name+'」？')) return;
+  call('remove',{id:id}).then(function(res){ if(res.d.error){ alert(res.d.error); } loadList(); });
+}
+loadList();
+</script>
+</body>
+</html>

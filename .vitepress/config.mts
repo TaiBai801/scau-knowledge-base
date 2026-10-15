@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   lang: 'zh-CN',
   title: '机电专业知识库',
-  description: '机电专业课程资源 · 五专业325门课程',
+  description: '机电专业课程资源 · 五专业 346+ 门课程 · 培养方案 / 组题练习 / 学习打卡 · 开放共享',
   head: [
     ['link', { rel: 'icon', href: '/emblem.png' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
@@ -14,7 +14,7 @@ export default defineConfig({
     ['meta', { 'http-equiv': 'Expires', content: '0' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: '机电专业知识库' }],
-    ['meta', { property: 'og:description', content: '机电专业课程资源 · 电子/电气/农机/农业工程四专业全覆盖 · 开放共享' }],
+    ['meta', { property: 'og:description', content: '机电专业课程资源 · 电子/电气/农机/农业工程/机器人工程五专业全覆盖 · 组题练习 · 学习打卡 · 开放共享' }],
     ['meta', { property: 'og:site_name', content: '机电专业知识库' }],
     ['script', { src: '/materials-loader.js', defer: '' }],
     ['script', { src: '/stats-loader.js', defer: '' }],
@@ -25,22 +25,31 @@ export default defineConfig({
     logo: '/emblem.png',
     nav: [
       { text: '首页', link: '/' },
-      { text: '课程总览', items: [
+      { text: '课程', items: [
         { text: '电子科学与技术', link: '/majors/dianzikexue/' },
         { text: '电气工程及其自动化', link: '/majors/dianqigongcheng/' },
         { text: '农业机械化及其自动化', link: '/majors/nongyejixiehua/' },
         { text: '农业工程', link: '/majors/nongyegongcheng/' },
         { text: '机器人工程', link: '/majors/jiqirengongcheng/' },
+        { text: '共享课程', link: '/majors/shared/' },
+        { text: '课程地图', link: '/map' },
+        { text: '转专业', link: '/transfer' },
       ]},
-      { text: '共享课程', link: '/majors/shared/' },
-      { text: '课程地图', link: '/map' },
-      { text: '「Ta说」', link: '/stories' },
-      { text: '组题练习', link: '/quiz' },
-      { text: '学习计划', link: '/plan' },
-      { text: '学习打卡', link: '/checkin' },
-      { text: '转专业', link: '/transfer' },
-      { text: '贡献指南', link: '/contribute' },
-      { text: '全导航', link: '/nav' },
+      { text: '学习', items: [
+        { text: '组题练习', link: '/quiz' },
+        { text: '学习计划', link: '/plan' },
+        { text: '学习打卡', link: '/checkin' },
+      ]},
+      { text: '社区', items: [
+        { text: '「Ta说」', link: '/stories' },
+        { text: '贡献者墙', link: '/contributors' },
+        { text: '贡献指南', link: '/contribute' },
+      ]},
+      { text: '关于', items: [
+        { text: '关于本站', link: '/about' },
+        { text: '更新日志', link: '/changelog' },
+        { text: '全导航', link: '/nav' },
+      ]},
     ],
     sidebar: (()=>{let s=(items)=>[{text:'',items}];
     let major_years=(base,years)=>years.map(y=>({

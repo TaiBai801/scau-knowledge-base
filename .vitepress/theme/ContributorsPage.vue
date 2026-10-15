@@ -1,12 +1,61 @@
 <script setup>
-const contributors = [
-  { name: '杨彬', role: '创始人 / 全栈开发', count: 346, avatar: '杨' },
-  { name: '17级张学长', role: '内容贡献', count: 8, avatar: '张' },
-  { name: '18级李学姐', role: '内容贡献', count: 5, avatar: '李' },
-  { name: '19级王学长', role: '内容贡献', count: 4, avatar: '王' },
-  { name: '20级陈学姐', role: '内容贡献', count: 3, avatar: '陈' },
-  { name: '20级刘学长', role: '内容贡献', count: 2, avatar: '刘' },
+// 贡献者墙 — 数据由 /api/contributors 下发（管理后台可增删改/排序/隐藏）
+// SSR 兜底：以下种子在构建期渲染，页面加载后再以云端数据替换（与 data/contributors.json 同源）
+import { ref, computed, onMounted } from 'vue'
+
+const TYPE_LABEL = {
+  core: '核心建设',
+  content: '内容贡献',
+  review: '内容审校',
+  design: '设计支持',
+  other: '其他贡献',
+}
+const SITE_COURSES = 346
+
+const seed = [
+  { id: 'c1', name: '杨彬', avatar: '', role: '创始人 / 全栈开发', type: 'core', desc: '搭建全站架构与云函数体系，整理五专业培养方案与课程资料', count: 346, weight: 100, joinedAt: '2026-07-01' },
+  { id: 'c2', name: '17级张学长', avatar: '', role: '内容贡献', type: 'content', desc: '', count: 8, weight: 90, joinedAt: '' },
+  { id: 'c3', name: '18级李学姐', avatar: '', role: '内容贡献', type: 'content', desc: '', count: 5, weight: 80, joinedAt: '' },
+  { id: 'c4', name: '19级王学长', avatar: '', role: '内容贡献', type: 'content', desc: '', count: 4, weight: 70, joinedAt: '' },
+  { id: 'c5', name: '20级陈学姐', avatar: '', role: '内容贡献', type: 'content', desc: '', count: 3, weight: 60, joinedAt: '' },
+  { id: 'c6', name: '20级刘学长', avatar: '', role: '内容贡献', type: 'content', desc: '', count: 2, weight: 50, joinedAt: '' },
 ]
+
+const contributors = ref(seed)
+
+const totalContrib = computed(() =>
+  contributors.value.reduce((s, c) => s + (Number(c.count) || 0), 0)
+)
+
+function initial(name) {
+  return (name || '?').trim().slice(0, 1) || '?'
+}
+// 由姓名哈希生成稳定的头像底色（品牌色系邻近色，保持 Ardot 调性）
+function hueOf(name) {
+  let h = 0
+  for (const ch of String(name || '')) h = (h * 31 + ch.codePointAt(0)) % 360
+  return h
+}
+function avatarStyle(c) {
+  if (c.avatar) return {}
+  const h = hueOf(c.name)
+  return { background: `hsl(${h}, 32%, 92%)`, color: `hsl(${h}, 45%, 30%)` }
+}
+function typeLabel(t) { return TYPE_LABEL[t] || TYPE_LABEL.other }
+
+onMounted(async () => {
+  try {
+    const r = await fetch('/api/contributors', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ action: 'list' }),
+    })
+    const d = await r.json().catch(() => ({}))
+    if (r.ok && Array.isArray(d.contributors) && d.contributors.length) {
+      contributors.value = d.contributors
+    }
+  } catch (e) { /* 网络失败时保留种子数据 */ }
+})
 </script>
 
 <template>
@@ -22,16 +71,22 @@ const contributors = [
     <div class="ardot-page-inner">
       <div class="ardot-contrib-stats">
         <div><div class="num">{{ contributors.length }}</div><div class="label">贡献者</div></div>
-        <div><div class="num">368</div><div class="label">贡献内容</div></div>
-        <div><div class="num">346</div><div class="label">覆盖课程</div></div>
+        <div><div class="num">{{ totalContrib }}</div><div class="label">贡献内容</div></div>
+        <div><div class="num">{{ SITE_COURSES }}+</div><div class="label">覆盖课程</div></div>
       </div>
 
       <div class="ardot-contrib-grid">
-        <article v-for="c in contributors" :key="c.name" class="ardot-contrib-card">
-          <div class="ardot-contrib-avatar">{{ c.avatar }}</div>
+        <article v-for="c in contributors" :key="c.id || c.name" class="ardot-contrib-card">
+          <img v-if="c.avatar" class="ardot-contrib-avatar is-img" :src="c.avatar" :alt="c.name" loading="lazy">
+          <div v-else class="ardot-contrib-avatar" :style="avatarStyle(c)">{{ initial(c.name) }}</div>
           <div class="ardot-contrib-name">{{ c.name }}</div>
-          <div class="ardot-contrib-role">{{ c.role }}</div>
-          <div class="ardot-contrib-count">{{ c.count }} 项贡献</div>
+          <span class="ardot-contrib-badge" :data-type="c.type || 'other'">{{ typeLabel(c.type) }}</span>
+          <div v-if="c.role" class="ardot-contrib-role">{{ c.role }}</div>
+          <div v-if="c.desc" class="ardot-contrib-desc">{{ c.desc }}</div>
+          <div class="ardot-contrib-meta">
+            <span class="ardot-contrib-count">{{ c.count }} 项贡献</span>
+            <span v-if="c.joinedAt" class="ardot-contrib-join">{{ c.joinedAt }} 加入</span>
+          </div>
         </article>
       </div>
     </div>

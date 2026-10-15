@@ -1,0 +1,166 @@
+{
+  "version": 1,
+  "updatedAt": "2026-10-15",
+  "releases": [
+    {
+      "version": "v1.10.0",
+      "date": "2026-10-15",
+      "kind": "milestone",
+      "title": "导航重构 · 贡献者墙改版 · 站点介绍更新",
+      "items": [
+        { "kind": "feature", "text": "**导航栏重构**：原 11 项平铺入口按功能与受众重组为「课程 / 学习 / 社区 / 关于」四组下拉，移动端自动折叠为汉堡菜单，层级由 1 级变 2 级" },
+        { "kind": "feature", "text": "**贡献者墙改版**：改为结构化数据模型（头像 / 昵称 / 角色 / 贡献类型 / 贡献说明 / 贡献数 / 排序权重 / 加入时间 / 隐藏状态），数据存于 COS，由云函数下发" },
+        { "kind": "feature", "text": "新增贡献者管理后台（增删改查 + 排序 + 上下线 + 实时预览），操作全部写入审计日志" },
+        { "kind": "feature", "text": "重写「关于本站」，同步五专业 346+ 门课程、组题题库、学习计划、学习打卡等当前站点状态" },
+        { "kind": "feature", "text": "新增「更新日志 / 发展历程」页面，按版本号倒序记录功能变更、重要修复与里程碑" },
+        { "kind": "fix", "text": "修复贡献者页展示混乱：组件未在主题注册，且 Markdown 中内嵌的原始 HTML 被当作代码块渲染" }
+      ]
+    },
+    {
+      "version": "v1.9.1",
+      "date": "2026-10-15",
+      "kind": "fix",
+      "title": "打卡数据读取链路修复",
+      "items": [
+        { "kind": "fix", "text": "修复学习打卡统计与列表恒为零：COS 读取函数已解构出 data，业务层又多取了一层 data.data" }
+      ]
+    },
+    {
+      "version": "v1.9.0",
+      "date": "2026-10-15",
+      "kind": "feature",
+      "title": "学生账密系统 + 学习打卡",
+      "items": [
+        { "kind": "feature", "text": "学生账号体系上线：注册 / 登录 / 修改密码，密码经 scrypt 随机盐哈希存储，不做明文落盘" },
+        { "kind": "feature", "text": "学习打卡：每日打卡、连续天数、年度热力图、个人统计，数据云端同步" },
+        { "kind": "feature", "text": "新增学习排行榜入口占位" },
+        { "kind": "fix", "text": "修复 deleteDay 分支变量未声明，删除打卡记录时报 500 而非 404" },
+        { "kind": "milestone", "text": "安全加固：账号、打卡等敏感数据文件改走 COS 签名读通道，并置为私有读 ACL" }
+      ]
+    },
+    {
+      "version": "v1.8.1",
+      "date": "2026-10-12",
+      "kind": "fix",
+      "title": "后台权限链路两处修复",
+      "items": [
+        { "kind": "fix", "text": "修复二级管理员被 403 误拒：角色字段在链路中混用字符串与数字，严格比较不通过；全链路统一转数字" },
+        { "kind": "fix", "text": "修复二级管理员看不到「管理员管理」与操作日志入口：入口插入脚本的目标串未匹配，替换静默失败" }
+      ]
+    },
+    {
+      "version": "v1.8.0",
+      "date": "2026-10-12",
+      "kind": "feature",
+      "title": "后台账号分级 + 操作审计",
+      "items": [
+        { "kind": "feature", "text": "后台账号分为一级 / 二级管理员，敏感操作按等级放行" },
+        { "kind": "feature", "text": "操作审计日志：登录、增删管理员、内容变更全部留痕，可按操作类型追溯" },
+        { "kind": "milestone", "text": "管理后台由「前端 prompt 口令」正式升级为令牌鉴权（stateless HMAC 令牌 + 有效期）" }
+      ]
+    },
+    {
+      "version": "v1.7.0",
+      "date": "2026-10-11",
+      "kind": "feature",
+      "title": "组题进阶 · 课程知识图谱",
+      "items": [
+        { "kind": "feature", "text": "组题支持按章节抽题，并给出知识点掌握度分析" },
+        { "kind": "feature", "text": "学习计划书支持多课程混排，新增考试倒计时" },
+        { "kind": "feature", "text": "131 门课程知识章节大纲 + 14 门核心课种子题库 421 题入库" },
+        { "kind": "feature", "text": "新增课程聚类交叉索引，跨专业查找共享课程更顺手" }
+      ]
+    },
+    {
+      "version": "v1.6.0",
+      "date": "2026-10-08",
+      "kind": "feature",
+      "title": "组题练习与学习计划书",
+      "items": [
+        { "kind": "feature", "text": "组题练习页面上线，可按课程、题型、难度自由组卷" },
+        { "kind": "feature", "text": "学习计划书生成，配合题库录入后台使用" }
+      ]
+    },
+    {
+      "version": "v1.5.1",
+      "date": "2026-10-01",
+      "kind": "fix",
+      "title": "课件在线预览链路修复",
+      "items": [
+        { "kind": "fix", "text": "Office 与 PDF 预览统一改走腾讯云数据万象文档预览，输出 HTML 而非 PDF，解决部分 PDF 渲染异常" },
+        { "kind": "fix", "text": "修复 COS 签名参数名大小写与 key 路径编码问题导致的 SignatureDoesNotMatch" }
+      ]
+    },
+    {
+      "version": "v1.5.0",
+      "date": "2026-09-08",
+      "kind": "feature",
+      "title": "抽奖与资料悬赏云端同步",
+      "items": [
+        { "kind": "feature", "text": "抽奖状态云端共享，采用 ETag 乐观锁避免并发覆盖" },
+        { "kind": "feature", "text": "资料悬赏支持审核、点赞与排序" }
+      ]
+    },
+    {
+      "version": "v1.4.0",
+      "date": "2026-07-31",
+      "kind": "milestone",
+      "title": "五专业培养方案全部上线",
+      "items": [
+        { "kind": "milestone", "text": "机电学院五个专业培养方案共 425 页整理入库，覆盖大一至大四全部学期" }
+      ]
+    },
+    {
+      "version": "v1.3.0",
+      "date": "2026-07-11",
+      "kind": "feature",
+      "title": "Ardot 视觉重建 + 共享课程页",
+      "items": [
+        { "kind": "feature", "text": "全站视觉按 Ardot 设计系统重建：品牌色 #0D5C5A、Crimson Pro 标题字、统一圆角与阴影" },
+        { "kind": "feature", "text": "新增共享课程页，跨专业公共课集中呈现" }
+      ]
+    },
+    {
+      "version": "v1.2.0",
+      "date": "2026-06-07",
+      "kind": "feature",
+      "title": "首批课程资料 + 移动端体验修复",
+      "items": [
+        { "kind": "feature", "text": "上传大一上 5 门课程复习资料（C 语言 / 思修 / 近代史 / 高数 / 英语）" },
+        { "kind": "fix", "text": "修复移动端菜单宽度溢出与全站横向滚动，限制 100vw 并关闭横向溢出" }
+      ]
+    },
+    {
+      "version": "v1.1.0",
+      "date": "2026-06-06",
+      "kind": "feature",
+      "title": "管理后台与安全加固",
+      "items": [
+        { "kind": "feature", "text": "管理后台上线，含课程任务分配表与全导航页" },
+        { "kind": "fix", "text": "修复移动端菜单黑屏与层级冲突，改用样式优化替代直接隐藏" },
+        { "kind": "fix", "text": "P0 安全修复：移除仓库内 API 密钥文件、补充 XSS 防护、清理重复 CSS 规则" },
+        { "kind": "milestone", "text": "开启死链检测，全站 0 断链验证通过" }
+      ]
+    },
+    {
+      "version": "v1.0.0",
+      "date": "2026-06-05",
+      "kind": "milestone",
+      "title": "四大专业课程框架与全站基础能力",
+      "items": [
+        { "kind": "milestone", "text": "按培养方案补齐四大专业八学期全部课程：电子 93 + 农机 82 + 电气 85 + 农业工程 86 = 346 门" },
+        { "kind": "feature", "text": "主题与暗黑模式、课程地图、「Ta说」聚合、贡献者墙、PWA、SEO 一次性到位" },
+        { "kind": "feature", "text": "接入 GitHub Actions，推送即自动部署" }
+      ]
+    },
+    {
+      "version": "v0.1.0",
+      "date": "2026-06-04",
+      "kind": "milestone",
+      "title": "站点诞生",
+      "items": [
+        { "kind": "milestone", "text": "机电学院知识库 VitePress 站点初始化，第一版仓库建立" }
+      ]
+    }
+  ]
+}

@@ -4,6 +4,8 @@ import CourseDetail from './CourseDetail.vue'
 import BountySection from './BountySection.vue'
 import Quiz from './Quiz.vue'
 import StudyPlan from './StudyPlan.vue'
+import ContributorsPage from './ContributorsPage.vue'
+import ChangelogPage from './ChangelogPage.vue'
 import AuthPanel from './AuthPanel.vue'
 import Checkin from './Checkin.vue'
 import './style.css'
@@ -16,6 +18,8 @@ export default {
     app.component('BountySection', BountySection)
     app.component('Quiz', Quiz)
     app.component('StudyPlan', StudyPlan)
+    app.component('ContributorsPage', ContributorsPage)
+    app.component('ChangelogPage', ChangelogPage)
     app.component('AuthPanel', AuthPanel)
     app.component('Checkin', Checkin)
   },
