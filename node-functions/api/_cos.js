@@ -81,13 +81,41 @@ export async function readJsonWithEtag(key) {
   return { data, etag };
 }
 
+// ── 签名读取（用于已设为私有读的敏感文件：admins.json / users.json / audit-log.json / checkins.json）──
+// 说明：COS 私有对象要求请求带签名；而带签名访问「公开」对象同样被接受，故可安全统一使用。
+function signedHeaders(method, key) {
+  return { host: HOST, authorization: cosAuth(method, key) };
+}
+
+export async function readJsonSigned(key) {
+  const res = await fetch(`https://${HOST}/${key}`, {
+    cache: 'no-store',
+    headers: signedHeaders('get', key),
+  });
+  if (!res.ok) return null;
+  return await res.json();
+}
+
+export async function readJsonWithEtagSigned(key) {
+  const res = await fetch(`https://${HOST}/${key}`, {
+    cache: 'no-store',
+    headers: signedHeaders('get', key),
+  });
+  if (!res.ok) return { data: null, etag: null };
+  const data = await res.json();
+  const etag = res.headers.get('etag') || res.headers.get('ETag') || null;
+  return { data, etag };
+}
+
 // 带条件的写入：有 etag 用 If-Match（防止覆盖他人改动），无 etag 用 If-None-Match:*（仅首次创建）
-export async function writeJsonIfMatch(key, data, etag) {
+// acl: 可选，如 'private' —— 写入时同时设定对象 ACL（用于收紧敏感数据文件的公开读）
+export async function writeJsonIfMatch(key, data, etag, acl) {
   const headers = {
     host: HOST,
     authorization: cosAuth('put', key),
     'content-type': 'application/json',
   };
+  if (acl) headers['x-cos-acl'] = acl;
   if (etag) headers['if-match'] = etag;
   else headers['if-none-match'] = '*';
   const res = await fetch(`https://${HOST}/${key}`, {

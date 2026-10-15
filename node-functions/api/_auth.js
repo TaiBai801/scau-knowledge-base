@@ -1,7 +1,7 @@
 // EdgeOne 云函数共享鉴权模块（非路由，供 auth.js 及其他云函数 import）
 // 密码：scrypt + 随机盐哈希；会话：无状态 HMAC-SHA256 token；审计：追加写 COS 日志
 import * as crypto from 'node:crypto';
-import { readJsonWithEtag, writeJsonIfMatch } from './_cos.js';
+import { readJsonWithEtagSigned, writeJsonIfMatch } from './_cos.js';
 
 const ADMIN_KEY = 'data/admins.json';
 const LOG_KEY = 'data/audit-log.json';
@@ -61,13 +61,13 @@ export function verifyToken(token) {
 // ── 审计日志（追加，失败不阻断主流程）──
 export async function auditLog(username, role, action, detail) {
   try {
-    const { data, etag } = await readJsonWithEtag(LOG_KEY);
+    const { data, etag } = await readJsonWithEtagSigned(LOG_KEY);
     const state = data || { logs: [] };
     const logs = Array.isArray(state.logs) ? state.logs : [];
     logs.unshift({ time: Date.now(), username, role, action, detail: detail || '' });
     if (logs.length > 2000) logs.length = 2000;
     state.logs = logs;
-    await writeJsonIfMatch(LOG_KEY, state, etag);
+    await writeJsonIfMatch(LOG_KEY, state, etag, 'private');
   } catch (e) {
     // 日志写入失败不影响业务操作
   }

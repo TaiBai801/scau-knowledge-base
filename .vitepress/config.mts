@@ -37,6 +37,7 @@ export default defineConfig({
       { text: '「Ta说」', link: '/stories' },
       { text: '组题练习', link: '/quiz' },
       { text: '学习计划', link: '/plan' },
+      { text: '学习打卡', link: '/checkin' },
       { text: '转专业', link: '/transfer' },
       { text: '贡献指南', link: '/contribute' },
       { text: '全导航', link: '/nav' },
