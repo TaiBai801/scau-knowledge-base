@@ -30,6 +30,23 @@ td{padding:0.5rem 0.75rem;font-size:0.85rem;border-bottom:1px solid var(--line)}
 .bar.v{background:var(--brand)}
 .bar.d{background:var(--amber)}
 .refresh{font-size:0.78rem;color:#94a3b8;margin-top:0.75rem}
+
+/* 总览 / 快照 */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.25rem;margin-top:1.5rem}
+.panel h2{font-size:1rem;font-weight:600;color:var(--brand);margin-bottom:0.6rem}
+.panel h3{font-size:0.88rem;font-weight:600;color:var(--brand);margin:1.1rem 0 0.5rem}
+.meta{font-size:0.78rem;color:#94a3b8;line-height:1.8;word-break:break-all}
+.meta b{color:var(--text);font-weight:500}
+.badges{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.5rem}
+.badge{font-size:0.7rem;padding:0.12rem 0.45rem;border-radius:999px;background:#eef4f4;color:var(--brand);border:1px solid #d3e4e3}
+.badge.seed{background:#fef3c7;color:#92400e;border-color:#fde68a}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:0.7rem;margin-top:0.9rem}
+.kpi{border:1px solid var(--line);border-radius:10px;padding:0.7rem 0.8rem;background:#fcfbf8}
+.kpi .v{font-size:1.35rem;font-weight:600;color:var(--brand);line-height:1.2}
+.kpi .k{font-size:0.74rem;color:#94a3b8;margin-top:0.2rem}
+.warn{margin-top:0.75rem;padding:0.55rem 0.75rem;border-radius:8px;background:#fef3c7;border:1px solid #fde68a;color:#92400e;font-size:0.78rem;line-height:1.7}
+.err{color:#dc2626;font-size:0.8rem}
+.empty{font-size:0.8rem;color:#94a3b8;padding:0.5rem 0}
 </style>
 </head>
 <body>
@@ -48,6 +65,23 @@ td{padding:0.5rem 0.75rem;font-size:0.85rem;border-bottom:1px solid var(--line)}
     <h2>最近 7 天趋势</h2>
     <div id="detailTable"></div>
     <div class="refresh" id="refreshTime"></div>
+  </div>
+
+  <div class="panel">
+    <h2>站点数据总览</h2>
+    <div class="meta" id="ovMeta">加载中…</div>
+    <div class="badges" id="ovBadges"></div>
+    <div class="warn" id="ovWarn" style="display:none"></div>
+    <div class="grid" id="ovCards"></div>
+    <h3>热门页面（近 7 天）</h3>
+    <div id="ovPaths"></div>
+  </div>
+
+  <div class="panel">
+    <h2>构建快照</h2>
+    <div class="meta" id="snapMeta">加载中…</div>
+    <div class="warn" id="snapWarn" style="display:none"></div>
+    <div class="grid" id="snapCards"></div>
   </div>
 </main>
 
@@ -99,7 +133,130 @@ function renderDetail(detail){
     '<table><thead><tr><th>日期</th><th>访问数</th><th>下载数</th></tr></thead><tbody>'+rows+'</tbody></table>';
 }
 
+/* ── 站点数据总览 ─────────────────────────────── */
+
+var SRC_ORDER = ['materials','bank','contributors','users','checkins','traffic'];
+var SRC_LABEL = {materials:'资料', bank:'题库', contributors:'贡献者', users:'学生账号', checkins:'打卡', traffic:'访问'};
+
+function num(v){ var x = Number(v); return isFinite(x) ? x : 0; }
+function fmt(v){ return num(v).toLocaleString('zh-CN'); }
+function kpi(v, k){
+  return '<div class="kpi"><div class="v">'+fmt(v)+'</div><div class="k">'+esc(k)+'</div></div>';
+}
+function showWarn(id, lines){
+  var el = document.getElementById(id);
+  if(!lines || !lines.length){ el.style.display = 'none'; el.innerHTML = ''; return; }
+  el.style.display = 'block';
+  el.innerHTML = lines.map(function(x){ return esc(x); }).join('<br>');
+}
+
+function loadOverview(){
+  fetch('/api/overview', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({action:'get'})
+  }).then(function(r){
+    var cache = r.headers.get('x-metrics-cache') || '—';
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json().then(function(d){ return {d:d, cache:cache}; });
+  }).then(function(x){
+    renderOverview(x.d, x.cache);
+  }).catch(function(e){
+    document.getElementById('ovMeta').innerHTML = '<span class="err">加载失败：'+esc(e.message||'网络错误')+'</span>';
+    document.getElementById('ovCards').innerHTML = '';
+    document.getElementById('ovPaths').innerHTML = '';
+  });
+}
+
+function renderOverview(d, cache){
+  var live = d.live || {};
+  var m = live.materials || {}, b = live.bank || {}, c = live.contributors || {};
+  var s = live.students || {}, ci = live.checkins || {};
+
+  document.getElementById('ovMeta').innerHTML =
+    '数据更新于 <b>' + esc(new Date(num(d.serverTime)).toLocaleString()) + '</b>' +
+    ' · 缓存 <b>' + esc(cache) + '</b>' +
+    ' · TTL <b>' + fmt(d.ttl) + ' 秒</b>';
+
+  var sources = d.sources || {};
+  document.getElementById('ovBadges').innerHTML = SRC_ORDER.map(function(k){
+    var v = sources[k] || 'seed';
+    return '<span class="badge '+(v === 'cos' ? '' : 'seed')+'">'+esc(SRC_LABEL[k])+' '+esc(v)+'</span>';
+  }).join('');
+
+  var warns = [];
+  if(d.partial === true){ warns.push('部分数据源读取失败，已回退到兜底快照：'); }
+  if(Array.isArray(d.warnings)) d.warnings.forEach(function(w){ warns.push('· ' + w); });
+  showWarn('ovWarn', warns);
+
+  document.getElementById('ovCards').innerHTML = [
+    kpi(m.items, '资料条目'),
+    kpi(m.courses, '资料课程数'),
+    kpi(b.questions, '题库题目'),
+    kpi(b.courses, '题库课程数'),
+    kpi(c.count, '贡献者人数'),
+    kpi(c.contributions, '贡献次数'),
+    kpi(s.registered, '注册学生'),
+    kpi(ci.participants, '打卡人数'),
+    kpi(ci.days, '累计打卡天数'),
+    kpi(ci.minutes, '累计学习分钟'),
+    kpi(ci.last7, '近 7 天打卡'),
+    kpi(ci.today, '今日打卡')
+  ].join('');
+
+  var paths = Array.isArray(live.topPaths) ? live.topPaths : [];
+  if(!paths.length){
+    document.getElementById('ovPaths').innerHTML = '<div class="empty">暂无访问明细（统计结构 v1 或无数据）</div>';
+  } else {
+    var rows = paths.map(function(p){
+      return '<tr><td>'+esc(p.path)+'</td><td>'+fmt(p.visits)+'</td></tr>';
+    }).join('');
+    document.getElementById('ovPaths').innerHTML =
+      '<table><thead><tr><th>路径</th><th>近 7 天访问</th></tr></thead><tbody>'+rows+'</tbody></table>';
+  }
+}
+
+/* ── 构建快照 ─────────────────────────────────── */
+
+function loadSnapshot(){
+  fetch('/data/site-metrics.json', {cache:'no-store'})
+    .then(function(r){
+      if(!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(renderSnapshot)
+    .catch(function(e){
+      document.getElementById('snapMeta').innerHTML = '<span class="err">读取失败：'+esc(e.message||'网络错误')+'</span>';
+      document.getElementById('snapCards').innerHTML = '';
+    });
+}
+
+function renderSnapshot(s){
+  var co = s.courses || {}, site = s.site || {};
+  var syl = (s.content && s.content.syllabus) || {};
+  var gen = s.generatedAt ? new Date(s.generatedAt).toLocaleString() : '—';
+  var hash = String(s.contentHash || '').replace(/^sha1:/, '').slice(0, 12) || '—';
+
+  document.getElementById('snapMeta').innerHTML =
+    '构建于 <b>' + esc(gen) + '</b> · 内容指纹 <b>' + esc(hash) + '</b>';
+
+  showWarn('snapWarn', Array.isArray(s.warnings) ? s.warnings : []);
+
+  document.getElementById('snapCards').innerHTML = [
+    kpi(co.planEntries, '收录课程（排课条目）'),
+    kpi(co.uniqueCodes, '唯一课程'),
+    kpi(co.pages, '课程页面'),
+    kpi(site.majors, '覆盖专业'),
+    kpi(site.semesterPages, '学期页面'),
+    kpi(site.stories, '学长分享'),
+    kpi(syl.points, '知识点数'),
+    kpi(syl.units, '章节数')
+  ].join('');
+}
+
 load();
+loadOverview();
+loadSnapshot();
 </script>
 </body>
 </html>
