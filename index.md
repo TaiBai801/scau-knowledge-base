@@ -22,7 +22,7 @@ features:
       dark: /icons/books-dark.svg
       alt: 课程
     title: 课程总览
-    details: 按专业和学期分类浏览五专业 325 门课程，找课只需三步。
+    details: 按专业和学期分类浏览五专业 [[m:courses.planEntries|plus]] 门课程，找课只需三步。
     link: /majors/dianzikexue/
   - icon:
       light: /icons/compass.svg
@@ -47,24 +47,7 @@ features:
     link: /contribute
 ---
 
-<div class="hero-stats">
-  <div class="hero-stat">
-    <div class="stat-num">325</div>
-    <div class="stat-label">收录课程</div>
-  </div>
-  <div class="hero-stat">
-    <div class="stat-num">5</div>
-    <div class="stat-label">覆盖专业</div>
-  </div>
-  <div class="hero-stat">
-    <div class="stat-num">9</div>
-    <div class="stat-label">学长分享</div>
-  </div>
-  <div class="hero-stat">
-    <div class="stat-num">∞</div>
-    <div class="stat-label">开放共享</div>
-  </div>
-</div>
+<HeroStats />
 
 <div class="search-hot" style="justify-content:center;margin-top:1.25rem;">
   <span>热门搜索：</span>

@@ -2,6 +2,7 @@
 // 贡献者墙 — 数据由 /api/contributors 下发（管理后台可增删改/排序/隐藏）
 // SSR 兜底：以下种子在构建期渲染，页面加载后再以云端数据替换（与 data/contributors.json 同源）
 import { ref, computed, onMounted } from 'vue'
+import { getMetric } from './composables/useSiteMetrics'
 
 const TYPE_LABEL = {
   core: '核心建设',
@@ -10,7 +11,8 @@ const TYPE_LABEL = {
   design: '设计支持',
   other: '其他贡献',
 }
-const SITE_COURSES = 346
+// 课程数不再写死：取构建期快照的「培养方案课程条目数」（对外 346+ 口径）
+const siteCourses = computed(() => getMetric('courses.planEntries'))
 
 const seed = [
   { id: 'c1', name: '杨彬', avatar: '', role: '创始人 / 全栈开发', type: 'core', desc: '搭建全站架构与云函数体系，整理五专业培养方案与课程资料', count: 346, weight: 100, joinedAt: '2026-07-01' },
@@ -72,7 +74,7 @@ onMounted(async () => {
       <div class="ardot-contrib-stats">
         <div><div class="num">{{ contributors.length }}</div><div class="label">贡献者</div></div>
         <div><div class="num">{{ totalContrib }}</div><div class="label">贡献内容</div></div>
-        <div><div class="num">{{ SITE_COURSES }}+</div><div class="label">覆盖课程</div></div>
+        <div><div class="num">{{ siteCourses }}+</div><div class="label">覆盖课程</div></div>
       </div>
 
       <div class="ardot-contrib-grid">

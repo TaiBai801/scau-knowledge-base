@@ -1,9 +1,101 @@
 import { defineConfig } from 'vitepress'
+import fs from 'node:fs'
+import path from 'node:path'
+import { execFileSync } from 'node:child_process'
+import { metricsTokenPlugin } from './markdown/metrics-token.mjs'
+
+// ────────────────────────────────────────────────────────────────
+// 构建期指标快照
+// 快照缺失、或源数据比快照新时，用子进程重跑生成器。
+// 之所以用 execFileSync 而不是 import：config.mts 会被 Vite 打包成
+// .vitepress/config.mts.timestamp-*.mjs，届时 import.meta.url 指向
+// .vitepress/ 而非项目根，路径会失真。
+// ────────────────────────────────────────────────────────────────
+const ROOT = process.cwd()
+const SNAPSHOT_PATH = path.join(ROOT, 'data', 'site-metrics.json')
+const WATCHED_SOURCES = [
+  'data/curriculum.json',
+  'data/bank.json',
+  'data/syllabus.json',
+  'data/course-index.json',
+  'data/materials.json',
+  'data/contributors.json',
+  'data/changelog.json',
+  'stories.md',
+]
+
+function loadMetrics(): any {
+  let needRun = !fs.existsSync(SNAPSHOT_PATH)
+  if (!needRun) {
+    try {
+      // 用快照文件的 mtime 判断新鲜度（生成器在「内容无变化」时会刷新 mtime
+      // 但不改 generatedAt，因此既不会每次重跑，也不会产生无意义的 git diff）
+      const generated = fs.statSync(SNAPSHOT_PATH).mtimeMs
+      // 先校验快照可解析，损坏则重建
+      JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf8'))
+      needRun = WATCHED_SOURCES.some((rel) => {
+        const p = path.join(ROOT, rel)
+        return fs.existsSync(p) && fs.statSync(p).mtimeMs > generated
+      })
+    } catch {
+      needRun = true
+    }
+  }
+  if (needRun) {
+    try {
+      execFileSync(process.execPath, [path.join(ROOT, 'scripts', 'site-metrics.mjs')], {
+        cwd: ROOT,
+        stdio: 'inherit',
+      })
+    } catch (e: any) {
+      console.warn('[metrics] 快照生成失败，沿用已有快照：' + (e && e.message))
+    }
+  }
+  try {
+    return JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf8'))
+  } catch {
+    console.warn('[metrics] 读不到 data/site-metrics.json，数字回退为 0')
+    return { courses: { planEntries: 0 }, site: {}, content: {}, seed: {} }
+  }
+}
+
+const METRICS = loadMetrics()
+
+function readSnapshot(key: string): number | null {
+  let cur: any = METRICS
+  for (const seg of key.split('.')) {
+    if (cur == null || typeof cur !== 'object') return null
+    cur = cur[seg]
+  }
+  return typeof cur === 'number' && Number.isFinite(cur) ? cur : null
+}
+
+// frontmatter 不经过 markdown 管道，令牌得在这里单独替换
+const FM_TOKEN_RE = /\[\[m:([A-Za-z0-9_.]+)(?:\|([a-z]+))?\]\]/g
+function fillTokensDeep(value: any): any {
+  if (typeof value === 'string') {
+    if (value.indexOf('[[m:') === -1) return value
+    return value.replace(FM_TOKEN_RE, (raw, key, fmt) => {
+      const v = readSnapshot(key)
+      if (v == null) {
+        console.warn(`[metrics] frontmatter 令牌 [[m:${key}]] 无法解析，已保留原样`)
+        return raw
+      }
+      return fmt === 'plus' ? `${v}+` : fmt === 'comma' ? v.toLocaleString('en-US') : String(v)
+    })
+  }
+  if (Array.isArray(value)) return value.map(fillTokensDeep)
+  if (value && typeof value === 'object') {
+    for (const k of Object.keys(value)) value[k] = fillTokensDeep(value[k])
+    return value
+  }
+  return value
+}
 
 export default defineConfig({
   lang: 'zh-CN',
   title: '机电专业知识库',
-  description: '机电专业课程资源 · 五专业 346+ 门课程 · 培养方案 / 组题练习 / 学习打卡 · 开放共享',
+  description: `机电专业课程资源 · 五专业 ${METRICS.courses?.planEntries ?? 0}+ 门课程 · 培养方案 / 组题练习 / 学习打卡 · 开放共享`,
   head: [
     ['link', { rel: 'icon', href: '/emblem.png' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
@@ -21,6 +113,16 @@ export default defineConfig({
   ],
   sitemap: { hostname: 'https://sicau-jdxy-resource.cn' },
   srcExclude: ['cloud-function/**', '**/node_modules/**'],
+  markdown: {
+    config: (md) => {
+      // 正文里的 [[m:key]] 在构建期替换为快照数字
+      md.use(metricsTokenPlugin as any, readSnapshot)
+    },
+  },
+  transformPageData(pageData) {
+    // frontmatter 里的令牌（如首页 features 文案）
+    if (pageData.frontmatter) fillTokensDeep(pageData.frontmatter)
+  },
   themeConfig: {
     logo: '/emblem.png',
     nav: [

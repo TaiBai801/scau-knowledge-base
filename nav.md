@@ -9,7 +9,7 @@
 <a href="/majors/nongyejixiehua/" class="nav-card">🚜 农业机械化及其自动化 (2个年级)</a>
 <a href="/majors/nongyegongcheng/" class="nav-card">🌾 农业工程 (2个年级)</a>
 <a href="/majors/jiqirengongcheng/" class="nav-card">🤖 机器人工程 (1个年级)</a>
-<a href="/majors/shared/" class="nav-card">📚 共享课程 · 通识/基础共51门</a>
+<a href="/majors/shared/" class="nav-card">📚 共享课程 · 通识/基础共[[m:courses.sharedPages]]门</a>
 <a href="/map" class="nav-card">🗺️ 课程地图</a>
 <a href="/transfer" class="nav-card">🔄 转专业</a>
 

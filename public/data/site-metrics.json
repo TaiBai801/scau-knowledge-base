@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 1,
+  "courses": {
+    "planEntries": 346,
+    "planEntriesSource": "data/curriculum.json",
+    "uniqueCodes": 325,
+    "names": 235,
+    "pages": 434,
+    "detailPages": 163,
+    "sharedPages": 271,
+    "clusters": 131
+  },
+  "site": {
+    "majors": 5,
+    "grades": 11,
+    "semesterPages": 88,
+    "overviewPages": 16,
+    "stories": 4,
+    "changelogReleases": 15,
+    "gradesByMajor": {
+      "dianqigongcheng": [
+        2024,
+        2025,
+        2026
+      ],
+      "dianzikexue": [
+        2024,
+        2025,
+        2026
+      ],
+      "jiqirengongcheng": [
+        2026
+      ],
+      "nongyegongcheng": [
+        2024,
+        2025
+      ],
+      "nongyejixiehua": [
+        2024,
+        2025
+      ]
+    }
+  },
+  "content": {
+    "syllabus": {
+      "courses": 131,
+      "units": 977,
+      "points": 4248
+    },
+    "bank": {
+      "courses": 14,
+      "questions": 421
+    },
+    "materials": {
+      "courses": 12,
+      "items": 59
+    },
+    "contributors": {
+      "count": 6,
+      "contributions": 368
+    }
+  },
+  "yearPlans": [
+    {
+      "slug": "dianqigongcheng",
+      "major": "电气工程及其自动化",
+      "year": 2024,
+      "courseCount": 99,
+      "credits": 173.5,
+      "hours": 2448,
+      "semesterCourseCounts": [
+        13,
+        11,
+        15,
+        18,
+        18,
+        19,
+        2,
+        3
+      ]
+    },
+    {
+      "slug": "dianqigongcheng",
+      "major": "电气工程及其自动化",
+      "year": 2025,
+      "courseCount": 100,
+      "credits": 174.5,
+      "hours": 2464,
+      "semesterCourseCounts": [
+        14,
+        11,
+        15,
+        18,
+        18,
+        19,
+        2,
+        3
+      ]
+    },
+    {
+      "slug": "dianqigongcheng",
+      "major": "电气工程及其自动化",
+      "year": 2026,
+      "courseCount": 86,
+      "credits": 160,
+      "hours": 2176,
+      "semesterCourseCounts": [
+        15,
+        12,
+        14,
+        18,
+        9,
+        13,
+        3,
+        2
+      ]
+    },
+    {
+      "slug": "dianzikexue",
+      "major": "电子科学与技术",
+      "year": 2024,
+      "courseCount": 93,
+      "credits": 168.5,
+      "hours": 2352,
+      "semesterCourseCounts": [
+        13,
+        9,
+        13,
+        15,
+        18,
+        19,
+        3,
+        3
+      ]
+    },
+    {
+      "slug": "dianzikexue",
+      "major": "电子科学与技术",
+      "year": 2025,
+      "courseCount": 94,
+      "credits": 169.5,
+      "hours": 2368,
+      "semesterCourseCounts": [
+        14,
+        9,
+        13,
+        15,
+        18,
+        19,
+        3,
+        3
+      ]
+    },
+    {
+      "slug": "dianzikexue",
+      "major": "电子科学与技术",
+      "year": 2026,
+      "courseCount": 89,
+      "credits": 164,
+      "hours": 2272,
+      "semesterCourseCounts": [
+        15,
+        13,
+        11,
+        13,
+        17,
+        15,
+        3,
+        2
+      ]
+    },
+    {
+      "slug": "jiqirengongcheng",
+      "major": "机器人工程",
+      "year": 2026,
+      "courseCount": 81,
+      "credits": 157,
+      "hours": 2160,
+      "semesterCourseCounts": [
+        15,
+        12,
+        12,
+        13,
+        13,
+        11,
+        3,
+        2
+      ]
+    },
+    {
+      "slug": "nongyegongcheng",
+      "major": "农业工程",
+      "year": 2024,
+      "courseCount": 88,
+      "credits": 164,
+      "hours": 2264,
+      "semesterCourseCounts": [
+        13,
+        9,
+        16,
+        16,
+        17,
+        12,
+        3,
+        2
+      ]
+    },
+    {
+      "slug": "nongyegongcheng",
+      "major": "农业工程",
+      "year": 2025,
+      "courseCount": 89,
+      "credits": 165,
+      "hours": 2280,
+      "semesterCourseCounts": [
+        14,
+        9,
+        16,
+        16,
+        17,
+        12,
+        3,
+        2
+      ]
+    },
+    {
+      "slug": "nongyejixiehua",
+      "major": "农业机械化及其自动化",
+      "year": 2024,
+      "courseCount": 82,
+      "credits": 169,
+      "hours": 2344,
+      "semesterCourseCounts": [
+        14,
+        10,
+        13,
+        14,
+        13,
+        10,
+        5,
+        3
+      ]
+    },
+    {
+      "slug": "nongyejixiehua",
+      "major": "农业机械化及其自动化",
+      "year": 2025,
+      "courseCount": 83,
+      "credits": 170,
+      "hours": 2360,
+      "semesterCourseCounts": [
+        15,
+        10,
+        13,
+        14,
+        13,
+        10,
+        5,
+        3
+      ]
+    }
+  ],
+  "warnings": [],
+  "seed": {
+    "traffic": {
+      "today": {
+        "visits": 0,
+        "downloads": 0
+      },
+      "week": {
+        "visits": 0,
+        "downloads": 0
+      },
+      "month": {
+        "visits": 0,
+        "downloads": 0
+      },
+      "total": {
+        "visits": 0,
+        "downloads": 0
+      }
+    },
+    "students": {
+      "registered": 0
+    },
+    "checkins": {
+      "participants": 0,
+      "days": 0,
+      "minutes": 0,
+      "last7": 0,
+      "today": 0
+    },
+    "materials": {
+      "courses": 12,
+      "items": 59
+    },
+    "bank": {
+      "courses": 14,
+      "questions": 421
+    },
+    "contributors": {
+      "count": 6,
+      "contributions": 368
+    }
+  },
+  "generatedAt": "2026-10-17T08:02:21.251Z",
+  "contentHash": "sha1:0310dd879566c352f632023691c4d7bc4698a8af"
+}

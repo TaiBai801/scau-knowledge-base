@@ -8,6 +8,9 @@ import ContributorsPage from './ContributorsPage.vue'
 import ChangelogPage from './ChangelogPage.vue'
 import AuthPanel from './AuthPanel.vue'
 import Checkin from './Checkin.vue'
+import HeroStats from './components/HeroStats.vue'
+import MetricsPanel from './components/MetricsPanel.vue'
+import InlineMetric from './components/InlineMetric.vue'
 import './style.css'
 
 export default {
@@ -22,5 +25,8 @@ export default {
     app.component('ChangelogPage', ChangelogPage)
     app.component('AuthPanel', AuthPanel)
     app.component('Checkin', Checkin)
+    app.component('HeroStats', HeroStats)
+    app.component('MetricsPanel', MetricsPanel)
+    app.component('InlineMetric', InlineMetric)
   },
 }
