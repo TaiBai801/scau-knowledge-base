@@ -198,13 +198,24 @@
       // 下载埋点
       el.querySelectorAll('.dl-link').forEach(function (a) {
         a.addEventListener('click', function () {
+          var payload = { action: 'track', type: 'download', path: a.getAttribute('href') || '' };
+          function beacon() {
+            try {
+              if (navigator.sendBeacon) {
+                navigator.sendBeacon('/api/stats', new Blob([JSON.stringify(payload)], { type: 'application/json' }));
+              }
+            } catch (e) {}
+          }
           try {
             fetch('/api/stats', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ action: 'track', type: 'download' })
-            });
-          } catch (e) {}
+              body: JSON.stringify(payload),
+              keepalive: true
+            }).catch(beacon);
+          } catch (e) {
+            beacon();
+          }
         });
       });
     }).catch(function () {

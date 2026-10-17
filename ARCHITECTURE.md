@@ -45,8 +45,8 @@
 | `Layout.vue` | 全局布局 |
 | `index.ts` | 组件注册（`enhanceApp`，全局注册下面这些组件） |
 | `style.css` | 全局样式（Ardot 设计令牌） |
-| `CourseDetail.vue` / `SemesterList.vue` / `MajorOverview.vue` / `SharedCourses.vue` | 课程详情/学期列表/专业总览/共享课程 |
-| `MapPage.vue` / `StoriesPage.vue` / `AboutPage.vue` / `ContributePage.vue` / `ContributorsPage.vue` / `NotFoundPage.vue` | 各静态页面 |
+| `CourseDetail.vue` / `SemesterList.vue` / `SharedCourses.vue` | 课程详情/学期列表/共享课程 |
+| `ContributorsPage.vue` / `NotFoundPage.vue` | 各静态页面 |
 | `BackToTop.vue` / `CustomFooter.vue` | 返回顶部 / 页脚 |
 | `BountySection.vue` | 资料悬赏（首页，含输入/上墙/点赞/完成状态） |
 | `Quiz.vue` | 组题练习（随机组卷/判分/错题集） |

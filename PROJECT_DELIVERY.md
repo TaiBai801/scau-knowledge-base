@@ -65,14 +65,9 @@ D:\培养方案拓展/
 │       ├── CustomFooter.vue   # Ardot 风格页脚
 │       ├── BackToTop.vue      # 返回顶部按钮
 │       ├── SharedCourses.vue  # 共享课程页（Hero/搜索/筛选/网格）
-│       ├── MajorOverview.vue  # 专业总览页
 │       ├── CourseDetail.vue   # 课程详情页
 │       ├── SemesterList.vue   # 学期列表
-│       ├── MapPage.vue        # 课程地图
-│       ├── StoriesPage.vue    # 学长说
-│       ├── ContributePage.vue # 贡献指南
 │       ├── ContributorsPage.vue # 贡献者墙
-│       ├── AboutPage.vue      # 关于本站
 │       └── NotFoundPage.vue   # 404 页面
 ├── majors/                  # 课程页面（Markdown）
 │   ├── dianzikexue/          (8学期)
