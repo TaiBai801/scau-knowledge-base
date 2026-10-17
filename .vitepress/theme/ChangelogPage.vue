@@ -53,7 +53,7 @@ function segs(text) {
     <div class="ardot-page-inner">
       <span class="ardot-tag">更新日志</span>
       <h1>发展历程</h1>
-      <p>从 0 到 1 的每一步都记在这里 — 功能变更、重要修复与里程碑事件，按版本号倒序排列</p>
+      <p>从 0 到 1，只记与你有关的变化 — 新功能、体验优化与里程碑，按版本号倒序排列。后台维护与内部修复不在此公示。</p>
     </div>
   </div>
 
