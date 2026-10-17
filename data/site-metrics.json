@@ -56,8 +56,8 @@
       "items": 59
     },
     "contributors": {
-      "count": 6,
-      "contributions": 368
+      "count": 1,
+      "contributions": 346
     }
   },
   "yearPlans": [
@@ -299,10 +299,10 @@
       "questions": 421
     },
     "contributors": {
-      "count": 6,
-      "contributions": 368
+      "count": 1,
+      "contributions": 346
     }
   },
-  "generatedAt": "2026-10-17T08:45:01.922Z",
-  "contentHash": "sha1:e63d9cb640ef84fbd2922f44d58b855bd6aa6dbe"
+  "generatedAt": "2026-10-17T09:54:53.692Z",
+  "contentHash": "sha1:e0fd361d04a13ed18c6c5fb0cbdae7e1513f149c"
 }

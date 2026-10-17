@@ -1,8 +1,10 @@
 <script setup>
 // 贡献者墙 — 数据由 /api/contributors 下发（管理后台可增删改/排序/隐藏）
-// SSR 兜底：以下种子在构建期渲染，页面加载后再以云端数据替换（与 data/contributors.json 同源）
+// SSR 兜底：构建期直接读仓库里的 data/contributors.json 作为种子，
+// 与云端数据同构（含 hidden 标记），首屏只渲染未下线的条目，避免闪卡。
 import { ref, computed, onMounted } from 'vue'
 import { getMetric } from './composables/useSiteMetrics'
+import seedData from '../../data/contributors.json'
 
 const TYPE_LABEL = {
   core: '核心建设',
@@ -14,14 +16,9 @@ const TYPE_LABEL = {
 // 课程数不再写死：取构建期快照的「培养方案课程条目数」（对外 346+ 口径）
 const siteCourses = computed(() => getMetric('courses.planEntries'))
 
-const seed = [
-  { id: 'c1', name: '杨彬', avatar: '', role: '创始人 / 全栈开发', type: 'core', desc: '搭建全站架构与云函数体系，整理五专业培养方案与课程资料', count: 346, weight: 100, joinedAt: '2026-07-01' },
-  { id: 'c2', name: '17级张学长', avatar: '', role: '内容贡献', type: 'content', desc: '', count: 8, weight: 90, joinedAt: '' },
-  { id: 'c3', name: '18级李学姐', avatar: '', role: '内容贡献', type: 'content', desc: '', count: 5, weight: 80, joinedAt: '' },
-  { id: 'c4', name: '19级王学长', avatar: '', role: '内容贡献', type: 'content', desc: '', count: 4, weight: 70, joinedAt: '' },
-  { id: 'c5', name: '20级陈学姐', avatar: '', role: '内容贡献', type: 'content', desc: '', count: 3, weight: 60, joinedAt: '' },
-  { id: 'c6', name: '20级刘学长', avatar: '', role: '内容贡献', type: 'content', desc: '', count: 2, weight: 50, joinedAt: '' },
-]
+const seed = (seedData?.contributors || [])
+  .filter((c) => c && !c.hidden)
+  .sort((a, b) => (Number(b.weight) || 0) - (Number(a.weight) || 0))
 
 const contributors = ref(seed)
 

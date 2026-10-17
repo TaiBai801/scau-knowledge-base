@@ -24,7 +24,7 @@
       "count": 8,
       "weight": 90,
       "joinedAt": "",
-      "hidden": false
+      "hidden": true
     },
     {
       "id": "c3",
@@ -36,7 +36,7 @@
       "count": 5,
       "weight": 80,
       "joinedAt": "",
-      "hidden": false
+      "hidden": true
     },
     {
       "id": "c4",
@@ -48,7 +48,7 @@
       "count": 4,
       "weight": 70,
       "joinedAt": "",
-      "hidden": false
+      "hidden": true
     },
     {
       "id": "c5",
@@ -60,7 +60,7 @@
       "count": 3,
       "weight": 60,
       "joinedAt": "",
-      "hidden": false
+      "hidden": true
     },
     {
       "id": "c6",
@@ -72,7 +72,7 @@
       "count": 2,
       "weight": 50,
       "joinedAt": "",
-      "hidden": false
+      "hidden": true
     }
   ]
 }
