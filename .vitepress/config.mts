@@ -21,6 +21,7 @@ const WATCHED_SOURCES = [
   'data/materials.json',
   'data/contributors.json',
   'data/changelog.json',
+  'data/stories.json',
   'stories.md',
 ]
 
@@ -50,6 +51,40 @@ function loadMetrics(): any {
     } catch (e: any) {
       console.warn('[metrics] 快照生成失败，沿用已有快照：' + (e && e.message))
     }
+  }
+  // 知识点索引：缺失或比 syllabus 旧时重建（供 /search 联想检索）
+  try {
+    const kpPath = path.join(ROOT, 'public', 'data', 'kp-index.json')
+    const sylPath = path.join(ROOT, 'data', 'syllabus.json')
+    const kpStale =
+      !fs.existsSync(kpPath) ||
+      (fs.existsSync(sylPath) && fs.statSync(sylPath).mtimeMs > fs.statSync(kpPath).mtimeMs)
+    if (kpStale) {
+      execFileSync(process.execPath, [path.join(ROOT, 'scripts', 'gen-kp-index.mjs')], {
+        cwd: ROOT,
+        stdio: 'inherit',
+      })
+    }
+  } catch (e: any) {
+    console.warn('[kp-index] 生成失败，/search 将退化为仅按课程名检索：' + (e && e.message))
+  }
+  // 学期资料健康度索引：缺失或源数据更新时重建（供 semester-health.js 使用）
+  try {
+    const semPath = path.join(ROOT, 'public', 'data', 'semester-index.json')
+    const semStale =
+      !fs.existsSync(semPath) ||
+      ['data/materials.json', 'data/bank.json', 'data/syllabus.json'].some((rel) => {
+        const p = path.join(ROOT, rel)
+        return fs.existsSync(p) && fs.statSync(p).mtimeMs > fs.statSync(semPath).mtimeMs
+      })
+    if (semStale) {
+      execFileSync(process.execPath, [path.join(ROOT, 'scripts', 'gen-semester-index.mjs')], {
+        cwd: ROOT,
+        stdio: 'inherit',
+      })
+    }
+  } catch (e: any) {
+    console.warn('[semester-index] 生成失败，学期页将不显示资料健康度：' + (e && e.message))
   }
   try {
     return JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf8'))
@@ -110,6 +145,8 @@ export default defineConfig({
     ['meta', { property: 'og:site_name', content: '机电专业知识库' }],
     ['script', { src: '/materials-loader.js', defer: '' }],
     ['script', { src: '/stats-loader.js', defer: '' }],
+    ['script', { src: '/semester-health.js', defer: '' }],
+    ['script', { src: '/footprint-tracker.js', defer: '' }],
   ],
   sitemap: { hostname: 'https://sicau-jdxy-resource.cn' },
   srcExclude: ['cloud-function/**', '**/node_modules/**'],
@@ -138,9 +175,19 @@ export default defineConfig({
         { text: '转专业', link: '/transfer' },
       ]},
       { text: '学习', items: [
+        { text: '全站检索', link: '/search' },
         { text: '组题练习', link: '/quiz' },
+        { text: '考试冲刺', link: '/sprint' },
+        { text: '概念卡', link: '/cards' },
         { text: '学习计划', link: '/plan' },
+      ]},
+      { text: '我的', items: [
         { text: '学习打卡', link: '/checkin' },
+        { text: '学习足迹', link: '/footprint' },
+        { text: '专注计时', link: '/focus' },
+        { text: '学习周报', link: '/weekly' },
+        { text: '课程笔记', link: '/notes' },
+        { text: '错题本', link: '/wrong' },
       ]},
       { text: '社区', items: [
         { text: '「Ta说」', link: '/stories' },

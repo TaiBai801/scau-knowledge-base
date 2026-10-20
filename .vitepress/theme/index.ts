@@ -11,6 +11,17 @@ import Checkin from './Checkin.vue'
 import HeroStats from './components/HeroStats.vue'
 import MetricsPanel from './components/MetricsPanel.vue'
 import InlineMetric from './components/InlineMetric.vue'
+import KpSearch from './components/KpSearch.vue'
+import SprintPack from './components/SprintPack.vue'
+import FootprintPage from './components/FootprintPage.vue'
+import StoriesPage from './components/StoriesPage.vue'
+import FocusTimer from './components/FocusTimer.vue'
+import FocusPage from './components/FocusPage.vue'
+import WeeklyReport from './components/WeeklyReport.vue'
+import TodoList from './components/TodoList.vue'
+import NotePanel from './components/NotePanel.vue'
+import FlashCards from './components/FlashCards.vue'
+import WrongBook from './components/WrongBook.vue'
 import './style.css'
 
 export default {
@@ -28,5 +39,16 @@ export default {
     app.component('HeroStats', HeroStats)
     app.component('MetricsPanel', MetricsPanel)
     app.component('InlineMetric', InlineMetric)
+    app.component('KpSearch', KpSearch)
+    app.component('SprintPack', SprintPack)
+    app.component('FootprintPage', FootprintPage)
+    app.component('StoriesPage', StoriesPage)
+    app.component('FocusTimer', FocusTimer)
+    app.component('FocusPage', FocusPage)
+    app.component('WeeklyReport', WeeklyReport)
+    app.component('TodoList', TodoList)
+    app.component('NotePanel', NotePanel)
+    app.component('FlashCards', FlashCards)
+    app.component('WrongBook', WrongBook)
   },
 }

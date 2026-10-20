@@ -1,5 +1,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { trackFootprint } from './lib/footprint'
+import { recordAnswer } from './lib/spaced'
 
 // ============ 数据 ============
 const bank = ref({})          // { 课程名: { course, code, questions:[] } }
@@ -269,6 +271,15 @@ function submit() {
       wrong.push(q)
       wrongMap[q.id] = (wrongMap[q.id] || 0) + 1
     }
+    // 同步进错题本（kx_wrong_v2）：答错按遗忘曲线排期，答对推进已有错题的间隔
+    try {
+      recordAnswer({
+        qid: q.id,
+        course: config.value.course,
+        knowledge: q.knowledge,
+        correct: !!ok,
+      })
+    } catch (e) { /* 错题本写入失败不影响交卷 */ }
     // 知识点掌握度统计
     const ks = kstats[q.knowledge] || { r: 0, w: 0 }
     if (ok) ks.r++; else ks.w++
@@ -283,6 +294,11 @@ function submit() {
   setWrongMap(wrongMap)
   saveKStats(kstats)
   kstatsTick.value++
+
+  // 记一条学习足迹（做题数），供周报与足迹页汇总
+  try {
+    trackFootprint({ kind: 'quiz', course: config.value.course, n: total })
+  } catch (e) { /* 埋点失败不影响交卷 */ }
 
   pushHistory({
     course: config.value.course,

@@ -16,7 +16,7 @@
     "semesterPages": 88,
     "overviewPages": 16,
     "stories": 4,
-    "changelogReleases": 11,
+    "changelogReleases": 12,
     "gradesByMajor": {
       "dianqigongcheng": [
         2024,
@@ -303,6 +303,6 @@
       "contributions": 346
     }
   },
-  "generatedAt": "2026-10-17T09:54:53.692Z",
-  "contentHash": "sha1:e0fd361d04a13ed18c6c5fb0cbdae7e1513f149c"
+  "generatedAt": "2026-10-20T13:40:08.674Z",
+  "contentHash": "sha1:2aae04c6eb57558c64f83cc8c13b47c426d5152c"
 }
