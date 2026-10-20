@@ -26,7 +26,7 @@ import crypto from 'node:crypto'
 const SNAPSHOT_REL = 'data/site-metrics.json'
 const PUBLIC_SNAPSHOT_REL = 'public/data/site-metrics.json'
 // 需要从 data/ 同步到 public/data/ 的运行时数据副本
-const SYNC_FILES = ['bank.json', 'syllabus.json', 'course-index.json']
+const SYNC_FILES = ['bank.json', 'syllabus.json', 'course-index.json', 'cards.json']
 
 /* ─────────────────────────── 基础工具 ─────────────────────────── */
 
@@ -172,9 +172,16 @@ export function collectMetrics(root) {
     )
   }
 
-  /* ⑤ 学长说：严格匹配 class="ta-card"，避免 ta-card-hero 误命中 */
-  const storiesMd = readTextSafe(root, 'stories.md', warnings)
-  const stories = (storiesMd.match(/class="ta-card"/g) || []).length
+  /* ⑤ 学长说：优先读结构化 data/stories.json（四问模板），
+        缺失时退回数 stories.md 里的 class="ta-card"（兼容旧结构） */
+  const storiesJson = readJsonSafe(root, 'data/stories.json', warnings)
+  let stories = 0
+  if (Array.isArray(storiesJson?.stories)) {
+    stories = storiesJson.stories.length
+  } else {
+    const storiesMd = readTextSafe(root, 'stories.md', warnings)
+    stories = (storiesMd.match(/class="ta-card"/g) || []).length
+  }
 
   /* ⑥ 更新日志版本数 */
   const changelog = readJsonSafe(root, 'data/changelog.json', warnings)
