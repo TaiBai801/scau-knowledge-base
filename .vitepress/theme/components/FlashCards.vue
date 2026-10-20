@@ -19,6 +19,8 @@ const DAY = 86400000
 // 秒答连对 1 次 → 2 天，2 次 → 4 天，之后 7 / 15 / 30
 const GAPS = [1, 2, 4, 7, 15, 30]
 const CUSTOM_COURSE = '我的笔记'
+// 构建期种子：public/data/cards.json 还没同步时，退回仓库里的同一份数据
+const CARD_SEEDS = import.meta.glob('../../../data/cards.json')
 
 const loading = ref(true)
 const loadError = ref('')
@@ -120,11 +122,16 @@ async function load() {
     courses.value = Array.isArray(data.courses) ? data.courses : []
   } catch (e) {
     // 兜底：public/data/cards.json 没同步时，退回构建期打进来的同一份种子数据
-    try {
-      const seed = await import('../../../data/cards.json')
-      const data = seed.default || seed
-      courses.value = Array.isArray(data.courses) ? data.courses : []
-    } catch (e2) {
+    const loader = CARD_SEEDS['../../../data/cards.json']
+    if (loader) {
+      try {
+        const seed = await loader()
+        const data = seed.default || seed
+        courses.value = Array.isArray(data.courses) ? data.courses : []
+      } catch (e2) {
+        loadError.value = '卡片数据没能加载出来，可能是网络或文件缺失。'
+      }
+    } else {
       loadError.value = '卡片数据没能加载出来，可能是网络或文件缺失。'
     }
   } finally {
