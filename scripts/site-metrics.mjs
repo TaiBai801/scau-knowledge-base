@@ -27,7 +27,15 @@ const SNAPSHOT_REL = 'data/site-metrics.json'
 const PUBLIC_SNAPSHOT_REL = 'public/data/site-metrics.json'
 // 需要从 data/ 同步到 public/data/ 的运行时数据副本
 // materials.json：StudyPlan 走 /data/materials.json 读它（此前漏同步导致恒 404）
-const SYNC_FILES = ['bank.json', 'syllabus.json', 'course-index.json', 'cards.json', 'materials.json']
+// dir-map.json：后台「存量盘活」页读它做「目录 → 课程」预填
+const SYNC_FILES = [
+  'bank.json',
+  'syllabus.json',
+  'course-index.json',
+  'cards.json',
+  'materials.json',
+  'dir-map.json',
+]
 
 /* ─────────────────────────── 基础工具 ─────────────────────────── */
 

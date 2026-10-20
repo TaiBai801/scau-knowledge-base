@@ -125,3 +125,76 @@ export async function writeJsonIfMatch(key, data, etag, acl) {
   });
   return { ok: res.ok, status: res.status };
 }
+
+// ── 列举对象（List Objects V1）──
+// 说明：查询参数不参与签名（cosAuth 的 q-url-param-list 恒为空），
+// COS 仍会接受 prefix/marker/max-keys，已在真实桶上验证。
+// key 传 '' 时 httpString 为 `get\n/\n\nhost=HOST\n`，正是 List 的资源格式。
+function xmlDecode(s) {
+  return String(s)
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&amp;/g, '&');
+}
+
+function parseListXml(xml) {
+  const truncated = /<IsTruncated>\s*true\s*<\/IsTruncated>/i.test(xml);
+  const nextM = xml.match(/<NextMarker>([\s\S]*?)<\/NextMarker>/i);
+  const items = [];
+  const re = /<Contents>([\s\S]*?)<\/Contents>/gi;
+  let m;
+  while ((m = re.exec(xml))) {
+    const block = m[1];
+    const key = (block.match(/<Key>([\s\S]*?)<\/Key>/i) || [])[1];
+    if (!key) continue;
+    const size = (block.match(/<Size>([\s\S]*?)<\/Size>/i) || [])[1];
+    const lm = (block.match(/<LastModified>([\s\S]*?)<\/LastModified>/i) || [])[1];
+    items.push({
+      key: xmlDecode(key),
+      size: Number(size) || 0,
+      lastModified: lm ? xmlDecode(lm) : '',
+    });
+  }
+  return { truncated, nextMarker: nextM ? xmlDecode(nextM[1]) : '', items };
+}
+
+// 单页列举
+export async function listObjects(prefix = 'files/', marker = '', maxKeys = 1000) {
+  const qs = new URLSearchParams({ prefix, 'max-keys': String(maxKeys) });
+  if (marker) qs.set('marker', marker);
+  const res = await fetch(`https://${HOST}/?${qs.toString()}`, {
+    headers: signedHeaders('get', ''),
+    cache: 'no-store',
+  });
+  if (!res.ok) return { ok: false, status: res.status, items: [], truncated: false, nextMarker: '' };
+  const xml = await res.text();
+  const parsed = parseListXml(xml);
+  return { ok: true, status: res.status, ...parsed };
+}
+
+// 分页列举全部（safetyLimit 防止意外拉爆内存/超时）
+export async function listAllObjects(prefix = 'files/', safetyLimit = 5000) {
+  const all = [];
+  let marker = '';
+  let pages = 0;
+  for (;;) {
+    const r = await listObjects(prefix, marker);
+    if (!r.ok) return { ok: false, status: r.status, items: all, pages };
+    all.push(...r.items);
+    pages++;
+    if (!r.truncated || !r.nextMarker || all.length >= safetyLimit || pages > 20) break;
+    marker = r.nextMarker;
+  }
+  return { ok: true, status: 200, items: all, pages };
+}
+
+// ── 删除对象（仅用于清理已下线功能的残留数据）──
+export async function deleteObject(key) {
+  const res = await fetch(`https://${HOST}/${key}`, {
+    method: 'DELETE',
+    headers: signedHeaders('delete', key),
+  });
+  return { ok: res.ok, status: res.status };
+}

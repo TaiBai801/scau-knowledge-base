@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>存量资料盘活 · 管理后台</title>
+<style>
+:root{--brand:#0D5C5A;--bg:#F7F5F0;--card:#fff;--line:#E8E4DB;--text:#4A5568;--red:#dc2626;--green:#059669;--amber:#D97706}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:var(--brand);color:#fff;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+header h1{font-size:1.2rem;font-weight:600}
+header a{color:#b2d9d6;font-size:0.85rem;text-decoration:none}
+header a:hover{color:#fff}
+main{max-width:1080px;margin:0 auto;padding:2rem 1rem}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.3rem;margin-bottom:1.2rem}
+.panel h2{font-size:1rem;font-weight:600;color:var(--brand);margin-bottom:0.6rem}
+.hint{font-size:0.8rem;color:#94a3b8;margin-bottom:0.8rem;line-height:1.7}
+.warn{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:8px;padding:0.6rem 0.9rem;font-size:0.8rem;margin-bottom:1rem;line-height:1.7}
+.danger{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;border-radius:8px;padding:0.6rem 0.9rem;font-size:0.8rem;margin-bottom:0.8rem;line-height:1.7}
+.btn{padding:0.35rem 0.9rem;border-radius:6px;font-size:0.8rem;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--text);transition:all .15s}
+.btn:hover{opacity:.85}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+.btn-red{background:#fff;color:var(--red);border-color:var(--red)}
+.stats{display:flex;gap:1.4rem;flex-wrap:wrap;font-size:0.85rem;margin-bottom:0.9rem}
+.stats b{color:var(--brand);font-size:1.1rem}
+table{width:100%;border-collapse:collapse;font-size:0.82rem}
+th,td{padding:0.45rem 0.5rem;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:#94a3b8;font-weight:500;font-size:0.75rem;white-space:nowrap}
+tr.group:hover{background:#faf9f6}
+.dir{font-weight:600;color:var(--text)}
+.dir .review{display:block;font-weight:400;font-size:0.72rem;color:var(--amber);margin-top:2px}
+input[type=text]{width:100%;min-width:180px;padding:0.3rem 0.45rem;border:1px solid var(--line);border-radius:5px;font-size:0.8rem;font-family:inherit;color:var(--text)}
+input[type=text].bad{border-color:var(--red);background:#fef2f2}
+.files{padding:0.3rem 0 0.6rem 1.2rem;font-size:0.78rem}
+.files label{display:block;padding:1px 0;color:var(--text)}
+.files .done{color:#cbd5e1;text-decoration:line-through}
+.files .meta{color:#94a3b8;font-size:0.72rem}
+.n{display:inline-block;min-width:2.2rem;text-align:right;color:var(--brand);font-weight:600}
+.empty{text-align:center;color:#94a3b8;padding:2rem 0;font-size:0.88rem}
+#log{font-size:0.78rem;color:#64748b;white-space:pre-wrap;margin-top:0.8rem;max-height:180px;overflow:auto}
+.bar{display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;margin-top:0.8rem}
+</style>
+</head>
+<body>
+<script src="/admin/auth-check.js"></script>
+<header>
+  <h1>📦 存量资料盘活</h1>
+  <a href="/">← 回站点</a>
+  <a href="/admin/index.html">课程管理</a>
+  <a href="/admin/upload.html">资料上传</a>
+</header>
+<main>
+  <div class="warn">
+    <b>先读这段再操作。</b>本页把 COS <code>files/</code> 下已经存在、但没被 <code>materials.json</code> 索引的文档挂到课程页上，
+    <b>不移动、不复制任何文件</b>（只建索引）。扫描结果按「学期/课程」目录分组，课程名可以改；
+    只勾选你不确定就留空，宁缺勿错。
+  </div>
+
+  <div class="panel">
+    <h2>① 清理已下线功能的残留数据</h2>
+    <div class="danger">
+      <b>隐私风险：</b><code>data/lottery.json</code> 目前是公开可读的，里面有 306 条中奖记录，
+      含真实姓名与学号（如「杜逸202601208」「王舸峥」）。抽奖功能已下线，此对象应删除。
+    </div>
+    <div class="bar">
+      <button class="btn btn-red" id="btnPurge">删除 data/lottery.json</button>
+      <span class="hint" style="margin:0">删除后该 URL 返回 404，不可恢复</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>② 扫描 COS 存量</h2>
+    <div class="hint">
+      只统计文档类（pdf/doc/docx/ppt/pptx/xls/xlsx/zip/rar/7z），网页导出的 png/css/js 会被跳过并计入「已忽略碎资源」。
+      数字电子技术目录里有 500+ 个 png，这是刻意过滤的。
+    </div>
+    <div class="bar">
+      <button class="btn btn-primary" id="btnScan">开始扫描</button>
+      <span class="hint" style="margin:0" id="scanState">尚未扫描</span>
+    </div>
+    <div class="stats" id="stats" style="margin-top:1rem;display:none">
+      <div>扫描对象 <b id="sTotal">0</b></div>
+      <div>文档 <b id="sDocs">0</b></div>
+      <div>已忽略碎资源 <b id="sFrag">0</b></div>
+      <div>已收录 <b id="sHave">0</b></div>
+      <div>可新增 <b id="sNew">0</b></div>
+    </div>
+  </div>
+
+  <div class="panel" id="panelList" style="display:none">
+    <h2>③ 确认并入库</h2>
+    <div class="bar" style="margin-top:0;margin-bottom:0.8rem">
+      <label style="font-size:0.8rem"><input type="checkbox" id="chkOnlyNew" checked> 只显示未收录的文件</label>
+      <button class="btn" id="btnAll">全选可入库</button>
+      <button class="btn" id="btnNone">全不选</button>
+      <button class="btn btn-primary" id="btnSave">批量入库</button>
+      <span class="hint" style="margin:0" id="selState">已选 0 条</span>
+    </div>
+    <div id="list"></div>
+    <div id="log"></div>
+  </div>
+</main>
+<script>
+(function () {
+  var API = '/api/upload';
+  var COS = 'https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com';
+  var existing = new Set();
+  var dirMap = {};
+  var groups = [];
+  var onlyNew = true;
+
+  function log(s) {
+    var el = document.getElementById('log');
+    el.textContent += (el.textContent ? '\n' : '') + s;
+    el.scrollTop = el.scrollHeight;
+  }
+  function token() {
+    return (window.ADMIN && window.ADMIN.token) || '';
+  }
+  async function post(body) {
+    var r = await fetch(API, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(Object.assign({ token: token() }, body)),
+    });
+    var d = await r.json().catch(function () { return {}; });
+    if (!r.ok) throw new Error(d.error || ('HTTP ' + r.status));
+    return d;
+  }
+  function fmtSize(n) {
+    if (!n) return '—';
+    if (n < 1024) return n + ' B';
+    if (n < 1048576) return (n / 1024).toFixed(0) + ' KB';
+    return (n / 1048576).toFixed(1) + ' MB';
+  }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function stripExt(name) {
+    var i = name.lastIndexOf('.');
+    return i > 0 ? name.slice(0, i) : name;
+  }
+
+  async function loadCtx() {
+    try {
+      var r = await fetch(COS + '/data/materials.json', { cache: 'no-store' });
+      var d = await r.json();
+      Object.keys(d).forEach(function (k) {
+        if (Array.isArray(d[k])) d[k].forEach(function (m) { if (m && m.url) existing.add(m.url); });
+      });
+    } catch (e) { log('读取现有索引失败：' + e.message); }
+    try {
+      var r2 = await fetch('/data/dir-map.json', { cache: 'no-store' });
+      var d2 = await r2.json();
+      (d2.dirs || []).forEach(function (x) { dirMap[x.dir] = x; });
+    } catch (e) { log('读取目录映射失败：' + e.message); }
+  }
+
+  function guessCourse(dir) {
+    if (dirMap[dir] && dirMap[dir].course) return dirMap[dir].course;
+    var parts = String(dir).split('/');
+    return parts[parts.length - 1] || '';
+  }
+
+  function urlOf(key) { return 'https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/' + key; }
+
+  function render() {
+    var list = document.getElementById('list');
+    var html = '';
+    var have = 0, canNew = 0;
+    groups.forEach(function (g, gi) {
+      var info = dirMap[g.dir] || {};
+      var course = guessCourse(g.dir);
+      var newCount = 0;
+      var filesHtml = '';
+      g.files.forEach(function (f, fi) {
+        var isHave = existing.has(urlOf(f.key));
+        if (isHave) have++; else newCount++;
+        if (!isHave) canNew++;
+        var hide = onlyNew && isHave ? ' style="display:none"' : '';
+        filesHtml += '<label' + hide + '><input type="checkbox" data-g="' + gi + '" data-f="' + fi + '"' +
+          (isHave ? '' : ' checked') + '> ' +
+          (isHave ? '<span class="done">' + esc(f.fileName) + '</span>' : esc(f.fileName)) +
+          ' <span class="meta">' + fmtSize(f.size) + (isHave ? ' · 已收录' : '') + '</span></label>';
+      });
+      var review = info.review ? '<span class="review">⚠ ' + esc(info.review) + '</span>' : '';
+      html += '<table><tr class="group"><td style="width:34%">' +
+        '<div class="dir">' + esc(g.dir) + review + '</div></td>' +
+        '<td style="width:32%"><input type="text" data-course="' + gi + '" value="' + esc(course) + '" placeholder="课程名（留空则跳过本组）"></td>' +
+        '<td style="width:12%"><span class="n">' + g.files.length + '</span> 个</td>' +
+        '<td style="width:22%">新增 <b>' + newCount + '</b></td></tr>' +
+        '<tr><td colspan="4" class="files">' + filesHtml + '</td></tr></table>';
+    });
+    list.innerHTML = html;
+    document.getElementById('sHave').textContent = have;
+    document.getElementById('sNew').textContent = canNew;
+    list.querySelectorAll('input[type=checkbox]').forEach(function (cb) {
+      cb.addEventListener('change', updateSel);
+    });
+    list.querySelectorAll('input[data-course]').forEach(function (inp) {
+      inp.addEventListener('input', function () {
+        inp.classList.toggle('bad', !inp.value.trim());
+      });
+    });
+    updateSel();
+  }
+
+  function selectedItems() {
+    var items = [];
+    document.querySelectorAll('#list input[type=checkbox]:checked').forEach(function (cb) {
+      var gi = Number(cb.dataset.g), fi = Number(cb.dataset.f);
+      var g = groups[gi]; if (!g) return;
+      var inp = document.querySelector('input[data-course="' + gi + '"]');
+      var course = inp ? inp.value.trim() : '';
+      if (!course) return;
+      var f = g.files[fi];
+      items.push({
+        courseKey: course,
+        name: stripExt(f.fileName),
+        key: f.key,
+        size: f.size,
+      });
+    });
+    return items;
+  }
+
+  function updateSel() {
+    var items = selectedItems();
+    var skipped = document.querySelectorAll('#list input[type=checkbox]:checked').length - items.length;
+    document.getElementById('selState').textContent =
+      '已选 ' + items.length + ' 条' + (skipped > 0 ? '（' + skipped + ' 条因课程名为空被跳过）' : '');
+  }
+
+  document.getElementById('btnScan').addEventListener('click', async function () {
+    var btn = this;
+    btn.disabled = true;
+    document.getElementById('scanState').textContent = '扫描中…（COS 分页列举，约 2-5 秒）';
+    try {
+      await loadCtx();
+      var d = await post({ action: 'scan' });
+      groups = d.groups || [];
+      document.getElementById('stats').style.display = 'flex';
+      document.getElementById('sTotal').textContent = d.scanned;
+      document.getElementById('sDocs').textContent = d.docs;
+      document.getElementById('sFrag').textContent = d.fragments;
+      document.getElementById('scanState').textContent = '扫描完成，共 ' + groups.length + ' 个目录';
+      document.getElementById('panelList').style.display = 'block';
+      render();
+    } catch (e) {
+      document.getElementById('scanState').textContent = '扫描失败：' + e.message;
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  document.getElementById('chkOnlyNew').addEventListener('change', function () {
+    onlyNew = this.checked;
+    render();
+  });
+  document.getElementById('btnAll').addEventListener('click', function () {
+    document.querySelectorAll('#list input[type=checkbox]').forEach(function (cb) { cb.checked = true; });
+    updateSel();
+  });
+  document.getElementById('btnNone').addEventListener('click', function () {
+    document.querySelectorAll('#list input[type=checkbox]').forEach(function (cb) { cb.checked = false; });
+    updateSel();
+  });
+
+  document.getElementById('btnSave').addEventListener('click', async function () {
+    var items = selectedItems();
+    if (!items.length) { log('没有可入库的条目（检查是否漏填课程名）'); return; }
+    if (!confirm('确认把 ' + items.length + ' 条资料挂到对应课程？\n只建索引，不移动文件。')) return;
+    var btn = this;
+    btn.disabled = true;
+    log('提交 ' + items.length + ' 条…');
+    try {
+      var d = await post({ action: 'bulkSave', items: items });
+      log('完成：新增 ' + d.added + ' 条，跳过 ' + d.skipped + ' 条' + (d.warning ? '（' + d.warning + '）' : ''));
+      // 刷新已收录标记
+      items.forEach(function (it) { existing.add(urlOf(it.key)); });
+      render();
+    } catch (e) {
+      log('入库失败：' + e.message);
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  document.getElementById('btnPurge').addEventListener('click', async function () {
+    if (!confirm('确认删除 COS 上的 data/lottery.json？\n这会清掉全部中奖记录，不可恢复。')) return;
+    var btn = this;
+    btn.disabled = true;
+    try {
+      var d = await post({ action: 'purge', key: 'data/lottery.json' });
+      alert(d.ok ? '已删除（status ' + d.status + '）' : '删除失败，status ' + d.status);
+    } catch (e) {
+      alert('删除失败：' + e.message);
+    } finally {
+      btn.disabled = false;
+    }
+  });
+})();
+</script>
+</body>
+</html>

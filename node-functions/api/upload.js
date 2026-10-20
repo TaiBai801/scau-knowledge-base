@@ -4,6 +4,7 @@
 
 import * as crypto from 'node:crypto';
 import { verifyToken, auditLog } from './_auth.js';
+import { listAllObjects, deleteObject, readJsonWithEtagSigned, writeJsonIfMatch } from './_cos.js';
 
 const REGION = process.env.COS_REGION || 'ap-chengdu';
 const BUCKET = process.env.COS_BUCKET || 'scau-files-1440179010';
@@ -94,6 +95,108 @@ export async function onRequestPost({ request }) {
   const who = verifyToken(body.token);
     if (!who) return json({ error: '未登录或登录已过期' }, 401);
     await auditLog(who.username, who.role, action, '');
+
+    // ────────── 存量盘活：扫描 COS 已有文件 ──────────
+    // 只列举不写入。按「学期/课程」或「课程编号」目录分组，供后台人工确认后入库。
+    if (action === 'scan') {
+      const r = await listAllObjects('files/');
+      if (!r.ok) return json({ error: '列举 COS 失败 status=' + r.status }, 502);
+
+      const DOC_EXT = new Set(['pdf', 'doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'zip', 'rar', '7z']);
+      const docs = [];
+      let fragments = 0;
+      for (const it of r.items) {
+        const ext = String(it.key).split('.').pop().toLowerCase();
+        if (!DOC_EXT.has(ext)) { fragments++; continue; }
+        docs.push(it);
+      }
+
+      const groups = new Map();
+      for (const d of docs) {
+        const parts = d.key.split('/'); // ['files', 学期?, 课程?, 子目录?, 文件名]
+        // 只有 ≥4 段时第 3 段才是目录；3 段说明是 files/<课程编号>/<文件名>
+        const dir = parts.length >= 4 ? parts[1] + '/' + parts[2] : parts[1] || '';
+        if (!groups.has(dir)) groups.set(dir, []);
+        groups.get(dir).push({
+          key: d.key,
+          size: d.size,
+          lastModified: d.lastModified,
+          fileName: parts[parts.length - 1],
+        });
+      }
+
+      return json({
+        ok: true,
+        scanned: r.items.length,
+        pages: r.pages,
+        docs: docs.length,
+        fragments,
+        groups: [...groups.entries()]
+          .map(([dir, files]) => ({ dir, files }))
+          .sort((a, b) => b.files.length - a.files.length),
+      });
+    }
+
+    // ────────── 存量盘活：批量入库 ──────────
+    // ⚠️ 必须一次读一次写 + ETag，否则 100+ 条会互相覆盖。
+    // ⚠️ 不设 private ACL —— 前端 materials-loader.js 是匿名 GET，设私有会直接坏掉。
+    if (action === 'bulkSave') {
+      const items = Array.isArray(body.items) ? body.items : [];
+      if (!items.length) return json({ error: '缺 items' }, 400);
+      if (items.length > 500) return json({ error: '单次最多 500 条' }, 400);
+
+      const norm = [];
+      for (const it of items) {
+        const courseKey = String(it.courseKey || '').trim();
+        const key = String(it.key || '').trim();
+        if (!courseKey || !key || !key.startsWith('files/')) continue;
+        norm.push({
+          courseKey,
+          name: String(it.name || key.split('/').pop() || '').slice(0, 120),
+          url: `https://${HOST}/${key}`,
+          ext: (String(key).split('.').pop() || '').toLowerCase(),
+          size: Number(it.size) || null,
+        });
+      }
+      if (!norm.length) return json({ error: '没有合法条目' }, 400);
+
+      for (let attempt = 0; attempt < 4; attempt++) {
+        const { data, etag } = await readJsonWithEtagSigned(DATA_KEY);
+        const state = data && typeof data === 'object' && !Array.isArray(data) ? data : {};
+        const seen = new Set();
+        for (const list of Object.values(state)) {
+          if (Array.isArray(list)) list.forEach((m) => m && m.url && seen.add(m.url));
+        }
+
+        let added = 0;
+        let skipped = 0;
+        for (const n of norm) {
+          if (seen.has(n.url)) { skipped++; continue; }
+          if (!Array.isArray(state[n.courseKey])) state[n.courseKey] = [];
+          state[n.courseKey].push({ name: n.name, url: n.url, ext: n.ext, size: n.size });
+          seen.add(n.url);
+          added++;
+        }
+        if (!added) return json({ ok: true, added: 0, skipped, warning: '全部条目已存在' });
+
+        const w = await writeJsonIfMatch(DATA_KEY, state, etag);
+        if (w.ok) {
+          await auditLog(who.username, who.role, 'bulkSave', `${added} 条 / ${new Set(norm.map((n) => n.courseKey)).size} 门课`);
+          return json({ ok: true, added, skipped });
+        }
+      }
+      return json({ error: '写入冲突，请重试', added: 0, skipped: 0 }, 409);
+    }
+
+    // ────────── 清理已下线功能的残留对象（白名单，防误删）──────────
+    if (action === 'purge') {
+      const PURGE_ALLOW = ['data/lottery.json'];
+      const key = String(body.key || '');
+      if (!PURGE_ALLOW.includes(key)) return json({ error: '该对象不在可清理白名单内' }, 400);
+      const r = await deleteObject(key);
+      await auditLog(who.username, who.role, 'purge', key + ' status=' + r.status);
+      return json({ ok: r.ok, status: r.status, key });
+    }
 
     if (action === 'presign') {
       const ext = String(body.filename || '').split('.').pop().toLowerCase();
