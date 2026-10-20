@@ -52,8 +52,8 @@
       "questions": 421
     },
     "materials": {
-      "courses": 12,
-      "items": 59
+      "courses": 21,
+      "items": 179
     },
     "contributors": {
       "count": 1,
@@ -291,8 +291,8 @@
       "today": 0
     },
     "materials": {
-      "courses": 12,
-      "items": 59
+      "courses": 21,
+      "items": 179
     },
     "bank": {
       "courses": 14,
@@ -303,6 +303,6 @@
       "contributions": 346
     }
   },
-  "generatedAt": "2026-10-20T13:40:08.674Z",
-  "contentHash": "sha1:2aae04c6eb57558c64f83cc8c13b47c426d5152c"
+  "generatedAt": "2026-10-20T14:57:50.393Z",
+  "contentHash": "sha1:be790ce935ee9a68439051a646c3a17cd903354d"
 }

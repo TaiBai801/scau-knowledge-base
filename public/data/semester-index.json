@@ -6,7 +6,7 @@
     "cards": 984,
     "uniqueCodes": 325,
     "coverage": {
-      "withMaterials": 16,
+      "withMaterials": 25,
       "withBank": 17,
       "withSyllabus": 164
     }
@@ -121,11 +121,11 @@
       "year": 2024,
       "semester": 2,
       "total": 11,
-      "withMaterials": 3,
+      "withMaterials": 4,
       "withBank": 3,
       "withSyllabus": 10,
-      "materialItems": 7,
-      "health": 40,
+      "materialItems": 10,
+      "health": 45,
       "courses": [
         {
           "code": "1210008001",
@@ -186,7 +186,7 @@
         {
           "code": "1217001000",
           "name": "人工智能",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -214,7 +214,7 @@
       "withMaterials": 1,
       "withBank": 2,
       "withSyllabus": 12,
-      "materialItems": 12,
+      "materialItems": 38,
       "health": 23,
       "courses": [
         {
@@ -248,7 +248,7 @@
         {
           "code": "1210175201",
           "name": "电路分析",
-          "materials": 12,
+          "materials": 38,
           "bank": 35,
           "syllabus": 12
         },
@@ -332,7 +332,7 @@
       "withMaterials": 4,
       "withBank": 3,
       "withSyllabus": 10,
-      "materialItems": 17,
+      "materialItems": 59,
       "health": 27,
       "courses": [
         {
@@ -380,7 +380,7 @@
         {
           "code": "1210969000",
           "name": "数字电子技术",
-          "materials": 2,
+          "materials": 25,
           "bank": 30,
           "syllabus": 9
         },
@@ -408,7 +408,7 @@
         {
           "code": "1211204000",
           "name": "信号与系统",
-          "materials": 5,
+          "materials": 22,
           "bank": 28,
           "syllabus": 7
         },
@@ -443,7 +443,7 @@
         {
           "code": "1211478000",
           "name": "自动控制原理",
-          "materials": 8,
+          "materials": 10,
           "bank": 30,
           "syllabus": 8
         },
@@ -468,11 +468,11 @@
       "year": 2024,
       "semester": 5,
       "total": 18,
-      "withMaterials": 0,
+      "withMaterials": 3,
       "withBank": 2,
       "withSyllabus": 11,
-      "materialItems": 0,
-      "health": 16,
+      "materialItems": 12,
+      "health": 24,
       "courses": [
         {
           "code": "4215859000",
@@ -498,7 +498,7 @@
         {
           "code": "1210169001",
           "name": "电机学",
-          "materials": 0,
+          "materials": 1,
           "bank": 25,
           "syllabus": 5
         },
@@ -526,7 +526,7 @@
         {
           "code": "1210179001",
           "name": "电气测量技术",
-          "materials": 0,
+          "materials": 8,
           "bank": 0,
           "syllabus": 8
         },
@@ -582,7 +582,7 @@
         {
           "code": "1219921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -607,16 +607,16 @@
       "year": 2024,
       "semester": 6,
       "total": 19,
-      "withMaterials": 0,
+      "withMaterials": 4,
       "withBank": 1,
       "withSyllabus": 9,
-      "materialItems": 0,
-      "health": 11,
+      "materialItems": 33,
+      "health": 22,
       "courses": [
         {
           "code": "1210038002",
           "name": "变电工程设计",
-          "materials": 0,
+          "materials": 16,
           "bank": 0,
           "syllabus": 9
         },
@@ -651,7 +651,7 @@
         {
           "code": "1210170001",
           "name": "电力电子技术",
-          "materials": 0,
+          "materials": 7,
           "bank": 25,
           "syllabus": 7
         },
@@ -693,7 +693,7 @@
         {
           "code": "1210173001",
           "name": "电力系统继电保护",
-          "materials": 0,
+          "materials": 7,
           "bank": 0,
           "syllabus": 10
         },
@@ -707,7 +707,7 @@
         {
           "code": "1210184001",
           "name": "电子电路设计与仿真",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -925,11 +925,11 @@
       "year": 2025,
       "semester": 2,
       "total": 11,
-      "withMaterials": 3,
+      "withMaterials": 4,
       "withBank": 3,
       "withSyllabus": 10,
-      "materialItems": 7,
-      "health": 40,
+      "materialItems": 10,
+      "health": 45,
       "courses": [
         {
           "code": "1210008001",
@@ -990,7 +990,7 @@
         {
           "code": "1217001000",
           "name": "人工智能",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -1018,7 +1018,7 @@
       "withMaterials": 1,
       "withBank": 2,
       "withSyllabus": 12,
-      "materialItems": 12,
+      "materialItems": 38,
       "health": 23,
       "courses": [
         {
@@ -1052,7 +1052,7 @@
         {
           "code": "1210175201",
           "name": "电路分析",
-          "materials": 12,
+          "materials": 38,
           "bank": 35,
           "syllabus": 12
         },
@@ -1136,7 +1136,7 @@
       "withMaterials": 4,
       "withBank": 3,
       "withSyllabus": 10,
-      "materialItems": 17,
+      "materialItems": 59,
       "health": 27,
       "courses": [
         {
@@ -1184,7 +1184,7 @@
         {
           "code": "1210969000",
           "name": "数字电子技术",
-          "materials": 2,
+          "materials": 25,
           "bank": 30,
           "syllabus": 9
         },
@@ -1212,7 +1212,7 @@
         {
           "code": "1211204000",
           "name": "信号与系统",
-          "materials": 5,
+          "materials": 22,
           "bank": 28,
           "syllabus": 7
         },
@@ -1247,7 +1247,7 @@
         {
           "code": "1211478000",
           "name": "自动控制原理",
-          "materials": 8,
+          "materials": 10,
           "bank": 30,
           "syllabus": 8
         },
@@ -1272,11 +1272,11 @@
       "year": 2025,
       "semester": 5,
       "total": 18,
-      "withMaterials": 0,
+      "withMaterials": 3,
       "withBank": 2,
       "withSyllabus": 11,
-      "materialItems": 0,
-      "health": 16,
+      "materialItems": 12,
+      "health": 24,
       "courses": [
         {
           "code": "4215859000",
@@ -1302,7 +1302,7 @@
         {
           "code": "1210169001",
           "name": "电机学",
-          "materials": 0,
+          "materials": 1,
           "bank": 25,
           "syllabus": 5
         },
@@ -1330,7 +1330,7 @@
         {
           "code": "1210179001",
           "name": "电气测量技术",
-          "materials": 0,
+          "materials": 8,
           "bank": 0,
           "syllabus": 8
         },
@@ -1386,7 +1386,7 @@
         {
           "code": "1219921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -1411,16 +1411,16 @@
       "year": 2025,
       "semester": 6,
       "total": 19,
-      "withMaterials": 0,
+      "withMaterials": 4,
       "withBank": 1,
       "withSyllabus": 9,
-      "materialItems": 0,
-      "health": 11,
+      "materialItems": 33,
+      "health": 22,
       "courses": [
         {
           "code": "1210038002",
           "name": "变电工程设计",
-          "materials": 0,
+          "materials": 16,
           "bank": 0,
           "syllabus": 9
         },
@@ -1455,7 +1455,7 @@
         {
           "code": "1210170001",
           "name": "电力电子技术",
-          "materials": 0,
+          "materials": 7,
           "bank": 25,
           "syllabus": 7
         },
@@ -1497,7 +1497,7 @@
         {
           "code": "1210173001",
           "name": "电力系统继电保护",
-          "materials": 0,
+          "materials": 7,
           "bank": 0,
           "syllabus": 10
         },
@@ -1511,7 +1511,7 @@
         {
           "code": "1210184001",
           "name": "电子电路设计与仿真",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -1836,7 +1836,7 @@
       "withMaterials": 2,
       "withBank": 2,
       "withSyllabus": 9,
-      "materialItems": 14,
+      "materialItems": 40,
       "health": 24,
       "courses": [
         {
@@ -1884,7 +1884,7 @@
         {
           "code": "1250175001",
           "name": "电路分析",
-          "materials": 12,
+          "materials": 38,
           "bank": 35,
           "syllabus": 12
         },
@@ -1944,11 +1944,11 @@
       "year": 2026,
       "semester": 4,
       "total": 18,
-      "withMaterials": 3,
+      "withMaterials": 4,
       "withBank": 4,
       "withSyllabus": 10,
-      "materialItems": 15,
-      "health": 26,
+      "materialItems": 58,
+      "health": 29,
       "courses": [
         {
           "code": "3251045010",
@@ -1960,7 +1960,7 @@
         {
           "code": "1250169001",
           "name": "电机学",
-          "materials": 0,
+          "materials": 1,
           "bank": 25,
           "syllabus": 5
         },
@@ -1995,7 +1995,7 @@
         {
           "code": "1250969000",
           "name": "数字电子技术",
-          "materials": 2,
+          "materials": 25,
           "bank": 30,
           "syllabus": 9
         },
@@ -2037,7 +2037,7 @@
         {
           "code": "1251204000",
           "name": "信号与系统",
-          "materials": 5,
+          "materials": 22,
           "bank": 28,
           "syllabus": 7
         },
@@ -2058,7 +2058,7 @@
         {
           "code": "1251478000",
           "name": "自动控制原理",
-          "materials": 8,
+          "materials": 10,
           "bank": 30,
           "syllabus": 8
         },
@@ -2083,16 +2083,16 @@
       "year": 2026,
       "semester": 5,
       "total": 9,
-      "withMaterials": 0,
+      "withMaterials": 2,
       "withBank": 1,
       "withSyllabus": 6,
-      "materialItems": 0,
-      "health": 17,
+      "materialItems": 10,
+      "health": 28,
       "courses": [
         {
           "code": "1250170001",
           "name": "电力电子技术",
-          "materials": 0,
+          "materials": 7,
           "bank": 25,
           "syllabus": 7
         },
@@ -2141,7 +2141,7 @@
         {
           "code": "1259921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -2159,11 +2159,11 @@
       "year": 2026,
       "semester": 6,
       "total": 13,
-      "withMaterials": 0,
+      "withMaterials": 2,
       "withBank": 0,
       "withSyllabus": 8,
-      "materialItems": 0,
-      "health": 12,
+      "materialItems": 10,
+      "health": 20,
       "courses": [
         {
           "code": "1250121002",
@@ -2196,7 +2196,7 @@
         {
           "code": "2250173002",
           "name": "电力系统继电保护",
-          "materials": 0,
+          "materials": 7,
           "bank": 0,
           "syllabus": 10
         },
@@ -2210,7 +2210,7 @@
         {
           "code": "1250184001",
           "name": "电子电路设计与仿真",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -2428,11 +2428,11 @@
       "year": 2024,
       "semester": 2,
       "total": 9,
-      "withMaterials": 3,
+      "withMaterials": 4,
       "withBank": 3,
       "withSyllabus": 9,
-      "materialItems": 7,
-      "health": 47,
+      "materialItems": 10,
+      "health": 52,
       "courses": [
         {
           "code": "1215788000",
@@ -2479,7 +2479,7 @@
         {
           "code": "1217001000",
           "name": "人工智能",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -2507,7 +2507,7 @@
       "withMaterials": 2,
       "withBank": 3,
       "withSyllabus": 10,
-      "materialItems": 16,
+      "materialItems": 42,
       "health": 30,
       "courses": [
         {
@@ -2548,7 +2548,7 @@
         {
           "code": "1210175201",
           "name": "电路分析",
-          "materials": 12,
+          "materials": 38,
           "bank": 35,
           "syllabus": 12
         },
@@ -2611,7 +2611,7 @@
       "withMaterials": 3,
       "withBank": 4,
       "withSyllabus": 7,
-      "materialItems": 15,
+      "materialItems": 57,
       "health": 27,
       "courses": [
         {
@@ -2652,7 +2652,7 @@
         {
           "code": "1210969000",
           "name": "数字电子技术",
-          "materials": 2,
+          "materials": 25,
           "bank": 30,
           "syllabus": 9
         },
@@ -2673,7 +2673,7 @@
         {
           "code": "1211204000",
           "name": "信号与系统",
-          "materials": 5,
+          "materials": 22,
           "bank": 28,
           "syllabus": 7
         },
@@ -2701,7 +2701,7 @@
         {
           "code": "1211478000",
           "name": "自动控制原理",
-          "materials": 8,
+          "materials": 10,
           "bank": 30,
           "syllabus": 8
         },
@@ -2726,11 +2726,11 @@
       "year": 2024,
       "semester": 5,
       "total": 18,
-      "withMaterials": 1,
+      "withMaterials": 2,
       "withBank": 0,
       "withSyllabus": 11,
-      "materialItems": 2,
-      "health": 15,
+      "materialItems": 5,
+      "health": 18,
       "courses": [
         {
           "code": "1210005001",
@@ -2798,7 +2798,7 @@
         {
           "code": "1210184001",
           "name": "电子电路设计与仿真",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -2865,11 +2865,11 @@
       "year": 2024,
       "semester": 6,
       "total": 19,
-      "withMaterials": 0,
+      "withMaterials": 1,
       "withBank": 1,
       "withSyllabus": 11,
-      "materialItems": 0,
-      "health": 13,
+      "materialItems": 7,
+      "health": 16,
       "courses": [
         {
           "code": "1210019000",
@@ -2909,7 +2909,7 @@
         {
           "code": "1210170001",
           "name": "电力电子技术",
-          "materials": 0,
+          "materials": 7,
           "bank": 25,
           "syllabus": 7
         },
@@ -3011,11 +3011,11 @@
       "year": 2024,
       "semester": 7,
       "total": 3,
-      "withMaterials": 0,
+      "withMaterials": 1,
       "withBank": 0,
       "withSyllabus": 3,
-      "materialItems": 0,
-      "health": 20,
+      "materialItems": 3,
+      "health": 37,
       "courses": [
         {
           "code": "2210182001",
@@ -3027,7 +3027,7 @@
         {
           "code": "1219921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -3190,11 +3190,11 @@
       "year": 2025,
       "semester": 2,
       "total": 9,
-      "withMaterials": 3,
+      "withMaterials": 4,
       "withBank": 3,
       "withSyllabus": 9,
-      "materialItems": 7,
-      "health": 47,
+      "materialItems": 10,
+      "health": 52,
       "courses": [
         {
           "code": "1215788000",
@@ -3241,7 +3241,7 @@
         {
           "code": "1217001000",
           "name": "人工智能",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -3269,7 +3269,7 @@
       "withMaterials": 2,
       "withBank": 3,
       "withSyllabus": 10,
-      "materialItems": 16,
+      "materialItems": 42,
       "health": 30,
       "courses": [
         {
@@ -3310,7 +3310,7 @@
         {
           "code": "1210175201",
           "name": "电路分析",
-          "materials": 12,
+          "materials": 38,
           "bank": 35,
           "syllabus": 12
         },
@@ -3373,7 +3373,7 @@
       "withMaterials": 3,
       "withBank": 4,
       "withSyllabus": 7,
-      "materialItems": 15,
+      "materialItems": 57,
       "health": 27,
       "courses": [
         {
@@ -3414,7 +3414,7 @@
         {
           "code": "1210969000",
           "name": "数字电子技术",
-          "materials": 2,
+          "materials": 25,
           "bank": 30,
           "syllabus": 9
         },
@@ -3435,7 +3435,7 @@
         {
           "code": "1211204000",
           "name": "信号与系统",
-          "materials": 5,
+          "materials": 22,
           "bank": 28,
           "syllabus": 7
         },
@@ -3463,7 +3463,7 @@
         {
           "code": "1211478000",
           "name": "自动控制原理",
-          "materials": 8,
+          "materials": 10,
           "bank": 30,
           "syllabus": 8
         },
@@ -3488,11 +3488,11 @@
       "year": 2025,
       "semester": 5,
       "total": 18,
-      "withMaterials": 1,
+      "withMaterials": 2,
       "withBank": 0,
       "withSyllabus": 11,
-      "materialItems": 2,
-      "health": 15,
+      "materialItems": 5,
+      "health": 18,
       "courses": [
         {
           "code": "1210005001",
@@ -3560,7 +3560,7 @@
         {
           "code": "1210184001",
           "name": "电子电路设计与仿真",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -3627,11 +3627,11 @@
       "year": 2025,
       "semester": 6,
       "total": 19,
-      "withMaterials": 0,
+      "withMaterials": 1,
       "withBank": 1,
       "withSyllabus": 11,
-      "materialItems": 0,
-      "health": 13,
+      "materialItems": 7,
+      "health": 16,
       "courses": [
         {
           "code": "1210019000",
@@ -3671,7 +3671,7 @@
         {
           "code": "1210170001",
           "name": "电力电子技术",
-          "materials": 0,
+          "materials": 7,
           "bank": 25,
           "syllabus": 7
         },
@@ -3773,11 +3773,11 @@
       "year": 2025,
       "semester": 7,
       "total": 3,
-      "withMaterials": 0,
+      "withMaterials": 1,
       "withBank": 0,
       "withSyllabus": 3,
-      "materialItems": 0,
-      "health": 20,
+      "materialItems": 3,
+      "health": 37,
       "courses": [
         {
           "code": "2210182001",
@@ -3789,7 +3789,7 @@
         {
           "code": "1219921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -3962,7 +3962,7 @@
       "withMaterials": 3,
       "withBank": 3,
       "withSyllabus": 9,
-      "materialItems": 17,
+      "materialItems": 43,
       "health": 32,
       "courses": [
         {
@@ -4010,7 +4010,7 @@
         {
           "code": "1250175001",
           "name": "电路分析",
-          "materials": 12,
+          "materials": 38,
           "bank": 35,
           "syllabus": 12
         },
@@ -4156,7 +4156,7 @@
       "withMaterials": 2,
       "withBank": 3,
       "withSyllabus": 8,
-      "materialItems": 7,
+      "materialItems": 47,
       "health": 27,
       "courses": [
         {
@@ -4204,7 +4204,7 @@
         {
           "code": "1250969000",
           "name": "数字电子技术",
-          "materials": 2,
+          "materials": 25,
           "bank": 30,
           "syllabus": 9
         },
@@ -4232,7 +4232,7 @@
         {
           "code": "1251204000",
           "name": "信号与系统",
-          "materials": 5,
+          "materials": 22,
           "bank": 28,
           "syllabus": 7
         },
@@ -4257,11 +4257,11 @@
       "year": 2026,
       "semester": 5,
       "total": 17,
-      "withMaterials": 0,
+      "withMaterials": 1,
       "withBank": 0,
       "withSyllabus": 10,
-      "materialItems": 0,
-      "health": 12,
+      "materialItems": 3,
+      "health": 15,
       "courses": [
         {
           "code": "1250019002",
@@ -4322,7 +4322,7 @@
         {
           "code": "1250184001",
           "name": "电子电路设计与仿真",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -4389,11 +4389,11 @@
       "year": 2026,
       "semester": 6,
       "total": 15,
-      "withMaterials": 0,
+      "withMaterials": 2,
       "withBank": 0,
       "withSyllabus": 8,
-      "materialItems": 0,
-      "health": 11,
+      "materialItems": 7,
+      "health": 17,
       "courses": [
         {
           "code": "1250005001",
@@ -4489,14 +4489,14 @@
         {
           "code": "2252567000",
           "name": "嵌入式系统与应用",
-          "materials": 0,
+          "materials": 4,
           "bank": 0,
           "syllabus": 8
         },
         {
           "code": "1259921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         }
@@ -4883,7 +4883,7 @@
       "withMaterials": 3,
       "withBank": 2,
       "withSyllabus": 8,
-      "materialItems": 15,
+      "materialItems": 34,
       "health": 28,
       "courses": [
         {
@@ -4938,7 +4938,7 @@
         {
           "code": "1251204000",
           "name": "信号与系统",
-          "materials": 5,
+          "materials": 22,
           "bank": 28,
           "syllabus": 7
         },
@@ -4959,7 +4959,7 @@
         {
           "code": "1251478000",
           "name": "自动控制原理",
-          "materials": 8,
+          "materials": 10,
           "bank": 30,
           "syllabus": 8
         },
@@ -4984,11 +4984,11 @@
       "year": 2026,
       "semester": 5,
       "total": 13,
-      "withMaterials": 0,
+      "withMaterials": 1,
       "withBank": 0,
       "withSyllabus": 10,
-      "materialItems": 0,
-      "health": 15,
+      "materialItems": 3,
+      "health": 19,
       "courses": [
         {
           "code": "1255689001",
@@ -5056,7 +5056,7 @@
         {
           "code": "1259921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -5422,7 +5422,7 @@
       "withMaterials": 1,
       "withBank": 2,
       "withSyllabus": 11,
-      "materialItems": 12,
+      "materialItems": 38,
       "health": 21,
       "courses": [
         {
@@ -5470,7 +5470,7 @@
         {
           "code": "1210175201",
           "name": "电路分析",
-          "materials": 12,
+          "materials": 38,
           "bank": 35,
           "syllabus": 12
         },
@@ -5544,11 +5544,11 @@
       "year": 2024,
       "semester": 4,
       "total": 16,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 2,
       "withSyllabus": 9,
-      "materialItems": 10,
-      "health": 21,
+      "materialItems": 38,
+      "health": 24,
       "courses": [
         {
           "code": "1210121001",
@@ -5588,7 +5588,7 @@
         {
           "code": "1210184001",
           "name": "电子电路设计与仿真",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -5623,7 +5623,7 @@
         {
           "code": "1210969000",
           "name": "数字电子技术",
-          "materials": 2,
+          "materials": 25,
           "bank": 30,
           "syllabus": 9
         },
@@ -5644,7 +5644,7 @@
         {
           "code": "1211478000",
           "name": "自动控制原理",
-          "materials": 8,
+          "materials": 10,
           "bank": 30,
           "syllabus": 8
         },
@@ -5669,11 +5669,11 @@
       "year": 2024,
       "semester": 5,
       "total": 17,
-      "withMaterials": 0,
+      "withMaterials": 2,
       "withBank": 1,
       "withSyllabus": 9,
-      "materialItems": 0,
-      "health": 12,
+      "materialItems": 4,
+      "health": 18,
       "courses": [
         {
           "code": "1215689001",
@@ -5706,7 +5706,7 @@
         {
           "code": "1210169001",
           "name": "电机学",
-          "materials": 0,
+          "materials": 1,
           "bank": 25,
           "syllabus": 5
         },
@@ -5776,7 +5776,7 @@
         {
           "code": "1217001000",
           "name": "人工智能",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -5801,11 +5801,11 @@
       "year": 2024,
       "semester": 6,
       "total": 12,
-      "withMaterials": 0,
+      "withMaterials": 1,
       "withBank": 0,
       "withSyllabus": 8,
-      "materialItems": 0,
-      "health": 13,
+      "materialItems": 3,
+      "health": 18,
       "courses": [
         {
           "code": "1210181000",
@@ -5880,7 +5880,7 @@
         {
           "code": "1219921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -6149,7 +6149,7 @@
       "withMaterials": 1,
       "withBank": 2,
       "withSyllabus": 11,
-      "materialItems": 12,
+      "materialItems": 38,
       "health": 21,
       "courses": [
         {
@@ -6197,7 +6197,7 @@
         {
           "code": "1210175201",
           "name": "电路分析",
-          "materials": 12,
+          "materials": 38,
           "bank": 35,
           "syllabus": 12
         },
@@ -6271,11 +6271,11 @@
       "year": 2025,
       "semester": 4,
       "total": 16,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 2,
       "withSyllabus": 9,
-      "materialItems": 10,
-      "health": 21,
+      "materialItems": 38,
+      "health": 24,
       "courses": [
         {
           "code": "1210121001",
@@ -6315,7 +6315,7 @@
         {
           "code": "1210184001",
           "name": "电子电路设计与仿真",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -6350,7 +6350,7 @@
         {
           "code": "1210969000",
           "name": "数字电子技术",
-          "materials": 2,
+          "materials": 25,
           "bank": 30,
           "syllabus": 9
         },
@@ -6371,7 +6371,7 @@
         {
           "code": "1211478000",
           "name": "自动控制原理",
-          "materials": 8,
+          "materials": 10,
           "bank": 30,
           "syllabus": 8
         },
@@ -6396,11 +6396,11 @@
       "year": 2025,
       "semester": 5,
       "total": 17,
-      "withMaterials": 0,
+      "withMaterials": 2,
       "withBank": 1,
       "withSyllabus": 9,
-      "materialItems": 0,
-      "health": 12,
+      "materialItems": 4,
+      "health": 18,
       "courses": [
         {
           "code": "1215689001",
@@ -6433,7 +6433,7 @@
         {
           "code": "1210169001",
           "name": "电机学",
-          "materials": 0,
+          "materials": 1,
           "bank": 25,
           "syllabus": 5
         },
@@ -6503,7 +6503,7 @@
         {
           "code": "1217001000",
           "name": "人工智能",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -6528,11 +6528,11 @@
       "year": 2025,
       "semester": 6,
       "total": 12,
-      "withMaterials": 0,
+      "withMaterials": 1,
       "withBank": 0,
       "withSyllabus": 8,
-      "materialItems": 0,
-      "health": 13,
+      "materialItems": 3,
+      "health": 18,
       "courses": [
         {
           "code": "1210181000",
@@ -6607,7 +6607,7 @@
         {
           "code": "1219921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -6984,11 +6984,11 @@
       "year": 2024,
       "semester": 4,
       "total": 14,
-      "withMaterials": 1,
+      "withMaterials": 2,
       "withBank": 1,
       "withSyllabus": 11,
-      "materialItems": 2,
-      "health": 21,
+      "materialItems": 5,
+      "health": 25,
       "courses": [
         {
           "code": "4215858000",
@@ -7063,7 +7063,7 @@
         {
           "code": "1217001000",
           "name": "人工智能",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -7095,11 +7095,11 @@
       "year": 2024,
       "semester": 5,
       "total": 13,
-      "withMaterials": 0,
+      "withMaterials": 1,
       "withBank": 0,
       "withSyllabus": 9,
-      "materialItems": 0,
-      "health": 14,
+      "materialItems": 3,
+      "health": 18,
       "courses": [
         {
           "code": "4215859000",
@@ -7118,7 +7118,7 @@
         {
           "code": "1210184001",
           "name": "电子电路设计与仿真",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -7199,11 +7199,11 @@
       "year": 2024,
       "semester": 6,
       "total": 10,
-      "withMaterials": 0,
+      "withMaterials": 1,
       "withBank": 0,
       "withSyllabus": 8,
-      "materialItems": 0,
-      "health": 16,
+      "materialItems": 3,
+      "health": 21,
       "courses": [
         {
           "code": "2210430000",
@@ -7264,7 +7264,7 @@
         {
           "code": "1219921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -7669,11 +7669,11 @@
       "year": 2025,
       "semester": 4,
       "total": 14,
-      "withMaterials": 1,
+      "withMaterials": 2,
       "withBank": 1,
       "withSyllabus": 11,
-      "materialItems": 2,
-      "health": 21,
+      "materialItems": 5,
+      "health": 25,
       "courses": [
         {
           "code": "4215858000",
@@ -7748,7 +7748,7 @@
         {
           "code": "1217001000",
           "name": "人工智能",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -7780,11 +7780,11 @@
       "year": 2025,
       "semester": 5,
       "total": 13,
-      "withMaterials": 0,
+      "withMaterials": 1,
       "withBank": 0,
       "withSyllabus": 9,
-      "materialItems": 0,
-      "health": 14,
+      "materialItems": 3,
+      "health": 18,
       "courses": [
         {
           "code": "4215859000",
@@ -7803,7 +7803,7 @@
         {
           "code": "1210184001",
           "name": "电子电路设计与仿真",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -7884,11 +7884,11 @@
       "year": 2025,
       "semester": 6,
       "total": 10,
-      "withMaterials": 0,
+      "withMaterials": 1,
       "withBank": 0,
       "withSyllabus": 8,
-      "materialItems": 0,
-      "health": 16,
+      "materialItems": 3,
+      "health": 21,
       "courses": [
         {
           "code": "2210430000",
@@ -7949,7 +7949,7 @@
         {
           "code": "1219921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 0,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -8045,6 +8045,6 @@
       ]
     }
   },
-  "generatedAt": "2026-10-20T13:35:29.303Z",
-  "contentHash": "sha1:82ea0ce13d8912772b15be86ed6272e001010d24"
+  "generatedAt": "2026-10-20T14:57:50.764Z",
+  "contentHash": "sha1:c45301a64bd1d0beacfcc0efc9a3b893eba5a364"
 }

@@ -81,6 +81,26 @@
       "size": null
     }
   ],
+  "人工智能": [
+    {
+      "name": "人工智能复习 （总结）",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三上/人工智能/人工智能复习 （总结）.docx",
+      "ext": "docx",
+      "size": 2308374
+    },
+    {
+      "name": "人工智能复习",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三上/人工智能/人工智能复习.docx",
+      "ext": "docx",
+      "size": 87256
+    },
+    {
+      "name": "复习材料",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三上/人工智能/复习材料.pptx",
+      "ext": "pptx",
+      "size": 4723970
+    }
+  ],
   "信号与系统": [
     {
       "name": "课后练习题 1",
@@ -111,6 +131,206 @@
       "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/信号与系统/辅导课件.pptx",
       "ext": "pptx",
       "size": null
+    },
+    {
+      "name": "《信号与系统》辅导课件",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/信号与系统/PPT/《信号与系统》辅导课件.pptx",
+      "ext": "pptx",
+      "size": 4877324
+    },
+    {
+      "name": "第1章 信号与系统基本概念",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/信号与系统/PPT/第1章 信号与系统基本概念.ppt",
+      "ext": "ppt",
+      "size": 9241088
+    },
+    {
+      "name": "第2章 连续信号与系统的时域分析",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/信号与系统/PPT/第2章 连续信号与系统的时域分析.ppt",
+      "ext": "ppt",
+      "size": 2497024
+    },
+    {
+      "name": "第3章 离散信号与系统的时域分析",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/信号与系统/PPT/第3章 离散信号与系统的时域分析.ppt",
+      "ext": "ppt",
+      "size": 2210304
+    },
+    {
+      "name": "第4章 连续信号与系统的频域分析",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/信号与系统/PPT/第4章 连续信号与系统的频域分析.ppt",
+      "ext": "ppt",
+      "size": 10755584
+    },
+    {
+      "name": "第6章 连续信号与系统的S域分析",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/信号与系统/PPT/第6章 连续信号与系统的S域分析.ppt",
+      "ext": "ppt",
+      "size": 3929088
+    },
+    {
+      "name": "题",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/信号与系统/PPT/题.ppt",
+      "ext": "ppt",
+      "size": 11701760
+    },
+    {
+      "name": "信号与系统（A）",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/信号与系统/必须要做的题目/信号与系统（A）.doc",
+      "ext": "doc",
+      "size": 126464
+    },
+    {
+      "name": "信号与系统（B）(1)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/信号与系统/必须要做的题目/信号与系统（B）(1).doc",
+      "ext": "doc",
+      "size": 115712
+    },
+    {
+      "name": "信号与系统（B）(2)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/信号与系统/必须要做的题目/信号与系统（B）(2).pdf",
+      "ext": "pdf",
+      "size": 5497677
+    },
+    {
+      "name": "信号与系统（C）(2)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/信号与系统/必须要做的题目/信号与系统（C）(2).pdf",
+      "ext": "pdf",
+      "size": 2922145
+    },
+    {
+      "name": "信号与系统（C）(3)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/信号与系统/必须要做的题目/信号与系统（C）(3).pdf",
+      "ext": "pdf",
+      "size": 2922145
+    },
+    {
+      "name": "信号与系统（C）",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/信号与系统/必须要做的题目/信号与系统（C）.doc",
+      "ext": "doc",
+      "size": 142848
+    },
+    {
+      "name": "考试试题A(2)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/信号与系统/必须要做的题目/考试试题A(2).doc",
+      "ext": "doc",
+      "size": 1167872
+    },
+    {
+      "name": "第4章  复习(1)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/信号与系统/第4章  复习(1).ppt",
+      "ext": "ppt",
+      "size": 13793280
+    },
+    {
+      "name": "简答题参考（数电 信号） (1)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/信号与系统/简答题参考（数电 信号） (1).docx",
+      "ext": "docx",
+      "size": 211918
+    },
+    {
+      "name": "简答题参考（数电 信号） (2)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/信号与系统/简答题参考（数电 信号） (2).pdf",
+      "ext": "pdf",
+      "size": 12095948
+    }
+  ],
+  "变电工程设计": [
+    {
+      "name": "2.3高压隔离开关",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/变电工程/变电工程/2.3高压隔离开关.pptx",
+      "ext": "pptx",
+      "size": 3411322
+    },
+    {
+      "name": "2.4高压负荷开关",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/变电工程/变电工程/2.4高压负荷开关.pptx",
+      "ext": "pptx",
+      "size": 4129192
+    },
+    {
+      "name": "2.5高压熔断器新",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/变电工程/变电工程/2.5高压熔断器新.pptx",
+      "ext": "pptx",
+      "size": 8382326
+    },
+    {
+      "name": "2.6重合器2.7分段器",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/变电工程/变电工程/2.6重合器2.7分段器.pptx",
+      "ext": "pptx",
+      "size": 3458007
+    },
+    {
+      "name": "变电站复习",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/变电工程/变电工程/变电站复习.docx",
+      "ext": "docx",
+      "size": 24168
+    },
+    {
+      "name": "变电站实验文字",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/变电工程/变电工程/变电站实验文字.docx",
+      "ext": "docx",
+      "size": 18042
+    },
+    {
+      "name": "第1-3讲",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/变电工程/变电工程/第1-3讲.pptx",
+      "ext": "pptx",
+      "size": 11454314
+    },
+    {
+      "name": "第10讲电气主接线3",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/变电工程/变电工程/第10讲电气主接线3.pptx",
+      "ext": "pptx",
+      "size": 1142434
+    },
+    {
+      "name": "第12讲载流导体的发热",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/变电工程/变电工程/第12讲载流导体的发热.pptx",
+      "ext": "pptx",
+      "size": 2940113
+    },
+    {
+      "name": "第13-14讲载流导体短路电动力效应",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/变电工程/变电工程/第13-14讲载流导体短路电动力效应.pptx",
+      "ext": "pptx",
+      "size": 1913274
+    },
+    {
+      "name": "第15-16讲母线和电缆的选择",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/变电工程/变电工程/第15-16讲母线和电缆的选择.pptx",
+      "ext": "pptx",
+      "size": 1007098
+    },
+    {
+      "name": "第4讲",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/变电工程/变电工程/第4讲.pptx",
+      "ext": "pptx",
+      "size": 1795666
+    },
+    {
+      "name": "第5讲",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/变电工程/变电工程/第5讲.pptx",
+      "ext": "pptx",
+      "size": 34750803
+    },
+    {
+      "name": "第8讲电气主接线1",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/变电工程/变电工程/第8讲电气主接线1.pptx",
+      "ext": "pptx",
+      "size": 1286467
+    },
+    {
+      "name": "第9讲电气主接线2",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/变电工程/变电工程/第9讲电气主接线2.pptx",
+      "ext": "pptx",
+      "size": 1686339
+    },
+    {
+      "name": "重点PPT",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/变电工程/变电工程/重点PPT.pptx",
+      "ext": "pptx",
+      "size": 1065846
     }
   ],
   "大学物理B": [
@@ -133,6 +353,32 @@
       "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/english/english-final-review.doc",
       "ext": "doc",
       "size": null
+    }
+  ],
+  "嵌入式系统与应用": [
+    {
+      "name": "20分分析题",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三上/嵌入式/20分分析题.docx",
+      "ext": "docx",
+      "size": 901473
+    },
+    {
+      "name": "嵌入式复习题(23电气) 有解析",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三上/嵌入式/嵌入式复习题(23电气) 有解析.docx",
+      "ext": "docx",
+      "size": 2517168
+    },
+    {
+      "name": "嵌入式复习题22级（自制无解析）",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三上/嵌入式/嵌入式复习题22级（自制无解析）.docx",
+      "ext": "docx",
+      "size": 614284
+    },
+    {
+      "name": "嵌入式简答",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三上/嵌入式/嵌入式简答.docx",
+      "ext": "docx",
+      "size": 1757349
     }
   ],
   "思想道德与法治": [
@@ -185,6 +431,310 @@
       "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/还原Word_第2章门电路及组合逻辑电路实验.docx",
       "ext": "docx",
       "size": null
+    },
+    {
+      "name": "判断题(1)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/判断题/判断题(1).pdf",
+      "ext": "pdf",
+      "size": 157043
+    },
+    {
+      "name": "判断题",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/判断题/判断题.doc",
+      "ext": "doc",
+      "size": 4947456
+    },
+    {
+      "name": "数电CH1",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/数电PPT/数电CH1.ppt",
+      "ext": "ppt",
+      "size": 4834304
+    },
+    {
+      "name": "数电CH2n",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/数电PPT/数电CH2n.pptx",
+      "ext": "pptx",
+      "size": 2882491
+    },
+    {
+      "name": "数电CH4",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/数电PPT/数电CH4.ppt",
+      "ext": "ppt",
+      "size": 7632384
+    },
+    {
+      "name": "数电CH5",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/数电PPT/数电CH5.ppt",
+      "ext": "ppt",
+      "size": 2993152
+    },
+    {
+      "name": "数电CH6",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/数电PPT/数电CH6.ppt",
+      "ext": "ppt",
+      "size": 9048576
+    },
+    {
+      "name": "数电CH7",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/数电PPT/数电CH7.pptx",
+      "ext": "pptx",
+      "size": 2764735
+    },
+    {
+      "name": "数电总复习n (1)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/数电PPT/数电总复习n (1).pptx",
+      "ext": "pptx",
+      "size": 726812
+    },
+    {
+      "name": "数电总复习n",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/数电PPT/数电总复习n.pptx",
+      "ext": "pptx",
+      "size": 735442
+    },
+    {
+      "name": "模拟题1答案",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/模拟题/模拟题1/模拟题1答案.doc",
+      "ext": "doc",
+      "size": 7755264
+    },
+    {
+      "name": "数电模拟2023答案",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/模拟题/模拟题2/数电模拟2023答案.pdf",
+      "ext": "pdf",
+      "size": 2994327
+    },
+    {
+      "name": "数电模拟考题2023",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/模拟题/模拟题2/数电模拟考题2023.pdf",
+      "ext": "pdf",
+      "size": 1018782
+    },
+    {
+      "name": "川农15秋《数字电子技术》复习题(2)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/模拟题/练习题/川农15秋《数字电子技术》复习题(2).doc",
+      "ext": "doc",
+      "size": 3934720
+    },
+    {
+      "name": "川农数电期末复习模拟试题(1)(1)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/模拟题/练习题/川农数电期末复习模拟试题(1)(1).docx",
+      "ext": "docx",
+      "size": 1753329
+    },
+    {
+      "name": "数字电子技术试卷试题答案汇总(1)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/模拟题/练习题/数字电子技术试卷试题答案汇总(1).pdf",
+      "ext": "pdf",
+      "size": 3528248
+    },
+    {
+      "name": "数电机考模拟考题1(1)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/模拟题/练习题/数电机考模拟考题1(1).docx",
+      "ext": "docx",
+      "size": 369613
+    },
+    {
+      "name": "计算题(2)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/模拟题/练习题/计算题(2).doc",
+      "ext": "doc",
+      "size": 2412032
+    },
+    {
+      "name": "不是指定考试题库的简答题整理",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/简答/不是指定考试题库的简答题整理.docx",
+      "ext": "docx",
+      "size": 493876
+    },
+    {
+      "name": "简答题参考（数电 信号） (2)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/简答/简答题参考（数电 信号） (2).pdf",
+      "ext": "pdf",
+      "size": 12095948
+    },
+    {
+      "name": "还原Word_第2章门电路及组合逻辑电路实验(1) (1)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/还原Word_第2章门电路及组合逻辑电路实验(1) (1).docx",
+      "ext": "docx",
+      "size": 1724701
+    },
+    {
+      "name": "选择题2(35页)yikan(1)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/选择题/选择题2(35页)yikan(1).doc",
+      "ext": "doc",
+      "size": 23768064
+    },
+    {
+      "name": "选择题2",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/数字电子技术/选择题/选择题2.pdf",
+      "ext": "pdf",
+      "size": 2106590
+    }
+  ],
+  "电力电子技术": [
+    {
+      "name": "MOOC作业题答案",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/电力电子/电力电子/电力电子/MOOC/MOOC作业题答案.docx",
+      "ext": "docx",
+      "size": 3593187
+    },
+    {
+      "name": "5",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/电力电子/电力电子/电力电子/PPT重点/5.docx",
+      "ext": "docx",
+      "size": 257176
+    },
+    {
+      "name": "6",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/电力电子/电力电子/电力电子/PPT重点/6.docx",
+      "ext": "docx",
+      "size": 299105
+    },
+    {
+      "name": "7",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/电力电子/电力电子/电力电子/PPT重点/7.docx",
+      "ext": "docx",
+      "size": 1779825
+    },
+    {
+      "name": "7",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/电力电子/电力电子/电力电子/PPT重点/7.pdf",
+      "ext": "pdf",
+      "size": 537098
+    },
+    {
+      "name": "复习",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/电力电子/电力电子/电力电子/PPT重点/复习.docx",
+      "ext": "docx",
+      "size": 3064432
+    },
+    {
+      "name": "复习",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/电力电子/电力电子/电力电子/PPT重点/复习.pdf",
+      "ext": "pdf",
+      "size": 1157046
+    }
+  ],
+  "电力系统继电保护": [
+    {
+      "name": "第1章  继电保护的基本知识",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/继电保护/继电保护/第1章  继电保护的基本知识.ppt",
+      "ext": "ppt",
+      "size": 1444864
+    },
+    {
+      "name": "第2章  继电保护装置的基础元件",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/继电保护/继电保护/第2章  继电保护装置的基础元件.ppt",
+      "ext": "ppt",
+      "size": 1831936
+    },
+    {
+      "name": "第3章",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/继电保护/继电保护/第3章.ppt",
+      "ext": "ppt",
+      "size": 4148736
+    },
+    {
+      "name": "第4章相间短路的方向电流保护",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/继电保护/继电保护/第4章相间短路的方向电流保护.ppt",
+      "ext": "ppt",
+      "size": 3895808
+    },
+    {
+      "name": "第6章 阶段式距离保护",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/继电保护/继电保护/第6章 阶段式距离保护.ppt",
+      "ext": "ppt",
+      "size": 5338624
+    },
+    {
+      "name": "背诵",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/继电保护/继电保护/背诵.docx",
+      "ext": "docx",
+      "size": 40613
+    },
+    {
+      "name": "重点PPT",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/继电保护/继电保护/重点PPT.pptx",
+      "ext": "pptx",
+      "size": 1408236
+    }
+  ],
+  "电子电路设计与仿真": [
+    {
+      "name": "电子元器件分类、特性总结",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/电子电路/电子电路/电子元器件分类、特性总结.zip",
+      "ext": "zip",
+      "size": 316043086
+    },
+    {
+      "name": "电子电路大题10道_冰",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/电子电路/电子电路/电子电路大题10道_冰.pdf",
+      "ext": "pdf",
+      "size": 54339810
+    },
+    {
+      "name": "电路设计与仿真（几乎是原题）",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三下/电子电路/电子电路/电路设计与仿真（几乎是原题）.docx",
+      "ext": "docx",
+      "size": 4307440
+    }
+  ],
+  "电机学": [
+    {
+      "name": "《电机学》复习资料2025月12月",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三上/电机学/《电机学》复习资料2025月12月.doc",
+      "ext": "doc",
+      "size": 971264
+    }
+  ],
+  "电气测量技术": [
+    {
+      "name": "11章题",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三上/电气测量/11章题.pptx",
+      "ext": "pptx",
+      "size": 758301
+    },
+    {
+      "name": "1章",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三上/电气测量/1章.pptx",
+      "ext": "pptx",
+      "size": 3925096
+    },
+    {
+      "name": "1章（习题答案）",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三上/电气测量/1章（习题答案）.docx",
+      "ext": "docx",
+      "size": 76468
+    },
+    {
+      "name": "22章题",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三上/电气测量/22章题.pptx",
+      "ext": "pptx",
+      "size": 2371005
+    },
+    {
+      "name": "2章",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三上/电气测量/2章.pptx",
+      "ext": "pptx",
+      "size": 65145201
+    },
+    {
+      "name": "2章（习题答案）",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三上/电气测量/2章（习题答案）.docx",
+      "ext": "docx",
+      "size": 120421
+    },
+    {
+      "name": "3章",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三上/电气测量/3章.pptx",
+      "ext": "pptx",
+      "size": 6045127
+    },
+    {
+      "name": "新建 DOCX 文档",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三上/电气测量/新建 DOCX 文档.docx",
+      "ext": "docx",
+      "size": 9492427
     }
   ],
   "电磁场与电磁波": [
@@ -285,6 +835,162 @@
       "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/1210175201/1787666163176-33rdu4.pdf",
       "ext": "pdf",
       "size": 1365933
+    },
+    {
+      "name": "第1.0节",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char1/第1.0节.ppt",
+      "ext": "ppt",
+      "size": 432640
+    },
+    {
+      "name": "第1.1节",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char1/第1.1节.ppt",
+      "ext": "ppt",
+      "size": 7889408
+    },
+    {
+      "name": "第1.2节",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char1/第1.2节.ppt",
+      "ext": "ppt",
+      "size": 804864
+    },
+    {
+      "name": "第2.1节",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char2/第2.1节.ppt",
+      "ext": "ppt",
+      "size": 1734656
+    },
+    {
+      "name": "第2.2节",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char2/第2.2节.ppt",
+      "ext": "ppt",
+      "size": 1008640
+    },
+    {
+      "name": "第2.3-4节",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char2/第2.3-4节.ppt",
+      "ext": "ppt",
+      "size": 1546752
+    },
+    {
+      "name": "第2.5.1节",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char2/第2.5.1节.ppt",
+      "ext": "ppt",
+      "size": 677376
+    },
+    {
+      "name": "第2.5.2节 ",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char2/第2.5.2节 .ppt",
+      "ext": "ppt",
+      "size": 867840
+    },
+    {
+      "name": "第2.6节",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char2/第2.6节.ppt",
+      "ext": "ppt",
+      "size": 1255424
+    },
+    {
+      "name": "第2章",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char2/第2章.ppt",
+      "ext": "ppt",
+      "size": 552448
+    },
+    {
+      "name": "习题一",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char3/习题一.ppt",
+      "ext": "ppt",
+      "size": 665600
+    },
+    {
+      "name": "第3.1节",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char3/第3.1节.ppt",
+      "ext": "ppt",
+      "size": 2015744
+    },
+    {
+      "name": "第3.2节",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char3/第3.2节.ppt",
+      "ext": "ppt",
+      "size": 654848
+    },
+    {
+      "name": "第3.3节",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char3/第3.3节.ppt",
+      "ext": "ppt",
+      "size": 1150464
+    },
+    {
+      "name": "第3.4节",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char3/第3.4节.ppt",
+      "ext": "ppt",
+      "size": 799744
+    },
+    {
+      "name": "第3.5-6节",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char3/第3.5-6节.ppt",
+      "ext": "ppt",
+      "size": 923136
+    },
+    {
+      "name": "第3章",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char3/第3章.ppt",
+      "ext": "ppt",
+      "size": 619008
+    },
+    {
+      "name": "4.1-4.7",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char4/4.1-4.7.ppt",
+      "ext": "ppt",
+      "size": 3187712
+    },
+    {
+      "name": "5.1-5.9",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char5/5.1-5.9.ppt",
+      "ext": "ppt",
+      "size": 6530048
+    },
+    {
+      "name": "习题三",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char5/习题三.ppt",
+      "ext": "ppt",
+      "size": 440320
+    },
+    {
+      "name": "6.1-6.3",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char6/6.1-6.3.ppt",
+      "ext": "ppt",
+      "size": 2279936
+    },
+    {
+      "name": "6.4-6.5",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char6/6.4-6.5.ppt",
+      "ext": "ppt",
+      "size": 3310592
+    },
+    {
+      "name": "第6章6.6",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char6/第6章6.6.ppt",
+      "ext": "ppt",
+      "size": 3815936
+    },
+    {
+      "name": "第七章",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char7/第七章.ppt",
+      "ext": "ppt",
+      "size": 3398656
+    },
+    {
+      "name": "第八章",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char8/第八章.ppt",
+      "ext": "ppt",
+      "size": 2313216
+    },
+    {
+      "name": "第九章",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二上/电路分析/Char9/第九章.ppt",
+      "ext": "ppt",
+      "size": 5074944
     }
   ],
   "自动控制原理": [
@@ -335,6 +1041,38 @@
       "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/自动控制原理/自控理论_复习题及答案.doc",
       "ext": "doc",
       "size": null
+    },
+    {
+      "name": "自动控制理论_习题集(含答案)（17页）",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/自动控制原理/自动控制理论_习题集(含答案)（17页）.doc",
+      "ext": "doc",
+      "size": 811899
+    },
+    {
+      "name": "自控理论_复习题及答案（7页）",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大二下/自动控制原理/自控理论_复习题及答案（7页）.doc",
+      "ext": "doc",
+      "size": 396800
+    }
+  ],
+  "试验设计与统计分析（研）": [
+    {
+      "name": "期末考试考点_试验设计_0.3(2025.12.21)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三上/实验设计/期末考试考点_试验设计_0.3(2025.12.21).ppt",
+      "ext": "ppt",
+      "size": 414208
+    },
+    {
+      "name": "笔记",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三上/实验设计/笔记.pdf",
+      "ext": "pdf",
+      "size": 19581497
+    },
+    {
+      "name": "试验设计",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/大三上/实验设计/试验设计.doc",
+      "ext": "doc",
+      "size": 251904
     }
   ],
   "马克思主义基本原理概论": [
