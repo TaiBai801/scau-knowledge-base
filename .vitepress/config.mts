@@ -149,7 +149,13 @@ export default defineConfig({
     ['script', { src: '/footprint-tracker.js', defer: '' }],
   ],
   sitemap: { hostname: 'https://sicau-jdxy-resource.cn' },
-  srcExclude: ['cloud-function/**', '**/node_modules/**'],
+  // 内部文档（含接口缺陷与清理清单、阶段方案），不发布为站点页面
+  srcExclude: [
+    'cloud-function/**',
+    '**/node_modules/**',
+    'REFACTOR_AUDIT.md',
+    'NEXT_PHASE_PLAN.md',
+  ],
   markdown: {
     config: (md) => {
       // 正文里的 [[m:key]] 在构建期替换为快照数字

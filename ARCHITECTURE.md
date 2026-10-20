@@ -60,7 +60,6 @@
 | `bank.js` | `/api/bank` | 题库读写（POST-only，无 GET） | `getBank`/`saveQuestion`/`deleteQuestion`/`batchImport` |
 | `bounty.js` | `/api/bounty` | 资料悬赏 | 公开 `list`/`submit`/`like`；后台（需 pw）`adminList`/`review`/`setCompleted`/`remove` |
 | `content.js` | `/api/content` | 课程内容编辑（五段式：练习题/资源/ta说） | `getContent`/`saveContent` |
-| `lottery.js` | `/api/lottery` | 抽奖（已下线，页面关闭） | `getState`/`draw`/`adjust`/`setClosed`/`reset` |
 | `preview.js` | `/api/preview?key=` | 文件在线预览代理（GET-only） | 无 action，按扩展名分流 |
 | `stats.js` | `/api/stats` | 访问/下载埋点统计 | `track`/`getStats` |
 | `upload.js` | `/api/upload` | 资料文件上传（预签名 URL） | `presign`/`save`/`remove`/`rename` |
@@ -69,7 +68,7 @@
 
 | 路径 | 说明 |
 |------|------|
-| `public/admin/*.html` | 管理后台（`index`/`upload`/`content`/`stats`/`bounty`/`bank`，另有已下线的 `lottery.html`） |
+| `public/admin/*.html` | 管理后台（`index`/`upload`/`content`/`stats`/`bounty`/`bank`） |
 | `public/data/*.json` | 前端静态数据副本（`bank.json`/`syllabus.json`/`course-index.json`，站点构建时拷贝到 `/data/`） |
 | `public/materials-loader.js` | 课程页动态加载器（资料列表+在线预览+练习/资源/ta说+别名兜底+同类课程交叉链接） |
 | `public/stats-loader.js` | 首页/页脚统计加载 |
@@ -167,7 +166,6 @@ materials-loader.js 扫描 #course-materials 等容器
 | `data/materials.json` | `{ 课程名: [ {name, url, ext, size} ] }` | 课程资料清单（12 门课已录） |
 | `data/content.json` | `{ 课程名: { exercises, resources, tasay } }` | 课程五段式内容（Markdown 文本） |
 | `data/bank.json` | `{ 课程名: { course, code, questions:[{id,type,stem,answer,difficulty,…}] } }` | 题库（`type` ∈ single/multi/judge/blank/calc/short，`difficulty` 1/2/3） |
-| `data/lottery.json` | `{ remaining[], history[], resetCount, closed }` | 抽奖状态（已下线） |
 | `data/bounties.json` | `{ requests:[ {id, content, by, course, status, completed, likedBy[], time} ] }` | 资料悬赏（status ∈ pending/approved/rejected） |
 | `files/**` | 二进制文件 | 课程资料（pdf/doc/docx/ppt/pptx 等） |
 
@@ -229,7 +227,7 @@ materials-loader.js 扫描 #course-materials 等容器
 
 ### 6.2 管理后台入口（public/admin/*.html，均带密码门）
 
-`/admin/index.html`（课程管理）、`/admin/upload.html`（资料上传）、`/admin/content.html`（内容编辑）、`/admin/stats.html`（统计）、`/admin/bounty.html`（悬赏审核）、`/admin/bank.html`（题库录入）、`/admin/lottery.html`（已下线提示页）。
+`/admin/index.html`（课程管理）、`/admin/upload.html`（资料上传）、`/admin/content.html`（内容编辑）、`/admin/stats.html`（统计）、`/admin/bounty.html`（悬赏审核）、`/admin/bank.html`（题库录入）。
 
 ### 6.3 启动/构建/部署流程
 
@@ -258,7 +256,7 @@ git push origin main
 - ✅ **计划书扩展（2026-10-11）**：多课程混排（单元轮转交叉复习）、考试/截止日期倒计时（每日卡片标注距考天数+周期内考试提醒）、按日/按周双视图、课程搜索选择器
 - ✅ 题库录入后台 `/admin/bank.html`（增删改、批量 JSON 导入）
 - ✅ 内容五段式编辑、访问/下载埋点统计
-- ✅ 抽奖（已下线，页面关闭）
+- ✅ 抽奖（功能与 `/api/lottery` 接口均已移除，COS 的 `data/lottery.json` 待清）
 
 ### 7.2 待办 / 缺口
 

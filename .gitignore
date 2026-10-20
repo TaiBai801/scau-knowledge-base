@@ -1,23 +1,39 @@
 node_modules/
-.vitepress/dist/
-.vitepress/cache/
 .DS_Store
 *.log
 *.bak
+*.pid
 stdout.txt
 stderr.txt
 build-output.txt
+
+# ── VitePress 构建产物与临时目录 ──
+.vitepress/dist/
+.vitepress/cache/
+.vitepress/.temp*/
+.vitepress/dist-old*/
+.vitepress/dist-bak/
+.vitepress/config.mts.timestamp-*.mjs
+
+# ── 一次性脚本（历史遗留，统一忽略；需要时用 ! 单独放行）──
 create_*.py
 insert_templates.py
-.workbuddy/upload_cos.py
-.workbuddy/push_dist.py
-.workbuddy/upload_all.py
-.workbuddy/upload_big.py
-.workbuddy/upload_resume.py
-.workbuddy/list_big.py
-.env
+fill_templates*.py
+refill_templates.py
+
+# ── AI 协作目录：忽略脚本与语料，保留记忆 ──
+.workbuddy/*
+!.workbuddy/memory/
+!.workbuddy/memory/**
+!.workbuddy/automations/
+!.workbuddy/automations/**
+!.workbuddy/project_archive.md
+
+# ── 归档与旧数据 ──
 .old-courses/
-.vitepress/config.mts.timestamp-*.mjs
-.vitepress/dist-old/
-.vitepress/dist-old2/
-.vitepress/dist-bak/
+.backup_redundant/
+.ardot-exports/
+.ardot-screenshots/
+.ardot_screenshots/
+
+.env
