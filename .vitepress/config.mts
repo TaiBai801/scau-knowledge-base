@@ -211,6 +211,7 @@ export default defineConfig({
         { text: '课程笔记', link: '/notes' },
         { text: '错题本', link: '/wrong' },
       ]},
+      { text: '我的本学期', link: '/my' },
       { text: '社区', items: [
         { text: '「Ta说」', link: '/stories' },
         { text: '资料缺口榜', link: '/gap' },

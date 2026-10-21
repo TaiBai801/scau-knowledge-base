@@ -33,6 +33,7 @@
 ## 社区
 
 <a href="/stories" class="nav-card">💬 「Ta说」 · 四个问题</a>
+<a href="/my" class="nav-card">📚 我的本学期 · 课表与资料</a>
 <a href="/gap" class="nav-card">📉 资料缺口榜</a>
 <a href="/contributors" class="nav-card">👥 贡献者墙</a>
 <a href="/contribute" class="nav-card">✏️ 贡献指南</a>
