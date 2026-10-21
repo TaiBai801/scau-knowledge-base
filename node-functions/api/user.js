@@ -17,6 +17,7 @@ import { hashPassword, verifyPassword, signUserToken, verifyUserToken, rateLimit
 import { auditLog } from './_auth.js';
 
 const USER_KEY = 'data/users.json';
+const DATA_KEY = 'data/users-data.json'; // 学生个人数据同步（按用户隔离，private）
 const NAME_RE = /^[\u4e00-\u9fa5a-zA-Z0-9_-]{2,16}$/; // 2-16 位：中文/字母/数字/下划线/连字符
 
 // 对外脱敏：绝不返回 salt/hash
@@ -106,6 +107,46 @@ export async function onRequestPost({ request }) {
       const u = (data.data || { users: {} }).users[who.username];
       if (!u) return json({ error: '账号不存在' }, 401); // 注册后又被清理的极端情况
       return json({ valid: true, user: publicUser(u) });
+    }
+
+    // ── 学生个人数据同步（kv，按用户隔离）────────────────────
+    // 存储：data/users-data.json，结构 { users: { [username]: { [key]: { value, updatedAt } } } }
+    // private ACL + ETag 乐观锁；v1 只放「我的本学期」课表（key=term），后续按需扩 key。
+    if (action === 'dataPut') {
+      const who = verifyUserToken(String(body.token || ''));
+      if (!who) return json({ error: '未登录或登录已过期' }, 401);
+      const key = String(body.key || '').trim();
+      if (!/^[a-z][a-z0-9_]{0,23}$/.test(key)) return json({ error: 'key 非法' }, 400);
+      const value = body.value;
+      if (!value || typeof value !== 'object' || Array.isArray(value)) {
+        return json({ error: 'value 必须是对象' }, 400);
+      }
+      // 单 key 体积护栏，防止把这里当免费数据库刷
+      if (JSON.stringify(value).length > 32 * 1024) return json({ error: '数据过大' }, 400);
+
+      for (let i = 0; i < 4; i++) {
+        const { data, etag } = await readJsonWithEtagSigned(DATA_KEY);
+        const state = data && data.users ? data : { users: {} };
+        state.users[who.username] = state.users[who.username] || {};
+        state.users[who.username][key] = { value, updatedAt: Date.now() };
+        const wr = await writeJsonIfMatch(DATA_KEY, state, etag, 'private');
+        if (wr.ok) {
+          return json({ ok: true, updatedAt: state.users[who.username][key].updatedAt });
+        }
+      }
+      return json({ error: '并发冲突，请重试' }, 409);
+    }
+
+    if (action === 'dataGet') {
+      const who = verifyUserToken(String(body.token || ''));
+      if (!who) return json({ error: '未登录或登录已过期' }, 401);
+      const key = String(body.key || '').trim();
+      if (!/^[a-z][a-z0-9_]{0,23}$/.test(key)) return json({ error: 'key 非法' }, 400);
+      const data = await readJsonWithEtagSigned(DATA_KEY);
+      const rec = ((data.data || {}).users || {})[who.username];
+      const item = rec && rec[key];
+      if (!item) return json({ ok: true, found: false });
+      return json({ ok: true, found: true, value: item.value, updatedAt: item.updatedAt });
     }
 
     return json({ error: 'unknown action: ' + action }, 400);

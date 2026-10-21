@@ -21,9 +21,11 @@ const SESSION_KEY = 'kx_focus_session_v1'
 const FOCUS_EVENT = 'kx-focus-updated'
 const PRESETS = [15, 25, 45]
 const NOISE_OPTIONS = [
-  { value: 'off', label: '关' },
-  { value: 'white', label: '白噪音' },
-  { value: 'brown', label: '棕噪音' },
+  { value: 'off', label: '🔇 关闭' },
+  { value: 'rain', label: '🌧️ 雨声' },
+  { value: 'fire', label: '🔥 篝火' },
+  { value: 'white', label: '📻 白噪音' },
+  { value: 'brown', label: '〰️ 棕噪音' },
 ]
 
 // 状态机：idle → running → paused → done（paused 可回到 running，done 可回 idle）
@@ -39,7 +41,7 @@ const totalUnits = ref(0)
 const customMin = ref(30)
 const customError = ref('')
 
-const noise = ref('off') // off | white | brown
+const noise = ref('off') // off | white | brown | rain | fire
 const volume = ref(40)
 
 let ticker = null
@@ -47,6 +49,9 @@ let runStartAt = 0 // 本次「继续」的时刻
 let sessionStartAt = 0 // 本轮第一次开始
 let audioCtx = null
 let noiseSrc = null
+let noiseSrc2 = null // 篝火需要两个声源：低频火苗隆隆声 + 高频爆裂声
+let filter1 = null
+let filter2 = null
 let gainNode = null
 
 const running = computed(() => state.value === 'running')
@@ -308,15 +313,29 @@ function ensureAudio() {
 }
 
 function stopNoise() {
-  if (noiseSrc) {
-    try {
-      noiseSrc.stop()
-      noiseSrc.disconnect()
-    } catch {
-      /* noop */
+  ;[noiseSrc, noiseSrc2].forEach(function (s) {
+    if (s) {
+      try {
+        s.stop()
+        s.disconnect()
+      } catch {
+        /* noop */
+      }
     }
-    noiseSrc = null
-  }
+  })
+  noiseSrc = null
+  noiseSrc2 = null
+  ;[filter1, filter2].forEach(function (f) {
+    if (f) {
+      try {
+        f.disconnect()
+      } catch {
+        /* noop */
+      }
+    }
+  })
+  filter1 = null
+  filter2 = null
   if (gainNode) {
     try {
       gainNode.disconnect()
@@ -327,6 +346,23 @@ function stopNoise() {
   }
 }
 
+// 各音色的基础响度（× 音量滑块），手调到听感接近
+function baseLevel(type) {
+  return { white: 0.25, brown: 0.3, rain: 0.42, fire: 0.38 }[type] || 0.3
+}
+
+function makeBuffer(ctx, len, fill) {
+  const buffer = ctx.createBuffer(1, len, ctx.sampleRate)
+  fill(buffer.getChannelData(0))
+  return buffer
+}
+
+// 循环接缝保护：瞬态只落在中间区域，两端留边距
+function safeZone(ctx, len) {
+  const edge = Math.floor(ctx.sampleRate * 0.09)
+  return [edge, len - edge]
+}
+
 function startNoise() {
   if (noise.value === 'off') return
   const ctx = ensureAudio()
@@ -334,28 +370,106 @@ function startNoise() {
   stopNoise()
 
   const len = Math.floor(ctx.sampleRate * 2)
-  const buffer = ctx.createBuffer(1, len, ctx.sampleRate)
-  const data = buffer.getChannelData(0)
-  if (noise.value === 'brown') {
-    // 棕噪音：白噪音做一阶积分，低频更重、听感更闷
-    let last = 0
-    for (let i = 0; i < len; i++) {
-      const white = Math.random() * 2 - 1
-      last = (last + 0.02 * white) / 1.02
-      data[i] = last * 3.5
+  const type = noise.value
+  gainNode = ctx.createGain()
+  gainNode.gain.value = (volume.value / 100) * baseLevel(type)
+  gainNode.connect(ctx.destination)
+
+  if (type === 'white' || type === 'brown') {
+    const buffer = ctx.createBuffer(1, len, ctx.sampleRate)
+    const data = buffer.getChannelData(0)
+    if (type === 'brown') {
+      // 棕噪音：白噪音做一阶积分，低频更重、听感更闷
+      let last = 0
+      for (let i = 0; i < len; i++) {
+        const white = Math.random() * 2 - 1
+        last = (last + 0.02 * white) / 1.02
+        data[i] = last * 3.5
+      }
+    } else {
+      for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1
     }
-  } else {
-    for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1
+    noiseSrc = ctx.createBufferSource()
+    noiseSrc.buffer = buffer
+    noiseSrc.loop = true
+    noiseSrc.connect(gainNode)
+    noiseSrc.start()
+    return
   }
 
-  noiseSrc = ctx.createBufferSource()
-  noiseSrc.buffer = buffer
-  noiseSrc.loop = true
-  gainNode = ctx.createGain()
-  gainNode.gain.value = (volume.value / 100) * 0.3
-  noiseSrc.connect(gainNode)
-  gainNode.connect(ctx.destination)
-  noiseSrc.start()
+  if (type === 'rain') {
+    // 雨声 = 连绵的宽带噪声底（高通+低通收掉隆隆声与刺耳段）+ 随机雨滴瞬态。
+    // 雨滴只落在循环安全区内，接缝处不会出现被切断的滴答声。
+    noiseSrc = ctx.createBufferSource()
+    noiseSrc.buffer = makeBuffer(ctx, len, function (data) {
+      for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1
+      const [from, to] = safeZone(ctx, len)
+      const drops = Math.floor((len / ctx.sampleRate) * 46)
+      for (let d = 0; d < drops; d++) {
+        const at = from + Math.floor(Math.random() * (to - from))
+        const amp = 0.2 + Math.random() * 0.8
+        const decay = 40 + Math.floor(Math.random() * 110)
+        for (let j = 0; j < decay && at + j < to; j++) {
+          data[at + j] += (Math.random() * 2 - 1) * amp * Math.pow(1 - j / decay, 2)
+        }
+      }
+    })
+    noiseSrc.loop = true
+    filter1 = ctx.createBiquadFilter()
+    filter1.type = 'highpass'
+    filter1.frequency.value = 340
+    filter2 = ctx.createBiquadFilter()
+    filter2.type = 'lowpass'
+    filter2.frequency.value = 5200
+    noiseSrc.connect(filter1)
+    filter1.connect(filter2)
+    filter2.connect(gainNode)
+    noiseSrc.start()
+    return
+  }
+
+  if (type === 'fire') {
+    // 篝火 = 低频火苗隆隆声（棕噪 + 低通）+ 高频噼啪爆裂声（稀疏尖峰簇）。
+    // 两个声源分开建链，爆裂声不会被低通滤掉。
+    const [from, to] = safeZone(ctx, len)
+
+    noiseSrc = ctx.createBufferSource()
+    noiseSrc.buffer = makeBuffer(ctx, len, function (data) {
+      let last = 0
+      for (let i = 0; i < len; i++) {
+        const white = Math.random() * 2 - 1
+        last = (last + 0.02 * white) / 1.02
+        data[i] = last * 3.5
+      }
+    })
+    noiseSrc.loop = true
+    filter1 = ctx.createBiquadFilter()
+    filter1.type = 'lowpass'
+    filter1.frequency.value = 320
+    noiseSrc.connect(filter1)
+    filter1.connect(gainNode)
+    noiseSrc.start()
+
+    noiseSrc2 = ctx.createBufferSource()
+    noiseSrc2.buffer = makeBuffer(ctx, len, function (data) {
+      const bursts = Math.floor((len / ctx.sampleRate) * 13)
+      for (let b = 0; b < bursts; b++) {
+        const at = from + Math.floor(Math.random() * (to - from))
+        const amp = 0.3 + Math.random() * 0.7
+        const decay = 60 + Math.floor(Math.random() * 220)
+        for (let j = 0; j < decay && at + j < to; j++) {
+          data[at + j] += (Math.random() * 2 - 1) * amp * Math.exp(-j / (decay / 3))
+        }
+      }
+    })
+    noiseSrc2.loop = true
+    filter2 = ctx.createBiquadFilter()
+    filter2.type = 'highpass'
+    filter2.frequency.value = 1500
+    noiseSrc2.connect(filter2)
+    filter2.connect(gainNode)
+    noiseSrc2.start()
+  }
 }
 
 function setNoise(value) {
@@ -370,7 +484,7 @@ function setNoise(value) {
 
 function applyVolume(e) {
   const v = Number(e && e.target ? e.target.value : volume.value)
-  if (gainNode) gainNode.gain.value = (Math.max(0, Math.min(100, v)) / 100) * 0.3
+  if (gainNode) gainNode.gain.value = (Math.max(0, Math.min(100, v)) / 100) * baseLevel(noise.value)
 }
 
 // ── 页面可见性：回来重新校准，离开时停掉声音 ──────────────

@@ -10,12 +10,18 @@ const emit = defineEmits(['authed', 'logged-out'])
 const mode = ref('login') // login | register
 const username = ref('')
 const password = ref('')
+const password2 = ref('') // 注册模式：二次确认
 const displayName = ref('')
 const submitting = ref(false)
 const formError = ref('')
 
 const user = computed(() => userAuth.user)
 const ready = computed(() => userAuth.ready)
+
+// 两次输入是否一致（仅在注册模式且第二次输入过内容后才提示，避免一开始就报错）
+const mismatch = computed(
+  () => mode.value === 'register' && password2.value.length > 0 && password2.value !== password.value
+)
 
 // 静默恢复会话（若宿主页面未调过 restoreUser 也能自愈）
 restoreUser()
@@ -26,19 +32,30 @@ async function submit() {
   const u = username.value.trim()
   const p = password.value
   if (!u || !p) { formError.value = '请输入账号和密码'; return }
-  if (mode.value === 'register' && p.length < 6) { formError.value = '密码至少 6 位'; return }
+  if (mode.value === 'register') {
+    if (p.length < 6) { formError.value = '密码至少 6 位'; return }
+    if (password2.value !== p) { formError.value = '两次输入的密码不一致，请重新输入'; return }
+  }
   submitting.value = true
   try {
     const user = mode.value === 'login'
       ? await loginUser(u, p)
       : await registerUser(u, p, displayName.value.trim())
     password.value = ''
+    password2.value = ''
     emit('authed', user)
   } catch (e) {
     formError.value = e.message || '操作失败，请稍后再试'
   } finally {
     submitting.value = false
   }
+}
+
+// 切换模式时清掉确认框与错误
+function switchMode(m) {
+  mode.value = m
+  formError.value = ''
+  password2.value = ''
 }
 
 function doLogout() {
@@ -64,8 +81,8 @@ function doLogout() {
     <!-- 未登录：登录/注册表单 -->
     <div v-else class="au-form">
       <div class="au-tabs">
-        <button :class="{ active: mode === 'login' }" @click="mode = 'login'; formError = ''">登录</button>
-        <button :class="{ active: mode === 'register' }" @click="mode = 'register'; formError = ''">注册</button>
+        <button :class="{ active: mode === 'login' }" @click="switchMode('login')">登录</button>
+        <button :class="{ active: mode === 'register' }" @click="switchMode('register')">注册</button>
       </div>
 
       <div class="au-field">
@@ -75,7 +92,19 @@ function doLogout() {
         <input v-model.trim="displayName" type="text" placeholder="昵称（选填，默认用用户名）" maxlength="24">
       </div>
       <div class="au-field">
-        <input v-model="password" type="password" :placeholder="mode === 'register' ? '密码（至少 6 位）' : '密码'" maxlength="64" @keyup.enter="submit">
+        <input v-model="password" type="password" :placeholder="mode === 'register' ? '设置密码（至少 6 位）' : '密码'" maxlength="64" @keyup.enter="submit">
+      </div>
+      <div v-if="mode === 'register'" class="au-field">
+        <input
+          v-model="password2"
+          type="password"
+          placeholder="再输一遍密码"
+          maxlength="64"
+          :class="{ 'au-bad': mismatch }"
+          @keyup.enter="submit"
+        >
+        <div v-if="mismatch" class="au-hint au-hint-bad">两次输入的密码不一致</div>
+        <div v-else-if="password2.length > 0 && password2 === password" class="au-hint au-hint-ok">两次输入一致</div>
       </div>
 
       <div v-if="formError" class="au-error">{{ formError }}</div>
@@ -133,6 +162,11 @@ function doLogout() {
   color: #dc2626; font-size: 0.83rem; margin-bottom: 10px;
   background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 8px 12px;
 }
+/* 二次确认的即时反馈 */
+.au-field input.au-bad { border-color: #dc2626; background: #fef2f2; }
+.au-hint { font-size: 0.75rem; margin-top: 4px; }
+.au-hint-bad { color: #dc2626; }
+.au-hint-ok { color: #059669; }
 .au-submit {
   width: 100%; background: var(--brand); color: #fff; border: none; border-radius: 8px;
   padding: 11px 0; font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: inherit;

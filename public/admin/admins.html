@@ -37,6 +37,7 @@ th{color:#94a3b8;font-weight:500}
 </head>
 <body>
 <script src="/admin/auth-check.js"></script>
+<script src="/admin/admin-nav.js"></script>
 <script>
 // 仅二级管理员可进（role 强制数字比较）
 if (window.ADMIN && Number(window.ADMIN.role) !== 2) { location.replace('/admin/index.html'); }
