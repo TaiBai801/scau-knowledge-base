@@ -86,6 +86,22 @@ function loadMetrics(): any {
   } catch (e: any) {
     console.warn('[semester-index] 生成失败，学期页将不显示资料健康度：' + (e && e.message))
   }
+  // 缺口榜：依赖 semester-index，缺失或学期索引比它新时重建
+  try {
+    const gapPath = path.join(ROOT, 'public', 'data', 'gap-board.json')
+    const semPath = path.join(ROOT, 'public', 'data', 'semester-index.json')
+    const gapStale =
+      !fs.existsSync(gapPath) ||
+      (fs.existsSync(semPath) && fs.statSync(semPath).mtimeMs > fs.statSync(gapPath).mtimeMs)
+    if (gapStale) {
+      execFileSync(process.execPath, [path.join(ROOT, 'scripts', 'gen-gap-board.mjs')], {
+        cwd: ROOT,
+        stdio: 'inherit',
+      })
+    }
+  } catch (e: any) {
+    console.warn('[gap-board] 生成失败，/gap 页将不可用：' + (e && e.message))
+  }
   try {
     return JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf8'))
   } catch {
@@ -197,6 +213,7 @@ export default defineConfig({
       ]},
       { text: '社区', items: [
         { text: '「Ta说」', link: '/stories' },
+        { text: '资料缺口榜', link: '/gap' },
         { text: '贡献者墙', link: '/contributors' },
         { text: '贡献指南', link: '/contribute' },
       ]},

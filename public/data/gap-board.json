@@ -1,0 +1,4323 @@
+{
+  "v": 1,
+  "formula": {
+    "expression": "score = 2×开课专业数 + 2×是否必修 + 0.3×学分 + 3×缺口系数",
+    "gapFactor": {
+      "无资料且无题库": 1,
+      "仅无资料": 0.6,
+      "有资料": 0
+    },
+    "notes": [
+      "站内没有选课人数数据，本榜单用「开课专业数 + 是否必修 + 学分」作为需求强度的代理口径，不代表真实选课人数。",
+      "悬赏点赞本可作为真实需求信号，但当前样本极少，权重取 0，暂不计入。",
+      "数据来源：data/curriculum.json（专业/学分/必修）、public/data/semester-index.json（资料/题库/大纲覆盖）。"
+    ]
+  },
+  "totals": {
+    "courses": 235,
+    "withMaterials": 25,
+    "noMaterial": 210,
+    "noMaterialNoBank": 206,
+    "noSyllabus": 71,
+    "coverageRate": 10.6,
+    "byMajor": {
+      "电气工程及其自动化": {
+        "total": 125,
+        "withMaterials": 22,
+        "noMaterial": 103
+      },
+      "电子科学与技术": {
+        "total": 126,
+        "withMaterials": 20,
+        "noMaterial": 106
+      },
+      "机器人工程": {
+        "total": 81,
+        "withMaterials": 11,
+        "noMaterial": 70
+      },
+      "农业工程": {
+        "total": 91,
+        "withMaterials": 16,
+        "noMaterial": 75
+      },
+      "农业机械化及其自动化": {
+        "total": 85,
+        "withMaterials": 12,
+        "noMaterial": 73
+      }
+    }
+  },
+  "items": [
+    {
+      "name": "概率论与数理统计B",
+      "code": "1210255207",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 4,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 1,
+      "score": 16.2,
+      "inCurriculum": true,
+      "rank": 1
+    },
+    {
+      "name": "习近平新时代中国特色社会主义思想概论",
+      "code": "1215844000",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 15.9,
+      "inCurriculum": true,
+      "rank": 2
+    },
+    {
+      "name": "毛泽东思想和中国特色社会主义理论体系概论",
+      "code": "1210657000",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 2.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 15.8,
+      "inCurriculum": true,
+      "rank": 3
+    },
+    {
+      "name": "单片机原理与应用",
+      "code": "1215949001",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 2,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 1,
+      "score": 15.6,
+      "inCurriculum": true,
+      "rank": 4
+    },
+    {
+      "name": "复变函数与积分变换",
+      "code": "1210254001",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 2,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 15.6,
+      "inCurriculum": true,
+      "rank": 5
+    },
+    {
+      "name": "单片机原理与应用实验",
+      "code": "4215949000",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 15.3,
+      "inCurriculum": true,
+      "rank": 6
+    },
+    {
+      "name": "国家安全教育",
+      "code": "1217000010",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 5,
+      "gapFactor": 1,
+      "score": 15.3,
+      "inCurriculum": true,
+      "rank": 7
+    },
+    {
+      "name": "军事理论",
+      "code": "1217002010",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 5,
+      "gapFactor": 1,
+      "score": 15.3,
+      "inCurriculum": true,
+      "rank": 8
+    },
+    {
+      "name": "劳动教育",
+      "code": "1215857000",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 3,
+      "gapFactor": 1,
+      "score": 15.3,
+      "inCurriculum": true,
+      "rank": 9
+    },
+    {
+      "name": "线性代数",
+      "code": "1215104001",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 2,
+      "materials": 0,
+      "bank": 25,
+      "syllabus": 6,
+      "gapFactor": 0.6,
+      "score": 14.4,
+      "inCurriculum": true,
+      "rank": 10
+    },
+    {
+      "name": "思政课社会实践",
+      "code": "3218038002",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 2,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 3,
+      "gapFactor": 1,
+      "score": 13.6,
+      "inCurriculum": true,
+      "rank": 11
+    },
+    {
+      "name": "电气控制技术",
+      "code": "1210181000",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 2,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 13.6,
+      "inCurriculum": true,
+      "rank": 12
+    },
+    {
+      "name": "C语言程序设计实验",
+      "code": "4210004000",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 1.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 13.5,
+      "inCurriculum": true,
+      "rank": 13
+    },
+    {
+      "name": "大学物理实验B",
+      "code": "4215752220",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 6,
+      "gapFactor": 1,
+      "score": 13.3,
+      "inCurriculum": true,
+      "rank": 14
+    },
+    {
+      "name": "电气控制技术实验",
+      "code": "4210181000",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 13.3,
+      "inCurriculum": true,
+      "rank": 15
+    },
+    {
+      "name": "自动控制原理实验",
+      "code": "4214551000",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 13.3,
+      "inCurriculum": true,
+      "rank": 16
+    },
+    {
+      "name": "大学生劳动教育（实践I）",
+      "code": "4215858000",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 0.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 13.2,
+      "inCurriculum": true,
+      "rank": 17
+    },
+    {
+      "name": "大学生劳动教育（实践II）",
+      "code": "4215859000",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 0.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 13.2,
+      "inCurriculum": true,
+      "rank": 18
+    },
+    {
+      "name": "专业概论与新生研讨",
+      "code": "1215838010",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 0.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 4,
+      "gapFactor": 1,
+      "score": 13.2,
+      "inCurriculum": true,
+      "rank": 19
+    },
+    {
+      "name": "大学体育Ⅰ",
+      "code": "1215787000",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 4,
+      "gapFactor": 1,
+      "score": 13,
+      "inCurriculum": false,
+      "rank": 20
+    },
+    {
+      "name": "大学体育Ⅱ",
+      "code": "1215788000",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 4,
+      "gapFactor": 1,
+      "score": 13,
+      "inCurriculum": false,
+      "rank": 21
+    },
+    {
+      "name": "军训(军事技能)",
+      "code": "3217002010",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 3,
+      "gapFactor": 1,
+      "score": 13,
+      "inCurriculum": true,
+      "rank": 22
+    },
+    {
+      "name": "形势与政策Ⅰ",
+      "code": "1211227010",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 5,
+      "gapFactor": 1,
+      "score": 13,
+      "inCurriculum": false,
+      "rank": 23
+    },
+    {
+      "name": "形势与政策Ⅱ",
+      "code": "1211227020",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 5,
+      "gapFactor": 1,
+      "score": 13,
+      "inCurriculum": false,
+      "rank": 24
+    },
+    {
+      "name": "形势与政策Ⅲ",
+      "code": "1211217030",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 5,
+      "gapFactor": 1,
+      "score": 13,
+      "inCurriculum": false,
+      "rank": 25
+    },
+    {
+      "name": "马克思主义基本原理概论",
+      "code": "1210656000",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 2.5,
+      "materials": 2,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 0,
+      "score": 12.8,
+      "inCurriculum": true,
+      "rank": 26
+    },
+    {
+      "name": "思想道德与法治",
+      "code": "1215841000",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 2.5,
+      "materials": 6,
+      "bank": 0,
+      "syllabus": 7,
+      "gapFactor": 0,
+      "score": 12.8,
+      "inCurriculum": true,
+      "rank": 27
+    },
+    {
+      "name": "中国近现代史纲要",
+      "code": "1215845000",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 2.5,
+      "materials": 8,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 0,
+      "score": 12.8,
+      "inCurriculum": true,
+      "rank": 28
+    },
+    {
+      "name": "毕业论文（毕业设计）",
+      "code": "3212676000",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 6,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 3,
+      "gapFactor": 1,
+      "score": 12.8,
+      "inCurriculum": true,
+      "rank": 29
+    },
+    {
+      "name": "毕业实习",
+      "code": "3219930000",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 4,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 3,
+      "gapFactor": 1,
+      "score": 12.2,
+      "inCurriculum": true,
+      "rank": 30
+    },
+    {
+      "name": "人工智能原理及应用",
+      "code": "2216406000",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 2.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 1,
+      "score": 11.8,
+      "inCurriculum": true,
+      "rank": 31
+    },
+    {
+      "name": "传感器技术",
+      "code": "1210121001",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 2.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 1,
+      "score": 11.8,
+      "inCurriculum": true,
+      "rank": 32
+    },
+    {
+      "name": "创新创业实践",
+      "code": "3215859000",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 2,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 3,
+      "gapFactor": 1,
+      "score": 11.6,
+      "inCurriculum": true,
+      "rank": 33
+    },
+    {
+      "name": "机器学习",
+      "code": "1259761000",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程"
+      ],
+      "required": false,
+      "credits": 2,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 11.6,
+      "inCurriculum": true,
+      "rank": 34
+    },
+    {
+      "name": "Python语言及应用",
+      "code": "1215689001",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程"
+      ],
+      "required": false,
+      "credits": 2,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 11.6,
+      "inCurriculum": true,
+      "rank": 35
+    },
+    {
+      "name": "电子电路设计与仿真实验",
+      "code": "4214411000",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 11.3,
+      "inCurriculum": true,
+      "rank": 36
+    },
+    {
+      "name": "机器学习实验",
+      "code": "4259761000",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 11.3,
+      "inCurriculum": true,
+      "rank": 37
+    },
+    {
+      "name": "自动控制原理综合实践",
+      "code": "3215950040",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 11.3,
+      "inCurriculum": true,
+      "rank": 38
+    },
+    {
+      "name": "Python语言及应用实验",
+      "code": "4215689002",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 11.3,
+      "inCurriculum": true,
+      "rank": 39
+    },
+    {
+      "name": "传感器技术实验",
+      "code": "4214657000",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 11.3,
+      "inCurriculum": true,
+      "rank": 40
+    },
+    {
+      "name": "电路分析实验",
+      "code": "4214496000",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 11.3,
+      "inCurriculum": true,
+      "rank": 41
+    },
+    {
+      "name": "模拟电子技术实验",
+      "code": "4214419000",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 11.3,
+      "inCurriculum": true,
+      "rank": 42
+    },
+    {
+      "name": "数字电子技术实验",
+      "code": "4214418000",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 11.3,
+      "inCurriculum": true,
+      "rank": 43
+    },
+    {
+      "name": "信号与系统实验",
+      "code": "4211204000",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 11.3,
+      "inCurriculum": true,
+      "rank": 44
+    },
+    {
+      "name": "大学生心理健康与职业发展Ⅰ（国防安全卫生）",
+      "code": "1212418010",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 5,
+      "gapFactor": 1,
+      "score": 11,
+      "inCurriculum": false,
+      "rank": 45
+    },
+    {
+      "name": "大学生心理健康与职业发展Ⅱ（心理健康教育）",
+      "code": "1212418020",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 5,
+      "gapFactor": 1,
+      "score": 11,
+      "inCurriculum": false,
+      "rank": 46
+    },
+    {
+      "name": "大学生心理健康与职业发展Ⅲ（大学生职业生涯规划）",
+      "code": "1212418030",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 5,
+      "gapFactor": 1,
+      "score": 11,
+      "inCurriculum": false,
+      "rank": 47
+    },
+    {
+      "name": "大学生心理健康与职业发展Ⅳ（大学生就业指导）",
+      "code": "1212418040",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 5,
+      "gapFactor": 1,
+      "score": 11,
+      "inCurriculum": false,
+      "rank": 48
+    },
+    {
+      "name": "大学体育Ⅲ",
+      "code": "1211045000",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 4,
+      "gapFactor": 1,
+      "score": 11,
+      "inCurriculum": false,
+      "rank": 49
+    },
+    {
+      "name": "军训",
+      "code": "3215858000",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 3,
+      "gapFactor": 1,
+      "score": 11,
+      "inCurriculum": true,
+      "rank": 50
+    },
+    {
+      "name": "形势与政策Ⅳ",
+      "code": "1211217040",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 5,
+      "gapFactor": 1,
+      "score": 11,
+      "inCurriculum": false,
+      "rank": 51
+    },
+    {
+      "name": "形势与政策Ⅴ",
+      "code": "1211227050",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 5,
+      "gapFactor": 1,
+      "score": 11,
+      "inCurriculum": false,
+      "rank": 52
+    },
+    {
+      "name": "形势与政策Ⅵ",
+      "code": "1211227060",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 5,
+      "gapFactor": 1,
+      "score": 11,
+      "inCurriculum": false,
+      "rank": 53
+    },
+    {
+      "name": "形势与政策Ⅶ",
+      "code": "1211217070",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 5,
+      "gapFactor": 1,
+      "score": 11,
+      "inCurriculum": false,
+      "rank": 54
+    },
+    {
+      "name": "大学物理B",
+      "code": "1215749220",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 2,
+      "bank": 30,
+      "syllabus": 10,
+      "gapFactor": 0,
+      "score": 10.9,
+      "inCurriculum": true,
+      "rank": 55
+    },
+    {
+      "name": "自动控制原理",
+      "code": "1211478000",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 10,
+      "bank": 30,
+      "syllabus": 8,
+      "gapFactor": 0,
+      "score": 10.9,
+      "inCurriculum": true,
+      "rank": 56
+    },
+    {
+      "name": "C语言程序设计",
+      "code": "1210004000",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 2.5,
+      "materials": 5,
+      "bank": 45,
+      "syllabus": 10,
+      "gapFactor": 0,
+      "score": 10.8,
+      "inCurriculum": true,
+      "rank": 57
+    },
+    {
+      "name": "模拟电子技术",
+      "code": "1210672001",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 30,
+      "syllabus": 9,
+      "gapFactor": 0.6,
+      "score": 10.7,
+      "inCurriculum": true,
+      "rank": 58
+    },
+    {
+      "name": "试验设计与统计分析（研）",
+      "code": "1219921902",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 2,
+      "materials": 3,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 0,
+      "score": 10.6,
+      "inCurriculum": true,
+      "rank": 59
+    },
+    {
+      "name": "人工智能",
+      "code": "1217001000",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 3,
+      "bank": 0,
+      "syllabus": 7,
+      "gapFactor": 0,
+      "score": 10.3,
+      "inCurriculum": true,
+      "rank": 60
+    },
+    {
+      "name": "机械制造基础",
+      "code": "2210438001",
+      "majors": 2,
+      "majorNames": [
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 3.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 10.1,
+      "inCurriculum": true,
+      "rank": 61
+    },
+    {
+      "name": "离散数学",
+      "code": "2210612001",
+      "majors": 2,
+      "majorNames": [
+        "电气工程及其自动化",
+        "机器人工程"
+      ],
+      "required": true,
+      "credits": 3.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 10,
+      "gapFactor": 1,
+      "score": 10.1,
+      "inCurriculum": true,
+      "rank": 62
+    },
+    {
+      "name": "汽车拖拉机学",
+      "code": "2210770001",
+      "majors": 2,
+      "majorNames": [
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 3.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 1,
+      "score": 10.1,
+      "inCurriculum": true,
+      "rank": 63
+    },
+    {
+      "name": "大学英语AⅠ",
+      "code": "2210141110",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 1,
+      "bank": 0,
+      "syllabus": 5,
+      "gapFactor": 0,
+      "score": 10,
+      "inCurriculum": false,
+      "rank": 64
+    },
+    {
+      "name": "大学英语AⅡ",
+      "code": "2210141120",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 1,
+      "bank": 0,
+      "syllabus": 5,
+      "gapFactor": 0,
+      "score": 10,
+      "inCurriculum": false,
+      "rank": 65
+    },
+    {
+      "name": "高等数学AⅠ",
+      "code": "1215607110",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 4,
+      "bank": 35,
+      "syllabus": 11,
+      "gapFactor": 0,
+      "score": 10,
+      "inCurriculum": false,
+      "rank": 66
+    },
+    {
+      "name": "高等数学AⅡ",
+      "code": "1210267121",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 4,
+      "bank": 35,
+      "syllabus": 11,
+      "gapFactor": 0,
+      "score": 10,
+      "inCurriculum": false,
+      "rank": 67
+    },
+    {
+      "name": "机械制造工艺学",
+      "code": "2210437001",
+      "majors": 2,
+      "majorNames": [
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 1,
+      "score": 9.9,
+      "inCurriculum": true,
+      "rank": 68
+    },
+    {
+      "name": "农业机械化管理",
+      "code": "2210718001",
+      "majors": 2,
+      "majorNames": [
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 6,
+      "gapFactor": 1,
+      "score": 9.9,
+      "inCurriculum": true,
+      "rank": 69
+    },
+    {
+      "name": "农业机械化学",
+      "code": "2210719001",
+      "majors": 2,
+      "majorNames": [
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 6,
+      "gapFactor": 1,
+      "score": 9.9,
+      "inCurriculum": true,
+      "rank": 70
+    },
+    {
+      "name": "嵌入式系统开发与应用",
+      "code": "1210771001",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 2.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 9.8,
+      "inCurriculum": true,
+      "rank": 71
+    },
+    {
+      "name": "嵌入式系统开发与应用实验",
+      "code": "4219950000",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 1.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 9.5,
+      "inCurriculum": true,
+      "rank": 72
+    },
+    {
+      "name": "单片机原理与应用综合实践",
+      "code": "3215949000",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 9.3,
+      "inCurriculum": true,
+      "rank": 73
+    },
+    {
+      "name": "电机学实验",
+      "code": "4214563000",
+      "majors": 2,
+      "majorNames": [
+        "电气工程及其自动化",
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 9.3,
+      "inCurriculum": true,
+      "rank": 74
+    },
+    {
+      "name": "电力电子技术实验",
+      "code": "4214554000",
+      "majors": 2,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 9.3,
+      "inCurriculum": true,
+      "rank": 75
+    },
+    {
+      "name": "毕业论文（设计）",
+      "code": "3254123001",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 3,
+      "gapFactor": 1,
+      "score": 9,
+      "inCurriculum": false,
+      "rank": 76
+    },
+    {
+      "name": "毕业实习Ⅰ",
+      "code": "3254126012",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 3,
+      "gapFactor": 1,
+      "score": 9,
+      "inCurriculum": false,
+      "rank": 77
+    },
+    {
+      "name": "毕业实习Ⅱ",
+      "code": "3254126023",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 3,
+      "gapFactor": 1,
+      "score": 9,
+      "inCurriculum": false,
+      "rank": 78
+    },
+    {
+      "name": "产业创新",
+      "code": "1250001000",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 3,
+      "gapFactor": 1,
+      "score": 9,
+      "inCurriculum": false,
+      "rank": 79
+    },
+    {
+      "name": "产业创新实践",
+      "code": "3250001001",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 3,
+      "gapFactor": 1,
+      "score": 9,
+      "inCurriculum": false,
+      "rank": 80
+    },
+    {
+      "name": "大学生心理健康与职业发展Ⅰ（心理健康）",
+      "code": "1252417010",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 5,
+      "gapFactor": 1,
+      "score": 9,
+      "inCurriculum": false,
+      "rank": 81
+    },
+    {
+      "name": "大学生心理健康与职业发展Ⅱ（职业发展）",
+      "code": "1252417021",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 5,
+      "gapFactor": 1,
+      "score": 9,
+      "inCurriculum": false,
+      "rank": 82
+    },
+    {
+      "name": "大学体育实践Ⅰ",
+      "code": "3251045010",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 9,
+      "inCurriculum": false,
+      "rank": 83
+    },
+    {
+      "name": "大学体育实践Ⅱ",
+      "code": "3251045020",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 9,
+      "inCurriculum": false,
+      "rank": 84
+    },
+    {
+      "name": "劳动教育实践",
+      "code": "3255857000",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 9,
+      "inCurriculum": false,
+      "rank": 85
+    },
+    {
+      "name": "电路分析",
+      "code": "1210175201",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 38,
+      "bank": 35,
+      "syllabus": 12,
+      "gapFactor": 0,
+      "score": 8.9,
+      "inCurriculum": true,
+      "rank": 86
+    },
+    {
+      "name": "信号与系统",
+      "code": "1211204000",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 22,
+      "bank": 28,
+      "syllabus": 7,
+      "gapFactor": 0,
+      "score": 8.9,
+      "inCurriculum": true,
+      "rank": 87
+    },
+    {
+      "name": "电子电路设计与仿真",
+      "code": "1210184001",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 2.5,
+      "materials": 3,
+      "bank": 0,
+      "syllabus": 7,
+      "gapFactor": 0,
+      "score": 8.8,
+      "inCurriculum": true,
+      "rank": 88
+    },
+    {
+      "name": "数字电子技术",
+      "code": "1210969000",
+      "majors": 3,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 2.5,
+      "materials": 25,
+      "bank": 30,
+      "syllabus": 9,
+      "gapFactor": 0,
+      "score": 8.8,
+      "inCurriculum": true,
+      "rank": 89
+    },
+    {
+      "name": "机械设计",
+      "code": "2210432001",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 4,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 11,
+      "gapFactor": 1,
+      "score": 8.2,
+      "inCurriculum": true,
+      "rank": 90
+    },
+    {
+      "name": "农业机械学",
+      "code": "2210720001",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 3.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 8.1,
+      "inCurriculum": true,
+      "rank": 91
+    },
+    {
+      "name": "设施农业工程及其装备",
+      "code": "2212678060",
+      "majors": 1,
+      "majorNames": [
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 3.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 7,
+      "gapFactor": 1,
+      "score": 8.1,
+      "inCurriculum": true,
+      "rank": 92
+    },
+    {
+      "name": "机械工程三维建模与仿真",
+      "code": "2259700001",
+      "majors": 2,
+      "majorNames": [
+        "机器人工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 7.9,
+      "inCurriculum": true,
+      "rank": 93
+    },
+    {
+      "name": "农业机械设计与计算",
+      "code": "2219920000",
+      "majors": 2,
+      "majorNames": [
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 7,
+      "gapFactor": 1,
+      "score": 7.9,
+      "inCurriculum": true,
+      "rank": 94
+    },
+    {
+      "name": "汽车拖拉机理论",
+      "code": "2210769001",
+      "majors": 2,
+      "majorNames": [
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 7.9,
+      "inCurriculum": true,
+      "rank": 95
+    },
+    {
+      "name": "半导体集成电路",
+      "code": "1210019000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 7.9,
+      "inCurriculum": true,
+      "rank": 96
+    },
+    {
+      "name": "材料力学B",
+      "code": "2170043204",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 1,
+      "score": 7.9,
+      "inCurriculum": true,
+      "rank": 97
+    },
+    {
+      "name": "电子材料",
+      "code": "2210182001",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 7,
+      "gapFactor": 1,
+      "score": 7.9,
+      "inCurriculum": true,
+      "rank": 98
+    },
+    {
+      "name": "工程测试技术",
+      "code": "2210283001",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 7.9,
+      "inCurriculum": true,
+      "rank": 99
+    },
+    {
+      "name": "工程技术经济学",
+      "code": "2212680070",
+      "majors": 1,
+      "majorNames": [
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 10,
+      "gapFactor": 1,
+      "score": 7.9,
+      "inCurriculum": true,
+      "rank": 100
+    },
+    {
+      "name": "固态电子器件",
+      "code": "1214170000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 1,
+      "score": 7.9,
+      "inCurriculum": true,
+      "rank": 101
+    },
+    {
+      "name": "固体物理学",
+      "code": "1210326001",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 7.9,
+      "inCurriculum": true,
+      "rank": 102
+    },
+    {
+      "name": "光电子技术",
+      "code": "1210342001",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 7.9,
+      "inCurriculum": true,
+      "rank": 103
+    },
+    {
+      "name": "机械电子学",
+      "code": "2210430000",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 7.9,
+      "inCurriculum": true,
+      "rank": 104
+    },
+    {
+      "name": "机械设计基础B",
+      "code": "2210433201",
+      "majors": 1,
+      "majorNames": [
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 10,
+      "gapFactor": 1,
+      "score": 7.9,
+      "inCurriculum": true,
+      "rank": 105
+    },
+    {
+      "name": "机械原理",
+      "code": "2210434001",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 11,
+      "gapFactor": 1,
+      "score": 7.9,
+      "inCurriculum": true,
+      "rank": 106
+    },
+    {
+      "name": "机械制图",
+      "code": "1210436000",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 11,
+      "gapFactor": 1,
+      "score": 7.9,
+      "inCurriculum": true,
+      "rank": 107
+    },
+    {
+      "name": "控制工程基础",
+      "code": "2210597000",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 7,
+      "gapFactor": 1,
+      "score": 7.9,
+      "inCurriculum": true,
+      "rank": 108
+    },
+    {
+      "name": "理论力学",
+      "code": "2210613001",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 11,
+      "gapFactor": 1,
+      "score": 7.9,
+      "inCurriculum": true,
+      "rank": 109
+    },
+    {
+      "name": "工程电磁学",
+      "code": "2210288001",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": true,
+      "credits": 2.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 7.8,
+      "inCurriculum": true,
+      "rank": 110
+    },
+    {
+      "name": "激光原理与技术",
+      "code": "1210455001",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": true,
+      "credits": 2.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 7.8,
+      "inCurriculum": true,
+      "rank": 111
+    },
+    {
+      "name": "农学概论",
+      "code": "2210710001",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 2.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 6,
+      "gapFactor": 1,
+      "score": 7.8,
+      "inCurriculum": true,
+      "rank": 112
+    },
+    {
+      "name": "农业与生物系统工程导论",
+      "code": "2212677010",
+      "majors": 1,
+      "majorNames": [
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 2.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 6,
+      "gapFactor": 1,
+      "score": 7.8,
+      "inCurriculum": true,
+      "rank": 113
+    },
+    {
+      "name": "数据挖掘",
+      "code": "1210961000",
+      "majors": 2,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 2,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 7,
+      "gapFactor": 1,
+      "score": 7.6,
+      "inCurriculum": true,
+      "rank": 114
+    },
+    {
+      "name": "虚拟仪器技术",
+      "code": "1211234000",
+      "majors": 2,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 2,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 7,
+      "gapFactor": 1,
+      "score": 7.6,
+      "inCurriculum": true,
+      "rank": 115
+    },
+    {
+      "name": "MATLAB程序设计",
+      "code": "1210008001",
+      "majors": 2,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 2,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 7.6,
+      "inCurriculum": true,
+      "rank": 116
+    },
+    {
+      "name": "电工学",
+      "code": "1211497000",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 2,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 7.6,
+      "inCurriculum": true,
+      "rank": 117
+    },
+    {
+      "name": "互换性与测量技术",
+      "code": "2210376001",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 2,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 7.6,
+      "inCurriculum": true,
+      "rank": 118
+    },
+    {
+      "name": "EDA技术",
+      "code": "1210005001",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": true,
+      "credits": 2,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 7.6,
+      "inCurriculum": true,
+      "rank": 119
+    },
+    {
+      "name": "EDA技术实验",
+      "code": "4214413000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": true,
+      "credits": 1.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7.5,
+      "inCurriculum": true,
+      "rank": 120
+    },
+    {
+      "name": "机械设计基础课程设计",
+      "code": "3252467000",
+      "majors": 2,
+      "majorNames": [
+        "机器人工程",
+        "农业工程"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 121
+    },
+    {
+      "name": "机械制造工艺学教学实习",
+      "code": "3219942000",
+      "majors": 2,
+      "majorNames": [
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 122
+    },
+    {
+      "name": "机械制造基础教学实习",
+      "code": "3219939000",
+      "majors": 2,
+      "majorNames": [
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 123
+    },
+    {
+      "name": "汽车与拖拉机学教学实习",
+      "code": "3219941000",
+      "majors": 2,
+      "majorNames": [
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 124
+    },
+    {
+      "name": "数据挖掘实验",
+      "code": "4219951000",
+      "majors": 2,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 125
+    },
+    {
+      "name": "虚拟仪器技术实验",
+      "code": "4211234000",
+      "majors": 2,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 126
+    },
+    {
+      "name": "MATLAB程序设计实验",
+      "code": "4214493000",
+      "majors": 2,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 127
+    },
+    {
+      "name": "半导体集成电路实验",
+      "code": "4210019000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 128
+    },
+    {
+      "name": "半导体物理实验",
+      "code": "4214409000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 129
+    },
+    {
+      "name": "变电工程设计实验",
+      "code": "4214587000",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 130
+    },
+    {
+      "name": "大学物理实验C",
+      "code": "4215753320",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 6,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 131
+    },
+    {
+      "name": "电工学实验",
+      "code": "4214509000",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 132
+    },
+    {
+      "name": "电力系统分析实验",
+      "code": "4214589000",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 133
+    },
+    {
+      "name": "电力系统继电保护实验",
+      "code": "4214592000",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 134
+    },
+    {
+      "name": "电气测量技术实验",
+      "code": "4214566000",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 135
+    },
+    {
+      "name": "光电子技术实验",
+      "code": "4214414000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 136
+    },
+    {
+      "name": "机械制造基础实验",
+      "code": "4219933000",
+      "majors": 1,
+      "majorNames": [
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 137
+    },
+    {
+      "name": "激光原理与技术实验",
+      "code": "4210455000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 138
+    },
+    {
+      "name": "汽车拖拉机学实验",
+      "code": "4219935000",
+      "majors": 1,
+      "majorNames": [
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 139
+    },
+    {
+      "name": "CAD计算机辅助设计实验",
+      "code": "4211119000",
+      "majors": 1,
+      "majorNames": [
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 4,
+      "gapFactor": 1,
+      "score": 7.3,
+      "inCurriculum": true,
+      "rank": 140
+    },
+    {
+      "name": "专业概论与新生研讨（农机）",
+      "code": "1222111003",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 0.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 4,
+      "gapFactor": 1,
+      "score": 7.2,
+      "inCurriculum": true,
+      "rank": 141
+    },
+    {
+      "name": "传感器技术（双轨制）",
+      "code": "1250121002",
+      "majors": 2,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 1,
+      "score": 7,
+      "inCurriculum": false,
+      "rank": 142
+    },
+    {
+      "name": "大学物理实验A",
+      "code": "4250134100",
+      "majors": 2,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 6,
+      "gapFactor": 1,
+      "score": 7,
+      "inCurriculum": false,
+      "rank": 143
+    },
+    {
+      "name": "高级语言程序设计I",
+      "code": "1259953010",
+      "majors": 2,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 7,
+      "gapFactor": 1,
+      "score": 7,
+      "inCurriculum": false,
+      "rank": 144
+    },
+    {
+      "name": "高级语言程序设计I实验",
+      "code": "4259953010",
+      "majors": 2,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 7,
+      "inCurriculum": false,
+      "rank": 145
+    },
+    {
+      "name": "半导体物理",
+      "code": "1210020002",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 30,
+      "syllabus": 8,
+      "gapFactor": 0.6,
+      "score": 6.7,
+      "inCurriculum": true,
+      "rank": 146
+    },
+    {
+      "name": "电力系统分析",
+      "code": "1210172001",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 0,
+      "bank": 28,
+      "syllabus": 8,
+      "gapFactor": 0.6,
+      "score": 6.7,
+      "inCurriculum": true,
+      "rank": 147
+    },
+    {
+      "name": "电机学",
+      "code": "1210169001",
+      "majors": 2,
+      "majorNames": [
+        "电气工程及其自动化",
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 2,
+      "materials": 1,
+      "bank": 25,
+      "syllabus": 5,
+      "gapFactor": 0,
+      "score": 6.6,
+      "inCurriculum": true,
+      "rank": 148
+    },
+    {
+      "name": "电力电子技术",
+      "code": "1210170001",
+      "majors": 2,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术"
+      ],
+      "required": true,
+      "credits": 2,
+      "materials": 7,
+      "bank": 25,
+      "syllabus": 7,
+      "gapFactor": 0,
+      "score": 6.6,
+      "inCurriculum": true,
+      "rank": 149
+    },
+    {
+      "name": "机械工程材料",
+      "code": "2219917000",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 1,
+      "score": 5.9,
+      "inCurriculum": true,
+      "rank": 150
+    },
+    {
+      "name": "机械系统动力学",
+      "code": "2219922000",
+      "majors": 1,
+      "majorNames": [
+        "农业工程"
+      ],
+      "required": false,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 1,
+      "score": 5.9,
+      "inCurriculum": true,
+      "rank": 151
+    },
+    {
+      "name": "计算机辅助设计B",
+      "code": "2210469201",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 7,
+      "gapFactor": 1,
+      "score": 5.9,
+      "inCurriculum": true,
+      "rank": 152
+    },
+    {
+      "name": "农产品加工机械",
+      "code": "2219949000",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 5.9,
+      "inCurriculum": true,
+      "rank": 153
+    },
+    {
+      "name": "系统仿真技术",
+      "code": "2219924000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 7,
+      "gapFactor": 1,
+      "score": 5.9,
+      "inCurriculum": true,
+      "rank": 154
+    },
+    {
+      "name": "现代机械设计方法",
+      "code": "2211170000",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 3,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 5.9,
+      "inCurriculum": true,
+      "rank": 155
+    },
+    {
+      "name": "现代控制理论",
+      "code": "2211172000",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": false,
+      "credits": 2.5,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 1,
+      "score": 5.8,
+      "inCurriculum": true,
+      "rank": 156
+    },
+    {
+      "name": "大数据处理技术",
+      "code": "1219796000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 2,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 5.6,
+      "inCurriculum": true,
+      "rank": 157
+    },
+    {
+      "name": "电力系统仿真技术",
+      "code": "1210171001",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": false,
+      "credits": 2,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 5.6,
+      "inCurriculum": true,
+      "rank": 158
+    },
+    {
+      "name": "生物系统模拟",
+      "code": "1212681060",
+      "majors": 1,
+      "majorNames": [
+        "农业工程"
+      ],
+      "required": false,
+      "credits": 2,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 7,
+      "gapFactor": 1,
+      "score": 5.6,
+      "inCurriculum": true,
+      "rank": 159
+    },
+    {
+      "name": "半导体器件与集成电路综合实践",
+      "code": "3215864002",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 3,
+      "gapFactor": 1,
+      "score": 5.3,
+      "inCurriculum": true,
+      "rank": 160
+    },
+    {
+      "name": "半导体物理综合实践",
+      "code": "3212466000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5.3,
+      "inCurriculum": true,
+      "rank": 161
+    },
+    {
+      "name": "传感器技术教学实习",
+      "code": "3212418050",
+      "majors": 1,
+      "majorNames": [
+        "农业工程"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5.3,
+      "inCurriculum": true,
+      "rank": 162
+    },
+    {
+      "name": "大数据处理技术实验",
+      "code": "4219797000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5.3,
+      "inCurriculum": true,
+      "rank": 163
+    },
+    {
+      "name": "电力系统仿真技术实验",
+      "code": "4214703000",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5.3,
+      "inCurriculum": true,
+      "rank": 164
+    },
+    {
+      "name": "电子电路综合实践",
+      "code": "3214599000",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 4,
+      "gapFactor": 1,
+      "score": 5.3,
+      "inCurriculum": true,
+      "rank": 165
+    },
+    {
+      "name": "电子技术综合实践",
+      "code": "3214429000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 4,
+      "gapFactor": 1,
+      "score": 5.3,
+      "inCurriculum": true,
+      "rank": 166
+    },
+    {
+      "name": "光电子技术综合实践",
+      "code": "3212463000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5.3,
+      "inCurriculum": true,
+      "rank": 167
+    },
+    {
+      "name": "机械设计教学实习",
+      "code": "3219945000",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5.3,
+      "inCurriculum": true,
+      "rank": 168
+    },
+    {
+      "name": "机械制图教学实习",
+      "code": "3210436000",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5.3,
+      "inCurriculum": true,
+      "rank": 169
+    },
+    {
+      "name": "机械制图实验",
+      "code": "4210436000",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5.3,
+      "inCurriculum": true,
+      "rank": 170
+    },
+    {
+      "name": "农业机械化学教学实习",
+      "code": "3219943000",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5.3,
+      "inCurriculum": true,
+      "rank": 171
+    },
+    {
+      "name": "农业机械学教学实习",
+      "code": "3219944000",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5.3,
+      "inCurriculum": true,
+      "rank": 172
+    },
+    {
+      "name": "设施农业工程及其装备教学实习",
+      "code": "3212648060",
+      "majors": 1,
+      "majorNames": [
+        "农业工程"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5.3,
+      "inCurriculum": true,
+      "rank": 173
+    },
+    {
+      "name": "生物系统模拟实验",
+      "code": "4212681060",
+      "majors": 1,
+      "majorNames": [
+        "农业工程"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5.3,
+      "inCurriculum": true,
+      "rank": 174
+    },
+    {
+      "name": "信号与系统综合实践",
+      "code": "3211204000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5.3,
+      "inCurriculum": true,
+      "rank": 175
+    },
+    {
+      "name": "EDA技术综合实践",
+      "code": "3214430000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 1,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5.3,
+      "inCurriculum": true,
+      "rank": 176
+    },
+    {
+      "name": "电磁场与电磁波",
+      "code": "2210166001",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": true,
+      "credits": 3.5,
+      "materials": 4,
+      "bank": 25,
+      "syllabus": 9,
+      "gapFactor": 0,
+      "score": 5.1,
+      "inCurriculum": true,
+      "rank": 177
+    },
+    {
+      "name": "变电工程设计综合实践",
+      "code": "3214601000",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 178
+    },
+    {
+      "name": "电工电子学",
+      "code": "2258447000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 179
+    },
+    {
+      "name": "电力电子技术综合实践",
+      "code": "3214603000",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 180
+    },
+    {
+      "name": "电力系统分析综合实践",
+      "code": "3214604000",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 181
+    },
+    {
+      "name": "电力系统稳态分析",
+      "code": "2258449000",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 10,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 182
+    },
+    {
+      "name": "电力系统暂态及稳定性分析",
+      "code": "2258450000",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 10,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 183
+    },
+    {
+      "name": "电力系统自动化",
+      "code": "2210174000",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 184
+    },
+    {
+      "name": "电力系统自动化（MOOC）",
+      "code": "2250174002",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 185
+    },
+    {
+      "name": "电子材料实验",
+      "code": "4250182000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 186
+    },
+    {
+      "name": "电子工艺综合实践",
+      "code": "3258454000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 4,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 187
+    },
+    {
+      "name": "电子专业综合实践I",
+      "code": "3258455010",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 4,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 188
+    },
+    {
+      "name": "电子专业综合实践II",
+      "code": "3258455020",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 4,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 189
+    },
+    {
+      "name": "高电压技术",
+      "code": "2258474000",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 10,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 190
+    },
+    {
+      "name": "工程材料与机械制造基础",
+      "code": "1258480000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 191
+    },
+    {
+      "name": "工程材料与机械制造基础实验",
+      "code": "4258480000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 192
+    },
+    {
+      "name": "工程力学（机电）",
+      "code": "1250029000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 10,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 193
+    },
+    {
+      "name": "工程力学实验（机电）",
+      "code": "4250051000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 194
+    },
+    {
+      "name": "工程制图（机电）",
+      "code": "1250023000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 195
+    },
+    {
+      "name": "工程制图教学实习（机电）",
+      "code": "3250025000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 196
+    },
+    {
+      "name": "工程制图实验（机电）",
+      "code": "4250024000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 197
+    },
+    {
+      "name": "固态电子器件实验",
+      "code": "4258498000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 198
+    },
+    {
+      "name": "机器人操作系统",
+      "code": "2258510000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 199
+    },
+    {
+      "name": "机器人操作系统综合实践",
+      "code": "3258510000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 200
+    },
+    {
+      "name": "机器人传感与检测技术",
+      "code": "2258512000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 201
+    },
+    {
+      "name": "机器人导航技术",
+      "code": "2258513000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 202
+    },
+    {
+      "name": "机器人机构学",
+      "code": "2258515000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 203
+    },
+    {
+      "name": "机器人驱动与运动控制",
+      "code": "2258516000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 204
+    },
+    {
+      "name": "机器人设计与实现综合实践",
+      "code": "3258517000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 4,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 205
+    },
+    {
+      "name": "机器人系统仿真",
+      "code": "2258518000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 206
+    },
+    {
+      "name": "机器人学",
+      "code": "2258519000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 207
+    },
+    {
+      "name": "机器视觉",
+      "code": "2258520000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 208
+    },
+    {
+      "name": "机械设计基础",
+      "code": "1252467002",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 10,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 209
+    },
+    {
+      "name": "机械设计基础实验",
+      "code": "4252467000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 210
+    },
+    {
+      "name": "基于STM32的嵌入式系统设计",
+      "code": "1258527000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 211
+    },
+    {
+      "name": "基于STM32的嵌入式系统设计实验",
+      "code": "4258527000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 212
+    },
+    {
+      "name": "科研素养与学术写作",
+      "code": "1258753000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 6,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 213
+    },
+    {
+      "name": "控制工程",
+      "code": "1210596002",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 214
+    },
+    {
+      "name": "控制工程实验",
+      "code": "4214582000",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 215
+    },
+    {
+      "name": "农业机器人（研）",
+      "code": "2259989900",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 4,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 216
+    },
+    {
+      "name": "数据结构",
+      "code": "1259911000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 217
+    },
+    {
+      "name": "数据结构实验",
+      "code": "4259911000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 218
+    },
+    {
+      "name": "水电站",
+      "code": "2210985000",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 219
+    },
+    {
+      "name": "算法分析与设计",
+      "code": "2251023000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 220
+    },
+    {
+      "name": "现代机械设计方法（研）",
+      "code": "2259920001",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 221
+    },
+    {
+      "name": "新能源并网电力系统项目式综合实践",
+      "code": "3258633000",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 4,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 222
+    },
+    {
+      "name": "新能源发电技术",
+      "code": "2211198000",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 223
+    },
+    {
+      "name": "新能源发电技术实验",
+      "code": "4251198000",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 0,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 224
+    },
+    {
+      "name": "液压与气压传动技术",
+      "code": "2211273000",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 225
+    },
+    {
+      "name": "专业概论与新生研讨（电气）",
+      "code": "1222111004",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 4,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 226
+    },
+    {
+      "name": "专业概论与新生研讨（电子）",
+      "code": "1222111001",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 4,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 227
+    },
+    {
+      "name": "专业概论与新生研讨（机器人工程）",
+      "code": "2258514000",
+      "majors": 1,
+      "majorNames": [
+        "机器人工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 4,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 228
+    },
+    {
+      "name": "专业概论与新生研讨（农工）",
+      "code": "1222111002",
+      "majors": 1,
+      "majorNames": [
+        "农业工程"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 0,
+      "bank": 0,
+      "syllabus": 4,
+      "gapFactor": 1,
+      "score": 5,
+      "inCurriculum": false,
+      "rank": 229
+    },
+    {
+      "name": "变电工程设计",
+      "code": "1210038002",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": true,
+      "credits": 2,
+      "materials": 16,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 0,
+      "score": 4.6,
+      "inCurriculum": true,
+      "rank": 230
+    },
+    {
+      "name": "大学物理C",
+      "code": "1215750320",
+      "majors": 1,
+      "majorNames": [
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 2,
+      "materials": 2,
+      "bank": 30,
+      "syllabus": 10,
+      "gapFactor": 0,
+      "score": 4.6,
+      "inCurriculum": true,
+      "rank": 231
+    },
+    {
+      "name": "电力系统继电保护",
+      "code": "1210173001",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": true,
+      "credits": 2,
+      "materials": 7,
+      "bank": 0,
+      "syllabus": 10,
+      "gapFactor": 0,
+      "score": 4.6,
+      "inCurriculum": true,
+      "rank": 232
+    },
+    {
+      "name": "电气测量技术",
+      "code": "1210179001",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": true,
+      "credits": 2,
+      "materials": 8,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 0,
+      "score": 4.6,
+      "inCurriculum": true,
+      "rank": 233
+    },
+    {
+      "name": "大学物理A",
+      "code": "1250134100",
+      "majors": 2,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 2,
+      "bank": 30,
+      "syllabus": 10,
+      "gapFactor": 0,
+      "score": 4,
+      "inCurriculum": false,
+      "rank": 234
+    },
+    {
+      "name": "嵌入式系统与应用",
+      "code": "2252567000",
+      "majors": 1,
+      "majorNames": [
+        "电子科学与技术"
+      ],
+      "required": false,
+      "credits": 0,
+      "materials": 4,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 0,
+      "score": 2,
+      "inCurriculum": false,
+      "rank": 235
+    }
+  ],
+  "generatedAt": "2026-10-21T10:15:32.114Z",
+  "contentHash": "64caf97dfa3df458"
+}

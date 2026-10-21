@@ -4,11 +4,12 @@
   "description": "机电专业课程资源",
   "scripts": {
     "dev": "node node_modules/vitepress/bin/vitepress.js dev",
-    "predev": "node scripts/site-metrics.mjs && node scripts/gen-kp-index.mjs && node scripts/gen-semester-index.mjs",
+    "predev": "node scripts/site-metrics.mjs && node scripts/gen-kp-index.mjs && node scripts/gen-semester-index.mjs && node scripts/gen-gap-board.mjs",
     "metrics": "node scripts/site-metrics.mjs --force",
     "kp": "node scripts/gen-kp-index.mjs --force",
     "sem": "node scripts/gen-semester-index.mjs --force",
-    "build": "node scripts/site-metrics.mjs && node scripts/gen-kp-index.mjs && node scripts/gen-semester-index.mjs && node node_modules/vitepress/bin/vitepress.js build",
+    "gap": "node scripts/gen-gap-board.mjs --force",
+    "build": "node scripts/site-metrics.mjs && node scripts/gen-kp-index.mjs && node scripts/gen-semester-index.mjs && node scripts/gen-gap-board.mjs && node node_modules/vitepress/bin/vitepress.js build",
     "preview": "node node_modules/vitepress/bin/vitepress.js preview",
     "sync": "node sync.mjs --dry",
     "deploy": "node sync.mjs --build"

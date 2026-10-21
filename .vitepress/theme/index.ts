@@ -15,6 +15,7 @@ import KpSearch from './components/KpSearch.vue'
 import SprintPack from './components/SprintPack.vue'
 import FootprintPage from './components/FootprintPage.vue'
 import StoriesPage from './components/StoriesPage.vue'
+import GapBoard from './components/GapBoard.vue'
 import FocusTimer from './components/FocusTimer.vue'
 import FocusPage from './components/FocusPage.vue'
 import WeeklyReport from './components/WeeklyReport.vue'
@@ -43,6 +44,7 @@ export default {
     app.component('SprintPack', SprintPack)
     app.component('FootprintPage', FootprintPage)
     app.component('StoriesPage', StoriesPage)
+    app.component('GapBoard', GapBoard)
     app.component('FocusTimer', FocusTimer)
     app.component('FocusPage', FocusPage)
     app.component('WeeklyReport', WeeklyReport)
