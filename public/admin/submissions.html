@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>补料提交审核 · 管理后台</title>
+<style>
+:root{--brand:#0D5C5A;--bg:#F7F5F0;--card:#fff;--line:#E8E4DB;--text:#4A5568;--red:#dc2626;--green:#059669;--amber:#D97706}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:var(--brand);color:#fff;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+header h1{font-size:1.2rem;font-weight:600}
+header a{color:#b2d9d6;font-size:0.85rem;text-decoration:none}
+header a:hover{color:#fff}
+main{max-width:900px;margin:0 auto;padding:2rem 1rem}
+.hint{font-size:0.8rem;color:#94a3b8;margin-bottom:1rem;line-height:1.7}
+.warn{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:8px;padding:0.6rem 0.9rem;font-size:0.8rem;margin-bottom:1rem;line-height:1.7}
+.tabs{display:flex;gap:0.5rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.tab{padding:0.4rem 1rem;border:1px solid var(--line);border-radius:999px;font-size:0.85rem;cursor:pointer;background:var(--card);color:var(--text)}
+.tab.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.count-badge{display:inline-block;min-width:1.4rem;text-align:center;background:#e6f7ef;color:var(--green);border-radius:999px;font-size:0.72rem;padding:0 0.35rem;margin-left:0.3rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;margin-bottom:0.8rem}
+.card .c-top{display:flex;align-items:flex-start;gap:0.8rem}
+.card .c-main{flex:1;min-width:0}
+.card .c-course{font-weight:600;color:var(--text);font-size:0.95rem}
+.card .c-kind{font-size:0.72rem;background:#f1f5f9;color:#64748b;border-radius:4px;padding:0.05rem 0.4rem;margin-left:0.4rem}
+.card .c-note{font-size:0.86rem;color:var(--text);margin-top:0.35rem;word-break:break-word;white-space:pre-wrap}
+.badge{flex-shrink:0;font-size:0.72rem;padding:0.14rem 0.55rem;border-radius:999px;white-space:nowrap;font-weight:500}
+.badge.pending{background:#fef3e2;color:var(--amber)}
+.badge.accepted{background:#e0f2fe;color:#0369a1}
+.badge.done{background:#e6f7ef;color:var(--green)}
+.badge.rejected{background:#fef2f2;color:var(--red)}
+.card .c-meta{font-size:0.75rem;color:#94a3b8;margin-top:0.4rem;display:flex;gap:0.9rem;flex-wrap:wrap}
+.card .c-meta b{font-weight:500;color:#64748b}
+.card .c-reply{font-size:0.78rem;color:#64748b;margin-top:0.4rem;background:#f8fafc;border-left:2px solid var(--line);padding:0.3rem 0.6rem;border-radius:4px}
+.card .c-actions{display:flex;gap:0.5rem;margin-top:0.7rem;flex-wrap:wrap}
+.btn{padding:0.3rem 0.8rem;border-radius:6px;font-size:0.78rem;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--text);transition:all .15s}
+.btn:hover{opacity:.85}
+.btn-primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+.btn-green{background:#fff;color:var(--green);border-color:var(--green)}
+.btn-amber{background:#fff;color:var(--amber);border-color:var(--amber)}
+.btn-red{background:#fff;color:var(--red);border-color:var(--red)}
+.empty{text-align:center;color:#94a3b8;padding:2.5rem 0;font-size:0.9rem}
+.stats{display:flex;gap:1.2rem;flex-wrap:wrap;font-size:0.85rem;margin-bottom:1rem}
+.stats b{color:var(--brand)}
+</style>
+</head>
+<body>
+<script src="/admin/auth-check.js"></script>
+<header>
+  <h1>📥 补料提交审核</h1>
+  <a href="/">← 回站点</a>
+  <a href="/admin/index.html">课程管理</a>
+  <a href="/admin/upload.html">资料上传</a>
+  <a href="/admin/materials-scan.html">存量盘活</a>
+</header>
+<main>
+  <div class="warn">
+    <b>这里的提交只是线索，不含文件。</b>学生不会直接上传任何东西。
+    你核实后，用「资料上传」把文件正式传到对应课程；传完再回到这里点<b>「标记已上架」</b>。
+  </div>
+  <div class="hint">
+    联系方式是学生自愿留的，用于找他取文件；不要在公开页面展示。
+    「未采纳」必须填理由，学生能在缺口榜页看到反馈。
+  </div>
+
+  <div class="stats" id="stats"></div>
+  <div class="tabs" id="tabs"></div>
+  <div id="list"></div>
+</main>
+<script>
+(function () {
+  var API = '/api/submissions';
+  var items = [];
+  var tab = 'pending';
+  var LABEL = { pending: '待处理', accepted: '已接单', done: '已上架', rejected: '未采纳' };
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function token() { return (window.ADMIN && window.ADMIN.token) || ''; }
+  function fmt(t) {
+    if (!t) return '';
+    var d = new Date(t);
+    var p = function (n) { return n < 10 ? '0' + n : '' + n; };
+    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) + ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
+  }
+  async function post(body) {
+    var r = await fetch(API, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(Object.assign({ token: token() }, body)),
+    });
+    var d = await r.json().catch(function () { return {}; });
+    if (!r.ok) throw new Error(d.error || ('HTTP ' + r.status));
+    return d;
+  }
+
+  async function load() {
+    try {
+      var d = await post({ action: 'list' });
+      items = d.items || [];
+      render();
+    } catch (e) {
+      document.getElementById('list').innerHTML = '<div class="empty">加载失败：' + esc(e.message) + '</div>';
+    }
+  }
+
+  function render() {
+    var counts = { pending: 0, accepted: 0, done: 0, rejected: 0 };
+    items.forEach(function (x) { if (counts[x.status] !== undefined) counts[x.status]++; });
+
+    document.getElementById('stats').innerHTML =
+      '<div>共 <b>' + items.length + '</b> 条</div>' +
+      '<div>待处理 <b>' + counts.pending + '</b></div>' +
+      '<div>已接单 <b>' + counts.accepted + '</b></div>' +
+      '<div>已上架 <b>' + counts.done + '</b></div>' +
+      '<div>未采纳 <b>' + counts.rejected + '</b></div>';
+
+    var tabs = ['pending', 'accepted', 'done', 'rejected'];
+    document.getElementById('tabs').innerHTML = tabs.map(function (t) {
+      return '<div class="tab' + (tab === t ? ' active' : '') + '" data-tab="' + t + '">' +
+        LABEL[t] + '<span class="count-badge">' + counts[t] + '</span></div>';
+    }).join('');
+    document.querySelectorAll('#tabs .tab').forEach(function (el) {
+      el.addEventListener('click', function () { tab = el.dataset.tab; render(); });
+    });
+
+    var list = items.filter(function (x) { return x.status === tab; });
+    if (!list.length) {
+      document.getElementById('list').innerHTML = '<div class="empty">这一栏没有记录。</div>';
+      return;
+    }
+
+    document.getElementById('list').innerHTML = list.map(function (x) {
+      var acts = [];
+      if (x.status === 'pending') {
+        acts.push('<button class="btn btn-primary" data-act="accepted" data-id="' + x.id + '">接单跟进</button>');
+        acts.push('<button class="btn btn-red" data-act="rejected" data-id="' + x.id + '">不采纳</button>');
+      } else if (x.status === 'accepted') {
+        acts.push('<button class="btn btn-green" data-act="done" data-id="' + x.id + '">标记已上架</button>');
+        acts.push('<button class="btn btn-red" data-act="rejected" data-id="' + x.id + '">不采纳</button>');
+      } else if (x.status === 'rejected') {
+        acts.push('<button class="btn btn-amber" data-act="pending" data-id="' + x.id + '">恢复待处理</button>');
+      }
+      acts.push('<button class="btn" data-act="remove" data-id="' + x.id + '">删除记录</button>');
+
+      return '<div class="card"><div class="c-top"><div class="c-main">' +
+        '<div class="c-course">' + esc(x.course) +
+        '<span class="c-kind">' + esc(x.kind) + '</span></div>' +
+        '<div class="c-note">' + esc(x.note) + '</div>' +
+        '<div class="c-meta">' +
+          '<span>提交 <b>' + fmt(x.createdAt) + '</b></span>' +
+          (x.contact ? '<span>联系方式 <b>' + esc(x.contact) + '</b></span>' : '<span>未留联系方式</span>') +
+          (x.courseCode ? '<span>课号 <b>' + esc(x.courseCode) + '</b></span>' : '') +
+          (x.reviewedAt ? '<span>处理于 <b>' + fmt(x.reviewedAt) + '</b> ' + esc(x.reviewer || '') + '</span>' : '') +
+        '</div>' +
+        (x.reply ? '<div class="c-reply">理由：' + esc(x.reply) + '</div>' : '') +
+        '<div class="c-actions">' + acts.join('') + '</div>' +
+        '</div><div class="badge ' + x.status + '">' + LABEL[x.status] + '</div></div></div>';
+    }).join('');
+
+    document.querySelectorAll('#list button[data-act]').forEach(function (btn) {
+      btn.addEventListener('click', function () { onAct(btn.dataset.act, btn.dataset.id); });
+    });
+  }
+
+  async function onAct(act, id) {
+    try {
+      if (act === 'remove') {
+        if (!confirm('删除这条记录？不可恢复。')) return;
+        await post({ action: 'remove', id: id });
+      } else {
+        var reply = '';
+        if (act === 'rejected') {
+          reply = prompt('驳回理由（学生可见，必填）：') || '';
+          if (!reply.trim()) return;
+        }
+        await post({ action: 'review', id: id, status: act, reply: reply });
+      }
+      await load();
+    } catch (e) {
+      alert('操作失败：' + e.message);
+    }
+  }
+
+  load();
+})();
+</script>
+</body>
+</html>

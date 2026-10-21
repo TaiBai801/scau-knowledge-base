@@ -71,6 +71,98 @@ const countOf = (id) => {
 function coursePath(code) {
   return code ? '/majors/shared/' + code : ''
 }
+
+/* ───────────── 我来补：提交给管理员，不在前端上传文件 ───────────── */
+
+const KINDS = ['课件', '习题', '真题', '笔记', '其他']
+const STATUS_LABEL = { pending: '待处理', accepted: '管理员已接单', done: '已上架', rejected: '未采纳' }
+
+const formOpen = ref(false)
+const form = ref({ course: '', courseCode: '', kind: '课件', note: '', contact: '' })
+const submitting = ref(false)
+const formMsg = ref('')
+const formErr = ref('')
+const myItems = ref([])
+
+function fp() {
+  let f = ''
+  try {
+    f = localStorage.getItem('kx_fp') || localStorage.getItem('bounty_fp') || ''
+  } catch (e) {}
+  if (!f) {
+    f = 'fp_' + Math.random().toString(36).slice(2) + Date.now().toString(36)
+    try {
+      localStorage.setItem('kx_fp', f)
+    } catch (e) {}
+  }
+  return f
+}
+
+function openForm(it) {
+  form.value = {
+    course: it ? it.name : '',
+    courseCode: it ? it.code || '' : '',
+    kind: '课件',
+    note: '',
+    contact: '',
+  }
+  formMsg.value = ''
+  formErr.value = ''
+  formOpen.value = true
+}
+
+async function loadMine() {
+  try {
+    const res = await fetch('/api/submissions', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ action: 'mine', fp: fp() }),
+    })
+    const d = await res.json()
+    if (d && Array.isArray(d.items)) myItems.value = d.items
+  } catch (e) {}
+}
+
+async function submitForm() {
+  formErr.value = ''
+  formMsg.value = ''
+  if (!form.value.course.trim()) {
+    formErr.value = '请填写课程名'
+    return
+  }
+  if (!form.value.note.trim()) {
+    formErr.value = '请简单说明要补什么'
+    return
+  }
+  submitting.value = true
+  try {
+    const res = await fetch('/api/submissions', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        action: 'submit',
+        fp: fp(),
+        course: form.value.course.trim(),
+        courseCode: form.value.courseCode,
+        kind: form.value.kind,
+        note: form.value.note.trim(),
+        contact: form.value.contact.trim(),
+      }),
+    })
+    const d = await res.json()
+    if (!res.ok) throw new Error(d.error || 'HTTP ' + res.status)
+    formMsg.value = d.message || '已提交'
+    form.value.note = ''
+    form.value.contact = ''
+    await loadMine()
+  } catch (e) {
+    formErr.value = e.message || '提交失败'
+  } finally {
+    submitting.value = false
+  }
+}
+
+onMounted(loadMine)
 </script>
 
 <template>
@@ -158,6 +250,7 @@ function coursePath(code) {
               <th class="c-num">资料</th>
               <th class="c-num">题库</th>
               <th class="c-num">需求分</th>
+              <th class="c-act">补料</th>
             </tr>
           </thead>
           <tbody>
@@ -174,15 +267,87 @@ function coursePath(code) {
               <td class="c-num" :class="it.materials === 0 ? 'gb-zero' : ''">{{ it.materials }}</td>
               <td class="c-num" :class="it.bank === 0 ? 'gb-zero' : ''">{{ it.bank }}</td>
               <td class="c-num gb-score">{{ it.score }}</td>
+              <td class="c-act"><button class="gb-claim" @click="openForm(it)">我来补</button></td>
             </tr>
           </tbody>
         </table>
       </div>
 
+      <!-- 我来补：提交线索给管理员 -->
+      <section class="gb-submit">
+        <div class="gb-submit-main">
+          <h2 class="gb-submit-t">我能补一门</h2>
+          <p class="gb-submit-p">
+            把线索交给管理员：哪门课、缺什么、你能提供什么。管理员核实后统一上架。
+            <strong>你自己不用传文件</strong>，页面上也不会出现任何未经审核的内容。
+          </p>
+        </div>
+        <button class="gb-submit-btn" @click="openForm(null)">我要补一门课</button>
+      </section>
+
+      <div v-if="myItems.length" class="gb-mine">
+        <h3 class="gb-mine-t">我的提交</h3>
+        <ul class="gb-mine-list">
+          <li v-for="x in myItems" :key="x.id" class="gb-mine-item">
+            <span class="gb-mine-course">{{ x.course }}</span>
+            <span class="gb-mine-kind">{{ x.kind }}</span>
+            <span :class="['gb-badge', x.status]">{{ STATUS_LABEL[x.status] || x.status }}</span>
+            <span v-if="x.reply" class="gb-mine-reply">管理员：{{ x.reply }}</span>
+          </li>
+        </ul>
+      </div>
+
       <p class="gb-foot">
-        想补哪门课？<a href="/contribute">看看贡献指南</a>，或者直接在对应课程页上传资料。
+        想系统了解贡献流程？<a href="/contribute">看看贡献指南</a>。
       </p>
     </template>
+
+    <!-- 提交弹窗 -->
+    <div v-if="formOpen" class="gb-modal" @click.self="formOpen = false">
+      <div class="gb-dialog">
+        <h3 class="gb-dialog-t">提交补料线索</h3>
+        <p class="gb-dialog-hint">
+          只提交线索，<strong>不上传文件</strong>。管理员核实后统一上架；如果不方便留联系方式，也可以只留说明。
+        </p>
+
+        <label class="gb-field">
+          <span>课程</span>
+          <input v-model="form.course" type="text" maxlength="40" placeholder="例如：概率论与数理统计B" />
+        </label>
+
+        <label class="gb-field">
+          <span>能补什么</span>
+          <select v-model="form.kind">
+            <option v-for="k in KINDS" :key="k" :value="k">{{ k }}</option>
+          </select>
+        </label>
+
+        <label class="gb-field">
+          <span>说明</span>
+          <textarea
+            v-model="form.note"
+            rows="4"
+            maxlength="300"
+            placeholder="例如：有 2023 年期末真题和答案解析，可提供 PDF；或：知道资料在班级群里，可以帮忙找"
+          ></textarea>
+        </label>
+
+        <label class="gb-field">
+          <span>联系方式（可选）</span>
+          <input v-model="form.contact" type="text" maxlength="60" placeholder="QQ / 邮箱，便于管理员找你取文件" />
+        </label>
+
+        <p v-if="formErr" class="gb-err">{{ formErr }}</p>
+        <p v-if="formMsg" class="gb-ok">{{ formMsg }}</p>
+
+        <div class="gb-dialog-act">
+          <button class="gb-btn" @click="formOpen = false">关闭</button>
+          <button class="gb-btn gb-btn-primary" :disabled="submitting" @click="submitForm">
+            {{ submitting ? '提交中…' : '提交给管理员' }}
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -267,6 +432,76 @@ a.gb-name:hover { text-decoration: underline; }
 
 .gb-foot { margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); }
 .gb-foot a { color: var(--brand); }
+
+/* ── 我来补 ── */
+.c-act { width: 5.2rem; text-align: center; }
+.gb-claim {
+  border: 1px solid var(--brand); background: #fff; color: var(--brand);
+  border-radius: 999px; padding: 0.12rem 0.55rem; font-size: 0.72rem; cursor: pointer;
+  white-space: nowrap; transition: all 0.15s;
+}
+.gb-claim:hover { background: var(--brand); color: #fff; }
+
+.gb-submit {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  background: var(--brand-pale); border-radius: 10px; padding: 0.9rem 1.1rem; margin-top: 1.4rem;
+}
+.gb-submit-t { font-size: 0.92rem; font-weight: 600; color: var(--text-heading); margin: 0 0 0.25rem; }
+.gb-submit-p { font-size: 0.78rem; color: var(--text-body); margin: 0; line-height: 1.7; }
+.gb-submit-btn {
+  flex-shrink: 0; border: none; background: var(--brand); color: #fff;
+  border-radius: 8px; padding: 0.5rem 1rem; font-size: 0.82rem; cursor: pointer;
+}
+.gb-submit-btn:hover { opacity: 0.9; }
+
+.gb-mine { margin-top: 1rem; }
+.gb-mine-t { font-size: 0.84rem; font-weight: 600; color: var(--text-heading); margin: 0 0 0.4rem; }
+.gb-mine-list { list-style: none; margin: 0; padding: 0; }
+.gb-mine-item {
+  display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+  padding: 0.38rem 0; border-bottom: 1px dashed var(--line); font-size: 0.78rem;
+}
+.gb-mine-course { color: var(--text-body); font-weight: 500; }
+.gb-mine-kind { color: var(--text-muted); font-size: 0.72rem; }
+.gb-badge { font-size: 0.7rem; border-radius: 999px; padding: 0.05rem 0.5rem; }
+.gb-badge.pending { background: #fef3e2; color: #b45309; }
+.gb-badge.accepted { background: var(--brand-pale); color: var(--brand); }
+.gb-badge.done { background: #e6f7ef; color: #047857; }
+.gb-badge.rejected { background: #fef2f2; color: #B23B36; }
+.gb-mine-reply { color: var(--text-muted); font-size: 0.72rem; }
+
+/* ── 弹窗 ── */
+.gb-modal {
+  position: fixed; inset: 0; background: rgba(20, 30, 30, 0.45);
+  display: flex; align-items: center; justify-content: center; padding: 1rem; z-index: 60;
+}
+.gb-dialog {
+  background: #fff; border-radius: 12px; padding: 1.2rem 1.3rem;
+  width: min(520px, 100%); max-height: 88vh; overflow-y: auto;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.18);
+}
+.gb-dialog-t { font-size: 1rem; font-weight: 600; color: var(--text-heading); margin: 0 0 0.35rem; }
+.gb-dialog-hint { font-size: 0.76rem; color: var(--text-muted); margin: 0 0 0.9rem; line-height: 1.7; }
+.gb-field { display: block; margin-bottom: 0.7rem; }
+.gb-field span { display: block; font-size: 0.76rem; color: var(--text-muted); margin-bottom: 0.25rem; }
+.gb-field input, .gb-field select, .gb-field textarea {
+  width: 100%; box-sizing: border-box; padding: 0.4rem 0.55rem;
+  border: 1px solid var(--line); border-radius: 6px; font-size: 0.82rem;
+  font-family: inherit; color: var(--text-body); background: #fff;
+}
+.gb-field textarea { resize: vertical; line-height: 1.6; }
+.gb-field input:focus, .gb-field select:focus, .gb-field textarea:focus {
+  outline: none; border-color: var(--brand);
+}
+.gb-err { color: #B23B36; font-size: 0.78rem; margin: 0.2rem 0 0.6rem; }
+.gb-ok { color: #047857; font-size: 0.78rem; margin: 0.2rem 0 0.6rem; }
+.gb-dialog-act { display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 0.5rem; }
+.gb-btn {
+  border: 1px solid var(--line); background: #fff; color: var(--text-body);
+  border-radius: 6px; padding: 0.35rem 0.9rem; font-size: 0.8rem; cursor: pointer;
+}
+.gb-btn-primary { background: var(--brand); border-color: var(--brand); color: #fff; }
+.gb-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 @media (max-width: 860px) {
   .gb-overview { grid-template-columns: repeat(2, 1fr); }
