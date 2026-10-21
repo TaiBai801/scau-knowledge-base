@@ -14,8 +14,11 @@ import {
   formatBytes,
   clearAll,
   todayISO,
+  write,
+  KEYS,
 } from '../lib/storage'
 import { readFootprint, summarizeFootprint, semesterStart, KIND_LABEL } from '../lib/footprint'
+import SyncBar from './SyncBar.vue'
 
 const ready = ref(false)
 const events = ref([])
@@ -79,6 +82,33 @@ function refresh() {
   info.value = storageInfo()
 }
 
+// ── 云端同步：按 ts+kind 去重合并，避免换设备丢轨迹 ──
+function getFootData() {
+  return readFootprint()
+}
+function applyFootData(v) {
+  try {
+    const local = readFootprint()
+    const cloud = Array.isArray(v) ? v : []
+    const seen = new Set(
+      local.map((e) => `${Number(e.ts) || 0}|${e.kind || ''}|${e.ref || ''}|${e.course || ''}`)
+    )
+    const merged = local.concat(
+      cloud.filter(
+        (e) =>
+          e &&
+          Number(e.ts) > 0 &&
+          !seen.has(`${Number(e.ts) || 0}|${e.kind || ''}|${e.ref || ''}|${e.course || ''}`)
+      )
+    )
+    merged.sort((a, b) => (Number(a.ts) || 0) - (Number(b.ts) || 0))
+    write(KEYS.foot, merged.slice(-3000))
+    refresh()
+  } catch (e) {
+    /* 合并失败也不影响本机数据 */
+  }
+}
+
 onMounted(() => {
   refresh()
   ready.value = true
@@ -104,6 +134,17 @@ function onClear() {
     <p v-if="!ready" class="fp-loading">正在读取本机数据…</p>
 
     <template v-else>
+      <!-- 同步到账号：无论有没有本机记录都给，这样空状态也能从云端拉回 -->
+      <section class="fp-sync">
+        <SyncBar
+          sync-key="footprint"
+          title="学习足迹"
+          :get-data="getFootData"
+          :apply-data="applyFootData"
+          @applied="refresh"
+        />
+      </section>
+
       <!-- 空状态：不摆空表格 -->
       <div v-if="!hasData" class="fp-empty">
         <p>
@@ -252,6 +293,9 @@ function onClear() {
   display: flex;
   flex-direction: column;
   gap: 28px;
+}
+.fp-sync {
+  margin-bottom: 18px;
 }
 .fp-loading,
 .fp-empty {

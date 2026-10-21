@@ -300,6 +300,19 @@ const emptyText = computed(() => {
         <p>{{ report.summary }}</p>
       </section>
 
+      <section v-if="report.hasAny" class="wr-links">
+        <div class="wr-section-head">
+          <h3>接下来做什么</h3>
+        </div>
+        <div class="wr-link-row">
+          <a class="wr-link" href="/focus">🍅 再来一个专注单元</a>
+          <a class="wr-link" href="/footprint">👣 看这学期的轨迹</a>
+          <a class="wr-link" href="/wrong">🔁 复习错题本</a>
+          <a class="wr-link" href="/quiz">📝 做一组题</a>
+          <a class="wr-link" href="/my">📚 对照我的本学期</a>
+        </div>
+      </section>
+
       <p class="wr-foot">
         周报不是定时任务：每次打开按本机数据重算，覆盖最近 {{ MAX_OFFSET }} 个完整周。
         记录只在这台设备上，换设备不会同步；没有任何他人排名。
@@ -433,8 +446,37 @@ const emptyText = computed(() => {
   border: 1px solid var(--line, #e8e4db);
   border-radius: 14px;
   background: var(--vp-c-bg-soft, #fff);
-  margin-bottom: 16px;
 }
+
+.wr-links {
+  padding: 18px;
+  border: 1px solid var(--line, #e8e4db);
+  border-radius: 14px;
+  background: var(--vp-c-bg-soft, #fff);
+  margin-top: 16px;
+}
+.wr-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.wr-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line, #e8e4db);
+  background: var(--vp-c-bg, #fff);
+  color: var(--text-body, #4a5568);
+  font-size: 0.82rem;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.wr-link:hover {
+  border-color: var(--brand, #0d5c5a);
+  color: var(--brand, #0d5c5a);
+}
+
 .wr-section-head {
   display: flex;
   align-items: baseline;

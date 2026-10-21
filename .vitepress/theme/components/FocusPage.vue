@@ -2,9 +2,10 @@
 // 专注页主体：内联番茄钟 + 今日/本周/累计 + 月度热力日历 + 最近记录
 // 所有数据只来自本机 localStorage，不做排名、不上传。
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
-import { KEYS, read, todayISO } from '../lib/storage'
+import { KEYS, read, write, todayISO } from '../lib/storage'
 import { wrongStats } from '../lib/spaced'
 import FocusTimer from './FocusTimer.vue'
+import SyncBar from './SyncBar.vue'
 
 const FOCUS_EVENT = 'kx-focus-updated'
 
@@ -33,6 +34,27 @@ function load() {
     .filter((u) => u && Number(u.minutes) > 0)
     .sort((a, b) => (Number(b.ts) || 0) - (Number(a.ts) || 0))
   ready.value = true
+}
+
+// ── 云端同步：合并而非覆盖，避免换设备丢数据 ──
+function getFocusData() {
+  return read(KEYS.focus, { units: [] })
+}
+function applyFocusData(v) {
+  try {
+    const local = read(KEYS.focus, { units: [] })
+    const localList = Array.isArray(local.units) ? local.units : []
+    const cloudList = (v && Array.isArray(v.units)) ? v.units : []
+    const seen = new Set(localList.map((u) => Number(u && u.ts) || 0))
+    const merged = localList.concat(
+      cloudList.filter((u) => u && Number(u.ts) > 0 && !seen.has(Number(u.ts)))
+    )
+    merged.sort((a, b) => (Number(a.ts) || 0) - (Number(b.ts) || 0))
+    write(KEYS.focus, { units: merged.slice(-2000) })
+    load()
+  } catch (e) {
+    /* 合并失败也不影响本机数据 */
+  }
 }
 
 onMounted(() => {
@@ -138,6 +160,16 @@ function fmtTs(ts) {
   <div class="fp">
     <section class="fp-timer">
       <FocusTimer variant="inline" />
+    </section>
+
+    <section class="fp-sync">
+      <SyncBar
+        sync-key="focus"
+        title="专注记录"
+        :get-data="getFocusData"
+        :apply-data="applyFocusData"
+        @applied="load"
+      />
     </section>
 
     <div class="fp-stats">
@@ -246,6 +278,10 @@ function fmtTs(ts) {
 }
 .fp-timer {
   max-width: 520px;
+}
+
+.fp-sync {
+  margin-bottom: 16px;
 }
 
 .fp-stats {

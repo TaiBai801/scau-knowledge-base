@@ -422,7 +422,10 @@ onMounted(async () => {
         </div>
 
         <div v-for="g in groups" :key="g.name" class="group">
-          <p class="group-name">{{ g.name }}</p>
+          <p class="group-name">
+            {{ g.name }}
+            <a class="wb-go" :href="'/quiz?course=' + encodeURIComponent(g.name)">去组题这门课 →</a>
+          </p>
           <div v-for="e in g.list" :key="e.qid" class="row">
             <div class="row-main">
               <p class="row-stem">
@@ -729,10 +732,28 @@ onMounted(async () => {
 .group-name {
   font-size: 0.8rem;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
   color: var(--text-muted);
   margin: 0 0 0.4rem;
   padding-bottom: 0.25rem;
   border-bottom: 1px solid var(--line);
+}
+.wb-go {
+  font-weight: 500;
+  font-size: 0.72rem;
+  color: var(--brand, #0d5c5a);
+  text-decoration: none;
+  border: 1px solid var(--brand, #0d5c5a);
+  border-radius: 999px;
+  padding: 0.08rem 0.5rem;
+  white-space: nowrap;
+}
+.wb-go:hover {
+  background: var(--brand, #0d5c5a);
+  color: #fff;
 }
 .row {
   display: flex;
