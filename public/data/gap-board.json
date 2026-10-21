@@ -15,36 +15,36 @@
   },
   "totals": {
     "courses": 235,
-    "withMaterials": 25,
-    "noMaterial": 210,
-    "noMaterialNoBank": 206,
+    "withMaterials": 29,
+    "noMaterial": 206,
+    "noMaterialNoBank": 203,
     "noSyllabus": 71,
-    "coverageRate": 10.6,
+    "coverageRate": 12.3,
     "byMajor": {
       "电气工程及其自动化": {
         "total": 125,
-        "withMaterials": 22,
-        "noMaterial": 103
+        "withMaterials": 26,
+        "noMaterial": 99
       },
       "电子科学与技术": {
         "total": 126,
-        "withMaterials": 20,
-        "noMaterial": 106
+        "withMaterials": 23,
+        "noMaterial": 103
       },
       "机器人工程": {
         "total": 81,
-        "withMaterials": 11,
-        "noMaterial": 70
+        "withMaterials": 14,
+        "noMaterial": 67
       },
       "农业工程": {
         "total": 91,
-        "withMaterials": 16,
-        "noMaterial": 75
+        "withMaterials": 19,
+        "noMaterial": 72
       },
       "农业机械化及其自动化": {
         "total": 85,
-        "withMaterials": 12,
-        "noMaterial": 73
+        "withMaterials": 14,
+        "noMaterial": 71
       }
     }
   },
@@ -71,27 +71,6 @@
       "rank": 1
     },
     {
-      "name": "习近平新时代中国特色社会主义思想概论",
-      "code": "1215844000",
-      "majors": 5,
-      "majorNames": [
-        "电气工程及其自动化",
-        "电子科学与技术",
-        "机器人工程",
-        "农业工程",
-        "农业机械化及其自动化"
-      ],
-      "required": true,
-      "credits": 3,
-      "materials": 0,
-      "bank": 0,
-      "syllabus": 8,
-      "gapFactor": 1,
-      "score": 15.9,
-      "inCurriculum": true,
-      "rank": 2
-    },
-    {
       "name": "毛泽东思想和中国特色社会主义理论体系概论",
       "code": "1210657000",
       "majors": 5,
@@ -110,28 +89,7 @@
       "gapFactor": 1,
       "score": 15.8,
       "inCurriculum": true,
-      "rank": 3
-    },
-    {
-      "name": "单片机原理与应用",
-      "code": "1215949001",
-      "majors": 5,
-      "majorNames": [
-        "电气工程及其自动化",
-        "电子科学与技术",
-        "机器人工程",
-        "农业工程",
-        "农业机械化及其自动化"
-      ],
-      "required": true,
-      "credits": 2,
-      "materials": 0,
-      "bank": 0,
-      "syllabus": 9,
-      "gapFactor": 1,
-      "score": 15.6,
-      "inCurriculum": true,
-      "rank": 4
+      "rank": 2
     },
     {
       "name": "复变函数与积分变换",
@@ -152,7 +110,7 @@
       "gapFactor": 1,
       "score": 15.6,
       "inCurriculum": true,
-      "rank": 5
+      "rank": 3
     },
     {
       "name": "单片机原理与应用实验",
@@ -173,7 +131,7 @@
       "gapFactor": 1,
       "score": 15.3,
       "inCurriculum": true,
-      "rank": 6
+      "rank": 4
     },
     {
       "name": "国家安全教育",
@@ -194,7 +152,7 @@
       "gapFactor": 1,
       "score": 15.3,
       "inCurriculum": true,
-      "rank": 7
+      "rank": 5
     },
     {
       "name": "军事理论",
@@ -215,7 +173,7 @@
       "gapFactor": 1,
       "score": 15.3,
       "inCurriculum": true,
-      "rank": 8
+      "rank": 6
     },
     {
       "name": "劳动教育",
@@ -236,7 +194,7 @@
       "gapFactor": 1,
       "score": 15.3,
       "inCurriculum": true,
-      "rank": 9
+      "rank": 7
     },
     {
       "name": "线性代数",
@@ -257,7 +215,7 @@
       "gapFactor": 0.6,
       "score": 14.4,
       "inCurriculum": true,
-      "rank": 10
+      "rank": 8
     },
     {
       "name": "思政课社会实践",
@@ -278,27 +236,7 @@
       "gapFactor": 1,
       "score": 13.6,
       "inCurriculum": true,
-      "rank": 11
-    },
-    {
-      "name": "电气控制技术",
-      "code": "1210181000",
-      "majors": 4,
-      "majorNames": [
-        "电气工程及其自动化",
-        "电子科学与技术",
-        "机器人工程",
-        "农业工程"
-      ],
-      "required": true,
-      "credits": 2,
-      "materials": 0,
-      "bank": 0,
-      "syllabus": 8,
-      "gapFactor": 1,
-      "score": 13.6,
-      "inCurriculum": true,
-      "rank": 12
+      "rank": 9
     },
     {
       "name": "C语言程序设计实验",
@@ -318,7 +256,7 @@
       "gapFactor": 1,
       "score": 13.5,
       "inCurriculum": true,
-      "rank": 13
+      "rank": 10
     },
     {
       "name": "大学物理实验B",
@@ -338,7 +276,7 @@
       "gapFactor": 1,
       "score": 13.3,
       "inCurriculum": true,
-      "rank": 14
+      "rank": 11
     },
     {
       "name": "电气控制技术实验",
@@ -358,7 +296,7 @@
       "gapFactor": 1,
       "score": 13.3,
       "inCurriculum": true,
-      "rank": 15
+      "rank": 12
     },
     {
       "name": "自动控制原理实验",
@@ -378,7 +316,7 @@
       "gapFactor": 1,
       "score": 13.3,
       "inCurriculum": true,
-      "rank": 16
+      "rank": 13
     },
     {
       "name": "大学生劳动教育（实践I）",
@@ -398,7 +336,7 @@
       "gapFactor": 1,
       "score": 13.2,
       "inCurriculum": true,
-      "rank": 17
+      "rank": 14
     },
     {
       "name": "大学生劳动教育（实践II）",
@@ -418,7 +356,7 @@
       "gapFactor": 1,
       "score": 13.2,
       "inCurriculum": true,
-      "rank": 18
+      "rank": 15
     },
     {
       "name": "专业概论与新生研讨",
@@ -438,7 +376,7 @@
       "gapFactor": 1,
       "score": 13.2,
       "inCurriculum": true,
-      "rank": 19
+      "rank": 16
     },
     {
       "name": "大学体育Ⅰ",
@@ -459,7 +397,7 @@
       "gapFactor": 1,
       "score": 13,
       "inCurriculum": false,
-      "rank": 20
+      "rank": 17
     },
     {
       "name": "大学体育Ⅱ",
@@ -480,7 +418,7 @@
       "gapFactor": 1,
       "score": 13,
       "inCurriculum": false,
-      "rank": 21
+      "rank": 18
     },
     {
       "name": "军训(军事技能)",
@@ -501,7 +439,7 @@
       "gapFactor": 1,
       "score": 13,
       "inCurriculum": true,
-      "rank": 22
+      "rank": 19
     },
     {
       "name": "形势与政策Ⅰ",
@@ -522,7 +460,7 @@
       "gapFactor": 1,
       "score": 13,
       "inCurriculum": false,
-      "rank": 23
+      "rank": 20
     },
     {
       "name": "形势与政策Ⅱ",
@@ -543,7 +481,7 @@
       "gapFactor": 1,
       "score": 13,
       "inCurriculum": false,
-      "rank": 24
+      "rank": 21
     },
     {
       "name": "形势与政策Ⅲ",
@@ -564,7 +502,28 @@
       "gapFactor": 1,
       "score": 13,
       "inCurriculum": false,
-      "rank": 25
+      "rank": 22
+    },
+    {
+      "name": "习近平新时代中国特色社会主义思想概论",
+      "code": "1215844000",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 20,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 0,
+      "score": 12.9,
+      "inCurriculum": true,
+      "rank": 23
     },
     {
       "name": "马克思主义基本原理概论",
@@ -585,7 +544,7 @@
       "gapFactor": 0,
       "score": 12.8,
       "inCurriculum": true,
-      "rank": 26
+      "rank": 24
     },
     {
       "name": "思想道德与法治",
@@ -606,7 +565,7 @@
       "gapFactor": 0,
       "score": 12.8,
       "inCurriculum": true,
-      "rank": 27
+      "rank": 25
     },
     {
       "name": "中国近现代史纲要",
@@ -627,7 +586,7 @@
       "gapFactor": 0,
       "score": 12.8,
       "inCurriculum": true,
-      "rank": 28
+      "rank": 26
     },
     {
       "name": "毕业论文（毕业设计）",
@@ -647,7 +606,28 @@
       "gapFactor": 1,
       "score": 12.8,
       "inCurriculum": true,
-      "rank": 29
+      "rank": 27
+    },
+    {
+      "name": "单片机原理与应用",
+      "code": "1215949001",
+      "majors": 5,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程",
+        "农业机械化及其自动化"
+      ],
+      "required": true,
+      "credits": 2,
+      "materials": 8,
+      "bank": 0,
+      "syllabus": 9,
+      "gapFactor": 0,
+      "score": 12.6,
+      "inCurriculum": true,
+      "rank": 28
     },
     {
       "name": "毕业实习",
@@ -667,7 +647,7 @@
       "gapFactor": 1,
       "score": 12.2,
       "inCurriculum": true,
-      "rank": 30
+      "rank": 29
     },
     {
       "name": "人工智能原理及应用",
@@ -687,7 +667,7 @@
       "gapFactor": 1,
       "score": 11.8,
       "inCurriculum": true,
-      "rank": 31
+      "rank": 30
     },
     {
       "name": "传感器技术",
@@ -706,7 +686,7 @@
       "gapFactor": 1,
       "score": 11.8,
       "inCurriculum": true,
-      "rank": 32
+      "rank": 31
     },
     {
       "name": "创新创业实践",
@@ -726,7 +706,7 @@
       "gapFactor": 1,
       "score": 11.6,
       "inCurriculum": true,
-      "rank": 33
+      "rank": 32
     },
     {
       "name": "机器学习",
@@ -746,7 +726,7 @@
       "gapFactor": 1,
       "score": 11.6,
       "inCurriculum": true,
-      "rank": 34
+      "rank": 33
     },
     {
       "name": "Python语言及应用",
@@ -766,7 +746,7 @@
       "gapFactor": 1,
       "score": 11.6,
       "inCurriculum": true,
-      "rank": 35
+      "rank": 34
     },
     {
       "name": "电子电路设计与仿真实验",
@@ -786,7 +766,7 @@
       "gapFactor": 1,
       "score": 11.3,
       "inCurriculum": true,
-      "rank": 36
+      "rank": 35
     },
     {
       "name": "机器学习实验",
@@ -806,7 +786,7 @@
       "gapFactor": 1,
       "score": 11.3,
       "inCurriculum": true,
-      "rank": 37
+      "rank": 36
     },
     {
       "name": "自动控制原理综合实践",
@@ -826,7 +806,7 @@
       "gapFactor": 1,
       "score": 11.3,
       "inCurriculum": true,
-      "rank": 38
+      "rank": 37
     },
     {
       "name": "Python语言及应用实验",
@@ -846,7 +826,7 @@
       "gapFactor": 1,
       "score": 11.3,
       "inCurriculum": true,
-      "rank": 39
+      "rank": 38
     },
     {
       "name": "传感器技术实验",
@@ -865,7 +845,7 @@
       "gapFactor": 1,
       "score": 11.3,
       "inCurriculum": true,
-      "rank": 40
+      "rank": 39
     },
     {
       "name": "电路分析实验",
@@ -884,7 +864,7 @@
       "gapFactor": 1,
       "score": 11.3,
       "inCurriculum": true,
-      "rank": 41
+      "rank": 40
     },
     {
       "name": "模拟电子技术实验",
@@ -903,7 +883,7 @@
       "gapFactor": 1,
       "score": 11.3,
       "inCurriculum": true,
-      "rank": 42
+      "rank": 41
     },
     {
       "name": "数字电子技术实验",
@@ -922,7 +902,7 @@
       "gapFactor": 1,
       "score": 11.3,
       "inCurriculum": true,
-      "rank": 43
+      "rank": 42
     },
     {
       "name": "信号与系统实验",
@@ -941,7 +921,7 @@
       "gapFactor": 1,
       "score": 11.3,
       "inCurriculum": true,
-      "rank": 44
+      "rank": 43
     },
     {
       "name": "大学生心理健康与职业发展Ⅰ（国防安全卫生）",
@@ -961,7 +941,7 @@
       "gapFactor": 1,
       "score": 11,
       "inCurriculum": false,
-      "rank": 45
+      "rank": 44
     },
     {
       "name": "大学生心理健康与职业发展Ⅱ（心理健康教育）",
@@ -981,7 +961,7 @@
       "gapFactor": 1,
       "score": 11,
       "inCurriculum": false,
-      "rank": 46
+      "rank": 45
     },
     {
       "name": "大学生心理健康与职业发展Ⅲ（大学生职业生涯规划）",
@@ -1001,7 +981,7 @@
       "gapFactor": 1,
       "score": 11,
       "inCurriculum": false,
-      "rank": 47
+      "rank": 46
     },
     {
       "name": "大学生心理健康与职业发展Ⅳ（大学生就业指导）",
@@ -1021,7 +1001,7 @@
       "gapFactor": 1,
       "score": 11,
       "inCurriculum": false,
-      "rank": 48
+      "rank": 47
     },
     {
       "name": "大学体育Ⅲ",
@@ -1041,7 +1021,7 @@
       "gapFactor": 1,
       "score": 11,
       "inCurriculum": false,
-      "rank": 49
+      "rank": 48
     },
     {
       "name": "军训",
@@ -1061,7 +1041,7 @@
       "gapFactor": 1,
       "score": 11,
       "inCurriculum": true,
-      "rank": 50
+      "rank": 49
     },
     {
       "name": "形势与政策Ⅳ",
@@ -1081,7 +1061,7 @@
       "gapFactor": 1,
       "score": 11,
       "inCurriculum": false,
-      "rank": 51
+      "rank": 50
     },
     {
       "name": "形势与政策Ⅴ",
@@ -1101,7 +1081,7 @@
       "gapFactor": 1,
       "score": 11,
       "inCurriculum": false,
-      "rank": 52
+      "rank": 51
     },
     {
       "name": "形势与政策Ⅵ",
@@ -1121,7 +1101,7 @@
       "gapFactor": 1,
       "score": 11,
       "inCurriculum": false,
-      "rank": 53
+      "rank": 52
     },
     {
       "name": "形势与政策Ⅶ",
@@ -1141,7 +1121,7 @@
       "gapFactor": 1,
       "score": 11,
       "inCurriculum": false,
-      "rank": 54
+      "rank": 53
     },
     {
       "name": "大学物理B",
@@ -1161,7 +1141,7 @@
       "gapFactor": 0,
       "score": 10.9,
       "inCurriculum": true,
-      "rank": 55
+      "rank": 54
     },
     {
       "name": "自动控制原理",
@@ -1181,7 +1161,7 @@
       "gapFactor": 0,
       "score": 10.9,
       "inCurriculum": true,
-      "rank": 56
+      "rank": 55
     },
     {
       "name": "C语言程序设计",
@@ -1201,7 +1181,7 @@
       "gapFactor": 0,
       "score": 10.8,
       "inCurriculum": true,
-      "rank": 57
+      "rank": 56
     },
     {
       "name": "模拟电子技术",
@@ -1220,7 +1200,7 @@
       "gapFactor": 0.6,
       "score": 10.7,
       "inCurriculum": true,
-      "rank": 58
+      "rank": 57
     },
     {
       "name": "试验设计与统计分析（研）",
@@ -1236,6 +1216,26 @@
       "required": false,
       "credits": 2,
       "materials": 3,
+      "bank": 0,
+      "syllabus": 8,
+      "gapFactor": 0,
+      "score": 10.6,
+      "inCurriculum": true,
+      "rank": 58
+    },
+    {
+      "name": "电气控制技术",
+      "code": "1210181000",
+      "majors": 4,
+      "majorNames": [
+        "电气工程及其自动化",
+        "电子科学与技术",
+        "机器人工程",
+        "农业工程"
+      ],
+      "required": true,
+      "credits": 2,
+      "materials": 10,
       "bank": 0,
       "syllabus": 8,
       "gapFactor": 0,
@@ -2802,23 +2802,6 @@
       "rank": 146
     },
     {
-      "name": "电力系统分析",
-      "code": "1210172001",
-      "majors": 1,
-      "majorNames": [
-        "电气工程及其自动化"
-      ],
-      "required": true,
-      "credits": 3,
-      "materials": 0,
-      "bank": 28,
-      "syllabus": 8,
-      "gapFactor": 0.6,
-      "score": 6.7,
-      "inCurriculum": true,
-      "rank": 147
-    },
-    {
       "name": "电机学",
       "code": "1210169001",
       "majors": 2,
@@ -2834,7 +2817,7 @@
       "gapFactor": 0,
       "score": 6.6,
       "inCurriculum": true,
-      "rank": 148
+      "rank": 147
     },
     {
       "name": "电力电子技术",
@@ -2852,7 +2835,7 @@
       "gapFactor": 0,
       "score": 6.6,
       "inCurriculum": true,
-      "rank": 149
+      "rank": 148
     },
     {
       "name": "机械工程材料",
@@ -2869,7 +2852,7 @@
       "gapFactor": 1,
       "score": 5.9,
       "inCurriculum": true,
-      "rank": 150
+      "rank": 149
     },
     {
       "name": "机械系统动力学",
@@ -2886,7 +2869,7 @@
       "gapFactor": 1,
       "score": 5.9,
       "inCurriculum": true,
-      "rank": 151
+      "rank": 150
     },
     {
       "name": "计算机辅助设计B",
@@ -2903,7 +2886,7 @@
       "gapFactor": 1,
       "score": 5.9,
       "inCurriculum": true,
-      "rank": 152
+      "rank": 151
     },
     {
       "name": "农产品加工机械",
@@ -2920,7 +2903,7 @@
       "gapFactor": 1,
       "score": 5.9,
       "inCurriculum": true,
-      "rank": 153
+      "rank": 152
     },
     {
       "name": "系统仿真技术",
@@ -2937,7 +2920,7 @@
       "gapFactor": 1,
       "score": 5.9,
       "inCurriculum": true,
-      "rank": 154
+      "rank": 153
     },
     {
       "name": "现代机械设计方法",
@@ -2954,7 +2937,7 @@
       "gapFactor": 1,
       "score": 5.9,
       "inCurriculum": true,
-      "rank": 155
+      "rank": 154
     },
     {
       "name": "现代控制理论",
@@ -2971,7 +2954,7 @@
       "gapFactor": 1,
       "score": 5.8,
       "inCurriculum": true,
-      "rank": 156
+      "rank": 155
     },
     {
       "name": "大数据处理技术",
@@ -2988,7 +2971,7 @@
       "gapFactor": 1,
       "score": 5.6,
       "inCurriculum": true,
-      "rank": 157
+      "rank": 156
     },
     {
       "name": "电力系统仿真技术",
@@ -3005,7 +2988,7 @@
       "gapFactor": 1,
       "score": 5.6,
       "inCurriculum": true,
-      "rank": 158
+      "rank": 157
     },
     {
       "name": "生物系统模拟",
@@ -3022,7 +3005,7 @@
       "gapFactor": 1,
       "score": 5.6,
       "inCurriculum": true,
-      "rank": 159
+      "rank": 158
     },
     {
       "name": "半导体器件与集成电路综合实践",
@@ -3039,7 +3022,7 @@
       "gapFactor": 1,
       "score": 5.3,
       "inCurriculum": true,
-      "rank": 160
+      "rank": 159
     },
     {
       "name": "半导体物理综合实践",
@@ -3056,7 +3039,7 @@
       "gapFactor": 1,
       "score": 5.3,
       "inCurriculum": true,
-      "rank": 161
+      "rank": 160
     },
     {
       "name": "传感器技术教学实习",
@@ -3073,7 +3056,7 @@
       "gapFactor": 1,
       "score": 5.3,
       "inCurriculum": true,
-      "rank": 162
+      "rank": 161
     },
     {
       "name": "大数据处理技术实验",
@@ -3090,7 +3073,7 @@
       "gapFactor": 1,
       "score": 5.3,
       "inCurriculum": true,
-      "rank": 163
+      "rank": 162
     },
     {
       "name": "电力系统仿真技术实验",
@@ -3107,7 +3090,7 @@
       "gapFactor": 1,
       "score": 5.3,
       "inCurriculum": true,
-      "rank": 164
+      "rank": 163
     },
     {
       "name": "电子电路综合实践",
@@ -3124,7 +3107,7 @@
       "gapFactor": 1,
       "score": 5.3,
       "inCurriculum": true,
-      "rank": 165
+      "rank": 164
     },
     {
       "name": "电子技术综合实践",
@@ -3141,7 +3124,7 @@
       "gapFactor": 1,
       "score": 5.3,
       "inCurriculum": true,
-      "rank": 166
+      "rank": 165
     },
     {
       "name": "光电子技术综合实践",
@@ -3158,7 +3141,7 @@
       "gapFactor": 1,
       "score": 5.3,
       "inCurriculum": true,
-      "rank": 167
+      "rank": 166
     },
     {
       "name": "机械设计教学实习",
@@ -3175,7 +3158,7 @@
       "gapFactor": 1,
       "score": 5.3,
       "inCurriculum": true,
-      "rank": 168
+      "rank": 167
     },
     {
       "name": "机械制图教学实习",
@@ -3192,7 +3175,7 @@
       "gapFactor": 1,
       "score": 5.3,
       "inCurriculum": true,
-      "rank": 169
+      "rank": 168
     },
     {
       "name": "机械制图实验",
@@ -3209,7 +3192,7 @@
       "gapFactor": 1,
       "score": 5.3,
       "inCurriculum": true,
-      "rank": 170
+      "rank": 169
     },
     {
       "name": "农业机械化学教学实习",
@@ -3226,7 +3209,7 @@
       "gapFactor": 1,
       "score": 5.3,
       "inCurriculum": true,
-      "rank": 171
+      "rank": 170
     },
     {
       "name": "农业机械学教学实习",
@@ -3243,7 +3226,7 @@
       "gapFactor": 1,
       "score": 5.3,
       "inCurriculum": true,
-      "rank": 172
+      "rank": 171
     },
     {
       "name": "设施农业工程及其装备教学实习",
@@ -3260,7 +3243,7 @@
       "gapFactor": 1,
       "score": 5.3,
       "inCurriculum": true,
-      "rank": 173
+      "rank": 172
     },
     {
       "name": "生物系统模拟实验",
@@ -3277,7 +3260,7 @@
       "gapFactor": 1,
       "score": 5.3,
       "inCurriculum": true,
-      "rank": 174
+      "rank": 173
     },
     {
       "name": "信号与系统综合实践",
@@ -3294,7 +3277,7 @@
       "gapFactor": 1,
       "score": 5.3,
       "inCurriculum": true,
-      "rank": 175
+      "rank": 174
     },
     {
       "name": "EDA技术综合实践",
@@ -3311,7 +3294,7 @@
       "gapFactor": 1,
       "score": 5.3,
       "inCurriculum": true,
-      "rank": 176
+      "rank": 175
     },
     {
       "name": "电磁场与电磁波",
@@ -3328,7 +3311,7 @@
       "gapFactor": 0,
       "score": 5.1,
       "inCurriculum": true,
-      "rank": 177
+      "rank": 176
     },
     {
       "name": "变电工程设计综合实践",
@@ -3345,7 +3328,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 178
+      "rank": 177
     },
     {
       "name": "电工电子学",
@@ -3362,7 +3345,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 179
+      "rank": 178
     },
     {
       "name": "电力电子技术综合实践",
@@ -3379,7 +3362,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 180
+      "rank": 179
     },
     {
       "name": "电力系统分析综合实践",
@@ -3396,7 +3379,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 181
+      "rank": 180
     },
     {
       "name": "电力系统稳态分析",
@@ -3413,7 +3396,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 182
+      "rank": 181
     },
     {
       "name": "电力系统暂态及稳定性分析",
@@ -3430,7 +3413,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 183
+      "rank": 182
     },
     {
       "name": "电力系统自动化",
@@ -3447,7 +3430,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 184
+      "rank": 183
     },
     {
       "name": "电力系统自动化（MOOC）",
@@ -3464,7 +3447,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 185
+      "rank": 184
     },
     {
       "name": "电子材料实验",
@@ -3481,7 +3464,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 186
+      "rank": 185
     },
     {
       "name": "电子工艺综合实践",
@@ -3498,7 +3481,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 187
+      "rank": 186
     },
     {
       "name": "电子专业综合实践I",
@@ -3515,7 +3498,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 188
+      "rank": 187
     },
     {
       "name": "电子专业综合实践II",
@@ -3532,7 +3515,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 189
+      "rank": 188
     },
     {
       "name": "高电压技术",
@@ -3549,7 +3532,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 190
+      "rank": 189
     },
     {
       "name": "工程材料与机械制造基础",
@@ -3566,7 +3549,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 191
+      "rank": 190
     },
     {
       "name": "工程材料与机械制造基础实验",
@@ -3583,7 +3566,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 192
+      "rank": 191
     },
     {
       "name": "工程力学（机电）",
@@ -3600,7 +3583,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 193
+      "rank": 192
     },
     {
       "name": "工程力学实验（机电）",
@@ -3617,7 +3600,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 194
+      "rank": 193
     },
     {
       "name": "工程制图（机电）",
@@ -3634,7 +3617,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 195
+      "rank": 194
     },
     {
       "name": "工程制图教学实习（机电）",
@@ -3651,7 +3634,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 196
+      "rank": 195
     },
     {
       "name": "工程制图实验（机电）",
@@ -3668,7 +3651,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 197
+      "rank": 196
     },
     {
       "name": "固态电子器件实验",
@@ -3685,7 +3668,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 198
+      "rank": 197
     },
     {
       "name": "机器人操作系统",
@@ -3702,7 +3685,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 199
+      "rank": 198
     },
     {
       "name": "机器人操作系统综合实践",
@@ -3719,7 +3702,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 200
+      "rank": 199
     },
     {
       "name": "机器人传感与检测技术",
@@ -3736,7 +3719,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 201
+      "rank": 200
     },
     {
       "name": "机器人导航技术",
@@ -3753,7 +3736,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 202
+      "rank": 201
     },
     {
       "name": "机器人机构学",
@@ -3770,7 +3753,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 203
+      "rank": 202
     },
     {
       "name": "机器人驱动与运动控制",
@@ -3787,7 +3770,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 204
+      "rank": 203
     },
     {
       "name": "机器人设计与实现综合实践",
@@ -3804,7 +3787,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 205
+      "rank": 204
     },
     {
       "name": "机器人系统仿真",
@@ -3821,7 +3804,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 206
+      "rank": 205
     },
     {
       "name": "机器人学",
@@ -3838,7 +3821,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 207
+      "rank": 206
     },
     {
       "name": "机器视觉",
@@ -3855,7 +3838,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 208
+      "rank": 207
     },
     {
       "name": "机械设计基础",
@@ -3872,7 +3855,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 209
+      "rank": 208
     },
     {
       "name": "机械设计基础实验",
@@ -3889,7 +3872,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 210
+      "rank": 209
     },
     {
       "name": "基于STM32的嵌入式系统设计",
@@ -3906,7 +3889,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 211
+      "rank": 210
     },
     {
       "name": "基于STM32的嵌入式系统设计实验",
@@ -3923,7 +3906,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 212
+      "rank": 211
     },
     {
       "name": "科研素养与学术写作",
@@ -3940,7 +3923,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 213
+      "rank": 212
     },
     {
       "name": "控制工程",
@@ -3957,7 +3940,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 214
+      "rank": 213
     },
     {
       "name": "控制工程实验",
@@ -3974,7 +3957,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 215
+      "rank": 214
     },
     {
       "name": "农业机器人（研）",
@@ -3991,7 +3974,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 216
+      "rank": 215
     },
     {
       "name": "数据结构",
@@ -4008,7 +3991,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 217
+      "rank": 216
     },
     {
       "name": "数据结构实验",
@@ -4025,7 +4008,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 218
+      "rank": 217
     },
     {
       "name": "水电站",
@@ -4042,7 +4025,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 219
+      "rank": 218
     },
     {
       "name": "算法分析与设计",
@@ -4059,7 +4042,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 220
+      "rank": 219
     },
     {
       "name": "现代机械设计方法（研）",
@@ -4076,7 +4059,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 221
+      "rank": 220
     },
     {
       "name": "新能源并网电力系统项目式综合实践",
@@ -4093,7 +4076,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 222
+      "rank": 221
     },
     {
       "name": "新能源发电技术",
@@ -4110,7 +4093,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 223
+      "rank": 222
     },
     {
       "name": "新能源发电技术实验",
@@ -4127,7 +4110,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 224
+      "rank": 223
     },
     {
       "name": "液压与气压传动技术",
@@ -4144,7 +4127,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 225
+      "rank": 224
     },
     {
       "name": "专业概论与新生研讨（电气）",
@@ -4161,7 +4144,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 226
+      "rank": 225
     },
     {
       "name": "专业概论与新生研讨（电子）",
@@ -4178,7 +4161,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 227
+      "rank": 226
     },
     {
       "name": "专业概论与新生研讨（机器人工程）",
@@ -4195,7 +4178,7 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
-      "rank": 228
+      "rank": 227
     },
     {
       "name": "专业概论与新生研讨（农工）",
@@ -4212,6 +4195,23 @@
       "gapFactor": 1,
       "score": 5,
       "inCurriculum": false,
+      "rank": 228
+    },
+    {
+      "name": "电力系统分析",
+      "code": "1210172001",
+      "majors": 1,
+      "majorNames": [
+        "电气工程及其自动化"
+      ],
+      "required": true,
+      "credits": 3,
+      "materials": 6,
+      "bank": 28,
+      "syllabus": 8,
+      "gapFactor": 0,
+      "score": 4.9,
+      "inCurriculum": true,
       "rank": 229
     },
     {
@@ -4318,6 +4318,6 @@
       "rank": 235
     }
   ],
-  "generatedAt": "2026-10-21T10:15:32.114Z",
-  "contentHash": "64caf97dfa3df458"
+  "generatedAt": "2026-10-21T10:45:44.610Z",
+  "contentHash": "e5c201dcf4277924"
 }

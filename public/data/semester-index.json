@@ -6,7 +6,7 @@
     "cards": 984,
     "uniqueCodes": 325,
     "coverage": {
-      "withMaterials": 25,
+      "withMaterials": 29,
       "withBank": 17,
       "withSyllabus": 164
     }
@@ -211,11 +211,11 @@
       "year": 2024,
       "semester": 3,
       "total": 15,
-      "withMaterials": 1,
+      "withMaterials": 2,
       "withBank": 2,
       "withSyllabus": 12,
-      "materialItems": 38,
-      "health": 23,
+      "materialItems": 58,
+      "health": 27,
       "courses": [
         {
           "code": "1215689001",
@@ -311,7 +311,7 @@
         {
           "code": "1215844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 0,
+          "materials": 20,
           "bank": 0,
           "syllabus": 8
         },
@@ -329,11 +329,11 @@
       "year": 2024,
       "semester": 4,
       "total": 18,
-      "withMaterials": 4,
+      "withMaterials": 5,
       "withBank": 3,
       "withSyllabus": 10,
-      "materialItems": 59,
-      "health": 27,
+      "materialItems": 67,
+      "health": 30,
       "courses": [
         {
           "code": "4215858000",
@@ -345,7 +345,7 @@
         {
           "code": "1215949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 8,
           "bank": 0,
           "syllabus": 9
         },
@@ -468,11 +468,11 @@
       "year": 2024,
       "semester": 5,
       "total": 18,
-      "withMaterials": 3,
+      "withMaterials": 5,
       "withBank": 2,
       "withSyllabus": 11,
-      "materialItems": 12,
-      "health": 24,
+      "materialItems": 28,
+      "health": 29,
       "courses": [
         {
           "code": "4215859000",
@@ -512,7 +512,7 @@
         {
           "code": "1210172001",
           "name": "电力系统分析",
-          "materials": 0,
+          "materials": 6,
           "bank": 28,
           "syllabus": 8
         },
@@ -540,7 +540,7 @@
         {
           "code": "1210181000",
           "name": "电气控制技术",
-          "materials": 0,
+          "materials": 10,
           "bank": 0,
           "syllabus": 8
         },
@@ -1015,11 +1015,11 @@
       "year": 2025,
       "semester": 3,
       "total": 15,
-      "withMaterials": 1,
+      "withMaterials": 2,
       "withBank": 2,
       "withSyllabus": 12,
-      "materialItems": 38,
-      "health": 23,
+      "materialItems": 58,
+      "health": 27,
       "courses": [
         {
           "code": "1215689001",
@@ -1115,7 +1115,7 @@
         {
           "code": "1215844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 0,
+          "materials": 20,
           "bank": 0,
           "syllabus": 8
         },
@@ -1133,11 +1133,11 @@
       "year": 2025,
       "semester": 4,
       "total": 18,
-      "withMaterials": 4,
+      "withMaterials": 5,
       "withBank": 3,
       "withSyllabus": 10,
-      "materialItems": 59,
-      "health": 27,
+      "materialItems": 67,
+      "health": 30,
       "courses": [
         {
           "code": "4215858000",
@@ -1149,7 +1149,7 @@
         {
           "code": "1215949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 8,
           "bank": 0,
           "syllabus": 9
         },
@@ -1272,11 +1272,11 @@
       "year": 2025,
       "semester": 5,
       "total": 18,
-      "withMaterials": 3,
+      "withMaterials": 5,
       "withBank": 2,
       "withSyllabus": 11,
-      "materialItems": 12,
-      "health": 24,
+      "materialItems": 28,
+      "health": 29,
       "courses": [
         {
           "code": "4215859000",
@@ -1316,7 +1316,7 @@
         {
           "code": "1210172001",
           "name": "电力系统分析",
-          "materials": 0,
+          "materials": 6,
           "bank": 28,
           "syllabus": 8
         },
@@ -1344,7 +1344,7 @@
         {
           "code": "1210181000",
           "name": "电气控制技术",
-          "materials": 0,
+          "materials": 10,
           "bank": 0,
           "syllabus": 8
         },
@@ -1833,11 +1833,11 @@
       "year": 2026,
       "semester": 3,
       "total": 14,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 2,
       "withSyllabus": 9,
-      "materialItems": 40,
-      "health": 24,
+      "materialItems": 48,
+      "health": 28,
       "courses": [
         {
           "code": "1250008001",
@@ -1863,7 +1863,7 @@
         {
           "code": "1255949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 8,
           "bank": 0,
           "syllabus": 9
         },
@@ -1944,11 +1944,11 @@
       "year": 2026,
       "semester": 4,
       "total": 18,
-      "withMaterials": 4,
+      "withMaterials": 5,
       "withBank": 4,
       "withSyllabus": 10,
-      "materialItems": 58,
-      "health": 29,
+      "materialItems": 78,
+      "health": 32,
       "courses": [
         {
           "code": "3251045010",
@@ -2016,7 +2016,7 @@
         {
           "code": "1255844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 0,
+          "materials": 20,
           "bank": 0,
           "syllabus": 8
         },
@@ -2083,11 +2083,11 @@
       "year": 2026,
       "semester": 5,
       "total": 9,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 1,
       "withSyllabus": 6,
-      "materialItems": 10,
-      "health": 28,
+      "materialItems": 20,
+      "health": 33,
       "courses": [
         {
           "code": "1250170001",
@@ -2127,7 +2127,7 @@
         {
           "code": "1250181000",
           "name": "电气控制技术",
-          "materials": 0,
+          "materials": 10,
           "bank": 0,
           "syllabus": 8
         },
@@ -2726,11 +2726,11 @@
       "year": 2024,
       "semester": 5,
       "total": 18,
-      "withMaterials": 2,
+      "withMaterials": 4,
       "withBank": 0,
       "withSyllabus": 11,
-      "materialItems": 5,
-      "health": 18,
+      "materialItems": 33,
+      "health": 23,
       "courses": [
         {
           "code": "1210005001",
@@ -2784,7 +2784,7 @@
         {
           "code": "1215949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 8,
           "bank": 0,
           "syllabus": 9
         },
@@ -2847,7 +2847,7 @@
         {
           "code": "1215844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 0,
+          "materials": 20,
           "bank": 0,
           "syllabus": 8
         },
@@ -2865,11 +2865,11 @@
       "year": 2024,
       "semester": 6,
       "total": 19,
-      "withMaterials": 1,
+      "withMaterials": 2,
       "withBank": 1,
       "withSyllabus": 11,
-      "materialItems": 7,
-      "health": 16,
+      "materialItems": 17,
+      "health": 18,
       "courses": [
         {
           "code": "1210019000",
@@ -2923,7 +2923,7 @@
         {
           "code": "1210181000",
           "name": "电气控制技术",
-          "materials": 0,
+          "materials": 10,
           "bank": 0,
           "syllabus": 8
         },
@@ -3488,11 +3488,11 @@
       "year": 2025,
       "semester": 5,
       "total": 18,
-      "withMaterials": 2,
+      "withMaterials": 4,
       "withBank": 0,
       "withSyllabus": 11,
-      "materialItems": 5,
-      "health": 18,
+      "materialItems": 33,
+      "health": 23,
       "courses": [
         {
           "code": "1210005001",
@@ -3546,7 +3546,7 @@
         {
           "code": "1215949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 8,
           "bank": 0,
           "syllabus": 9
         },
@@ -3609,7 +3609,7 @@
         {
           "code": "1215844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 0,
+          "materials": 20,
           "bank": 0,
           "syllabus": 8
         },
@@ -3627,11 +3627,11 @@
       "year": 2025,
       "semester": 6,
       "total": 19,
-      "withMaterials": 1,
+      "withMaterials": 2,
       "withBank": 1,
       "withSyllabus": 11,
-      "materialItems": 7,
-      "health": 16,
+      "materialItems": 17,
+      "health": 18,
       "courses": [
         {
           "code": "1210019000",
@@ -3685,7 +3685,7 @@
         {
           "code": "1210181000",
           "name": "电气控制技术",
-          "materials": 0,
+          "materials": 10,
           "bank": 0,
           "syllabus": 8
         },
@@ -4153,11 +4153,11 @@
       "year": 2026,
       "semester": 4,
       "total": 13,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 3,
       "withSyllabus": 8,
-      "materialItems": 47,
-      "health": 27,
+      "materialItems": 67,
+      "health": 31,
       "courses": [
         {
           "code": "1250002002",
@@ -4225,7 +4225,7 @@
         {
           "code": "1255844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 0,
+          "materials": 20,
           "bank": 0,
           "syllabus": 8
         },
@@ -4257,11 +4257,11 @@
       "year": 2026,
       "semester": 5,
       "total": 17,
-      "withMaterials": 1,
+      "withMaterials": 3,
       "withBank": 0,
       "withSyllabus": 10,
-      "materialItems": 3,
-      "health": 15,
+      "materialItems": 21,
+      "health": 21,
       "courses": [
         {
           "code": "1250019002",
@@ -4280,7 +4280,7 @@
         {
           "code": "1255949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 8,
           "bank": 0,
           "syllabus": 9
         },
@@ -4294,7 +4294,7 @@
         {
           "code": "1250181000",
           "name": "电气控制技术",
-          "materials": 0,
+          "materials": 10,
           "bank": 0,
           "syllabus": 8
         },
@@ -4984,11 +4984,11 @@
       "year": 2026,
       "semester": 5,
       "total": 13,
-      "withMaterials": 1,
+      "withMaterials": 3,
       "withBank": 0,
       "withSyllabus": 10,
-      "materialItems": 3,
-      "health": 19,
+      "materialItems": 31,
+      "health": 27,
       "courses": [
         {
           "code": "1255689001",
@@ -5007,7 +5007,7 @@
         {
           "code": "1255949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 8,
           "bank": 0,
           "syllabus": 9
         },
@@ -5070,7 +5070,7 @@
         {
           "code": "1255844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 0,
+          "materials": 20,
           "bank": 0,
           "syllabus": 8
         },
@@ -5088,11 +5088,11 @@
       "year": 2026,
       "semester": 6,
       "total": 11,
-      "withMaterials": 0,
+      "withMaterials": 1,
       "withBank": 0,
       "withSyllabus": 7,
-      "materialItems": 0,
-      "health": 13,
+      "materialItems": 10,
+      "health": 17,
       "courses": [
         {
           "code": "3251045020",
@@ -5104,7 +5104,7 @@
         {
           "code": "1250181000",
           "name": "电气控制技术",
-          "materials": 0,
+          "materials": 10,
           "bank": 0,
           "syllabus": 8
         },
@@ -5419,11 +5419,11 @@
       "year": 2024,
       "semester": 3,
       "total": 16,
-      "withMaterials": 1,
+      "withMaterials": 2,
       "withBank": 2,
       "withSyllabus": 11,
-      "materialItems": 38,
-      "health": 21,
+      "materialItems": 46,
+      "health": 24,
       "courses": [
         {
           "code": "4211119000",
@@ -5449,7 +5449,7 @@
         {
           "code": "1215949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 8,
           "bank": 0,
           "syllabus": 9
         },
@@ -5669,11 +5669,11 @@
       "year": 2024,
       "semester": 5,
       "total": 17,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 1,
       "withSyllabus": 9,
-      "materialItems": 4,
-      "health": 18,
+      "materialItems": 24,
+      "health": 21,
       "courses": [
         {
           "code": "1215689001",
@@ -5783,7 +5783,7 @@
         {
           "code": "1215844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 0,
+          "materials": 20,
           "bank": 0,
           "syllabus": 8
         },
@@ -5801,16 +5801,16 @@
       "year": 2024,
       "semester": 6,
       "total": 12,
-      "withMaterials": 1,
+      "withMaterials": 2,
       "withBank": 0,
       "withSyllabus": 8,
-      "materialItems": 3,
-      "health": 18,
+      "materialItems": 13,
+      "health": 22,
       "courses": [
         {
           "code": "1210181000",
           "name": "电气控制技术",
-          "materials": 0,
+          "materials": 10,
           "bank": 0,
           "syllabus": 8
         },
@@ -6146,11 +6146,11 @@
       "year": 2025,
       "semester": 3,
       "total": 16,
-      "withMaterials": 1,
+      "withMaterials": 2,
       "withBank": 2,
       "withSyllabus": 11,
-      "materialItems": 38,
-      "health": 21,
+      "materialItems": 46,
+      "health": 24,
       "courses": [
         {
           "code": "4211119000",
@@ -6176,7 +6176,7 @@
         {
           "code": "1215949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 8,
           "bank": 0,
           "syllabus": 9
         },
@@ -6396,11 +6396,11 @@
       "year": 2025,
       "semester": 5,
       "total": 17,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 1,
       "withSyllabus": 9,
-      "materialItems": 4,
-      "health": 18,
+      "materialItems": 24,
+      "health": 21,
       "courses": [
         {
           "code": "1215689001",
@@ -6510,7 +6510,7 @@
         {
           "code": "1215844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 0,
+          "materials": 20,
           "bank": 0,
           "syllabus": 8
         },
@@ -6528,16 +6528,16 @@
       "year": 2025,
       "semester": 6,
       "total": 12,
-      "withMaterials": 1,
+      "withMaterials": 2,
       "withBank": 0,
       "withSyllabus": 8,
-      "materialItems": 3,
-      "health": 18,
+      "materialItems": 13,
+      "health": 22,
       "courses": [
         {
           "code": "1210181000",
           "name": "电气控制技术",
-          "materials": 0,
+          "materials": 10,
           "bank": 0,
           "syllabus": 8
         },
@@ -6797,11 +6797,11 @@
       "year": 2024,
       "semester": 2,
       "total": 10,
-      "withMaterials": 3,
+      "withMaterials": 4,
       "withBank": 1,
       "withSyllabus": 9,
-      "materialItems": 13,
-      "health": 36,
+      "materialItems": 33,
+      "health": 41,
       "courses": [
         {
           "code": "1215788000",
@@ -6855,7 +6855,7 @@
         {
           "code": "1215844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 0,
+          "materials": 20,
           "bank": 0,
           "syllabus": 8
         },
@@ -6984,11 +6984,11 @@
       "year": 2024,
       "semester": 4,
       "total": 14,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 1,
       "withSyllabus": 11,
-      "materialItems": 5,
-      "health": 25,
+      "materialItems": 13,
+      "health": 29,
       "courses": [
         {
           "code": "4215858000",
@@ -7000,7 +7000,7 @@
         {
           "code": "1215949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 8,
           "bank": 0,
           "syllabus": 9
         },
@@ -7482,11 +7482,11 @@
       "year": 2025,
       "semester": 2,
       "total": 10,
-      "withMaterials": 3,
+      "withMaterials": 4,
       "withBank": 1,
       "withSyllabus": 9,
-      "materialItems": 13,
-      "health": 36,
+      "materialItems": 33,
+      "health": 41,
       "courses": [
         {
           "code": "1215788000",
@@ -7540,7 +7540,7 @@
         {
           "code": "1215844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 0,
+          "materials": 20,
           "bank": 0,
           "syllabus": 8
         },
@@ -7669,11 +7669,11 @@
       "year": 2025,
       "semester": 4,
       "total": 14,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 1,
       "withSyllabus": 11,
-      "materialItems": 5,
-      "health": 25,
+      "materialItems": 13,
+      "health": 29,
       "courses": [
         {
           "code": "4215858000",
@@ -7685,7 +7685,7 @@
         {
           "code": "1215949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 8,
           "bank": 0,
           "syllabus": 9
         },
@@ -8045,6 +8045,6 @@
       ]
     }
   },
-  "generatedAt": "2026-10-20T14:57:50.764Z",
-  "contentHash": "sha1:c45301a64bd1d0beacfcc0efc9a3b893eba5a364"
+  "generatedAt": "2026-10-21T10:45:44.276Z",
+  "contentHash": "sha1:572cf46e7670f7125f889616111b3cd07eb41f84"
 }
