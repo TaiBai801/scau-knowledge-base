@@ -194,7 +194,6 @@ export default defineConfig({
         { text: '机器人工程', link: '/majors/jiqirengongcheng/' },
         { text: '共享课程', link: '/majors/shared/' },
         { text: '课程地图', link: '/map' },
-        { text: '转专业', link: '/transfer' },
       ]},
       { text: '学习', items: [
         { text: '全站检索', link: '/search' },
@@ -214,6 +213,7 @@ export default defineConfig({
       { text: '我的本学期', link: '/my' },
       { text: '社区', items: [
         { text: '「Ta说」', link: '/stories' },
+        { text: '转专业', link: '/transfer' },
         { text: '资料缺口榜', link: '/gap' },
         { text: '贡献者墙', link: '/contributors' },
         { text: '贡献指南', link: '/contribute' },

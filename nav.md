@@ -11,7 +11,6 @@
 <a href="/majors/jiqirengongcheng/" class="nav-card">🤖 机器人工程 (1个年级)</a>
 <a href="/majors/shared/" class="nav-card">📚 共享课程 · 通识/基础共[[m:courses.sharedPages]]门</a>
 <a href="/map" class="nav-card">🗺️ 课程地图</a>
-<a href="/transfer" class="nav-card">🔄 转专业</a>
 
 ## 学习
 
@@ -33,6 +32,7 @@
 ## 社区
 
 <a href="/stories" class="nav-card">💬 「Ta说」 · 四个问题</a>
+<a href="/transfer" class="nav-card">🔄 转专业</a>
 <a href="/my" class="nav-card">📚 我的本学期 · 课表与资料</a>
 <a href="/gap" class="nav-card">📉 资料缺口榜</a>
 <a href="/contributors" class="nav-card">👥 贡献者墙</a>
