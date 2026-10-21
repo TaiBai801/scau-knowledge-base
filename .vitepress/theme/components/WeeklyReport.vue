@@ -5,9 +5,10 @@
 //
 // 只和自己比：所有卡片都带上周对照，没有任何他人排名。
 import { ref, computed, onMounted } from 'vue'
-import { KEYS, read, startOfWeek, addDays } from '../lib/storage'
+import { KEYS, read, write, startOfWeek, addDays } from '../lib/storage'
 import { readFootprint, summarizeFootprint } from '../lib/footprint'
 import { listWrong } from '../lib/spaced'
+import SyncBar from './SyncBar.vue'
 
 const MIN_OFFSET = 1 // 1 = 最近一个完整自然周
 const MAX_OFFSET = 8
@@ -145,6 +146,42 @@ function build(off) {
 
 function load() {
   build(offset.value)
+}
+
+// ── 云端同步：周报由 专注/足迹/做题/错题 四份数据算出，前两项已可单独同步，
+// 这里打包同步剩下两项（组卷历史 + 错题本），换设备后周报口径一致 ──
+function getWeeklyData() {
+  return { quiz: read('quiz_history', []), wrong: read(KEYS.wrong, {}) }
+}
+function applyWeeklyData(v) {
+  try {
+    // 组卷历史：按 time 去重合并，保留最新 20 条
+    const localQ = read('quiz_history', [])
+    const cloudQ = v && Array.isArray(v.quiz) ? v.quiz : []
+    const seenQ = new Set(localQ.map((h) => Number(h && (h.at != null ? h.at : h.time)) || 0))
+    const mergedQ = localQ.concat(
+      cloudQ.filter((h) => h && !seenQ.has(Number(h.at != null ? h.at : h.time) || 0))
+    )
+    mergedQ.sort(
+      (a, b) => Number(b.at != null ? b.at : b.time) - Number(a.at != null ? a.at : a.time)
+    )
+    write('quiz_history', mergedQ.slice(0, 20))
+
+    // 错题本：WrongMap 按 qid 合并，取练习次数更多的一方（信息更全）
+    const localW = read(KEYS.wrong, {})
+    const cloudW = v && v.wrong && typeof v.wrong === 'object' ? v.wrong : {}
+    const mergedW = Object.assign({}, localW)
+    for (const qid of Object.keys(cloudW)) {
+      const c = cloudW[qid]
+      if (!c || typeof c !== 'object') continue
+      const l = mergedW[qid]
+      if (!l || (Number(c.wrongCount) || 0) > (Number(l.wrongCount) || 0)) mergedW[qid] = c
+    }
+    write(KEYS.wrong, mergedW)
+    build(offset.value)
+  } catch (e) {
+    /* 合并失败不影响本机数据 */
+  }
 }
 
 onMounted(load)
@@ -313,6 +350,16 @@ const emptyText = computed(() => {
         </div>
       </section>
 
+      <section class="wr-sync">
+        <SyncBar
+          sync-key="weekly"
+          title="周报数据（做题记录 + 错题本）"
+          :get-data="getWeeklyData"
+          :apply-data="applyWeeklyData"
+          @applied="load"
+        />
+      </section>
+
       <p class="wr-foot">
         周报不是定时任务：每次打开按本机数据重算，覆盖最近 {{ MAX_OFFSET }} 个完整周。
         记录只在这台设备上，换设备不会同步；没有任何他人排名。
@@ -453,6 +500,9 @@ const emptyText = computed(() => {
   border: 1px solid var(--line, #e8e4db);
   border-radius: 14px;
   background: var(--vp-c-bg-soft, #fff);
+  margin-top: 16px;
+}
+.wr-sync {
   margin-top: 16px;
 }
 .wr-link-row {

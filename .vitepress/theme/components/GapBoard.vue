@@ -382,7 +382,7 @@ onMounted(loadMine)
 .gb-stat { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 0.8rem 0.6rem; text-align: center; }
 .gb-stat b { display: block; font-size: 1.35rem; color: var(--brand); font-variant-numeric: tabular-nums; }
 .gb-stat span { font-size: 0.72rem; color: var(--text-muted); }
-.gb-stat.gb-warn b { color: #B23B36; }
+.gb-stat.gb-warn b { color: var(--color-danger); }
 
 .gb-majors { margin-bottom: 1.6rem; }
 .gb-h2 { font-size: 0.92rem; font-weight: 600; color: var(--text-heading); margin: 0 0 0.7rem; }
@@ -427,7 +427,7 @@ a.gb-name { color: var(--brand); }
 a.gb-name:hover { text-decoration: underline; }
 .gb-sub { display: block; font-size: 0.7rem; color: var(--text-muted); }
 .gb-req { font-size: 0.7rem; background: var(--brand-pale); color: var(--brand); border-radius: 4px; padding: 0.05rem 0.35rem; }
-.gb-zero { color: #B23B36; }
+.gb-zero { color: var(--color-danger); }
 .gb-score { font-weight: 600; color: var(--text-heading); }
 
 .gb-foot { margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); }
@@ -464,10 +464,10 @@ a.gb-name:hover { text-decoration: underline; }
 .gb-mine-course { color: var(--text-body); font-weight: 500; }
 .gb-mine-kind { color: var(--text-muted); font-size: 0.72rem; }
 .gb-badge { font-size: 0.7rem; border-radius: 999px; padding: 0.05rem 0.5rem; }
-.gb-badge.pending { background: #fef3e2; color: #b45309; }
+.gb-badge.pending { background: var(--color-warning-pale); color: var(--color-warning); }
 .gb-badge.accepted { background: var(--brand-pale); color: var(--brand); }
-.gb-badge.done { background: #e6f7ef; color: #047857; }
-.gb-badge.rejected { background: #fef2f2; color: #B23B36; }
+.gb-badge.done { background: var(--color-success-pale); color: #047857; }
+.gb-badge.rejected { background: var(--color-danger-pale); color: var(--color-danger); }
 .gb-mine-reply { color: var(--text-muted); font-size: 0.72rem; }
 
 /* ── 弹窗 ── */
@@ -493,7 +493,7 @@ a.gb-name:hover { text-decoration: underline; }
 .gb-field input:focus, .gb-field select:focus, .gb-field textarea:focus {
   outline: none; border-color: var(--brand);
 }
-.gb-err { color: #B23B36; font-size: 0.78rem; margin: 0.2rem 0 0.6rem; }
+.gb-err { color: var(--color-danger); font-size: 0.78rem; margin: 0.2rem 0 0.6rem; }
 .gb-ok { color: #047857; font-size: 0.78rem; margin: 0.2rem 0 0.6rem; }
 .gb-dialog-act { display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 0.5rem; }
 .gb-btn {

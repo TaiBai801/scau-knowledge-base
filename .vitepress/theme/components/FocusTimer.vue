@@ -672,7 +672,7 @@ onBeforeUnmount(() => {
   padding: 0;
   border: none;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--brand, #0d5c5a), #148f8c);
+  background: linear-gradient(135deg, var(--brand, #0d5c5a), var(--brand-light));
   color: #fff;
   cursor: pointer;
   box-shadow: 0 8px 22px rgba(13, 92, 90, 0.28);

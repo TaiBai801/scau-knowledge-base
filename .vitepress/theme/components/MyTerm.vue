@@ -647,7 +647,7 @@ onMounted(async () => {
 .mt-stat { background: #fff; border: 1px solid var(--line); border-radius: 9px; padding: 0.5rem 0.9rem; text-align: center; }
 .mt-stat b { display: block; font-size: 1.15rem; color: var(--brand); font-variant-numeric: tabular-nums; }
 .mt-stat span { font-size: 0.72rem; color: var(--text-muted); }
-.mt-stat.mt-warn b { color: #B23B36; }
+.mt-stat.mt-warn b { color: var(--color-danger); }
 .mt-reset {
   margin-left: auto; border: 1px solid var(--line); background: #fff; color: var(--text-muted);
   border-radius: 6px; padding: 0.3rem 0.7rem; font-size: 0.76rem; cursor: pointer;
@@ -668,10 +668,10 @@ onMounted(async () => {
 .c-name a { color: var(--brand); text-decoration: none; }
 .c-name a:hover { text-decoration: underline; }
 .c-num { text-align: right; font-variant-numeric: tabular-nums; color: var(--text-body); }
-.c-num.zero { color: #B23B36; }
+.c-num.zero { color: var(--color-danger); }
 .c-act { text-align: right; }
 .mt-tag {
-  font-style: normal; font-size: 0.68rem; color: #B45309; background: #FEF3E2;
+  font-style: normal; font-size: 0.68rem; color: var(--color-warning); background: var(--color-warning-pale);
   border-radius: 4px; padding: 0.05rem 0.35rem; margin-left: 0.35rem;
 }
 .mt-ask {
@@ -719,7 +719,7 @@ onMounted(async () => {
 }
 .mt-sync-user { flex: 1; min-width: 0; }
 .mt-newer {
-  font-style: normal; font-size: 0.7rem; color: #B45309; background: #FEF3E2;
+  font-style: normal; font-size: 0.7rem; color: var(--color-warning); background: var(--color-warning-pale);
   border-radius: 4px; padding: 0.05rem 0.35rem; margin-left: 0.3rem;
 }
 .mt-sync-btns { display: flex; gap: 0.4rem; }
@@ -764,7 +764,7 @@ onMounted(async () => {
 }
 .mt-field textarea { resize: vertical; line-height: 1.6; }
 .mt-field input:focus, .mt-field select:focus, .mt-field textarea:focus { outline: none; border-color: var(--brand); }
-.mt-err { color: #B23B36; font-size: 0.76rem; margin: 0.2rem 0 0.5rem; }
+.mt-err { color: var(--color-danger); font-size: 0.76rem; margin: 0.2rem 0 0.5rem; }
 .mt-ok { color: #047857; font-size: 0.76rem; margin: 0.2rem 0 0.5rem; }
 .mt-dialog-act { display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 0.4rem; }
 .mt-btn {

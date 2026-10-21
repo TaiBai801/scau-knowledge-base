@@ -169,7 +169,7 @@ onMounted(check)
 .sync-row { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; font-size: 0.78rem; color: var(--text-body); }
 .sync-user { flex: 1; min-width: 0; }
 .sync-newer {
-  font-style: normal; font-size: 0.68rem; color: #B45309; background: #FEF3E2;
+  font-style: normal; font-size: 0.68rem; color: var(--color-warning); background: var(--color-warning-pale);
   border-radius: 4px; padding: 0.05rem 0.35rem; margin-left: 0.3rem;
 }
 .sync-btns { display: flex; gap: 0.35rem; }
@@ -181,5 +181,5 @@ onMounted(check)
 .sync-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 .sync-msg { margin: 0.4rem 0 0; font-size: 0.72rem; }
 .sync-msg.ok { color: #047857; }
-.sync-msg.err { color: #B23B36; }
+.sync-msg.err { color: var(--color-danger); }
 </style>

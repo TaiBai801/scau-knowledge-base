@@ -152,23 +152,23 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
   padding: 2.5rem 1.5rem 1rem;
 }
 .bounty-head { text-align: center; margin-bottom: 1.4rem; }
-.bounty-title { font-size: 1.4rem; font-weight: 700; color: #0D5C5A; }
+.bounty-title { font-size: 1.4rem; font-weight: 700; color: var(--brand); }
 .bounty-desc { font-size: 0.88rem; color: #94a3b8; margin-top: 0.4rem; }
 .bounty-form {
   display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center;
   max-width: 760px; margin: 0 auto 0.8rem;
 }
 .bounty-input, .bounty-course, .bounty-name {
-  padding: 0.65rem 0.9rem; border: 1px solid #E8E4DB; border-radius: 10px;
-  font-size: 0.9rem; background: #fff; color: #4A5568; outline: none;
+  padding: 0.65rem 0.9rem; border: 1px solid var(--line); border-radius: 10px;
+  font-size: 0.9rem; background: #fff; color: var(--text-body); outline: none;
 }
 .bounty-input { flex: 1 1 300px; min-width: 0; }
 .bounty-course { flex: 0 0 150px; }
 .bounty-name { flex: 0 0 120px; }
-.bounty-input:focus, .bounty-course:focus, .bounty-name:focus { border-color: #0D5C5A; }
+.bounty-input:focus, .bounty-course:focus, .bounty-name:focus { border-color: var(--brand); }
 .bounty-btn {
   padding: 0.65rem 1.4rem; border: none; border-radius: 10px; font-size: 0.9rem;
-  background: #0D5C5A; color: #fff; cursor: pointer; font-weight: 600; transition: opacity .15s;
+  background: var(--brand); color: #fff; cursor: pointer; font-weight: 600; transition: opacity .15s;
 }
 .bounty-btn:hover { opacity: .9; }
 .bounty-btn:disabled { opacity: .5; cursor: not-allowed; }
@@ -176,14 +176,14 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
   display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1rem;
 }
 .sort-btn {
-  padding: 0.28rem 0.9rem; border: 1px solid #E8E4DB; border-radius: 999px;
-  font-size: 0.8rem; background: #fff; color: #64748b; cursor: pointer; transition: all .15s;
+  padding: 0.28rem 0.9rem; border: 1px solid var(--line); border-radius: 999px;
+  font-size: 0.8rem; background: #fff; color: var(--text-muted); cursor: pointer; transition: all .15s;
 }
-.sort-btn:hover { border-color: #0D5C5A; color: #0D5C5A; }
-.sort-btn.active { background: #0D5C5A; border-color: #0D5C5A; color: #fff; }
+.sort-btn:hover { border-color: var(--brand); color: var(--brand); }
+.sort-btn.active { background: var(--brand); border-color: var(--brand); color: #fff; }
 .bounty-wall {
   max-height: 320px; overflow-y: auto;
-  border: 1px solid #E8E4DB; border-radius: 14px; background: #fff;
+  border: 1px solid var(--line); border-radius: 14px; background: #fff;
   padding: 0.4rem 0.6rem; scroll-behavior: smooth;
 }
 .bounty-item {
@@ -191,26 +191,26 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
 }
 .bounty-item:last-child { border-bottom: none; }
 .bi-top { display: flex; align-items: flex-start; gap: 0.6rem; }
-.bi-content { flex: 1; min-width: 0; font-size: 0.92rem; color: #4A5568; word-break: break-word; }
+.bi-content { flex: 1; min-width: 0; font-size: 0.92rem; color: var(--text-body); word-break: break-word; }
 .bi-badge {
   flex-shrink: 0; font-size: 0.72rem; padding: 0.12rem 0.5rem; border-radius: 999px;
-  background: #fef3e2; color: #D97706; white-space: nowrap;
+  background: var(--color-warning-pale); color: var(--color-warning); white-space: nowrap;
 }
-.bi-badge.done { background: #e6f7ef; color: #059669; }
+.bi-badge.done { background: var(--color-success-pale); color: var(--color-success); }
 .bi-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 0.35rem; }
 .bi-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 .bi-by { font-size: 0.75rem; color: #94a3b8; }
 .bi-course {
-  font-size: 0.72rem; color: #0D5C5A; background: #eef6f5; border-radius: 999px; padding: 0.05rem 0.55rem;
+  font-size: 0.72rem; color: var(--brand); background: #eef6f5; border-radius: 999px; padding: 0.05rem 0.55rem;
 }
 .bi-like {
   display: inline-flex; align-items: center; gap: 0.25rem;
-  border: 1px solid #E8E4DB; background: #fff; color: #64748b;
+  border: 1px solid var(--line); background: #fff; color: var(--text-muted);
   font-size: 0.8rem; padding: 0.15rem 0.7rem; border-radius: 999px; cursor: pointer;
   transition: all .15s;
 }
-.bi-like:hover { border-color: #0D5C5A; color: #0D5C5A; }
-.bi-like.liked { background: #e6f7ef; border-color: #0D5C5A; color: #0D5C5A; }
+.bi-like:hover { border-color: var(--brand); color: var(--brand); }
+.bi-like.liked { background: var(--color-success-pale); border-color: var(--brand); color: var(--brand); }
 .bounty-empty { text-align: center; color: #94a3b8; font-size: 0.85rem; padding: 2rem 0; }
 
 @media (max-width: 640px) {

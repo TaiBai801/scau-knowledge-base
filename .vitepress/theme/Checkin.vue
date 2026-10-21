@@ -235,7 +235,7 @@ onMounted(() => {
 <style scoped>
 .ci-wrap { min-height: 60vh; }
 .ci-hero {
-  background: linear-gradient(135deg, #0D5C5A 0%, #148F8C 100%);
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
   color: #fff; text-align: center; padding: 48px 24px 56px;
 }
 .ci-hero-tag {
@@ -253,8 +253,8 @@ onMounted(() => {
   animation: ci-pop 0.25s ease;
 }
 .ci-guest-text { font-size: 0.88rem; color: #78350F; line-height: 1.7; }
-.ci-guest-text strong { color: #B45309; }
-.ci-guest-arrow { font-size: 0.8rem; color: #D97706; margin-top: 6px; }
+.ci-guest-text strong { color: var(--color-warning); }
+.ci-guest-arrow { font-size: 0.8rem; color: var(--color-warning); margin-top: 6px; }
 @keyframes ci-pop { from { transform: translateY(-6px); opacity: 0; } to { transform: none; opacity: 1; } }
 
 .ci-card {
@@ -264,7 +264,7 @@ onMounted(() => {
 .ci-card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
 .ci-card-title { font-family: var(--font-display); font-size: 1.2rem; color: var(--brand); margin: 0; }
 .ci-today-badge {
-  font-size: 0.8rem; color: #059669; background: #ecfdf5; border: 1px solid #a7f3d0;
+  font-size: 0.8rem; color: var(--color-success); background: #ecfdf5; border: 1px solid #a7f3d0;
   border-radius: 12px; padding: 4px 12px;
 }
 
@@ -289,7 +289,7 @@ onMounted(() => {
   border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; line-height: 1.7;
 }
 .ci-err {
-  color: #dc2626; font-size: 0.85rem; background: #fef2f2; border: 1px solid #fecaca;
+  color: var(--color-danger); font-size: 0.85rem; background: var(--color-danger-pale); border: 1px solid #fecaca;
   border-radius: 8px; padding: 10px 14px; margin-bottom: 12px;
 }
 .ci-btn {
@@ -318,11 +318,11 @@ onMounted(() => {
 .ci-cell { aspect-ratio: 1; border-radius: 4px; background: var(--bg-warm); border: 1px solid var(--line); }
 .ci-cell.lv1 { background: #a7f3d0; border-color: #a7f3d0; }
 .ci-cell.lv2 { background: #34d399; border-color: #34d399; }
-.ci-cell.lv3 { background: #059669; border-color: #059669; }
+.ci-cell.lv3 { background: var(--color-success); border-color: var(--color-success); }
 .ci-heat-legend .lv0 { background: var(--bg-warm); border: 1px solid var(--line); }
 .ci-heat-legend .lv1 { background: #a7f3d0; }
 .ci-heat-legend .lv2 { background: #34d399; }
-.ci-heat-legend .lv3 { background: #059669; }
+.ci-heat-legend .lv3 { background: var(--color-success); }
 
 .ci-footer { font-size: 0.8rem; color: var(--text-muted); text-align: center; }
 

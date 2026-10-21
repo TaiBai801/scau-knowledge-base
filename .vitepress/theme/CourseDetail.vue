@@ -25,13 +25,13 @@ function removeFile(i) {
 const semStyle = {
   '大一上学期': 'background:#eff6ff;color:#2563eb',
   '大一下学期': 'background:#eff6ff;color:#2563eb',
-  '大二上学期': 'background:#f0fdf4;color:#059669',
-  '大二下学期': 'background:#f0fdf4;color:#059669',
-  '大三上学期': 'background:#fffbeb;color:#D97706',
-  '大三下学期': 'background:#fffbeb;color:#D97706',
-  '大四上学期': 'background:#fef2f2;color:#dc2626',
-  '大四下学期': 'background:#fef2f2;color:#dc2626',
-}[props.semester] || 'background:#f1f5f9;color:#64748b'
+  '大二上学期': 'background:#f0fdf4;color:var(--color-success)',
+  '大二下学期': 'background:#f0fdf4;color:var(--color-success)',
+  '大三上学期': 'background:#fffbeb;color:var(--color-warning)',
+  '大三下学期': 'background:#fffbeb;color:var(--color-warning)',
+  '大四上学期': 'background:var(--color-danger-pale);color:var(--color-danger)',
+  '大四下学期': 'background:var(--color-danger-pale);color:var(--color-danger)',
+}[props.semester] || 'background:#f1f5f9;color:var(--text-muted)'
 
 const natClass = props.nature === '必修' ? 'ardot-badge-bixiu' : 'ardot-badge-fangxiang'
 </script>

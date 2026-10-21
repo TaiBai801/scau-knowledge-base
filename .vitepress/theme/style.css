@@ -37,6 +37,16 @@
   --text-placeholder: #94A3B8;
   --text-nav: #475569;
 
+  /* 语义状态色（唯一入口：组件不得再写死 #059669 / #dc2626 / #d97706 / #3a5a8c 等） */
+  --color-success: #059669;
+  --color-success-pale: #E6F7EF;
+  --color-danger: #DC2626;
+  --color-danger-pale: #FEF2F2;
+  --color-warning: #D97706;
+  --color-warning-pale: #FEF3E2;
+  --color-info: #3A5A8C;
+  --color-info-pale: #EEF2FA;
+
   /* Footer */
   --footer-bg: #0D5C5A;
   --footer-bar: #094D4B;
@@ -66,6 +76,18 @@
   /* 字体 */
   --font-display: 'Crimson Pro', 'Georgia', 'Noto Serif SC', serif;
   --font-body: 'PingFang SC', 'Sarasa Gothic SC', 'Microsoft YaHei', sans-serif;
+}
+
+/* 深色模式：语义状态色镜像（组件 .dark 规则逐步改引这些变量） */
+.dark {
+  --color-success: #34D399;
+  --color-success-pale: #0F2E22;
+  --color-danger: #F87171;
+  --color-danger-pale: #3B1515;
+  --color-warning: #FBBF24;
+  --color-warning-pale: #3A2A08;
+  --color-info: #7FA8E8;
+  --color-info-pale: #16233A;
 }
 
 /* ── 全局重置 ── */

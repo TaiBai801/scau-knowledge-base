@@ -437,7 +437,7 @@ onMounted(async () => {
 <style scoped>
 .plan-wrap { min-height: 60vh; }
 .plan-hero {
-  background: linear-gradient(135deg, #0D5C5A 0%, #148F8C 100%);
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
   color: #fff; text-align: center; padding: 48px 24px 56px;
 }
 .plan-hero-tag {
@@ -448,7 +448,7 @@ onMounted(async () => {
 .plan-hero-sub { font-size: 0.95rem; opacity: 0.92; margin: 0; line-height: 1.7; color: #fff !important; }
 .plan-inner { max-width: 760px; margin: -24px auto 48px; padding: 0 20px; }
 .plan-state { text-align: center; padding: 60px 20px; color: var(--text-muted); }
-.plan-err { color: #dc2626; }
+.plan-err { color: var(--color-danger); }
 
 .plan-card {
   background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px;
@@ -487,7 +487,7 @@ onMounted(async () => {
   border: 1px solid var(--brand); border-radius: 14px; padding: 3px 12px;
   font-size: 0.8rem; cursor: pointer; transition: all 0.15s;
 }
-.plan-chip:hover { background: #fee2e2; border-color: #dc2626; color: #dc2626; }
+.plan-chip:hover { background: #fee2e2; border-color: var(--color-danger); color: var(--color-danger); }
 
 .plan-btn {
   display: inline-block; background: var(--brand); color: #fff; border: none; border-radius: 8px;
@@ -496,12 +496,12 @@ onMounted(async () => {
 .plan-btn:hover { background: var(--brand-light); }
 .plan-btn-ghost { background: transparent; color: var(--brand); border: 1px solid var(--brand); }
 .plan-btn-ghost:hover { background: var(--brand-pale); }
-.plan-discard-link { margin-left: 14px; font-size: 0.85rem; color: #dc2626; cursor: pointer; text-decoration: underline; }
+.plan-discard-link { margin-left: 14px; font-size: 0.85rem; color: var(--color-danger); cursor: pointer; text-decoration: underline; }
 
 .plan-summary { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; margin-bottom: 16px; }
 .plan-summary-item { display: flex; flex-direction: column; align-items: center; }
 .plan-summary-num { font-family: var(--font-display); font-size: 1.7rem; font-weight: 700; color: var(--brand); }
-.plan-summary-num.plan-exam-num { color: #D97706; }
+.plan-summary-num.plan-exam-num { color: var(--color-warning); }
 .plan-summary-num.plan-exam-num.past { color: var(--text-muted); }
 .plan-summary-label { font-size: 0.78rem; color: var(--text-muted); }
 .plan-summary-actions { margin-left: auto; }
@@ -509,7 +509,7 @@ onMounted(async () => {
 .plan-progress-bar { height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; margin-bottom: 16px; }
 .plan-progress-fill { height: 100%; background: linear-gradient(90deg, var(--brand), var(--brand-light)); transition: width 0.3s; }
 
-.plan-note { font-size: 0.85rem; color: #B45309; background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 10px 14px; margin-bottom: 16px; line-height: 1.7; }
+.plan-note { font-size: 0.85rem; color: var(--color-warning); background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 10px 14px; margin-bottom: 16px; line-height: 1.7; }
 
 /* 视图切换 */
 .plan-view-toggle { display: flex; gap: 8px; margin-bottom: 16px; }
@@ -535,10 +535,10 @@ onMounted(async () => {
 .plan-day-head { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .plan-day-date { font-weight: 700; color: var(--brand); font-size: 0.95rem; }
 .plan-day-exam {
-  font-size: 0.75rem; color: #B45309; background: #fffbeb;
+  font-size: 0.75rem; color: var(--color-warning); background: #fffbeb;
   border: 1px solid #fde68a; border-radius: 12px; padding: 2px 10px;
 }
-.plan-day-exam.today { color: #dc2626; background: #fef2f2; border-color: #fecaca; font-weight: 700; }
+.plan-day-exam.today { color: var(--color-danger); background: var(--color-danger-pale); border-color: #fecaca; font-weight: 700; }
 
 .plan-task { padding: 10px 0; border-top: 1px dashed var(--line); }
 .plan-task:first-of-type { border-top: none; padding-top: 0; }
@@ -562,7 +562,7 @@ onMounted(async () => {
   .plan-wrap { background: #fff; }
   .plan-hero {
     background: #fff !important; color: #000 !important; padding: 0 0 16px !important;
-    border-bottom: 2px solid #0D5C5A; border-radius: 0;
+    border-bottom: 2px solid var(--brand); border-radius: 0;
   }
   .plan-hero-title, .plan-hero-sub { color: #000 !important; }
   .plan-hero-tag { display: none; }

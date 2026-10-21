@@ -399,7 +399,7 @@ function onClear() {
   position: relative;
   border-radius: 16px;
   padding: 22px 24px 18px;
-  background: linear-gradient(135deg, var(--brand) 0%, #148f8c 100%);
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
   color: #fff;
   overflow: hidden;
 }

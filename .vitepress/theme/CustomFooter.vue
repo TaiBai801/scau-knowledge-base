@@ -52,7 +52,7 @@
 <style scoped>
 .custom-footer {
   width: 100%;
-  background: #0D5C5A;
+  background: var(--brand);
 }
 .cf-main {
   max-width: 1200px;

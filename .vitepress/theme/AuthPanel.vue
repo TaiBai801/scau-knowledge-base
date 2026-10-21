@@ -139,7 +139,7 @@ function doLogout() {
   border-radius: 8px; padding: 7px 14px; font-size: 0.83rem; cursor: pointer; font-family: inherit;
   transition: all 0.15s;
 }
-.au-logout:hover { border-color: #dc2626; color: #dc2626; }
+.au-logout:hover { border-color: var(--color-danger); color: var(--color-danger); }
 
 /* 未登录表单 */
 .au-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
@@ -159,14 +159,14 @@ function doLogout() {
 }
 .au-field input:focus { outline: 2px solid var(--brand); border-color: var(--brand); }
 .au-error {
-  color: #dc2626; font-size: 0.83rem; margin-bottom: 10px;
-  background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 8px 12px;
+  color: var(--color-danger); font-size: 0.83rem; margin-bottom: 10px;
+  background: var(--color-danger-pale); border: 1px solid #fecaca; border-radius: 8px; padding: 8px 12px;
 }
 /* 二次确认的即时反馈 */
-.au-field input.au-bad { border-color: #dc2626; background: #fef2f2; }
+.au-field input.au-bad { border-color: var(--color-danger); background: var(--color-danger-pale); }
 .au-hint { font-size: 0.75rem; margin-top: 4px; }
-.au-hint-bad { color: #dc2626; }
-.au-hint-ok { color: #059669; }
+.au-hint-bad { color: var(--color-danger); }
+.au-hint-ok { color: var(--color-success); }
 .au-submit {
   width: 100%; background: var(--brand); color: #fff; border: none; border-radius: 8px;
   padding: 11px 0; font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: inherit;
