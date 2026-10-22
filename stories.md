@@ -5,7 +5,7 @@ sidebar: false
 aside: false
 ---
 
-<ArPageHero tag="「Ta说」" title="四个问题，问出可操作的经验" sub="不讲&quot;认真听讲&quot;，只讲这门课先抓什么、用什么资料、坑在哪。" />
+<ArPageHero tag="「Ta说」" title="四个问题，问出可操作的经验" sub="不讲「认真听讲」，只讲这门课先抓什么、用什么资料、坑在哪。" />
 
 <div class="ardot-page-content">
   <div class="ardot-page-inner">

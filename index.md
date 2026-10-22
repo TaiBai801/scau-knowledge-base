@@ -45,6 +45,41 @@ features:
     title: 贡献指南
     details: 欢迎投稿课程资料和学习经验，让你的知识帮助更多学弟学妹。
     link: /contribute
+  - icon:
+      light: /icons/search-ardot.svg
+      dark: /icons/search-ardot.svg
+      alt: 检索
+    title: 全站检索
+    details: 只记得知识点、不记得课名？输入内容帮你找到它属于哪门课。
+    link: /search
+  - icon:
+      light: /icons/featured-1.svg
+      dark: /icons/featured-1.svg
+      alt: 组题
+    title: 组题练习
+    details: 按章节随机抽题、客观题自动判分，错题和薄弱知识点自动归集。
+    link: /quiz
+  - icon:
+      light: /icons/featured-2.svg
+      dark: /icons/featured-2.svg
+      alt: 我的本学期
+    title: 我的本学期
+    details: 选专业年级，本学期上哪几门课、有没有资料，一眼看到。
+    link: /my
+  - icon:
+      light: /icons/featured-3.svg
+      dark: /icons/featured-3.svg
+      alt: 打卡
+    title: 学习打卡
+    details: 每日记录学习时长，连续天数云端同步，只和昨天的自己比。
+    link: /checkin
+  - icon:
+      light: /icons/featured-4.svg
+      dark: /icons/featured-4.svg
+      alt: 缺口榜
+    title: 资料缺口榜
+    details: 哪门课缺课件、缺真题，按优先级排好，一键报缺口。
+    link: /gap
 ---
 
 <HeroStats />

@@ -25,4 +25,4 @@
 
 ## 技术说明
 
-本站基于 [VitePress](https://vitepress.dev) 构建，托管于腾讯云 EdgeOne Pages，数据存于腾讯云 COS。学生账号密码经加盐哈希存储，打卡数据云端同步；站点功能持续迭代，开发历程见[更新日志](/changelog)。
+本站基于 [VitePress](https://vitepress.dev) 构建，托管于腾讯云 EdgeOne Pages，数据存于腾讯云 COS。学生账号密码加密存储，打卡数据云端同步；站点功能持续迭代，开发历程见[更新日志](/changelog)。
