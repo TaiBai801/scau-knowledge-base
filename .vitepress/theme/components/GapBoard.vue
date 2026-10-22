@@ -262,7 +262,7 @@ onMounted(loadMine)
               <th class="c-tag">必修</th>
               <th class="c-num">资料</th>
               <th class="c-num">题库</th>
-              <th class="c-num">需求分</th>
+              <th class="c-num c-score">需求分</th>
               <th class="c-act">补料</th>
             </tr>
           </thead>

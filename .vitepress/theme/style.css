@@ -2166,3 +2166,72 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   font-size: 0.82rem;
 }
 .ardot-cd-footer p { margin: 4px 0; }
+
+/* ══════════════════════════════════════════════════════════════
+   手机端专属适配（仅 ≤639px 生效；平板 640–959 与桌面布局不动）
+   原则：只压缩与重排，不改视觉语言（字号/圆角/颜色体系不变）
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 639px) {
+
+  /* ── 1. 防横向滚动兜底 ── */
+  html, body { overflow-x: hidden; }
+  .vp-doc table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ── 2. Hero 压缩（四类头部统一）── */
+  .ardot-page-hero,
+  .ardot-major-hero,
+  .ardot-semester-hero,
+  .ardot-stories-hero { padding: 34px 16px 42px !important; }
+  .ardot-page-hero h1,
+  .ardot-major-hero h1,
+  .ardot-semester-hero h1,
+  .ardot-stories-hero h1 { font-size: 1.55rem !important; margin-bottom: 8px !important; }
+  .ardot-page-hero p,
+  .ardot-major-hero p,
+  .ardot-semester-hero p,
+  .ardot-stories-hero p { font-size: 0.86rem !important; }
+  .ardot-tag { font-size: 0.72rem !important; padding: 3px 10px !important; margin-bottom: 10px !important; }
+
+  /* ── 3. 内容区收紧 ── */
+  .ardot-page-content { padding: 26px 14px !important; }
+  .vp-doc { font-size: 0.92rem; }
+  .vp-doc h1 { font-size: 1.5rem; }
+  .vp-doc h2 { font-size: 1.25rem; }
+
+  /* ── 4. 卡片内距随屏收敛 ── */
+  .ar-card--md { padding: 14px !important; }
+  .ar-card--lg { padding: 16px !important; }
+
+  /* ── 5. 缺口榜：9 列降 4 列（# / 课程 / 需求分 / 补料）── */
+  .gb-table .c-num:not(.c-score):not(.gb-score),
+  .gb-table .c-tag { display: none !important; }
+  .gb-table { font-size: 0.78rem !important; }
+
+  /* ── 6. 我的本学期：隐藏题库/大纲两列，行高收敛 ── */
+  .mt-head > span:nth-of-type(4),
+  .mt-head > span:nth-of-type(5),
+  .mt-row > span:nth-of-type(4),
+  .mt-row > span:nth-of-type(5) { display: none !important; }
+  .mt-head, .mt-row {
+    grid-template-columns: 1.6rem 1fr 2.8rem 5.2rem !important;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* ── 7. 刘海屏安全区：底部与悬浮控件 ── */
+  .custom-footer { padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px)) !important; }
+  .back-to-top {
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
+    right: calc(12px + env(safe-area-inset-right, 0px)) !important;
+  }
+  .VPNavScreen { padding-bottom: env(safe-area-inset-bottom, 0px) !important; }
+
+  /* ── 8. 间距微调：统计与同步条 ── */
+  .sync-bar { padding: 0.5rem 0.7rem !important; }
+  .mt-intro { padding: 0.7rem 0.85rem !important; }
+}
