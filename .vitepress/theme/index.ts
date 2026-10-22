@@ -17,6 +17,9 @@ import FootprintPage from './components/FootprintPage.vue'
 import StoriesPage from './components/StoriesPage.vue'
 import GapBoard from './components/GapBoard.vue'
 import MyTerm from './components/MyTerm.vue'
+import ArBtn from './components/ArBtn.vue'
+import ArBadge from './components/ArBadge.vue'
+import ArCard from './components/ArCard.vue'
 import FocusTimer from './components/FocusTimer.vue'
 import FocusPage from './components/FocusPage.vue'
 import WeeklyReport from './components/WeeklyReport.vue'
@@ -47,6 +50,9 @@ export default {
     app.component('StoriesPage', StoriesPage)
     app.component('GapBoard', GapBoard)
     app.component('MyTerm', MyTerm)
+    app.component('ArBtn', ArBtn)
+    app.component('ArBadge', ArBadge)
+    app.component('ArCard', ArCard)
     app.component('FocusTimer', FocusTimer)
     app.component('FocusPage', FocusPage)
     app.component('WeeklyReport', WeeklyReport)

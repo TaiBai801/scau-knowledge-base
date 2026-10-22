@@ -1,5 +1,7 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
+import ArBtn from './ArBtn.vue'
+import ArBadge from './ArBadge.vue'
 
 // 缺口榜：读取构建期生成的 /data/gap-board.json
 // 口径由生成器写入文件（formula 字段），页面照抄，保证「数字可解释」。
@@ -76,6 +78,7 @@ function coursePath(code) {
 
 const KINDS = ['课件', '习题', '真题', '笔记', '其他']
 const STATUS_LABEL = { pending: '待处理', accepted: '管理员已接单', done: '已上架', rejected: '未采纳' }
+const STATUS_TONE = { pending: 'warning', accepted: 'brand', done: 'success', rejected: 'danger' }
 
 const formOpen = ref(false)
 const form = ref({ course: '', courseCode: '', kind: '课件', note: '', contact: '' })
@@ -267,7 +270,7 @@ onMounted(loadMine)
               <td class="c-num" :class="it.materials === 0 ? 'gb-zero' : ''">{{ it.materials }}</td>
               <td class="c-num" :class="it.bank === 0 ? 'gb-zero' : ''">{{ it.bank }}</td>
               <td class="c-num gb-score">{{ it.score }}</td>
-              <td class="c-act"><button class="gb-claim" @click="openForm(it)">我来补</button></td>
+              <td class="c-act"><ArBtn variant="ghost" size="sm" @click="openForm(it)">我来补</ArBtn></td>
             </tr>
           </tbody>
         </table>
@@ -291,7 +294,7 @@ onMounted(loadMine)
           <li v-for="x in myItems" :key="x.id" class="gb-mine-item">
             <span class="gb-mine-course">{{ x.course }}</span>
             <span class="gb-mine-kind">{{ x.kind }}</span>
-            <span :class="['gb-badge', x.status]">{{ STATUS_LABEL[x.status] || x.status }}</span>
+            <ArBadge :tone="STATUS_TONE[x.status] || 'neutral'">{{ STATUS_LABEL[x.status] || x.status }}</ArBadge>
             <span v-if="x.reply" class="gb-mine-reply">管理员：{{ x.reply }}</span>
           </li>
         </ul>
@@ -435,12 +438,6 @@ a.gb-name:hover { text-decoration: underline; }
 
 /* ── 我来补 ── */
 .c-act { width: 5.2rem; text-align: center; }
-.gb-claim {
-  border: 1px solid var(--brand); background: #fff; color: var(--brand);
-  border-radius: 999px; padding: 0.12rem 0.55rem; font-size: 0.72rem; cursor: pointer;
-  white-space: nowrap; transition: all 0.15s;
-}
-.gb-claim:hover { background: var(--brand); color: #fff; }
 
 .gb-submit {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
@@ -463,11 +460,6 @@ a.gb-name:hover { text-decoration: underline; }
 }
 .gb-mine-course { color: var(--text-body); font-weight: 500; }
 .gb-mine-kind { color: var(--text-muted); font-size: 0.72rem; }
-.gb-badge { font-size: 0.7rem; border-radius: 999px; padding: 0.05rem 0.5rem; }
-.gb-badge.pending { background: var(--color-warning-pale); color: var(--color-warning); }
-.gb-badge.accepted { background: var(--brand-pale); color: var(--brand); }
-.gb-badge.done { background: var(--color-success-pale); color: #047857; }
-.gb-badge.rejected { background: var(--color-danger-pale); color: var(--color-danger); }
 .gb-mine-reply { color: var(--text-muted); font-size: 0.72rem; }
 
 /* ── 弹窗 ── */

@@ -2,6 +2,8 @@
 import { computed, onMounted, ref } from 'vue'
 import AuthPanel from '../AuthPanel.vue'
 import { userAuth, restoreUser } from '../userauth.js'
+import ArBtn from './ArBtn.vue'
+import ArBadge from './ArBadge.vue'
 
 // 「我的本学期」：培养方案给的是"应该上的课"，不是"你在上的课"。
 // 提前选修、重修、免修都会让两者不一致，所以这里默认按培养方案预填，但允许学生自己勾。
@@ -456,9 +458,9 @@ onMounted(async () => {
             <b>把这份课表存到云端</b>
             <span>注册 / 登录后，课表绑定账号，换设备不用重选；打卡记录也同样绑定账号。</span>
           </div>
-          <button class="mt-acct-btn" @click="showAuth = !showAuth">
+          <ArBtn variant="primary" size="sm" @click="showAuth = !showAuth">
             {{ showAuth ? '收起' : '注册 / 登录' }}
-          </button>
+          </ArBtn>
         </div>
         <div v-if="showAuth && !user" class="mt-auth-wrap">
           <AuthPanel @authed="onAuthed" />
@@ -469,12 +471,12 @@ onMounted(async () => {
             <em v-if="cloudNewer" class="mt-newer">云端有较新版本</em>
           </span>
           <span class="mt-sync-btns">
-            <button v-if="cloudFound" class="mt-btn" :disabled="syncing" @click="pullCloud">
+            <ArBtn v-if="cloudFound" variant="ghost" size="sm" :disabled="syncing" @click="pullCloud">
               拉取云端
-            </button>
-            <button class="mt-btn pri" :disabled="syncing" @click="pushCloud">
-              {{ syncing ? '同步中…' : '上传到云端' }}
-            </button>
+            </ArBtn>
+            <ArBtn variant="primary" size="sm" :loading="syncing" @click="pushCloud">
+              上传到云端
+            </ArBtn>
           </span>
         </div>
         <p v-if="syncMsg" class="mt-sync-msg" role="status">{{ syncMsg }}</p>
@@ -511,7 +513,7 @@ onMounted(async () => {
         <div class="mt-stat"><b>{{ stats.total }}</b><span>你在修的课</span></div>
         <div class="mt-stat"><b>{{ stats.withMat }}</b><span>有资料</span></div>
         <div class="mt-stat mt-warn"><b>{{ stats.noMat }}</b><span>暂无资料</span></div>
-        <button class="mt-reset" @click="reset">恢复培养方案默认</button>
+        <ArBtn class="mt-reset" variant="ghost" size="sm" @click="reset">恢复培养方案默认</ArBtn>
       </section>
 
       <!-- 课程清单 -->
@@ -542,14 +544,14 @@ onMounted(async () => {
           <span class="c-name">
             <a v-if="coursePath(c.code)" :href="coursePath(c.code)">{{ c.name }}</a>
             <span v-else>{{ c.name }}</span>
-            <em v-if="!planCourses.some((p) => p.name === c.name)" class="mt-tag">提前选修 / 重修</em>
+            <ArBadge v-if="!planCourses.some((p) => p.name === c.name)" tone="warning" class="mt-tag">提前选修 / 重修</ArBadge>
           </span>
           <span class="c-num" :class="c.materials === 0 ? 'zero' : ''">{{ c.materials }}</span>
           <span class="c-num" :class="c.bank === 0 ? 'zero' : ''">{{ c.bank }}</span>
           <span class="c-num" :class="c.syllabus === 0 ? 'zero' : ''">{{ c.syllabus }}</span>
           <span class="c-act">
             <span class="mt-more">
-              <button class="mt-learn" type="button">学习 ▾</button>
+              <ArBtn class="mt-learn" variant="ghost" size="sm">学习 ▾</ArBtn>
               <span class="mt-menu">
                 <a v-if="c.syllabus > 0" :href="'/plan?course=' + encodeURIComponent(c.name)">学习计划</a>
                 <a v-if="c.bank > 0" :href="'/quiz?course=' + encodeURIComponent(c.name)">组题练习</a>
@@ -557,7 +559,7 @@ onMounted(async () => {
                 <a :href="coursePath(c.code)">课程页</a>
               </span>
             </span>
-            <button class="mt-ask" @click="openAsk(c.name)">缺什么</button>
+            <ArBtn variant="ghost" size="sm" @click="openAsk(c.name)">缺什么</ArBtn>
           </span>
         </div>
       </div>
@@ -568,9 +570,9 @@ onMounted(async () => {
           <summary>＋ 添加其他学期的课（提前选修 / 重修）</summary>
           <div v-for="g in otherGroups" :key="g.sem" class="mt-add-group">
             <div class="mt-add-title">第 {{ g.sem }} 学期</div>
-            <button v-for="c in g.list" :key="c.name" class="mt-add-btn" @click="addCourse(c.name)">
+            <ArBtn v-for="c in g.list" :key="c.name" class="mt-add-btn" variant="ghost" size="sm" @click="addCourse(c.name)">
               {{ c.name }}
-            </button>
+            </ArBtn>
           </div>
         </details>
       </section>
@@ -611,10 +613,10 @@ onMounted(async () => {
         <p v-if="askErr" class="mt-err">{{ askErr }}</p>
         <p v-if="askMsg" class="mt-ok">{{ askMsg }}</p>
         <div class="mt-dialog-act">
-          <button class="mt-btn" @click="askOpen = false">关闭</button>
-          <button class="mt-btn pri" :disabled="askSending" @click="sendAsk">
-            {{ askSending ? '提交中…' : '提交给管理员' }}
-          </button>
+          <ArBtn variant="ghost" size="sm" @click="askOpen = false">关闭</ArBtn>
+        <ArBtn variant="primary" size="sm" :loading="askSending" @click="sendAsk">
+          提交给管理员
+        </ArBtn>
         </div>
       </div>
     </div>
@@ -643,16 +645,14 @@ onMounted(async () => {
 }
 .mt-sem.on { background: var(--brand); border-color: var(--brand); color: #fff; }
 
+.mt-reset { margin-left: auto; }
+.mt-tag { margin-left: 0.35rem; height: 18px; padding: 0 6px; font-size: 0.66rem; }
+.mt-add-btn { margin: 0 0.3rem 0.3rem 0; }
 .mt-summary { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1rem; flex-wrap: wrap; }
 .mt-stat { background: #fff; border: 1px solid var(--line); border-radius: 9px; padding: 0.5rem 0.9rem; text-align: center; }
 .mt-stat b { display: block; font-size: 1.15rem; color: var(--brand); font-variant-numeric: tabular-nums; }
 .mt-stat span { font-size: 0.72rem; color: var(--text-muted); }
 .mt-stat.mt-warn b { color: var(--color-danger); }
-.mt-reset {
-  margin-left: auto; border: 1px solid var(--line); background: #fff; color: var(--text-muted);
-  border-radius: 6px; padding: 0.3rem 0.7rem; font-size: 0.76rem; cursor: pointer;
-}
-.mt-reset:hover { border-color: var(--brand); color: var(--brand); }
 
 .mt-list { border: 1px solid var(--line); border-radius: 10px; background: #fff; overflow: hidden; }
 .mt-head, .mt-row {
@@ -670,15 +670,6 @@ onMounted(async () => {
 .c-num { text-align: right; font-variant-numeric: tabular-nums; color: var(--text-body); }
 .c-num.zero { color: var(--color-danger); }
 .c-act { text-align: right; }
-.mt-tag {
-  font-style: normal; font-size: 0.68rem; color: var(--color-warning); background: var(--color-warning-pale);
-  border-radius: 4px; padding: 0.05rem 0.35rem; margin-left: 0.35rem;
-}
-.mt-ask {
-  border: 1px solid var(--brand); background: transparent; color: var(--brand);
-  border-radius: 999px; padding: 0.1rem 0.5rem; font-size: 0.7rem; cursor: pointer; white-space: nowrap;
-}
-.mt-ask:hover { background: var(--brand); color: #fff; }
 
 .mt-add { margin-top: 1rem; }
 .mt-add summary {
@@ -688,12 +679,6 @@ onMounted(async () => {
 .mt-add summary::-webkit-details-marker { display: none; }
 .mt-add-group { margin-top: 0.7rem; }
 .mt-add-title { font-size: 0.74rem; color: var(--text-muted); margin-bottom: 0.35rem; }
-.mt-add-btn {
-  border: 1px solid var(--line); background: #fff; color: var(--text-body);
-  border-radius: 6px; padding: 0.18rem 0.5rem; font-size: 0.74rem; margin: 0 0.3rem 0.3rem 0;
-  cursor: pointer; font-family: inherit;
-}
-.mt-add-btn:hover { border-color: var(--brand); color: var(--brand); }
 
 .mt-foot { margin-top: 1.2rem; font-size: 0.78rem; color: var(--text-muted); }
 .mt-foot a { color: var(--brand); }
@@ -707,11 +692,6 @@ onMounted(async () => {
 .mt-acct-text { flex: 1; min-width: 0; }
 .mt-acct-text b { display: block; font-size: 0.84rem; color: var(--text-heading); }
 .mt-acct-text span { font-size: 0.76rem; color: var(--text-muted); line-height: 1.6; }
-.mt-acct-btn {
-  flex-shrink: 0; border: 1px solid var(--brand); background: var(--brand); color: #fff;
-  border-radius: 7px; padding: 0.35rem 0.8rem; font-size: 0.8rem; cursor: pointer; font-family: inherit;
-}
-.mt-acct-btn:hover { opacity: 0.9; }
 .mt-auth-wrap { margin-top: 0.8rem; }
 .mt-sync {
   display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap;
@@ -728,11 +708,6 @@ onMounted(async () => {
 /* ── 学习联动下拉 ── */
 .c-act { text-align: right; white-space: nowrap; }
 .mt-more { position: relative; display: inline-block; margin-right: 0.25rem; }
-.mt-learn {
-  border: 1px solid var(--line); background: #fff; color: var(--text-body);
-  border-radius: 999px; padding: 0.1rem 0.45rem; font-size: 0.7rem; cursor: pointer; font-family: inherit;
-}
-.mt-learn:hover { border-color: var(--brand); color: var(--brand); }
 .mt-menu {
   display: none; position: absolute; right: 0; top: calc(100% + 4px); min-width: 7.5em;
   background: #fff; border: 1px solid var(--line); border-radius: 9px; padding: 4px;
@@ -767,12 +742,6 @@ onMounted(async () => {
 .mt-err { color: var(--color-danger); font-size: 0.76rem; margin: 0.2rem 0 0.5rem; }
 .mt-ok { color: #047857; font-size: 0.76rem; margin: 0.2rem 0 0.5rem; }
 .mt-dialog-act { display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 0.4rem; }
-.mt-btn {
-  border: 1px solid var(--line); background: #fff; color: var(--text-body);
-  border-radius: 6px; padding: 0.35rem 0.9rem; font-size: 0.8rem; cursor: pointer; font-family: inherit;
-}
-.mt-btn.pri { background: var(--brand); border-color: var(--brand); color: #fff; }
-.mt-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 @media (max-width: 640px) {
   .mt-head, .mt-row { grid-template-columns: 1.8rem 1fr 2.4rem 2.4rem 2.4rem 4.2rem; font-size: 0.78rem; }

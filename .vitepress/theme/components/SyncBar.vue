@@ -4,6 +4,7 @@
 // 数据读写由宿主页面通过 getData / applyData 提供，本组件只管传输与状态。
 import { computed, onMounted, ref } from 'vue'
 import { userAuth, restoreUser } from '../userauth.js'
+import ArBtn from './ArBtn.vue'
 
 const props = defineProps({
   syncKey: { type: String, required: true }, // 云端 key，如 'focus' | 'footprint'
@@ -139,10 +140,12 @@ onMounted(check)
         <em v-if="cloudNewer" class="sync-newer">云端有较新版本</em>
       </span>
       <span class="sync-btns">
-        <button v-if="cloudFound" class="sync-btn" :disabled="syncing" @click="pull">拉取云端</button>
-        <button class="sync-btn pri" :disabled="syncing" @click="push">
+        <ArBtn v-if="cloudFound" variant="ghost" size="sm" :disabled="syncing" @click="pull">
+          拉取云端
+        </ArBtn>
+        <ArBtn variant="primary" size="sm" :loading="syncing" @click="push">
           {{ syncing ? '同步中…' : '上传到云端' }}
-        </button>
+        </ArBtn>
       </span>
     </div>
 
@@ -173,12 +176,6 @@ onMounted(check)
   border-radius: 4px; padding: 0.05rem 0.35rem; margin-left: 0.3rem;
 }
 .sync-btns { display: flex; gap: 0.35rem; }
-.sync-btn {
-  border: 1px solid var(--line); background: #fff; color: var(--text-body);
-  border-radius: 6px; padding: 0.24rem 0.6rem; font-size: 0.74rem; cursor: pointer; font-family: inherit;
-}
-.sync-btn.pri { background: var(--brand); border-color: var(--brand); color: #fff; }
-.sync-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 .sync-msg { margin: 0.4rem 0 0; font-size: 0.72rem; }
 .sync-msg.ok { color: #047857; }
 .sync-msg.err { color: var(--color-danger); }
