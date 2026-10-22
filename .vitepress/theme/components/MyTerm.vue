@@ -4,6 +4,9 @@ import AuthPanel from '../AuthPanel.vue'
 import { userAuth, restoreUser } from '../userauth.js'
 import ArBtn from './ArBtn.vue'
 import ArBadge from './ArBadge.vue'
+import ArEmpty from './ArEmpty.vue'
+import ArLoading from './ArLoading.vue'
+import ArError from './ArError.vue'
 
 // 「我的本学期」：培养方案给的是"应该上的课"，不是"你在上的课"。
 // 提前选修、重修、免修都会让两者不一致，所以这里默认按培养方案预填，但允许学生自己勾。
@@ -277,6 +280,12 @@ async function sendAsk() {
 }
 
 /* ── 加载 ── */
+async function reload() {
+  loading.value = true
+  failed.value = false
+  await loadIndex()
+}
+
 async function loadIndex() {
   try {
     const res = await fetch(INDEX_URL, { cache: 'no-store' })
@@ -434,10 +443,12 @@ onMounted(async () => {
 
 <template>
   <div class="mt">
-    <div v-if="loading" class="mt-state">正在读取课表…</div>
-    <div v-else-if="failed" class="mt-state">
-      课表数据没能加载出来，可能是网络或文件缺失。
-    </div>
+    <ArLoading v-if="loading" text="正在读取课表…" />
+    <ArError v-else-if="failed" title="课表没能加载出来" desc="可能是网络抖动，或数据文件缺失。">
+      <template #retry>
+        <ArBtn variant="ghost" size="sm" @click="reload">重新加载</ArBtn>
+      </template>
+    </ArError>
 
     <template v-else>
       <!-- 说明：措辞必须诚实，不能暗示系统知道你在上什么课 -->
@@ -517,8 +528,12 @@ onMounted(async () => {
       </section>
 
       <!-- 课程清单 -->
-      <div v-if="!configured" class="mt-state">先选一下专业和入学年级。</div>
-      <div v-else-if="!rows.length" class="mt-state">这个学期在培养方案里没有课程。</div>
+      <ArEmpty v-if="!configured" icon="🧭" title="先选一下专业和入学年级">
+        选好之后，这里会按培养方案列出这个学期的课，有资料没资料一目了然。
+      </ArEmpty>
+      <ArEmpty v-else-if="!rows.length" icon="📚" title="这个学期在培养方案里没有课程">
+        可以点上方的学期切换看看，或展开下方「添加其他学期的课」。
+      </ArEmpty>
       <div v-else class="mt-list">
         <div class="mt-head">
           <span class="c-chk"></span>
@@ -625,7 +640,6 @@ onMounted(async () => {
 
 <style scoped>
 .mt { max-width: 900px; margin: 0 auto; }
-.mt-state { text-align: center; color: var(--text-muted); padding: 2.5rem 0; font-size: 0.9rem; }
 
 .mt-intro { background: var(--brand-pale); border-radius: 10px; padding: 0.9rem 1.1rem; margin-bottom: 1.3rem; }
 .mt-intro p { margin: 0 0 0.4rem; font-size: 0.82rem; line-height: 1.75; color: var(--text-body); }

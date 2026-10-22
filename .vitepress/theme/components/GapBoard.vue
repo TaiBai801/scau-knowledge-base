@@ -2,6 +2,9 @@
 import { computed, onMounted, ref } from 'vue'
 import ArBtn from './ArBtn.vue'
 import ArBadge from './ArBadge.vue'
+import ArLoading from './ArLoading.vue'
+import ArEmpty from './ArEmpty.vue'
+import ArError from './ArError.vue'
 
 // 缺口榜：读取构建期生成的 /data/gap-board.json
 // 口径由生成器写入文件（formula 字段），页面照抄，保证「数字可解释」。
@@ -21,7 +24,9 @@ const FILTERS = [
   { id: 'required', label: '仅必修' },
 ]
 
-onMounted(async () => {
+async function loadBoard() {
+  loading.value = true
+  failed.value = false
   try {
     const res = await fetch(BOARD_URL, { cache: 'no-store' })
     if (!res.ok) throw new Error('HTTP ' + res.status)
@@ -31,7 +36,8 @@ onMounted(async () => {
   } finally {
     loading.value = false
   }
-})
+}
+onMounted(loadBoard)
 
 const totals = computed(() => board.value?.totals || null)
 const formula = computed(() => board.value?.formula || null)
@@ -170,10 +176,12 @@ onMounted(loadMine)
 
 <template>
   <div class="gb">
-    <div v-if="loading" class="gb-state">正在读取缺口数据…</div>
-    <div v-else-if="failed" class="gb-state">
-      榜单数据没能加载出来，可能是网络或文件缺失。<a href="/contribute">先去贡献一篇资料</a>
-    </div>
+    <ArLoading v-if="loading" text="正在读取缺口数据…" />
+    <ArError v-else-if="failed" title="榜单没能加载出来" desc="可能是网络抖动，或榜单数据文件缺失。可以先去贡献一篇资料，稍后再回来看。">
+      <template #retry>
+        <ArBtn variant="ghost" size="sm" @click="loadBoard">重新加载</ArBtn>
+      </template>
+    </ArError>
 
     <template v-else>
       <!-- 口径说明：必须显眼，数字才有可信度 -->
@@ -240,7 +248,9 @@ onMounted(loadMine)
       <p class="gb-count">共 {{ items.length }} 门 · 按需求强度从高到低</p>
 
       <!-- 榜单 -->
-      <div v-if="!items.length" class="gb-state">这个筛选条件下没有课程。</div>
+      <ArEmpty v-if="!items.length" icon="🎉" title="这个筛选条件下没有缺口">
+        换个筛选看看，或者点上方「我要补一门课」主动报一个。
+      </ArEmpty>
       <div v-else class="gb-table-wrap">
         <table class="gb-table">
           <thead>
@@ -356,7 +366,6 @@ onMounted(loadMine)
 
 <style scoped>
 .gb { max-width: 1100px; margin: 0 auto; }
-.gb-state { text-align: center; color: var(--text-muted); padding: 2.5rem 0; font-size: 0.9rem; }
 
 .gb-formula {
   background: var(--brand-pale);

@@ -19,6 +19,8 @@ import {
 } from '../lib/storage'
 import { readFootprint, summarizeFootprint, semesterStart, KIND_LABEL } from '../lib/footprint'
 import SyncBar from './SyncBar.vue'
+import ArEmpty from './ArEmpty.vue'
+import ArLoading from './ArLoading.vue'
 import ArBtn from './ArBtn.vue'
 
 const ready = ref(false)
@@ -132,7 +134,7 @@ function onClear() {
 
 <template>
   <div class="fp">
-    <p v-if="!ready" class="fp-loading">正在读取本机数据…</p>
+    <ArLoading v-if="!ready" text="正在读取本机数据…" />
 
     <template v-else>
       <!-- 同步到账号：无论有没有本机记录都给，这样空状态也能从云端拉回 -->
@@ -147,15 +149,15 @@ function onClear() {
       </section>
 
       <!-- 空状态：不摆空表格 -->
-      <div v-if="!hasData" class="fp-empty">
+      <ArEmpty v-if="!hasData" icon="👣" title="还没有记录">
         <p>
-          还没有记录。去<a href="/majors/dianzikexue/">浏览课程</a>、<a href="/quiz">做一组题</a>或<a
+          去<a href="/majors/dianzikexue/">浏览课程</a>、<a href="/quiz">做一组题</a>或<a
             href="/checkin"
             >打个卡</a
           >，这里就会长出你的学习轨迹。
         </p>
         <p class="fp-empty-note">所有记录只写进这台设备的浏览器，不上传、不排名、不涉及成绩。</p>
-      </div>
+      </ArEmpty>
 
       <template v-else>
         <!-- 四张大数字卡 -->
@@ -298,26 +300,7 @@ function onClear() {
 .fp-sync {
   margin-bottom: 18px;
 }
-.fp-loading,
-.fp-empty {
-  background: var(--vp-c-bg-soft);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 22px 24px;
-  color: var(--text-muted);
-  font-size: 0.92rem;
-}
-.fp-empty p {
-  margin: 0;
-  color: var(--text-body);
-  line-height: 1.8;
-}
-.fp-empty a {
-  color: var(--brand);
-  font-weight: 600;
-  text-decoration: none;
-  border-bottom: 1px solid var(--brand-pale);
-}
+
 .fp-empty-note {
   margin-top: 8px !important;
   font-size: 0.82rem;
