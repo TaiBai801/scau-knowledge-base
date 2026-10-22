@@ -14,6 +14,7 @@
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { KEYS, read, write } from '../lib/storage'
 import { trackFootprint } from '../lib/footprint'
+import ArBtn from './ArBtn.vue'
 
 const DAY = 86400000
 // 秒答连对 1 次 → 2 天，2 次 → 4 天，之后 7 / 15 / 30
@@ -359,7 +360,7 @@ onBeforeUnmount(() => {
     <!-- 复习区 -->
     <template v-else>
       <div class="fc-bar">
-        <button type="button" class="link-btn" @click="backToCourses">← 换一门</button>
+        <ArBtn variant="ghost" size="sm" @click="backToCourses">← 换一门</ArBtn>
         <span class="fc-coursename">{{ activeCourse }}</span>
         <span class="fc-progress">本轮 已答 {{ answered }} / 共 {{ queue.length }}</span>
       </div>
@@ -425,16 +426,16 @@ onBeforeUnmount(() => {
         </div>
 
         <div class="pager">
-          <button type="button" class="link-btn" :disabled="idx === 0" @click="go(-1)">← 上一张</button>
+          <ArBtn variant="ghost" size="sm" :disabled="idx === 0" @click="go(-1)">← 上一张</ArBtn>
           <span class="pager-idx">{{ idx + 1 }} / {{ queue.length }}</span>
-          <button
-            type="button"
-            class="link-btn"
+          <ArBtn
+            variant="ghost"
+            size="sm"
             :disabled="idx >= queue.length - 1"
             @click="go(1)"
           >
             下一张 →
-          </button>
+          </ArBtn>
         </div>
 
         <transition name="fade">
@@ -740,19 +741,6 @@ onBeforeUnmount(() => {
   font-variant-numeric: tabular-nums;
 }
 
-.link-btn {
-  background: none;
-  border: none;
-  padding: 0.2rem 0.1rem;
-  cursor: pointer;
-  color: var(--brand);
-  font-size: 0.82rem;
-}
-.link-btn:disabled {
-  color: var(--text-muted);
-  cursor: default;
-  opacity: 0.5;
-}
 
 .btn {
   cursor: pointer;

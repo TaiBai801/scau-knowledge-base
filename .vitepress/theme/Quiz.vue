@@ -700,7 +700,6 @@ const progress = computed(() => answers.value.filter(a => {
 .quiz-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .quiz-btn-ghost { background: transparent; color: var(--brand); border: 1px solid var(--brand); }
 .quiz-btn-ghost:hover { background: var(--brand-pale); color: var(--brand); }
-.quiz-btn-submit:hover { background: #047857; }
 
 .quiz-history { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 12px; }
 .quiz-history-item {
