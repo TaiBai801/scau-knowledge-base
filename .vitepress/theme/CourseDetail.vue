@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import ArBtn from './components/ArBtn.vue'
 
 const props = defineProps({
   name: { type: String, required: true },
@@ -62,7 +63,7 @@ const natClass = props.nature === '必修' ? 'ardot-badge-bixiu' : 'ardot-badge-
         <div v-for="(f, i) in files" :key="f.name" class="ardot-cd-file">
           <span>📎 {{ f.name }}</span>
           <span class="ardot-cd-file-size">{{ (f.size/1024).toFixed(1) }} KB</span>
-          <button @click="removeFile(i)">✕</button>
+          <ArBtn variant="ghost" size="sm" aria-label="移除该文件" @click="removeFile(i)">✕</ArBtn>
         </div>
       </div>
       <div class="ardot-cd-upload">

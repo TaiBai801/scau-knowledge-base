@@ -19,6 +19,7 @@ import {
 } from '../lib/storage'
 import { readFootprint, summarizeFootprint, semesterStart, KIND_LABEL } from '../lib/footprint'
 import SyncBar from './SyncBar.vue'
+import ArBtn from './ArBtn.vue'
 
 const ready = ref(false)
 const events = ref([])
@@ -279,8 +280,8 @@ function onClear() {
           这些数据只存在你这台设备的浏览器里，换设备或清缓存会丢失，建议定期导出。
         </p>
         <div class="fp-actions">
-          <button class="fp-btn fp-btn-primary" type="button" @click="onExport">导出我的数据</button>
-          <button class="fp-btn fp-btn-ghost" type="button" @click="onClear">清空本机数据</button>
+          <ArBtn variant="primary" size="sm" @click="onExport">导出我的数据</ArBtn>
+          <ArBtn variant="danger" size="sm" @click="onClear">清空本机数据</ArBtn>
         </div>
         <p v-if="notice" class="fp-notice">{{ notice }}</p>
       </section>
@@ -606,27 +607,6 @@ function onClear() {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-}
-.fp-btn {
-  border-radius: 10px;
-  padding: 9px 18px;
-  font-size: 0.88rem;
-  font-weight: 600;
-  cursor: pointer;
-  border: 1px solid transparent;
-  transition: opacity 0.15s ease;
-}
-.fp-btn:hover {
-  opacity: 0.86;
-}
-.fp-btn-primary {
-  background: var(--brand);
-  color: #fff;
-}
-.fp-btn-ghost {
-  background: transparent;
-  color: var(--text-body);
-  border-color: var(--line);
 }
 .fp-notice {
   margin: 12px 0 0;

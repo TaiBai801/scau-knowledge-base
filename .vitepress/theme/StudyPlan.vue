@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import ArBtn from './components/ArBtn.vue'
 
 // ============ 数据 ============
 const syllabus = ref({})   // { 课程名: { course, code, units:[] } }
@@ -342,7 +343,7 @@ onMounted(async () => {
               <input type="date" v-model="config.examDate">
             </div>
           </div>
-          <button class="plan-btn" @click="generate">{{ plan ? '重新生成' : '生成计划 →' }}</button>
+          <ArBtn variant="primary" size="md" class="plan-btn" @click="generate">{{ plan ? '重新生成' : '生成计划 →' }}</ArBtn>
           <span v-if="plan" class="plan-discard-link" @click="discard">丢弃当前计划</span>
         </div>
 
@@ -370,7 +371,7 @@ onMounted(async () => {
               <span class="plan-summary-label">天距考试</span>
             </div>
             <div class="plan-summary-actions plan-no-print">
-              <button class="plan-btn plan-btn-ghost" @click="printPlan">🖨 打印/导出 PDF</button>
+              <ArBtn variant="ghost" size="md" @click="printPlan">🖨 打印/导出 PDF</ArBtn>
             </div>
           </div>
 
@@ -489,12 +490,6 @@ onMounted(async () => {
 }
 .plan-chip:hover { background: #fee2e2; border-color: var(--color-danger); color: var(--color-danger); }
 
-.plan-btn {
-  display: inline-block; background: var(--brand); color: #fff; border: none; border-radius: 8px;
-  padding: 11px 24px; font-size: 0.92rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.15s;
-}
-.plan-btn:hover { background: var(--brand-light); }
-.plan-btn-ghost { background: transparent; color: var(--brand); border: 1px solid var(--brand); }
 .plan-btn-ghost:hover { background: var(--brand-pale); }
 .plan-discard-link { margin-left: 14px; font-size: 0.85rem; color: var(--color-danger); cursor: pointer; text-decoration: underline; }
 

@@ -9,6 +9,7 @@ import { ref, computed, onMounted } from 'vue'
 import { userAuth, restoreUser, getToken } from './userauth.js'
 import { reportCheckin } from './leaderboard.js'
 import AuthPanel from './AuthPanel.vue'
+import ArBtn from './components/ArBtn.vue'
 
 // ── 本地状态 ──
 const days = ref({})        // { 'YYYY-MM-DD': { minutes, count, note } }
@@ -184,9 +185,9 @@ onMounted(() => {
 
         <div v-if="loadError" class="ci-err">{{ loadError }}</div>
 
-        <button class="ci-btn" :disabled="submitting || !userAuth.ready" @click="doCheckin">
-          {{ submitting ? '记录中…' : (loggedIn ? '✏️ 打卡' : '✏️ 打卡（需登录）') }}
-        </button>
+        <ArBtn variant="primary" size="md" class="ci-btn" style="width:100%" :loading="submitting" :disabled="!userAuth.ready" @click="doCheckin">
+          {{ loggedIn ? '✏️ 打卡' : '✏️ 打卡（需登录）' }}
+        </ArBtn>
       </div>
 
       <!-- 统计区 -->
@@ -292,13 +293,6 @@ onMounted(() => {
   color: var(--color-danger); font-size: 0.85rem; background: var(--color-danger-pale); border: 1px solid #fecaca;
   border-radius: 8px; padding: 10px 14px; margin-bottom: 12px;
 }
-.ci-btn {
-  width: 100%; background: var(--brand); color: #fff; border: none; border-radius: 8px;
-  padding: 12px 0; font-size: 0.98rem; font-weight: 600; cursor: pointer; font-family: inherit;
-  transition: background 0.15s;
-}
-.ci-btn:hover { background: var(--brand-light); }
-.ci-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 /* 统计 */
 .ci-stats { display: flex; gap: 32px; flex-wrap: wrap; margin-bottom: 14px; }

@@ -8,6 +8,7 @@
 // SSR 安全：setup 顶层不 fetch、不读 localStorage；数据在 onMounted 里补。
 import { ref, computed, onMounted } from 'vue'
 import { KEYS, read, write, downloadJson, addDays, todayISO } from '../lib/storage'
+import ArBtn from './ArBtn.vue'
 
 const syllabus = ref(null) // { 课程名: { course, code, units: [...] } }
 const loading = ref(true)
@@ -278,7 +279,7 @@ onMounted(async () => {
       <div class="sp-actions">
         <a v-if="materialHref()" class="sp-btn sp-btn-primary" :href="materialHref()">看这门课的资料</a>
         <a class="sp-btn sp-btn-ghost" href="/quiz">去做这门课的题</a>
-        <button v-if="units.length" class="sp-btn sp-btn-ghost" type="button" @click="exportPlan">导出冲刺清单</button>
+        <ArBtn v-if="units.length" variant="ghost" size="sm" @click="exportPlan">导出冲刺清单</ArBtn>
       </div>
 
       <p v-if="!units.length" class="sp-empty">

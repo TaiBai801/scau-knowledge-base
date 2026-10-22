@@ -2,6 +2,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { trackFootprint } from './lib/footprint'
 import { recordAnswer } from './lib/spaced'
+import ArBtn from './components/ArBtn.vue'
 
 // ============ 数据 ============
 const bank = ref({})          // { 课程名: { course, code, questions:[] } }
@@ -473,11 +474,11 @@ const progress = computed(() => answers.value.filter(a => {
 
         <div v-if="loadError" class="quiz-inline-err">{{ loadError }}</div>
 
-        <button class="quiz-btn" @click="buildPaper">开始组题 →</button>
+        <ArBtn variant="primary" size="md" @click="buildPaper">开始组题 →</ArBtn>
 
-        <button v-if="history.length" class="quiz-btn quiz-btn-ghost" @click="toggleHistory">
+        <ArBtn v-if="history.length" variant="ghost" size="md" @click="toggleHistory">
           {{ historyVisible ? '收起' : '查看' }}历史成绩（{{ history.length }}）
-        </button>
+        </ArBtn>
         <div v-if="historyVisible" class="quiz-history">
           <div v-for="(h, i) in history" :key="i" class="quiz-history-item">
             <span>{{ h.course }}<template v-if="h.unit && h.unit !== '全部章节'"> · {{ h.unit }}</template></span>
@@ -568,9 +569,9 @@ const progress = computed(() => answers.value.filter(a => {
         </div>
 
         <div class="quiz-nav">
-          <button class="quiz-btn quiz-btn-ghost" :disabled="currentIdx === 0" @click="currentIdx--">← 上一题</button>
-          <button v-if="currentIdx < paper.length - 1" class="quiz-btn" @click="currentIdx++">下一题 →</button>
-          <button v-else class="quiz-btn quiz-btn-submit" @click="submit">交卷 · 判分</button>
+          <ArBtn variant="ghost" size="md" :disabled="currentIdx === 0" @click="currentIdx--">← 上一题</ArBtn>
+          <ArBtn v-if="currentIdx < paper.length - 1" variant="primary" size="md" @click="currentIdx++">下一题 →</ArBtn>
+          <ArBtn v-else variant="primary" size="md" @click="submit">交卷 · 判分</ArBtn>
         </div>
       </div>
 
@@ -699,7 +700,6 @@ const progress = computed(() => answers.value.filter(a => {
 .quiz-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .quiz-btn-ghost { background: transparent; color: var(--brand); border: 1px solid var(--brand); }
 .quiz-btn-ghost:hover { background: var(--brand-pale); color: var(--brand); }
-.quiz-btn-submit { background: var(--color-success); }
 .quiz-btn-submit:hover { background: #047857; }
 
 .quiz-history { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 12px; }

@@ -285,7 +285,7 @@ onMounted(loadMine)
             <strong>你自己不用传文件</strong>，页面上也不会出现任何未经审核的内容。
           </p>
         </div>
-        <button class="gb-submit-btn" @click="openForm(null)">我要补一门课</button>
+        <ArBtn variant="primary" size="md" @click="openForm(null)">我要补一门课</ArBtn>
       </section>
 
       <div v-if="myItems.length" class="gb-mine">
@@ -344,10 +344,10 @@ onMounted(loadMine)
         <p v-if="formMsg" class="gb-ok">{{ formMsg }}</p>
 
         <div class="gb-dialog-act">
-          <button class="gb-btn" @click="formOpen = false">关闭</button>
-          <button class="gb-btn gb-btn-primary" :disabled="submitting" @click="submitForm">
-            {{ submitting ? '提交中…' : '提交给管理员' }}
-          </button>
+          <ArBtn variant="ghost" size="sm" @click="formOpen = false">关闭</ArBtn>
+          <ArBtn variant="primary" size="sm" :loading="submitting" @click="submitForm">
+            提交给管理员
+          </ArBtn>
         </div>
       </div>
     </div>
@@ -445,11 +445,6 @@ a.gb-name:hover { text-decoration: underline; }
 }
 .gb-submit-t { font-size: 0.92rem; font-weight: 600; color: var(--text-heading); margin: 0 0 0.25rem; }
 .gb-submit-p { font-size: 0.78rem; color: var(--text-body); margin: 0; line-height: 1.7; }
-.gb-submit-btn {
-  flex-shrink: 0; border: none; background: var(--brand); color: #fff;
-  border-radius: 8px; padding: 0.5rem 1rem; font-size: 0.82rem; cursor: pointer;
-}
-.gb-submit-btn:hover { opacity: 0.9; }
 
 .gb-mine { margin-top: 1rem; }
 .gb-mine-t { font-size: 0.84rem; font-weight: 600; color: var(--text-heading); margin: 0 0 0.4rem; }
@@ -488,12 +483,6 @@ a.gb-name:hover { text-decoration: underline; }
 .gb-err { color: var(--color-danger); font-size: 0.78rem; margin: 0.2rem 0 0.6rem; }
 .gb-ok { color: #047857; font-size: 0.78rem; margin: 0.2rem 0 0.6rem; }
 .gb-dialog-act { display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 0.5rem; }
-.gb-btn {
-  border: 1px solid var(--line); background: #fff; color: var(--text-body);
-  border-radius: 6px; padding: 0.35rem 0.9rem; font-size: 0.8rem; cursor: pointer;
-}
-.gb-btn-primary { background: var(--brand); border-color: var(--brand); color: #fff; }
-.gb-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 @media (max-width: 860px) {
   .gb-overview { grid-template-columns: repeat(2, 1fr); }

@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import ArBtn from './components/ArBtn.vue'
 
 const content = ref('')
 const name = ref('')
@@ -114,9 +115,9 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
         placeholder="昵称（可选）"
         class="bounty-name"
       />
-      <button type="submit" class="bounty-btn" :disabled="submitting">
-        {{ submitting ? '提交中…' : '发布悬赏' }}
-      </button>
+      <ArBtn variant="primary" size="md" type="submit" style="width:100%" :loading="submitting" :disabled="submitting">
+        发布悬赏
+      </ArBtn>
     </form>
 
     <div class="bounty-sortbar">
@@ -166,12 +167,6 @@ onBeforeUnmount(() => { if (timer) clearInterval(timer) })
 .bounty-course { flex: 0 0 150px; }
 .bounty-name { flex: 0 0 120px; }
 .bounty-input:focus, .bounty-course:focus, .bounty-name:focus { border-color: var(--brand); }
-.bounty-btn {
-  padding: 0.65rem 1.4rem; border: none; border-radius: 10px; font-size: 0.9rem;
-  background: var(--brand); color: #fff; cursor: pointer; font-weight: 600; transition: opacity .15s;
-}
-.bounty-btn:hover { opacity: .9; }
-.bounty-btn:disabled { opacity: .5; cursor: not-allowed; }
 .bounty-sortbar {
   display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1rem;
 }

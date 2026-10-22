@@ -4,6 +4,7 @@
 // 事件：authed（登录/注册成功，参数 user）、logged-out（登出完成）
 import { ref, computed } from 'vue'
 import { userAuth, restoreUser, loginUser, registerUser, logoutUser } from './userauth.js'
+import ArBtn from './components/ArBtn.vue'
 
 const emit = defineEmits(['authed', 'logged-out'])
 
@@ -75,7 +76,7 @@ function doLogout() {
         <div class="au-user-name">{{ user.displayName || user.username }}</div>
         <div class="au-user-sub">已登录 · 打卡数据将同步云端</div>
       </div>
-      <button class="au-logout" @click="doLogout">退出登录</button>
+      <ArBtn variant="ghost" size="sm" class="au-logout" @click="doLogout">退出登录</ArBtn>
     </div>
 
     <!-- 未登录：登录/注册表单 -->
@@ -109,9 +110,9 @@ function doLogout() {
 
       <div v-if="formError" class="au-error">{{ formError }}</div>
 
-      <button class="au-submit" :disabled="submitting || !ready" @click="submit">
-        {{ submitting ? '请稍候…' : (mode === 'login' ? '登录' : '注册并登录') }}
-      </button>
+      <ArBtn variant="primary" size="md" class="au-submit" style="width:100%" :loading="submitting" :disabled="!ready" @click="submit">
+        {{ mode === 'login' ? '登录' : '注册并登录' }}
+      </ArBtn>
       <div class="au-tip">密码经 scrypt 加盐哈希后存储，平台不保存明文。</div>
     </div>
   </div>
@@ -134,12 +135,6 @@ function doLogout() {
 .au-user-info { flex: 1; min-width: 0; }
 .au-user-name { font-size: 1rem; font-weight: 700; color: var(--text-heading); }
 .au-user-sub { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
-.au-logout {
-  border: 1px solid var(--line); background: var(--bg-warm); color: var(--text-muted);
-  border-radius: 8px; padding: 7px 14px; font-size: 0.83rem; cursor: pointer; font-family: inherit;
-  transition: all 0.15s;
-}
-.au-logout:hover { border-color: var(--color-danger); color: var(--color-danger); }
 
 /* 未登录表单 */
 .au-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
@@ -167,13 +162,6 @@ function doLogout() {
 .au-hint { font-size: 0.75rem; margin-top: 4px; }
 .au-hint-bad { color: var(--color-danger); }
 .au-hint-ok { color: var(--color-success); }
-.au-submit {
-  width: 100%; background: var(--brand); color: #fff; border: none; border-radius: 8px;
-  padding: 11px 0; font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: inherit;
-  transition: background 0.15s;
-}
-.au-submit:hover { background: var(--brand-light); }
-.au-submit:disabled { opacity: 0.5; cursor: not-allowed; }
 .au-tip { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 10px; }
 
 @media (max-width: 600px) {

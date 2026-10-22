@@ -21,6 +21,7 @@ import {
   wrongStats,
 } from '../lib/spaced'
 import { trackFootprint } from '../lib/footprint'
+import ArBtn from './ArBtn.vue'
 
 const DAY = 86400000
 const TYPE_LABEL = {
@@ -327,14 +328,14 @@ onMounted(async () => {
               <li v-for="(opt, oi) in optionsOf(item)" :key="oi">{{ opt }}</li>
             </ul>
 
-            <button
+            <ArBtn
               v-if="!revealed[item.qid]"
-              type="button"
-              class="btn primary"
+              variant="primary"
+              size="sm"
               @click="reveal(item)"
             >
               显示答案
-            </button>
+            </ArBtn>
 
             <div v-else class="qanswer">
               <p class="ans-line">
@@ -351,22 +352,18 @@ onMounted(async () => {
 
             <div v-if="revealed[item.qid]" class="judge-row">
               <span class="judge-hint">刚才这道，你答得怎么样？</span>
-              <button
-                type="button"
-                class="btn ok"
+              <ArBtn variant="success" size="sm"
                 :disabled="busy === item.qid"
                 @click="judge(item, true)"
               >
                 我答对了
-              </button>
-              <button
-                type="button"
-                class="btn bad"
+              </ArBtn>
+              <ArBtn variant="danger" size="sm"
                 :disabled="busy === item.qid"
                 @click="judge(item, false)"
               >
                 我又错了
-              </button>
+              </ArBtn>
             </div>
           </template>
 
@@ -375,25 +372,21 @@ onMounted(async () => {
             <p class="qstem missing">{{ missingText(item.qid) }}</p>
             <p class="muted small">错题记录还在，你可以直接标记掌握情况，或把它移出错题本。</p>
             <div class="judge-row">
-              <button
-                type="button"
-                class="btn ok"
+              <ArBtn variant="success" size="sm"
                 :disabled="busy === item.qid"
                 @click="judge(item, true)"
               >
                 我答对了
-              </button>
-              <button
-                type="button"
-                class="btn bad"
+              </ArBtn>
+              <ArBtn variant="danger" size="sm"
                 :disabled="busy === item.qid"
                 @click="judge(item, false)"
               >
                 我又错了
-              </button>
-              <button type="button" class="link-btn danger" @click="drop(item)">
+              </ArBtn>
+              <ArBtn variant="ghost" size="sm" @click="drop(item)">
                 {{ removingId === item.qid ? '确认移出' : '移出错题本' }}
-              </button>
+              </ArBtn>
             </div>
           </template>
         </div>
@@ -437,22 +430,22 @@ onMounted(async () => {
               </p>
             </div>
             <div class="row-actions">
-              <button type="button" class="link-btn" @click="reviewNow(e)">立即复习</button>
-              <button
-                type="button"
-                class="link-btn danger"
+              <ArBtn variant="ghost" size="sm" @click="reviewNow(e)">立即复习</ArBtn>
+              <ArBtn
+                variant="ghost"
+                size="sm"
                 @click="drop(e)"
               >
                 {{ removingId === e.qid ? '确认移出' : '移出' }}
-              </button>
+              </ArBtn>
             </div>
           </div>
         </div>
 
         <div class="danger-zone">
-          <button type="button" class="link-btn danger" @click="dropAll">
+          <ArBtn variant="danger" size="sm" @click="dropAll">
             {{ confirmClear ? '再点一次，确认清空全部错题' : '清空错题本' }}
-          </button>
+          </ArBtn>
         </div>
       </section>
     </template>
@@ -613,34 +606,6 @@ onMounted(async () => {
   margin: 0;
 }
 
-.btn {
-  cursor: pointer;
-  padding: 0.45rem 0.95rem;
-  border-radius: 9px;
-  border: 1px solid var(--line);
-  background: var(--vp-c-bg-soft);
-  color: var(--text-body);
-  font-size: 0.84rem;
-}
-.btn.primary {
-  background: var(--brand);
-  border-color: var(--brand);
-  color: #fff;
-}
-.btn.ok {
-  border-color: var(--brand);
-  color: var(--brand);
-  background: var(--brand-pale);
-}
-.btn.bad {
-  border-color: #c9b3a8;
-  color: #9a5a3f;
-  background: transparent;
-}
-.btn:disabled {
-  opacity: 0.55;
-  cursor: default;
-}
 
 .qanswer {
   border-top: 1px dashed var(--line);
@@ -792,18 +757,6 @@ onMounted(async () => {
   display: flex;
   gap: 0.6rem;
   flex-shrink: 0;
-}
-.link-btn {
-  background: none;
-  border: none;
-  padding: 0.1rem;
-  cursor: pointer;
-  color: var(--brand);
-  font-size: 0.78rem;
-  white-space: nowrap;
-}
-.link-btn.danger {
-  color: #9a5a3f;
 }
 .danger-zone {
   margin-top: 1.2rem;
