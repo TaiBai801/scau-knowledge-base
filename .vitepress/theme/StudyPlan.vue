@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import ArBtn from './components/ArBtn.vue'
+import ArPageHero from './components/ArPageHero.vue'
 
 // ============ 数据 ============
 const syllabus = ref({})   // { 课程名: { course, code, units:[] } }
@@ -286,9 +287,7 @@ onMounted(async () => {
 <template>
   <div class="plan-wrap">
     <div class="plan-hero plan-no-print">
-      <span class="plan-hero-tag">按部就班</span>
-      <h1 class="plan-hero-title">学习计划书</h1>
-      <p class="plan-hero-sub">多门课程混排轮转，给定时间范围自动按章节权重排期——每天学什么、用什么资料、配什么测试、距考试还剩几天，一目了然。</p>
+      <ArPageHero center tag="按部就班" title="学习计划书" sub="多门课程混排轮转，给定时间范围自动按章节权重排期——每天学什么、用什么资料、配什么测试、距考试还剩几天，一目了然。" />
     </div>
 
     <div class="plan-inner">
@@ -437,16 +436,6 @@ onMounted(async () => {
 
 <style scoped>
 .plan-wrap { min-height: 60vh; }
-.plan-hero {
-  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
-  color: #fff; text-align: center; padding: 48px 24px 56px;
-}
-.plan-hero-tag {
-  display: inline-block; background: rgba(255,255,255,0.15); padding: 4px 12px;
-  border-radius: 20px; font-size: 0.8rem; margin-bottom: 12px; backdrop-filter: blur(8px);
-}
-.plan-hero-title { font-family: var(--font-display); font-size: 2.2rem; margin: 0 0 10px; color: #fff !important; }
-.plan-hero-sub { font-size: 0.95rem; opacity: 0.92; margin: 0; line-height: 1.7; color: #fff !important; }
 .plan-inner { max-width: 760px; margin: -24px auto 48px; padding: 0 20px; }
 .plan-state { text-align: center; padding: 60px 20px; color: var(--text-muted); }
 .plan-err { color: var(--color-danger); }
@@ -555,12 +544,6 @@ onMounted(async () => {
 @media print {
   .plan-no-print, .VPNav, .VPSidebar, .custom-footer, .back-to-top { display: none !important; }
   .plan-wrap { background: #fff; }
-  .plan-hero {
-    background: #fff !important; color: #000 !important; padding: 0 0 16px !important;
-    border-bottom: 2px solid var(--brand); border-radius: 0;
-  }
-  .plan-hero-title, .plan-hero-sub { color: #000 !important; }
-  .plan-hero-tag { display: none; }
   .plan-inner { margin: 0 auto; max-width: 100%; padding: 0; }
   .plan-card { box-shadow: none; border: none; padding: 0; }
   .plan-day { break-inside: avoid; }
@@ -570,7 +553,6 @@ onMounted(async () => {
 
 @media (max-width: 600px) {
   .plan-card { padding: 20px 16px; }
-  .plan-hero-title { font-size: 1.7rem; }
   .plan-summary { gap: 16px; }
   .plan-summary-actions { margin-left: 0; width: 100%; }
 }

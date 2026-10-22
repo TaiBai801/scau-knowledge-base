@@ -10,6 +10,7 @@ import { userAuth, restoreUser, getToken } from './userauth.js'
 import { reportCheckin } from './leaderboard.js'
 import AuthPanel from './AuthPanel.vue'
 import ArBtn from './components/ArBtn.vue'
+import ArPageHero from './components/ArPageHero.vue'
 
 // ── 本地状态 ──
 const days = ref({})        // { 'YYYY-MM-DD': { minutes, count, note } }
@@ -138,11 +139,7 @@ onMounted(() => {
 <template>
   <div class="ci-wrap">
     <!-- Hero -->
-    <div class="ci-hero">
-      <span class="ci-hero-tag">积少成多</span>
-      <h1 class="ci-hero-title">学习打卡</h1>
-      <p class="ci-hero-sub">每天记录学习时长，连续天数与累计统计云端同步；不登录也能浏览本页，登录后即可开始记录。</p>
-    </div>
+    <ArPageHero center tag="积少成多" title="学习打卡" sub="每天记录学习时长，连续天数与累计统计云端同步；不登录也能浏览本页，登录后即可开始记录。" />
 
     <div class="ci-inner">
       <!-- 登录/用户卡（独立组件，登录后打卡数据自动绑定账号） -->
@@ -235,16 +232,6 @@ onMounted(() => {
 
 <style scoped>
 .ci-wrap { min-height: 60vh; }
-.ci-hero {
-  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
-  color: #fff; text-align: center; padding: 48px 24px 56px;
-}
-.ci-hero-tag {
-  display: inline-block; background: rgba(255,255,255,0.15); padding: 4px 12px;
-  border-radius: 20px; font-size: 0.8rem; margin-bottom: 12px; backdrop-filter: blur(8px);
-}
-.ci-hero-title { font-family: var(--font-display); font-size: 2.2rem; margin: 0 0 10px; color: #fff !important; }
-.ci-hero-sub { font-size: 0.95rem; opacity: 0.92; margin: 0; line-height: 1.7; color: #fff !important; }
 
 .ci-inner { max-width: 760px; margin: -24px auto 48px; padding: 0 20px; display: flex; flex-direction: column; gap: 16px; }
 
@@ -322,7 +309,6 @@ onMounted(() => {
 
 @media (max-width: 600px) {
   .ci-card { padding: 18px 16px; }
-  .ci-hero-title { font-size: 1.7rem; }
   .ci-stats { gap: 20px; justify-content: space-around; }
 }
 </style>

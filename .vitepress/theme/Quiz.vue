@@ -3,6 +3,7 @@ import { ref, computed, onMounted } from 'vue'
 import { trackFootprint } from './lib/footprint'
 import { recordAnswer } from './lib/spaced'
 import ArBtn from './components/ArBtn.vue'
+import ArPageHero from './components/ArPageHero.vue'
 
 // ============ 数据 ============
 const bank = ref({})          // { 课程名: { course, code, questions:[] } }
@@ -384,11 +385,7 @@ const progress = computed(() => answers.value.filter(a => {
 <template>
   <div class="quiz-wrap">
     <!-- Hero -->
-    <div class="quiz-hero">
-      <span class="quiz-hero-tag">随学随测</span>
-      <h1 class="quiz-hero-title">组题练习</h1>
-      <p class="quiz-hero-sub">按课程章节随机抽题组卷，客观题自动判分，主观题对答案自评，错题与薄弱知识点自动归集。</p>
-    </div>
+    <ArPageHero center tag="随学随测" title="组题练习" sub="按课程章节随机抽题组卷，客观题自动判分，主观题对答案自评，错题与薄弱知识点自动归集。" />
 
     <div class="quiz-inner">
       <!-- 加载中 -->
@@ -618,16 +615,6 @@ const progress = computed(() => answers.value.filter(a => {
 
 <style scoped>
 .quiz-wrap { min-height: 60vh; }
-.quiz-hero {
-  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
-  color: #fff; text-align: center; padding: 48px 24px 56px;
-}
-.quiz-hero-tag {
-  display: inline-block; background: rgba(255,255,255,0.15); padding: 4px 12px;
-  border-radius: 20px; font-size: 0.8rem; margin-bottom: 12px; backdrop-filter: blur(8px);
-}
-.quiz-hero-title { font-family: var(--font-display); font-size: 2.2rem; margin: 0 0 10px; color: #fff !important; }
-.quiz-hero-sub { font-size: 0.95rem; opacity: 0.92; margin: 0; line-height: 1.7; color: #fff !important; }
 .quiz-inner { max-width: 760px; margin: -24px auto 48px; padding: 0 20px; }
 .quiz-state { text-align: center; padding: 60px 20px; color: var(--text-muted); }
 .quiz-err { color: var(--color-danger); }
@@ -788,7 +775,6 @@ const progress = computed(() => answers.value.filter(a => {
 
 @media (max-width: 600px) {
   .quiz-card { padding: 20px 16px; }
-  .quiz-hero-title { font-size: 1.7rem; }
   .quiz-result-head { flex-direction: column; text-align: center; }
   .quiz-mastery-name { flex: 0 0 45%; }
 }
