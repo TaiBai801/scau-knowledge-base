@@ -129,7 +129,7 @@ onMounted(check)
     <div v-if="!user" class="sync-hint">
       <span class="sync-hint-text">
         <b>登录后同步到云端</b>
-        <span>{{ title }}目前只保存在这台设备的浏览器里，换设备就归零。</span>
+        <span>{{ title }}默认只保存在这台设备的浏览器里；登录后可一键同步到云端，换设备不丢。</span>
       </span>
       <a class="sync-go" href="/checkin">去注册 / 登录</a>
     </div>

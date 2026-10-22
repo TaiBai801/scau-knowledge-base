@@ -156,7 +156,7 @@ function onClear() {
             >打个卡</a
           >，这里就会长出你的学习轨迹。
         </p>
-        <p class="fp-empty-note">所有记录只写进这台设备的浏览器，不上传、不排名、不涉及成绩。</p>
+        <p class="fp-empty-note">记录默认只写进这台设备，登录后可同步到云端；不排名、不涉及成绩。</p>
       </ArEmpty>
 
       <template v-else>

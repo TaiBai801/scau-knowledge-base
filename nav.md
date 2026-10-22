@@ -23,7 +23,7 @@
 ## 我的
 
 <a href="/checkin" class="nav-card">✅ 学习打卡</a>
-<a href="/footprint" class="nav-card">👣 学习足迹 · 只存本机</a>
+<a href="/footprint" class="nav-card">👣 学习足迹 · 可同步云端</a>
 <a href="/focus" class="nav-card">🍅 专注计时 · 番茄钟</a>
 <a href="/weekly" class="nav-card">📊 学习周报 · 只和自己比</a>
 <a href="/notes" class="nav-card">🗒️ 课程笔记</a>
