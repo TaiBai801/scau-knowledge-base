@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: 浏览课程
-      link: /majors/dianzikexue/
+      link: /map
     - theme: alt
       text: 贡献资料
       link: /contribute
@@ -23,7 +23,7 @@ features:
       alt: 课程
     title: 课程总览
     details: 按专业和学期分类浏览五专业 [[m:courses.planEntries|plus]] 门课程，找课只需三步。
-    link: /majors/dianzikexue/
+    link: /map
   - icon:
       light: /icons/compass.svg
       dark: /icons/compass-dark.svg

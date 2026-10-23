@@ -2227,7 +2227,8 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   .custom-footer { padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px)) !important; }
   .back-to-top {
     bottom: calc(70px + env(safe-area-inset-bottom, 0px)) !important;
-    right: calc(12px + env(safe-area-inset-right, 0px)) !important;
+    left: calc(12px + env(safe-area-inset-left, 0px)) !important;
+    right: auto !important;
   }
   .VPNavScreen { padding-bottom: env(safe-area-inset-bottom, 0px) !important; }
 
@@ -2236,8 +2237,15 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   .mt-intro { padding: 0.7rem 0.85rem !important; }
 
   /* ── 9. 首页重构：hero 减负 + 功能宫格 3×3 ── */
-  .VPHero { padding: 24px 20px 6px !important; }
-  .VPHero .image { display: none !important; }
+  .VPHero { padding: 22px 20px 6px !important; }
+  /* 院徽不隐藏，缩小居中置顶——品牌识别保留，不挤占首屏 */
+  .VPHero .image {
+    display: block !important;
+    width: 68px !important;
+    margin: 0 auto 6px !important;
+    padding: 0 !important;
+  }
+  .VPHero .image img { max-width: 68px !important; }
   .VPHero .name { font-size: 1.7rem !important; }
   .VPHero .tagline { font-size: 0.88rem !important; padding-top: 6px !important; }
   .VPHero .actions { padding-top: 14px !important; }

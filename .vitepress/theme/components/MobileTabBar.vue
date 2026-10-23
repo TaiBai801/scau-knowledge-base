@@ -15,7 +15,7 @@ const TOOL_PAGES = [
 
 const tabs = [
   { icon: '🏠', label: '首页', href: '/', match: (p) => p === 'index.md' || p === '' },
-  { icon: '📚', label: '课程', href: '/majors/dianzikexue/', match: (p) => p.startsWith('majors/') || p === 'map.md' },
+  { icon: '📚', label: '课程', href: '/map', match: (p) => p.startsWith('majors/') || p === 'map.md' },
   { icon: '🧭', label: '工具', href: '/nav', match: (p) => TOOL_PAGES.includes(p) },
   { icon: '👤', label: '我的', href: '/my', match: (p) => p === 'my.md' },
 ]

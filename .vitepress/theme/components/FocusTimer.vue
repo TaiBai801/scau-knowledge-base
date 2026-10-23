@@ -936,7 +936,8 @@ onBeforeUnmount(() => {
 @media (max-width: 640px) {
   .ft--floating {
     right: 12px;
-    bottom: 14px;
+    /* 底部导航(52px+safe-area)上方，避免挡住 TabBar */
+    bottom: calc(64px + env(safe-area-inset-bottom, 0px));
   }
   .ft-ball {
     width: 62px;
