@@ -6,6 +6,7 @@ import CustomFooter from './CustomFooter.vue'
 import BackToTop from './BackToTop.vue'
 import SharedCourses from './SharedCourses.vue'
 import FocusTimer from './components/FocusTimer.vue'
+import MobileTabBar from './components/MobileTabBar.vue'
 
 const { Layout } = DefaultTheme
 const route = useRoute()
@@ -18,6 +19,7 @@ const showFloatingFocus = computed(() => !/^\/focus(\.html)?$/.test(route.path |
   <Layout>
     <template #layout-bottom>
       <CustomFooter />
+      <MobileTabBar />
     </template>
     <template #layout-top>
       <BackToTop />

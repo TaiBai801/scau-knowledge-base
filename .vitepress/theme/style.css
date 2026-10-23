@@ -2226,7 +2226,7 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   /* ── 7. 刘海屏安全区：底部与悬浮控件 ── */
   .custom-footer { padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px)) !important; }
   .back-to-top {
-    bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(70px + env(safe-area-inset-bottom, 0px)) !important;
     right: calc(12px + env(safe-area-inset-right, 0px)) !important;
   }
   .VPNavScreen { padding-bottom: env(safe-area-inset-bottom, 0px) !important; }
@@ -2234,4 +2234,32 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   /* ── 8. 间距微调：统计与同步条 ── */
   .sync-bar { padding: 0.5rem 0.7rem !important; }
   .mt-intro { padding: 0.7rem 0.85rem !important; }
+
+  /* ── 9. 首页重构：hero 减负 + 功能宫格 3×3 ── */
+  .VPHero { padding: 24px 20px 6px !important; }
+  .VPHero .image { display: none !important; }
+  .VPHero .name { font-size: 1.7rem !important; }
+  .VPHero .tagline { font-size: 0.88rem !important; padding-top: 6px !important; }
+  .VPHero .actions { padding-top: 14px !important; }
+  .VPFeatures { padding: 10px 14px 6px !important; }
+  .VPFeatures .items {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+  }
+  .VPFeatures .item { width: auto !important; padding: 0 !important; }
+  .VPFeature {
+    padding: 12px 4px 10px !important;
+    border: 1px solid var(--line) !important;
+    border-radius: 10px !important;
+    background: var(--bg-card, #fff) !important;
+    text-align: center;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  .VPFeature .icon { width: 26px !important; height: 26px !important; margin: 0 auto 6px !important; }
+  .VPFeature .title { font-size: 0.7rem !important; line-height: 1.35 !important; padding: 0 !important; }
+  .VPFeature .details { display: none !important; }
+  /* 底部导航占位：防止内容被固定 TabBar 遮住 */
+  body { padding-bottom: calc(54px + env(safe-area-inset-bottom, 0px)); }
 }
