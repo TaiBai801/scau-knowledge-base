@@ -2237,14 +2237,38 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   .mt-intro { padding: 0.7rem 0.85rem !important; }
 
   /* ── 9. 首页重构：hero 减负 + 功能宫格 3×3 ── */
-  .VPHero { padding: 20px 20px 10px !important; }
-  /* 手机 hero：纵向紧凑居中；院徽 72px 置顶；去掉 VitePress 装饰灰团 */
-  .VPHero .container { display: block !important; text-align: center !important; }
-  .VPHero .main { padding-top: 0 !important; text-align: center !important; max-width: 100% !important; }
-  .VPHero .image { width: 72px !important; margin: 0 auto 8px !important; }
-  .VPHero .image-container { width: 72px !important; padding: 0 !important; }
+  .VPHero { padding: 18px 20px 12px !important; }
+  /* 手机 hero 顺序：图片(置顶放大居中) → 标题 → 导语 → 按钮
+     VitePress 原生坑：.image-container 固定 320×320 + translate 位移 + 负 margin，
+     只压外层 .image 无效，必须逐层覆盖 */
+  .VPHero .container {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .VPHero .image {
+    order: -1 !important;
+    flex: none !important;
+    width: 176px !important;
+    margin: 0 auto 10px !important;
+  }
+  .VPHero .image-container {
+    width: 176px !important;
+    height: 176px !important;
+    transform: none !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
   .VPHero .image-bg { display: none !important; }
-  .VPHero .image img { width: 72px !important; max-width: 72px !important; }
+  .VPHero .image img { width: 176px !important; max-width: 100% !important; height: auto !important; }
+  .VPHero .main {
+    order: 2 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-top: 0 !important;
+    text-align: center !important;
+  }
   .VPHero .name { font-size: 1.7rem !important; }
   .VPHero .tagline { font-size: 0.88rem !important; padding-top: 6px !important; }
   .VPHero .actions { padding-top: 14px !important; }
