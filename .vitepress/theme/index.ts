@@ -25,6 +25,7 @@ import ArLoading from './components/ArLoading.vue'
 import ArError from './components/ArError.vue'
 import ArPageHero from './components/ArPageHero.vue'
 import MobileTabBar from './components/MobileTabBar.vue'
+import CetApp from './components/CetApp.vue'
 import FocusTimer from './components/FocusTimer.vue'
 import FocusPage from './components/FocusPage.vue'
 import WeeklyReport from './components/WeeklyReport.vue'
@@ -63,6 +64,7 @@ export default {
     app.component('ArError', ArError)
     app.component('ArPageHero', ArPageHero)
     app.component('MobileTabBar', MobileTabBar)
+    app.component('CetApp', CetApp)
     app.component('FocusTimer', FocusTimer)
     app.component('FocusPage', FocusPage)
     app.component('WeeklyReport', WeeklyReport)

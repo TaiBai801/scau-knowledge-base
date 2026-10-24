@@ -9,6 +9,7 @@
       { t: '资料上传', h: '/admin/upload.html' },
       { t: '题库录入', h: '/admin/bank.html' },
       { t: '内容编辑', h: '/admin/content.html' },
+      { t: '四六级考场', h: '/admin/cet.html' },
     ]},
     { group: '审核', items: [
       { t: '补料审核', h: '/admin/submissions.html' },
