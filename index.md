@@ -80,6 +80,13 @@ features:
     title: 资料缺口榜
     details: 哪门课缺课件、缺真题，按优先级排好，一键报缺口。
     link: /gap
+  - icon:
+      light: /icons/academic.svg
+      dark: /icons/academic-dark.svg
+      alt: 四六级
+    title: 四六级模拟考场
+    details: 全真模考按真实顺序与时长自动计时交卷，听力/阅读/写作/翻译可单独训练，答案云端保存、断点续考。
+    link: /cet
 ---
 
 <HeroStats />

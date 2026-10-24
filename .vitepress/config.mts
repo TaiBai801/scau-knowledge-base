@@ -202,6 +202,7 @@ export default defineConfig({
         { text: '考试冲刺', link: '/sprint' },
         { text: '概念卡', link: '/cards' },
         { text: '学习计划', link: '/plan' },
+        { text: '四六级考场', link: '/cet' },
       ]},
       { text: '我的', items: [
         { text: '学习打卡', link: '/checkin' },

@@ -34,6 +34,7 @@ const OBJ_TYPES = ['listening', 'reading'] // 客观自动判分；写作/翻译
 
 // ── 全局状态 ──
 const view = ref('lobby') // lobby | running | result
+const loggedIn = computed(() => !!userAuth.user)
 const loading = ref(true)
 const loadError = ref('')
 const bank = reactive({ config: { enabled: true, announce: '' }, questions: [], papers: [] })
@@ -302,11 +303,11 @@ function beforeUnload(e) {
   }
 }
 
-watch(() => userAuth.loggedIn, (v) => { if (v) loadAll() })
+watch(loggedIn, (v) => { if (v) loadAll() })
 
 onMounted(async () => {
   await restoreUser()
-  if (userAuth.loggedIn) await loadAll()
+  if (loggedIn.value) await loadAll()
   else loading.value = false
   window.addEventListener('beforeunload', beforeUnload)
 })
@@ -335,7 +336,7 @@ function showAnswer(v) {
 <template>
   <div class="cet">
     <!-- 未登录：引导登录 -->
-    <div v-if="!userAuth.loggedIn" class="cet-gate">
+    <div v-if="!loggedIn" class="cet-gate">
       <p class="cet-gate-t">四六级模拟考场的作答记录与断点续考都绑定你的账号，请先登录。</p>
       <AuthPanel @authed="loadAll" />
     </div>

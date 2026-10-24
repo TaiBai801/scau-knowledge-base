@@ -10,4 +10,6 @@ aside: false
 
 <CetApp />
 
+<CetIntro />
+
 </div></div>

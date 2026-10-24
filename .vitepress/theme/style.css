@@ -2291,6 +2291,9 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   .VPFeature .icon { width: 26px !important; height: 26px !important; margin: 0 auto 6px !important; }
   .VPFeature .title { font-size: 0.7rem !important; line-height: 1.35 !important; padding: 0 !important; }
   .VPFeature .details { display: none !important; }
+  /* 10 张卡时最后一张跨整行，避免落单 */
+  .VPFeatures .item:last-child { grid-column: 1 / -1; }
+  .VPFeatures .item:last-child .VPFeature { padding: 10px 8px 8px !important; }
   /* 底部导航占位：防止内容被固定 TabBar 遮住 */
   body { padding-bottom: calc(54px + env(safe-area-inset-bottom, 0px)); }
 }
