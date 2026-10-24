@@ -162,6 +162,49 @@ export async function onRequestPost({ request }) {
       return json({ error: '写入冲突，请刷新后重试', conflict: true }, 409);
     }
 
+    // 批量导入：questions[] + 可选 paper
+    if (action === 'batchImport') {
+      const qs = Array.isArray(body.questions) ? body.questions : [];
+      if (!qs.length) return json({ error: 'questions 为空' }, 400);
+      if (qs.length > 300) return json({ error: '单次最多 300 题' }, 400);
+      for (const q of qs) {
+        const err = validateQuestion(q);
+        if (err) return json({ error: '题目 ' + (q && q.id) + '：' + err }, 400);
+      }
+      for (let i = 0; i < 4; i++) {
+        const { data, etag } = await readJsonWithEtag(DATA_KEY);
+        const state = data && Array.isArray(data.questions) ? data : seed();
+        let added = 0, updated = 0;
+        for (const q of qs) {
+          const item = Object.assign({}, q, {
+            id: String(q.id).trim(),
+            updatedAt: Date.now(),
+            status: Q_STATUS.includes(q.status) ? q.status : 'on',
+          });
+          const idx = state.questions.findIndex((x) => x.id === item.id);
+          if (idx >= 0) { state.questions[idx] = item; updated++; }
+          else { state.questions.push(item); added++; }
+        }
+        let paperMsg = '';
+        if (body.paper) {
+          const perr = validatePaper(body.paper, state.questions);
+          if (perr) return json({ error: '试卷：' + perr }, 400);
+          const p = Object.assign({}, body.paper, {
+            id: String(body.paper.id).trim(),
+            updatedAt: Date.now(),
+            status: Q_STATUS.includes(body.paper.status) ? body.paper.status : 'off',
+          });
+          const pidx = state.papers.findIndex((x) => x.id === p.id);
+          if (pidx >= 0) state.papers[pidx] = p; else state.papers.push(p);
+          paperMsg = '，试卷 ' + p.id + ' 已保存';
+        }
+        const r = await writeJsonIfMatch(DATA_KEY, state, etag);
+        if (r.ok) return json({ ok: true, added: added, updated: updated, msg: '导入完成：新增 ' + added + ' 题，更新 ' + updated + ' 题' + paperMsg });
+        if (r.status !== 412) return json({ error: '写入失败 ' + r.status }, 502);
+      }
+      return json({ error: '写入冲突，请刷新后重试', conflict: true }, 409);
+    }
+
     if (action === 'savePaper') {
       const { paper } = body;
       for (let i = 0; i < 4; i++) {

@@ -1,0 +1,81 @@
+{
+  "_note": "原创示例种子数据（非真题）。四六级真题版权归教育部教育考试院，请勿整卷转录。本文件所有篇章、题目、解析均为原创，可直接在 /admin/cet.html「批量导入」粘贴使用。",
+  "questions": [
+    {
+      "id": "DEMO-R4-001",
+      "exam": "cet4",
+      "type": "reading",
+      "difficulty": 2,
+      "score": 10,
+      "stem": "Passage: Many engineering students spend their first two years almost entirely in classrooms. They solve equations on paper and watch demonstrations on screens, but rarely touch the machines their textbooks describe. A growing number of teachers argue that this order should be reversed. When students are asked to repair a simple circuit before they fully understand the theory behind it, they tend to pay closer attention in the following lectures: the broken device gives every formula a purpose. Critics worry that early practice without theory produces guesswork rather than understanding. The evidence, however, suggests that the two reinforce each other when practice comes first. Students who struggled with a real circuit were far more likely to ask why a formula works, not merely how to apply it.\n\nQuestion: What does the passage suggest about the order of theory and practice?",
+      "options": [
+        "Practice should come before theory in the early years of engineering study.",
+        "Theory should be mastered completely before any practical work begins.",
+        "Practical work is only useful after students have passed basic exams.",
+        "The two should be kept strictly separate to avoid confusion."
+      ],
+      "answer": "A",
+      "analysis": "首段提出「教师主张把顺序颠倒」——先修电路再学理论；后文 even 句给出支持证据（先动手的学生更爱问为什么）。A 是对首句与末句的归纳。B 与原文相反；C 无依据（文中没提考试）；D 与「相互强化」矛盾。",
+      "traps": "易被 Critics worry… 干扰成「先实践不可取」，但作者随即用 The evidence, however, 反转到支持实践先行，注意 however 后的立场才是作者立场。",
+      "status": "on"
+    },
+    {
+      "id": "DEMO-R4-002",
+      "exam": "cet4",
+      "type": "reading",
+      "difficulty": 2,
+      "score": 10,
+      "stem": "（承接上篇）Question: Why do students who first repair a circuit ask better questions afterwards?",
+      "options": [
+        "Because they have memorized more formulas than their classmates.",
+        "Because the real device makes the purpose of each formula concrete.",
+        "Because they are afraid of failing the following lectures.",
+        "Because their teachers give them higher marks for practice."
+      ],
+      "answer": "B",
+      "analysis": "原文关键句：the broken device gives every formula a purpose（坏掉的器件让每个公式有了用途），B 是其同义改写（makes the purpose concrete）。A 与原文「更愿意问为什么」的方向相反；C、D 文中均未提及。",
+      "traps": "典型「同义替换」题：purpose → concrete purpose。不要因为 A 出现 formulas 就选 A，注意逻辑方向是「少背公式、多问原因」。",
+      "status": "on"
+    },
+    {
+      "id": "DEMO-W4-001",
+      "exam": "cet4",
+      "type": "writing",
+      "difficulty": 2,
+      "score": 30,
+      "stem": "Directions: Write an essay on the importance of hands-on practice in engineering learning. You should write at least 120 words but no more than 180 words.",
+      "options": [],
+      "answer": "参考范文（原创）：\nHands-on practice matters because engineering is judged by results, not by intentions. A student who has wired a circuit knows what a loose contact feels like; a student who has only read about it does not. Practice also changes how theory is learned. When a device fails, the failure points directly at the concept the student has misunderstood, which makes the following lecture feel like an answer rather than a lecture.\nAdmittedly, practice without guidance can waste time. The solution is not to postpone practice until theory is complete, but to pair each experiment with a short explanation. In this way students build both confidence and understanding.\nFor these reasons, I believe every engineering course should include at least one task in which students build, test and repair something real.",
+      "analysis": "评分看四点：①立场明确（首段即表态）②论证有层次（个人经验→学习机制→让步反驳）③衔接词自然（because / also / admittedly / for these reasons）④语言准确（时态统一、无中式表达）。范文用「具体细节」替代空话（a loose contact feels like）是拿高分的关键。",
+      "traps": "常见失分：只喊口号（Practice makes perfect）不给机制；通篇简单句；字数不足 120。建议每段一个核心机制 + 一个例子。",
+      "status": "on"
+    },
+    {
+      "id": "DEMO-T4-001",
+      "exam": "cet4",
+      "type": "translation",
+      "difficulty": 3,
+      "score": 30,
+      "stem": "将下面一段话译成英文：\n中国的高铁网络是世界上最繁忙的铁路系统之一。它把许多中小城市与大都市连接起来，使人们可以在一天之内往返于相距千里的两地。高铁不仅缩短了出行时间，也改变了人们选择工作与居住地的方式。",
+      "options": [],
+      "answer": "参考译文（原创）：\nChina's high-speed rail network is one of the busiest railway systems in the world. It connects many small and medium-sized cities with major metropolises, enabling people to travel between places a thousand kilometers apart and return within a single day. High-speed rail has not only shortened travel time but also changed the way people choose where to work and live.",
+      "analysis": "三个采分点：①「世界上最繁忙的之一」→ one of the busiest … in the world（最高级 + of 结构）②「使人们可以……往返」→ enabling people to … and return（分词作结果状语，比 so that 更简洁）③「不仅……也……」→ not only … but also …（注意 not only 置于句首时才倒装，此处不倒装）。",
+      "traps": "易错：「相距千里」不要直译 thousand miles apart（千里≈500 km，用 a thousand kilometers apart 更稳）；「中小城市」medium-sized 不能漏 sized；时态用现在完成时更贴切（has shortened / has changed）。",
+      "status": "on"
+    }
+  ],
+  "paper": {
+    "id": "cet4-demo-01",
+    "name": "四级示例卷（原创·迷你版）",
+    "exam": "cet4",
+    "kind": "full",
+    "status": "off",
+    "questionIds": ["DEMO-W4-001", "DEMO-R4-001", "DEMO-R4-002", "DEMO-T4-001"],
+    "sections": [
+      { "type": "writing", "name": "写作", "durationSec": 1800, "qids": ["DEMO-W4-001"] },
+      { "type": "reading", "name": "阅读", "durationSec": 2400, "qids": ["DEMO-R4-001", "DEMO-R4-002"] },
+      { "type": "translation", "name": "翻译", "durationSec": 1800, "qids": ["DEMO-T4-001"] }
+    ],
+    "durationSec": 6000
+  }
+}
