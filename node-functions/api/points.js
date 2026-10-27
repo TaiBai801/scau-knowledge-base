@@ -136,7 +136,7 @@ export async function awardPoints(user, ruleKey, ref) {
     const next = addLedger(state, user, delta, ruleKey, ref || '', 'system');
     return { stop: true, value: { ok: true, points: delta, balance: next } };
   });
-  return res && res.ok && res.value ? res.value : { ok: false, reason: (res && res.error) || '写入失败' };
+  return res && res.ok ? res : { ok: false, reason: (res && res.error) || '写入失败' };
 }
 
 function publicRules(rules) {
