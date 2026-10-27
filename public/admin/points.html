@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>积分商城管理 · 管理后台</title>
+<style>
+:root{--brand:#0D5C5A;--bg:#F7F5F0;--card:#fff;--line:#E8E4DB;--text:#4A5568;--green:#059669;--red:#dc2626;--amber:#D97706}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:var(--brand);color:#fff;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+header h1{font-size:1.2rem;font-weight:600}
+main{max-width:1120px;margin:0 auto;padding:2rem 1rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.25rem;margin-bottom:1.25rem}
+.card h2{font-size:1rem;font-weight:600;color:var(--brand);margin-bottom:0.75rem}
+input,select,textarea,button{font-family:inherit}
+.field-input{width:100%;padding:0.55rem 0.7rem;border:1px solid var(--line);border-radius:8px;font-size:0.88rem;background:#fff;color:#1a1a1a}
+.field-input:focus{outline:2px solid var(--brand);border-color:var(--brand)}
+textarea.field-input{resize:vertical}
+label.f{display:block;font-size:0.78rem;margin:0.7rem 0 0.25rem}
+.btn{display:inline-block;padding:0.45rem 1rem;border:none;border-radius:8px;font-size:0.84rem;cursor:pointer;background:var(--brand);color:#fff}
+.btn:hover{opacity:.9}.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-ghost{background:#fff;color:var(--brand);border:1px solid var(--brand)}
+.btn-danger{background:#fff;color:var(--red);border:1px solid var(--red)}
+.btn-sm{padding:0.22rem 0.6rem;font-size:0.75rem}
+.tabs{display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap}
+.tab{padding:0.45rem 1.1rem;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:0.86rem}
+.tab.on{border-color:var(--brand);color:var(--brand);background:#E8F4F0;font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:0.82rem}
+th,td{padding:0.5rem 0.55rem;border-bottom:1px solid #f0ede6;text-align:left;vertical-align:middle}
+th{color:#1a1a1a;font-weight:600;background:#faf9f6}
+.badge{display:inline-block;padding:0.05rem 0.5rem;border-radius:999px;font-size:0.7rem}
+.b-on{background:#E6F7EF;color:var(--green)}
+.b-off{background:#F1EFE9;color:#8a8578}
+.b-pending{background:#FEF3E2;color:var(--amber)}
+.b-done{background:#E6F7EF;color:var(--green)}
+.b-rejected{background:#FEE2E2;color:var(--red)}
+.muted{font-size:0.76rem;color:#8a8578}
+.row{display:flex;gap:0.8rem;flex-wrap:wrap}
+.row>.col{flex:1;min-width:150px}
+.thumb{width:52px;height:40px;border-radius:6px;object-fit:cover;background:#eee;display:block}
+.thumb-ph{width:52px;height:40px;border-radius:6px;background:#F1EFE9;display:flex;align-items:center;justify-content:center;font-size:0.9rem}
+.rule-row{display:grid;grid-template-columns:1.4fr 1.6fr 0.8fr 0.9fr 0.7fr;gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid #f6f3ec;font-size:0.82rem}
+.rule-row input[type=number]{width:100%}
+.toast{position:fixed;top:70px;right:20px;background:#0D5C5A;color:#fff;padding:0.6rem 1rem;border-radius:8px;font-size:0.85rem;display:none;z-index:99}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:50;overflow-y:auto}
+.modal-box{background:#fff;max-width:560px;margin:40px auto;border-radius:12px;padding:1.4rem}
+.img-prev{width:120px;height:90px;object-fit:cover;border-radius:8px;border:1px solid var(--line);background:#faf9f6}
+.filters{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;align-items:center}
+.filters select{width:auto}
+</style>
+</head>
+<body>
+<header>
+  <h1>积分商城管理</h1>
+  <span class="who" id="who"></span>
+</header>
+<main>
+  <div class="tabs">
+    <button class="tab on" data-tab="p">奖品管理</button>
+    <button class="tab" data-tab="o">兑换单</button>
+    <button class="tab" data-tab="r">积分规则</button>
+    <button class="tab" data-tab="l">积分流水</button>
+  </div>
+
+  <!-- 奖品 -->
+  <section id="tab-p" class="card">
+    <h2>奖品列表 <span class="muted" id="p-stat"></span></h2>
+    <button class="btn" id="p-new" style="margin-bottom:0.8rem">＋ 新增奖品</button>
+    <table>
+      <thead><tr><th style="width:70px">图片</th><th>名称/说明</th><th style="width:80px">积分</th><th style="width:70px">库存</th><th style="width:70px">限购</th><th style="width:70px">状态</th><th style="width:150px">操作</th></tr></thead>
+      <tbody id="p-list"></tbody>
+    </table>
+    <p class="muted" style="margin-top:8px">提示：奖品价格与库存由你自由设定；上架后学生端立即可见。图片建议 4:3、宽度 ≥600px。</p>
+  </section>
+
+  <!-- 兑换单 -->
+  <section id="tab-o" class="card" style="display:none">
+    <h2>兑换单 <span class="muted" id="o-stat"></span></h2>
+    <div class="filters">
+      <select id="o-filter" class="field-input">
+        <option value="pending">待发放</option>
+        <option value="done">已发放</option>
+        <option value="rejected">已驳回</option>
+        <option value="">全部</option>
+      </select>
+      <button class="btn btn-ghost btn-sm" id="o-export">导出兑换记录 CSV</button>
+      <span class="muted">导出按筛选结果，含姓名、学号、联系方式，便于线下发放核对</span>
+    </div>
+    <table>
+      <thead><tr><th>时间</th><th>奖品</th><th>姓名</th><th>学号</th><th>联系方式</th><th style="width:70px">积分</th><th style="width:70px">状态</th><th style="width:160px">操作</th></tr></thead>
+      <tbody id="o-list"></tbody>
+    </table>
+  </section>
+
+  <!-- 规则 -->
+  <section id="tab-r" class="card" style="display:none">
+    <h2>积分规则</h2>
+    <p class="muted" style="margin-bottom:10px">修改只影响之后的行为，不回溯历史积分；关闭某项后该项不再加分。</p>
+    <div class="rule-row" style="font-weight:600;color:#1a1a1a;background:#faf9f6;border-radius:6px;padding:6px 8px">
+      <span>规则 key</span><span>展示名</span><span>单次分</span><span>日上限</span><span>启用</span>
+    </div>
+    <div id="r-list"></div>
+    <div style="margin-top:12px"><button class="btn" id="r-save">保存规则</button></div>
+  </section>
+
+  <!-- 流水 -->
+  <section id="tab-l" class="card" style="display:none">
+    <h2>积分流水</h2>
+    <div class="filters">
+      <input id="l-user" class="field-input" style="max-width:220px" placeholder="按用户名筛选（留空看最近 200 条）" />
+      <button class="btn btn-ghost btn-sm" id="l-query">查询</button>
+    </div>
+    <table>
+      <thead><tr><th style="width:150px">时间</th><th style="width:130px">用户</th><th style="width:70px">变动</th><th>事由</th><th style="width:100px">操作人</th></tr></thead>
+      <tbody id="l-list"></tbody>
+    </table>
+    <h2 style="margin-top:1.4rem">手动调整积分</h2>
+    <p class="muted" style="margin-bottom:8px">用于线下补录、纠错；必须填写原因，操作会记入审计日志。</p>
+    <div class="row">
+      <div class="col"><label class="f">用户名</label><input id="m-user" class="field-input" placeholder="学生账号" /></div>
+      <div class="col"><label class="f">变动分值（可负）</label><input id="m-delta" type="number" class="field-input" placeholder="如 20 或 -10" /></div>
+      <div class="col" style="flex:2"><label class="f">原因</label><input id="m-reason" class="field-input" placeholder="如：纸质资料补录" /></div>
+    </div>
+    <div style="margin-top:10px"><button class="btn" id="m-go">确认调整</button></div>
+  </section>
+</main>
+
+<!-- 奖品弹窗 -->
+<div class="modal" id="p-modal">
+  <div class="modal-box">
+    <h2 id="p-modal-t" style="font-size:1rem;color:var(--brand);margin-bottom:0.6rem">新增奖品</h2>
+    <input type="hidden" id="f-id-old" />
+    <div class="row">
+      <div class="col"><label class="f">奖品 ID（唯一，英文/数字）</label><input id="f-id" class="field-input" placeholder="mug-01" /></div>
+      <div class="col"><label class="f">名称</label><input id="f-name" class="field-input" placeholder="学院定制马克杯" /></div>
+    </div>
+    <label class="f">说明（可选）</label>
+    <textarea id="f-desc" class="field-input" rows="2" placeholder="材质、尺寸、领取说明等"></textarea>
+    <div class="row">
+      <div class="col"><label class="f">积分价格</label><input id="f-points" type="number" min="1" class="field-input" value="300" /></div>
+      <div class="col"><label class="f">库存数量</label><input id="f-stock" type="number" min="0" class="field-input" value="20" /></div>
+      <div class="col"><label class="f">每人限购（0=不限）</label><input id="f-limit" type="number" min="0" class="field-input" value="1" /></div>
+      <div class="col"><label class="f">排序（小的在前）</label><input id="f-sort" type="number" class="field-input" value="0" /></div>
+    </div>
+    <label class="f">实物图片</label>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <img id="f-prev" class="img-prev" alt="预览" style="display:none" />
+      <div id="f-prev-ph" class="img-prev" style="display:flex;align-items:center;justify-content:center;color:#8a8578;font-size:0.75rem">未设置</div>
+      <input type="file" id="f-file" accept="image/*" style="font-size:0.8rem" />
+      <span class="muted" id="f-upmsg"></span>
+    </div>
+    <label class="f">或直接填图片 URL</label>
+    <input id="f-image" class="field-input" placeholder="https://…" />
+    <label class="f"><input type="checkbox" id="f-status" checked /> 上架（学生可见）</label>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px">
+      <button class="btn btn-ghost" id="p-cancel">取消</button>
+      <button class="btn" id="p-save">保存</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="/admin/auth-check.js"></script>
+<script src="/admin/admin-nav.js"></script>
+<script>
+var API = '/api/points';
+var rulesMeta = {};      // 上次从后端拿到的完整规则（编辑基准）
+var state = { prizes: [], orders: [], stats: {} };
+
+function post(action, payload) {
+  return fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(Object.assign({ action: action, token: window.ADMIN.token }, payload)) })
+    .then(function (r) { return r.json().then(function (d) { if (!r.ok) throw new Error(d.error || 'HTTP ' + r.status); return d; }); });
+}
+function toast(msg, isErr) {
+  var t = document.getElementById('toast');
+  t.textContent = msg; t.style.background = isErr ? '#dc2626' : '#0D5C5A'; t.style.display = 'block';
+  setTimeout(function () { t.style.display = 'none'; }, 2200);
+}
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+function fmt(ts) { return ts ? new Date(ts).toLocaleString('zh-CN', { hour12: false }) : ''; }
+
+document.querySelectorAll('.tab').forEach(function (tb) {
+  tb.onclick = function () {
+    document.querySelectorAll('.tab').forEach(function (x) { x.classList.remove('on'); });
+    tb.classList.add('on');
+    ['p', 'o', 'r', 'l'].forEach(function (k) { document.getElementById('tab-' + k).style.display = k === tb.dataset.tab ? '' : 'none'; });
+    if (tb.dataset.tab === 'l') queryLedger();
+  };
+});
+
+function load() {
+  return post('adminGet').then(function (d) {
+    state.prizes = d.prizes || [];
+    state.orders = d.orders || [];
+    state.stats = d.stats || {};
+    rulesMeta = d.rules || {};
+    renderP(); renderO(); renderR();
+  }).catch(function (e) { toast(e.message, true); });
+}
+
+// ── 奖品 ──
+function renderP() {
+  document.getElementById('p-stat').textContent = '共 ' + state.prizes.length + ' 件 · 待发放订单 ' + (state.stats.ordersPending || 0) + ' 单';
+  document.getElementById('p-list').innerHTML = state.prizes.map(function (p) {
+    var img = p.image ? '<img class="thumb" src="' + esc(p.image) + '" alt="">' : '<div class="thumb-ph">🎁</div>';
+    return '<tr><td>' + img + '</td>' +
+      '<td><b>' + esc(p.name) + '</b><div class="muted">' + esc(p.desc || '') + '</div><div class="muted">' + esc(p.id) + '</div></td>' +
+      '<td>' + p.points + '</td><td>' + p.stock + '</td><td>' + (p.limitPerUser || '不限') + '</td>' +
+      '<td><span class="badge b-' + (p.status === 'on' ? 'on' : 'off') + '">' + (p.status === 'on' ? '上架' : '下架') + '</span></td>' +
+      '<td><button class="btn btn-ghost btn-sm" onclick="editPrize(\'' + esc(p.id) + '\')">编辑</button> ' +
+      '<button class="btn btn-sm" style="background:' + (p.status === 'on' ? '#D97706' : '#059669') + '" onclick="togglePrize(\'' + esc(p.id) + '\')">' + (p.status === 'on' ? '下架' : '上架') + '</button> ' +
+      '<button class="btn btn-danger btn-sm" onclick="delPrize(\'' + esc(p.id) + '\')">删</button></td></tr>';
+  }).join('') || '<tr><td colspan="7" class="muted">还没有奖品，点上方「新增奖品」开始配置</td></tr>';
+}
+
+var modalEl = document.getElementById('p-modal');
+function openPrize(p) {
+  document.getElementById('p-modal-t').textContent = p ? '编辑奖品' : '新增奖品';
+  document.getElementById('f-id-old').value = p ? p.id : '';
+  document.getElementById('f-id').value = p ? p.id : '';
+  document.getElementById('f-id').disabled = !!p;
+  document.getElementById('f-name').value = p ? p.name : '';
+  document.getElementById('f-desc').value = p ? (p.desc || '') : '';
+  document.getElementById('f-points').value = p ? p.points : 300;
+  document.getElementById('f-stock').value = p ? p.stock : 20;
+  document.getElementById('f-limit').value = p ? (p.limitPerUser || 0) : 1;
+  document.getElementById('f-sort').value = p ? (p.sort || 0) : 0;
+  document.getElementById('f-image').value = p ? (p.image || '') : '';
+  document.getElementById('f-status').checked = p ? p.status === 'on' : true;
+  setPrev(p ? p.image : '');
+  document.getElementById('f-file').value = '';
+  document.getElementById('f-upmsg').textContent = '';
+  modalEl.style.display = 'block';
+}
+function setPrev(url) {
+  var img = document.getElementById('f-prev'), ph = document.getElementById('f-prev-ph');
+  if (url) { img.src = url; img.style.display = ''; ph.style.display = 'none'; }
+  else { img.style.display = 'none'; ph.style.display = 'flex'; }
+}
+document.getElementById('f-image').oninput = function () { setPrev(this.value.trim()); };
+document.getElementById('p-new').onclick = function () { openPrize(null); };
+document.getElementById('p-cancel').onclick = function () { modalEl.style.display = 'none'; };
+
+// 图片直传：presignImage → PUT → 回填 URL
+document.getElementById('f-file').onchange = function () {
+  var f = this.files && this.files[0];
+  if (!f) return;
+  var msg = document.getElementById('f-upmsg');
+  msg.textContent = '上传中…';
+  var ext = (f.name.split('.').pop() || 'jpg').toLowerCase();
+  post('presignImage', { ext: ext }).then(function (d) {
+    return fetch(d.uploadUrl, { method: 'PUT', body: f }).then(function (r) {
+      if (!r.ok) throw new Error('上传失败 HTTP ' + r.status);
+      document.getElementById('f-image').value = d.imageUrl;
+      setPrev(d.imageUrl);
+      msg.textContent = '已上传';
+    });
+  }).catch(function (e) { msg.textContent = '✗ ' + e.message; });
+};
+
+document.getElementById('p-save').onclick = function () {
+  var id = document.getElementById('f-id').value.trim();
+  var prize = {
+    id: id,
+    name: document.getElementById('f-name').value.trim(),
+    desc: document.getElementById('f-desc').value.trim(),
+    points: Number(document.getElementById('f-points').value),
+    stock: Number(document.getElementById('f-stock').value),
+    limitPerUser: Number(document.getElementById('f-limit').value),
+    sort: Number(document.getElementById('f-sort').value),
+    image: document.getElementById('f-image').value.trim(),
+    status: document.getElementById('f-status').checked ? 'on' : 'off',
+  };
+  if (!id) { toast('请填奖品 ID', true); return; }
+  if (!prize.name) { toast('请填名称', true); return; }
+  if (!(prize.points > 0)) { toast('积分价格需大于 0', true); return; }
+  post('savePrize', { prize: prize }).then(function () {
+    toast('已保存'); modalEl.style.display = 'none'; return load();
+  }).catch(function (e) { toast(e.message, true); });
+};
+function editPrize(id) { var p = state.prizes.find(function (x) { return x.id === id; }); if (p) openPrize(p); }
+function togglePrize(id) {
+  var p = state.prizes.find(function (x) { return x.id === id; }); if (!p) return;
+  p.status = p.status === 'on' ? 'off' : 'on';
+  post('savePrize', { prize: p }).then(function () { toast('已切换'); return load(); }).catch(function (e) { toast(e.message, true); });
+}
+function delPrize(id) {
+  if (!confirm('删除奖品 ' + id + '？已产生的兑换单不受影响。')) return;
+  post('deletePrize', { id: id }).then(function () { toast('已删除'); return load(); }).catch(function (e) { toast(e.message, true); });
+}
+
+// ── 兑换单 ──
+var STATUS_TXT = { pending: ['待发放', 'pending'], done: ['已发放', 'done'], rejected: ['已驳回', 'rejected'] };
+function visibleOrders() {
+  var f = document.getElementById('o-filter').value;
+  return state.orders.filter(function (o) { return !f || o.status === f; });
+}
+function renderO() {
+  var list = visibleOrders();
+  document.getElementById('o-stat').textContent = '共 ' + state.orders.length + ' 单 · 待发放 ' + (state.stats.ordersPending || 0);
+  document.getElementById('o-list').innerHTML = list.map(function (o) {
+    var st = STATUS_TXT[o.status] || [o.status, 'off'];
+    return '<tr><td class="muted">' + fmt(o.createdAt) + '</td><td>' + esc(o.prizeName) + '</td>' +
+      '<td>' + esc(o.name) + '</td><td>' + esc(o.studentId) + '</td><td class="muted">' + esc(o.contact || '—') + '</td>' +
+      '<td>' + o.points + '</td><td><span class="badge b-' + st[1] + '">' + st[0] + '</span></td>' +
+      '<td>' + (o.status === 'pending'
+        ? '<button class="btn btn-sm" onclick="handleOrder(\'' + esc(o.id) + '\',\'done\')">标记已发放</button> ' +
+          '<button class="btn btn-danger btn-sm" onclick="handleOrder(\'' + esc(o.id) + '\',\'reject\')">驳回</button>'
+        : '<span class="muted">' + (o.handledBy ? esc(o.handledBy) + '<br>' : '') + esc(o.rejectReason ? '原因：' + o.rejectReason : '') + '</span>') +
+      '</td></tr>';
+  }).join('') || '<tr><td colspan="8" class="muted">该筛选下暂无兑换单</td></tr>';
+}
+document.getElementById('o-filter').onchange = renderO;
+
+function handleOrder(orderId, op) {
+  var reason = '';
+  if (op === 'reject') {
+    reason = prompt('驳回原因（必填，会展示给学生）：');
+    if (!reason || !reason.trim()) return;
+  } else if (!confirm('确认已线下发放？')) return;
+  post('handleOrder', { orderId: orderId, op: op, reason: reason }).then(function () {
+    toast(op === 'done' ? '已标记发放' : '已驳回并退回积分'); return load();
+  }).catch(function (e) { toast(e.message, true); });
+}
+
+// CSV 导出（带 BOM，Excel 直接打开不乱码）
+document.getElementById('o-export').onclick = function () {
+  var list = visibleOrders();
+  if (!list.length) { toast('当前筛选没有记录', true); return; }
+  var head = ['兑换时间', '奖品', '消耗积分', '姓名', '学号', '联系方式', '备注', '状态', '处理时间', '处理人', '驳回原因'];
+  var rows = list.map(function (o) {
+    var st = (STATUS_TXT[o.status] || [o.status])[0];
+    return [fmt(o.createdAt), o.prizeName, o.points, o.name, o.studentId, o.contact || '', o.note || '', st, fmt(o.handledAt), o.handledBy || '', o.rejectReason || ''];
+  });
+  var csv = [head].concat(rows).map(function (r) {
+    return r.map(function (c) { return '"' + String(c).replace(/"/g, '""') + '"'; }).join(',');
+  }).join('\r\n');
+  var blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = '积分兑换记录_' + new Date().toISOString().slice(0, 10) + '.csv';
+  a.click();
+  setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+};
+
+// ── 规则 ──
+function renderR() {
+  var keys = Object.keys(rulesMeta);
+  document.getElementById('r-list').innerHTML = keys.map(function (k) {
+    var r = rulesMeta[k];
+    return '<div class="rule-row" data-key="' + esc(k) + '">' +
+      '<span class="muted" style="font-family:monospace">' + esc(k) + '</span>' +
+      '<input class="field-input r-label" value="' + esc(r.label) + '" />' +
+      '<input class="field-input r-points" type="number" min="0" value="' + r.points + '" />' +
+      '<input class="field-input r-cap" type="number" min="0" value="' + (r.dailyCap || 0) + '" />' +
+      '<label style="text-align:center"><input type="checkbox" class="r-on"' + (r.enabled ? ' checked' : '') + ' /></label>' +
+      '</div>';
+  }).join('');
+}
+document.getElementById('r-save').onclick = function () {
+  var rules = {};
+  document.querySelectorAll('#r-list .rule-row').forEach(function (row) {
+    rules[row.dataset.key] = {
+      label: row.querySelector('.r-label').value.trim(),
+      points: Number(row.querySelector('.r-points').value),
+      dailyCap: Number(row.querySelector('.r-cap').value),
+      enabled: row.querySelector('.r-on').checked,
+    };
+  });
+  post('saveRules', { rules: rules }).then(function () { toast('规则已保存'); return load(); }).catch(function (e) { toast(e.message, true); });
+};
+
+// ── 流水 ──
+function queryLedger() {
+  var user = document.getElementById('l-user').value.trim();
+  post('ledger', { user: user }).then(function (d) {
+    var list = d.ledger || [];
+    document.getElementById('l-list').innerHTML = list.map(function (l) {
+      return '<tr><td class="muted">' + fmt(l.at) + '</td><td>' + esc(l.user) + '</td>' +
+        '<td style="color:' + (l.delta < 0 ? '#dc2626' : '#059669') + ';font-weight:600">' + (l.delta > 0 ? '+' + l.delta : l.delta) + '</td>' +
+        '<td>' + esc(l.reason) + (l.ref ? ' <span class="muted">(' + esc(l.ref) + ')</span>' : '') + '</td>' +
+        '<td class="muted">' + esc(l.by || '') + '</td></tr>';
+    }).join('') || '<tr><td colspan="5" class="muted">暂无流水</td></tr>';
+  }).catch(function (e) { toast(e.message, true); });
+}
+document.getElementById('l-query').onclick = queryLedger;
+
+document.getElementById('m-go').onclick = function () {
+  var user = document.getElementById('m-user').value.trim();
+  var delta = Number(document.getElementById('m-delta').value);
+  var reason = document.getElementById('m-reason').value.trim();
+  if (!user || !delta || !reason) { toast('用户名、分值、原因都要填', true); return; }
+  post('adjust', { user: user, delta: delta, reason: reason }).then(function (d) {
+    toast('已调整，当前余额 ' + d.balance); queryLedger();
+  }).catch(function (e) { toast(e.message, true); });
+};
+
+load();
+</script>
+</body>
+</html>

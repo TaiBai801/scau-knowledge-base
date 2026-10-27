@@ -28,6 +28,18 @@ export function cosAuth(method, key) {
   return `q-sign-algorithm=sha1&q-ak=${SECRET_ID}&q-sign-time=${keyTime}&q-key-time=${keyTime}&q-header-list=host&q-url-param-list=&q-signature=${signature}`;
 }
 
+// 生成 PUT 直传的签名 URL（后台图片上传用）
+export function presignPutUrl(key, expires = 1800) {
+  const now = Math.floor(Date.now() / 1000);
+  const keyTime = `${now};${now + expires}`;
+  const signKey = hmacSha1(SECRET_KEY, keyTime);
+  const httpString = `put\n/${key}\n\nhost=${HOST}\n`;
+  const stringToSign = `sha1\n${keyTime}\n${sha1Hex(httpString)}\n`;
+  const signature = hmacSha1(signKey, stringToSign);
+  const auth = `q-sign-algorithm=sha1&q-ak=${SECRET_ID}&q-sign-time=${keyTime}&q-key-time=${keyTime}&q-header-list=host&q-url-param-list=&q-signature=${signature}`;
+  return `https://${HOST}/${encodeURI(key)}?${auth}`;
+}
+
 // 生成带查询参数的签名 GET URL（用于数据万象文档预览等 ci-process 操作）
 export function presignGetUrl(key, params) {
   const now = Math.floor(Date.now() / 1000);

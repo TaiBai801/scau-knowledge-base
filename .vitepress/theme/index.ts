@@ -27,6 +27,7 @@ import ArPageHero from './components/ArPageHero.vue'
 import MobileTabBar from './components/MobileTabBar.vue'
 import CetApp from './components/CetApp.vue'
 import CetIntro from './components/CetIntro.vue'
+import PointsShop from './components/PointsShop.vue'
 import FocusTimer from './components/FocusTimer.vue'
 import FocusPage from './components/FocusPage.vue'
 import WeeklyReport from './components/WeeklyReport.vue'
@@ -67,6 +68,7 @@ export default {
     app.component('MobileTabBar', MobileTabBar)
     app.component('CetApp', CetApp)
     app.component('CetIntro', CetIntro)
+    app.component('PointsShop', PointsShop)
     app.component('FocusTimer', FocusTimer)
     app.component('FocusPage', FocusPage)
     app.component('WeeklyReport', WeeklyReport)

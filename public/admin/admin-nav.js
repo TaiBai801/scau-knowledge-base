@@ -10,6 +10,7 @@
       { t: '题库录入', h: '/admin/bank.html' },
       { t: '内容编辑', h: '/admin/content.html' },
       { t: '四六级考场', h: '/admin/cet.html' },
+      { t: '积分商城', h: '/admin/points.html' },
     ]},
     { group: '审核', items: [
       { t: '补料审核', h: '/admin/submissions.html' },

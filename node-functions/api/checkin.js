@@ -14,6 +14,7 @@
 //        → 200 { stats: { totalDays, totalMinutes, streak, lastDate } }
 //   POST { action: 'deleteDay', token, date } → 200 { ok, stats }（误打卡修正，当天整条删除）
 import { readJsonWithEtagSigned, writeJsonIfMatch, hasSecret } from './_cos.js';
+import { awardPoints } from './points.js';
 import { verifyUserToken, json, parseBody } from './_userauth.js';
 
 const DATA_KEY = 'data/checkins.json';
@@ -108,7 +109,18 @@ export async function onRequestPost({ request }) {
 
       const { data } = await readJsonWithEtagSigned(DATA_KEY);
       const stats = calcStats((data || { records: {} }).records[username] || {});
-      return json({ ok: true, day: result, stats });
+
+      // 积分奖励：打卡按日去重；连续 7/30 天里程碑各计一次（失败不影响打卡结果）
+      let award = null;
+      try {
+        const r1 = await awardPoints(username, 'checkin_daily', date);
+        award = r1;
+        const streak = Number(stats && stats.streak) || 0;
+        if (streak >= 7) await awardPoints(username, 'streak_7', date);
+        if (streak >= 30) await awardPoints(username, 'streak_30', date);
+      } catch (e) { /* 积分故障不阻断打卡 */ }
+
+      return json({ ok: true, day: result, stats, award });
     }
 
     // ── 记录列表 ──

@@ -10,7 +10,7 @@ const { page } = useData()
 const TOOL_PAGES = [
   'nav.md', 'quiz.md', 'cards.md', 'plan.md', 'checkin.md', 'focus.md',
   'footprint.md', 'weekly.md', 'wrong.md', 'sprint.md', 'notes.md',
-  'search.md', 'gap.md', 'stories.md', 'cet.md',
+  'search.md', 'gap.md', 'stories.md', 'cet.md', 'points.md',
 ]
 
 const tabs = [

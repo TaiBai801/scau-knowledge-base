@@ -29,6 +29,7 @@
 <a href="/notes" class="nav-card">🗒️ 课程笔记 · 按课程归档可导出</a>
 <a href="/wrong" class="nav-card">🔁 错题本 · 按遗忘曲线提醒</a>
 <a href="/cet" class="nav-card">🎧 四六级模拟考场 · 全真模考+单项训练</a>
+<a href="/points" class="nav-card">🎁 积分商城 · 攒积分换文创</a>
 
 ## 社区
 
