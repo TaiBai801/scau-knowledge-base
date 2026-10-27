@@ -1,8 +1,7 @@
 // EdgeOne Pages 云函数 — 积分奖励系统（积分 / 奖品 / 兑换 / 规则）
 // 路由: /api/points
-// 数据: COS data/points.json  { rules, prizes[], balances{}, ledger[], orders[], awardedKeys[] }
-// 权限：学生 token（_userauth）→ 查看自己、兑换；工作人员 token（_auth, role>=1）→ 奖品/订单/规则/调分
-// 一致性：积分、库存、订单、流水在同一次 writeJsonIfMatch 内写入；加分与兑换均幂等
+// 数据: COS data/points.json
+// 权限：学生 token（_userauth）可查看自己与兑换；工作人员 token（_auth, role>=1）可管理
 import { readJson, readJsonWithEtag, writeJsonIfMatch, hasSecret, HOST, presignPutUrl } from './_cos.js';
 import { verifyToken, auditLog } from './_auth.js';
 import { verifyUserToken } from './_userauth.js';
@@ -28,7 +27,7 @@ export function onRequestOptions() {
   return json({ ok: true });
 }
 
-// ── 默认积分规则（后台可改）──
+// 默认积分规则（后台可改）
 export const DEFAULT_RULES = {
   checkin_daily: { label: '每日学习打卡', points: 2, dailyCap: 1, enabled: true },
   material_approved: { label: '资料被审核通过', points: 20, dailyCap: 5, enabled: true },
@@ -60,7 +59,6 @@ function seed() {
 async function loadState() {
   const data = await readJson(DATA_KEY);
   if (data && typeof data === 'object' && data.rules) {
-    // 补齐新规则 key（老数据也能用新规则）
     for (const k of Object.keys(DEFAULT_RULES)) {
       if (!data.rules[k]) data.rules[k] = JSON.parse(JSON.stringify(DEFAULT_RULES[k]));
     }
@@ -74,7 +72,7 @@ async function loadState() {
   return seed();
 }
 
-// 统一写：读 → 改 → 条件写，412 重试
+// 统一写：读 → 改 → 条件写，412 重试。fn 可返回 { stop: true, value } 提前结束（仍会写库）。
 async function mutate(fn) {
   for (let i = 0; i < 4; i++) {
     const { data, etag } = await readJsonWithEtag(DATA_KEY);
@@ -88,14 +86,15 @@ async function mutate(fn) {
     if (!state.balances) state.balances = {};
     if (!Array.isArray(state.prizes)) state.prizes = [];
     const out = await fn(state);
-    if (out && out.stop) {
-      state.meta = { version: (state.meta && state.meta.version ? state.meta.version : 0) + 1, updatedAt: Date.now() };
-      if (state.ledger.length > LEDGER_MAX) state.ledger.length = LEDGER_MAX;
+    state.meta = { version: (state.meta && state.meta.version ? state.meta.version : 0) + 1, updatedAt: Date.now() };
+    if (state.ledger.length > LEDGER_MAX) state.ledger.length = LEDGER_MAX;
     if (state.awardedKeys.length > KEY_MAX) state.awardedKeys.length = KEY_MAX;
     const r = await writeJsonIfMatch(DATA_KEY, state, etag);
-    if (r.ok) return out.value;
+    if (r.ok) {
+      if (out && out.stop) return out.value;
+      return { ok: true, state };
+    }
     if (r.status !== 412) return { error: '写入失败 ' + r.status };
-    continue;
   }
   return { error: '写入冲突（并发操作），请重试', conflict: true };
 }
@@ -104,6 +103,7 @@ function balanceOf(state, user) {
   const b = state.balances[user];
   return b && Number(b.points) ? Number(b.points) : 0;
 }
+
 function addLedger(state, user, delta, reason, ref, by) {
   const cur = balanceOf(state, user);
   const next = cur + Number(delta);
@@ -115,19 +115,18 @@ function addLedger(state, user, delta, reason, ref, by) {
   return next;
 }
 
-// ── 供其他业务函数调用的加分入口（服务端内部调用）──
-// ruleKey 见 DEFAULT_RULES；ref 用于去重（如同一份资料、同一次练习）
+// 供其他业务函数调用的加分入口（服务端内部调用）
 export async function awardPoints(user, ruleKey, ref) {
   if (!user || !ruleKey) return { ok: false, reason: '参数缺失' };
   const today = gmt8Date(0);
-  const awardKey = `${ruleKey}:${user}:${ref || today}`;
+  const awardKey = ruleKey + ':' + user + ':' + (ref || today);
   const res = await mutate((state) => {
     const rule = state.rules[ruleKey];
     if (!rule || !rule.enabled) return { stop: true, value: { ok: false, reason: '规则未启用' } };
     if (state.awardedKeys.includes(awardKey)) return { stop: true, value: { ok: false, reason: '已发放过' } };
     const cap = Number(rule.dailyCap) || 0;
     if (cap > 0) {
-      const prefix = `${ruleKey}:${user}:`;
+      const prefix = ruleKey + ':' + user + ':';
       const cnt = state.awardedKeys.filter((k) => k.startsWith(prefix) && k.endsWith(today)).length;
       if (cnt >= cap) return { stop: true, value: { ok: false, reason: '已达每日上限' } };
     }
@@ -176,7 +175,6 @@ export async function onRequestPost({ request }) {
     const who = staff ? staff.username : student.username;
     await auditLog(who, staff ? staff.role : 0, 'points:' + action, '');
 
-    // ── 学生：我的积分 / 奖品 / 我的兑换 ──
     if (action === 'get') {
       const state = await loadState();
       const me = who;
@@ -189,7 +187,6 @@ export async function onRequestPost({ request }) {
       });
     }
 
-    // ── 学生：兑换 ──
     if (action === 'redeem') {
       if (!student) return json({ error: '请使用学生账号登录后兑换' }, 403);
       const prizeId = String(body.prizeId || '').trim();
@@ -236,7 +233,6 @@ export async function onRequestPost({ request }) {
       return json({ ok: true, order: out.order, balance: out.balance, duplicated: !!out.duplicated });
     }
 
-    // ── 以下均需工作人员 ──
     if (!isStaff) return json({ error: '需要工作人员权限' }, 403);
 
     if (action === 'adminGet') {
@@ -282,7 +278,7 @@ export async function onRequestPost({ request }) {
 
     if (action === 'handleOrder') {
       const orderId = String(body.orderId || '').trim();
-      const op = String(body.op || '').trim(); // done | reject
+      const op = String(body.op || '').trim();
       const reason = String(body.reason || '').trim().slice(0, 200);
       if (!orderId || !['done', 'reject'].includes(op)) return json({ error: '参数非法' }, 400);
       if (op === 'reject' && !reason) return json({ error: '驳回需填写原因' }, 400);
@@ -295,7 +291,6 @@ export async function onRequestPost({ request }) {
         } else {
           o.status = 'rejected';
           o.rejectReason = reason;
-          // 退积分 + 退库存
           addLedger(state, o.user, Number(o.points) || 0, 'redeem_rejected:' + o.prizeName, o.prizeId, who);
           const p = state.prizes.find((x) => x.id === o.prizeId);
           if (p) {
@@ -317,7 +312,7 @@ export async function onRequestPost({ request }) {
       if (!rules || typeof rules !== 'object') return json({ error: '规则非法' }, 400);
       const res = await mutate((state) => {
         for (const k of Object.keys(rules)) {
-          if (!DEFAULT_RULES[k]) continue; // 只允许已知规则 key
+          if (!DEFAULT_RULES[k]) continue;
           const r = rules[k] || {};
           state.rules[k] = {
             label: String(r.label || DEFAULT_RULES[k].label).slice(0, 30),
@@ -359,8 +354,8 @@ export async function onRequestPost({ request }) {
 
     if (action === 'presignImage') {
       const ext = String(body.ext || 'jpg').replace(/[^a-z0-9]/gi, '').toLowerCase() || 'jpg';
-      const key = `files/prizes/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
-      return json({ uploadUrl: presignPutUrl(key), imageUrl: `https://${HOST}/${key}` });
+      const key = 'files/prizes/' + Date.now() + '-' + Math.random().toString(36).slice(2, 8) + '.' + ext;
+      return json({ uploadUrl: presignPutUrl(key), imageUrl: 'https://' + HOST + '/' + key });
     }
 
     return json({ error: 'unknown action: ' + action }, 400);
