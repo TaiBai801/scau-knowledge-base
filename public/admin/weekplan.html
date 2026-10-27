@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>学习周计划审核 · 管理后台</title>
+<style>
+:root{--brand:#0D5C5A;--bg:#F7F5F0;--card:#fff;--line:#E8E4DB;--text:#4A5568;--green:#059669;--red:#dc2626;--amber:#D97706}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:var(--brand);color:#fff;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+header h1{font-size:1.2rem;font-weight:600}
+main{max-width:1060px;margin:0 auto;padding:2rem 1rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.25rem;margin-bottom:1.25rem}
+.card h2{font-size:1rem;font-weight:600;color:var(--brand);margin-bottom:0.75rem}
+table{width:100%;border-collapse:collapse;font-size:0.82rem}
+th,td{padding:0.5rem 0.55rem;border-bottom:1px solid #f0ede6;text-align:left;vertical-align:top}
+th{color:#1a1a1a;font-weight:600;background:#faf9f6}
+.badge{display:inline-block;padding:0.05rem 0.5rem;border-radius:999px;font-size:0.7rem}
+.b-pending{background:#FEF3E2;color:var(--amber)}
+.b-approved{background:#E6F7EF;color:var(--green)}
+.b-rejected{background:#FEE2E2;color:var(--red)}
+.btn{display:inline-block;padding:0.35rem 0.85rem;border:none;border-radius:8px;font-size:0.8rem;cursor:pointer;background:var(--brand);color:#fff;font-family:inherit}
+.btn:hover{opacity:.9}
+.btn-ghost{background:#fff;color:var(--brand);border:1px solid var(--brand)}
+.btn-danger{background:#fff;color:var(--red);border:1px solid var(--red)}
+.btn-sm{padding:0.2rem 0.55rem;font-size:0.74rem}
+.muted{font-size:0.76rem;color:#8a8578}
+.filters{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.filters select{padding:0.4rem 0.6rem;border:1px solid var(--line);border-radius:8px;font-size:0.82rem;background:#fff}
+.detail{background:#faf9f6;border-radius:10px;padding:12px;margin-top:8px;font-size:0.8rem}
+.detail b{color:#1a1a1a}
+.day{display:flex;gap:10px;padding:3px 0;border-bottom:1px dashed #eee9de}
+.day span:first-child{width:42px;color:var(--brand);flex:none}
+.grid28{display:grid;grid-template-columns:repeat(14,1fr);gap:3px;margin-top:8px}
+.cell{font-size:0.6rem;text-align:center;padding:2px 0;border:1px solid var(--line);border-radius:4px;color:#8a8578;background:#fff}
+.cell.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.toast{position:fixed;top:70px;right:20px;background:#0D5C5A;color:#fff;padding:0.6rem 1rem;border-radius:8px;font-size:0.85rem;display:none;z-index:99}
+</style>
+</head>
+<body>
+<header><h1>学习周计划审核</h1><span class="who" id="who"></span></header>
+<main>
+  <section class="card">
+    <h2>计划列表 <span class="muted" id="stat"></span></h2>
+    <div class="filters">
+      <select id="filter">
+        <option value="pending">待审核</option>
+        <option value="approved">已通过</option>
+        <option value="rejected">已打回</option>
+        <option value="">全部</option>
+      </select>
+      <span class="muted">审核看两点：内容是否具体（科目+任务+时长）、数量是否够（至少 3 天）</span>
+    </div>
+    <table>
+      <thead><tr><th>周起始</th><th>学生</th><th>计划内容</th><th style="width:70px">打卡</th><th style="width:70px">状态</th><th style="width:150px">操作</th></tr></thead>
+      <tbody id="list"></tbody>
+    </table>
+  </section>
+</main>
+<div class="toast" id="toast"></div>
+<script src="/admin/auth-check.js"></script>
+<script src="/admin/admin-nav.js"></script>
+<script>
+var API='/api/weekplan', DAYS=['周一','周二','周三','周四','周五','周六','周日'], all=[];
+function post(a,p){return fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({action:a,token:window.ADMIN.token},p))}).then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d.error||('HTTP '+r.status));return d;})});}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(function(){t.style.display='none';},2200);}
+function fmt(ts){return ts?new Date(ts).toLocaleString('zh-CN',{hour12:false}):'';}
+function weekDates(start){var out=[],s=new Date(start+'T00:00:00');for(var i=0;i<28;i++){var d=new Date(s);d.setDate(s.getDate()+i);out.push(d.toISOString().slice(0,10));}return out;}
+
+function load(){
+  post('adminList').then(function(d){all=d.plans||[];document.getElementById('stat').textContent='共 '+all.length+' 份 · 待审核 '+d.pendingCount;render();}).catch(function(e){toast(e.message);});
+}
+function render(){
+  var f=document.getElementById('filter').value;
+  var list=all.filter(function(p){return !f||p.status===f;});
+  document.getElementById('list').innerHTML=list.map(function(p){
+    var days=weekDates(p.weekStart);
+    return '<tr><td>'+esc(p.weekStart)+'<div class="muted">'+esc(p.user)+'</div></td>'+
+      '<td class="muted">'+fmt(p.createdAt)+'</td>'+
+      '<td>'+p.goals.map(function(g){return '<div class="day"><span>'+DAYS[g.day]+'</span><span>'+esc(g.task)+(g.hours?'（'+g.hours+'h）':'')+'</span></div>';}).join('')+
+      (p.note?'<div class="muted">备注：'+esc(p.note)+'</div>':'')+
+      (p.status==='rejected'&&p.reason?'<div class="muted" style="color:#dc2626">打回原因：'+esc(p.reason)+'</div>':'')+
+      '<div class="grid28">'+days.map(function(d){return '<span class="cell'+(p.checkins&&p.checkins[d]?' on':'')+'" title="'+d+'">'+d.slice(5)+'</span>';}).join('')+'</div></td>'+
+      '<td>'+p.checkinCount+'/28</td>'+
+      '<td><span class="badge b-'+p.status+'">'+({pending:'待审核',approved:'已通过',rejected:'已打回'}[p.status]||p.status)+'</span></td>'+
+      '<td>'+(p.status==='pending'
+        ?'<button class="btn btn-sm" onclick="review(\''+p.id+'\',\'approve\')">通过</button> <button class="btn btn-danger btn-sm" onclick="review(\''+p.id+'\',\'reject\')">打回</button>'
+        :'<span class="muted">'+esc(p.reviewedBy||'')+'</span>')+'</td></tr>';
+  }).join('')||'<tr><td colspan="6" class="muted">该筛选下没有计划</td></tr>';
+}
+document.getElementById('filter').onchange=render;
+
+function review(id,op){
+  var reason='';
+  if(op==='reject'){reason=prompt('打回原因（必填，会展示给学生）：');if(!reason||!reason.trim())return;}
+  else if(!confirm('确认通过这份计划？通过后学生可开始每日打卡并计入积分。'))return;
+  post('review',{planId:id,op:op,reason:reason}).then(function(){toast(op==='approve'?'已通过':'已打回');load();}).catch(function(e){toast(e.message);});
+}
+load();
+</script>
+</body>
+</html>

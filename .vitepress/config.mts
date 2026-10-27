@@ -203,6 +203,7 @@ export default defineConfig({
         { text: '概念卡', link: '/cards' },
         { text: '学习计划', link: '/plan' },
         { text: '四六级考场', link: '/cet' },
+        { text: '学习周计划', link: '/weekplan' },
       ]},
       { text: '我的', items: [
         { text: '学习打卡', link: '/checkin' },
@@ -218,6 +219,7 @@ export default defineConfig({
         { text: '「Ta说」', link: '/stories' },
         { text: '转专业', link: '/transfer' },
         { text: '资料缺口榜', link: '/gap' },
+        { text: '答疑坊', link: '/qa' },
         { text: '贡献者墙', link: '/contributors' },
         { text: '贡献指南', link: '/contribute' },
       ]},

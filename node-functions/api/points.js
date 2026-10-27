@@ -39,6 +39,10 @@ export const DEFAULT_RULES = {
   first_contribution: { label: '首次贡献（一次性）', points: 50, dailyCap: 1, enabled: true },
   streak_7: { label: '连续打卡 7 天', points: 5, dailyCap: 1, enabled: true },
   streak_30: { label: '连续打卡 30 天', points: 20, dailyCap: 1, enabled: true },
+  plan_approved: { label: '周学习计划审核通过', points: 10, dailyCap: 1, enabled: true },
+  plan_checkin: { label: '周计划每日打卡', points: 2, dailyCap: 1, enabled: true },
+  qa_answer: { label: '答疑坊完成答疑', points: 15, dailyCap: 3, enabled: true },
+  qa_accept: { label: '答疑被采纳', points: 3, dailyCap: 2, enabled: true },
 };
 
 function seed() {

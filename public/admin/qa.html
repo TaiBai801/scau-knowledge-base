@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>答疑坊管理 · 管理后台</title>
+<style>
+:root{--brand:#0D5C5A;--bg:#F7F5F0;--card:#fff;--line:#E8E4DB;--text:#4A5568;--green:#059669;--red:#dc2626;--amber:#D97706}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:var(--brand);color:#fff;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+header h1{font-size:1.2rem;font-weight:600}
+main{max-width:1080px;margin:0 auto;padding:2rem 1rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.25rem;margin-bottom:1.25rem}
+.card h2{font-size:1rem;font-weight:600;color:var(--brand);margin-bottom:0.75rem}
+table{width:100%;border-collapse:collapse;font-size:0.82rem}
+th,td{padding:0.5rem 0.55rem;border-bottom:1px solid #f0ede6;text-align:left;vertical-align:top}
+th{color:#1a1a1a;font-weight:600;background:#faf9f6}
+.badge{display:inline-block;padding:0.05rem 0.5rem;border-radius:999px;font-size:0.7rem}
+.b-pending{background:#FEF3E2;color:var(--amber)}
+.b-open{background:#E8F4F0;color:var(--brand)}
+.b-claimed{background:#FEF3E2;color:var(--amber)}
+.b-answered{background:#E8F4F0;color:var(--brand)}
+.b-closed{background:#E6F7EF;color:var(--green)}
+.b-rejected{background:#FEE2E2;color:var(--red)}
+.btn{display:inline-block;padding:0.35rem 0.85rem;border:none;border-radius:8px;font-size:0.8rem;cursor:pointer;background:var(--brand);color:#fff;font-family:inherit}
+.btn-ghost{background:#fff;color:var(--brand);border:1px solid var(--brand)}
+.btn-danger{background:#fff;color:var(--red);border:1px solid var(--red)}
+.btn-sm{padding:0.2rem 0.55rem;font-size:0.74rem}
+.muted{font-size:0.76rem;color:#8a8578}
+.detail{background:#faf9f6;border-radius:8px;padding:10px;margin-top:6px;font-size:0.8rem;white-space:pre-wrap}
+.toast{position:fixed;top:70px;right:20px;background:#0D5C5A;color:#fff;padding:0.6rem 1rem;border-radius:8px;font-size:0.85rem;display:none;z-index:99}
+</style>
+</head>
+<body>
+<header><h1>答疑坊管理</h1><span class="who" id="who"></span></header>
+<main>
+  <section class="card">
+    <h2>待审核 <span class="muted" id="s-pending"></span></h2>
+    <table><thead><tr><th>标题</th><th>课程</th><th>提问人</th><th>时间</th><th>问题描述</th><th style="width:150px">操作</th></tr></thead><tbody id="pending"></tbody></table>
+  </section>
+  <section class="card">
+    <h2>进行中 / 已答 <span class="muted" id="s-active"></span></h2>
+    <table><thead><tr><th>标题</th><th>状态</th><th>接单人</th><th>提问人</th><th>答疑内容</th><th>时间</th></tr></thead><tbody id="active"></tbody></table>
+  </section>
+  <section class="card">
+    <h2>已结束 / 未通过</h2>
+    <table><thead><tr><th>标题</th><th>状态</th><th>提问人</th><th>接单人</th><th>说明</th></tr></thead><tbody id="closed"></tbody></table>
+  </section>
+</main>
+<div class="toast" id="toast"></div>
+<script src="/admin/auth-check.js"></script>
+<script src="/admin/admin-nav.js"></script>
+<script>
+var API='/api/qa';
+function post(a,p){return fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({action:a,token:window.ADMIN.token},p))}).then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d.error||('HTTP '+r.status));return d;})});}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(function(){t.style.display='none';},2200);}
+function fmt(ts){return ts?new Date(ts).toLocaleString('zh-CN',{hour12:false}):'';}
+var TXT={pending:'待审核',open:'待接单',claimed:'答疑中',answered:'待采纳',closed:'已结束',rejected:'未通过'};
+
+function load(){
+  post('adminList').then(function(d){
+    document.getElementById('s-pending').textContent='共 '+(d.counts.pending||0)+' 条';
+    document.getElementById('s-active').textContent='共 '+(d.counts.active||0)+' 条';
+    document.getElementById('pending').innerHTML=(d.pending||[]).map(function(q){
+      return '<tr><td><b>'+esc(q.title)+'</b></td><td class="muted">'+esc(q.course||'—')+'</td><td class="muted">'+esc(q.user)+'</td><td class="muted">'+fmt(q.createdAt)+'</td>'+
+        '<td><div class="detail">'+esc(q.detail)+'</div></td>'+
+        '<td><button class="btn btn-sm" onclick="review(\''+q.id+'\',\'approve\')">通过并公布</button> <button class="btn btn-danger btn-sm" onclick="review(\''+q.id+'\',\'reject\')">驳回</button></td></tr>';
+    }).join('')||'<tr><td colspan="6" class="muted">没有待审核问题</td></tr>';
+
+    document.getElementById('active').innerHTML=(d.active||[]).map(function(q){
+      return '<tr><td><b>'+esc(q.title)+'</b></td><td><span class="badge b-'+q.status+'">'+(TXT[q.status]||q.status)+'</span></td>'+
+        '<td class="muted">'+esc(q.claimBy||'—')+'</td><td class="muted">'+esc(q.user)+'</td>'+
+        '<td>'+(q.answer?'<div class="detail">'+esc(q.answer)+'</div>':'<span class="muted">—</span>')+'</td>'+
+        '<td class="muted">'+fmt(q.createdAt)+'</td></tr>';
+    }).join('')||'<tr><td colspan="6" class="muted">暂无进行中的问题</td></tr>';
+
+    document.getElementById('closed').innerHTML=(d.closed||[]).map(function(q){
+      return '<tr><td>'+esc(q.title)+'</td><td><span class="badge b-'+q.status+'">'+(TXT[q.status]||q.status)+'</span></td>'+
+        '<td class="muted">'+esc(q.user)+'</td><td class="muted">'+esc(q.claimBy||'—')+'</td>'+
+        '<td class="muted">'+esc(q.reason||(q.acceptedAt?'已采纳 '+fmt(q.acceptedAt):''))+'</td></tr>';
+    }).join('')||'<tr><td colspan="5" class="muted">暂无记录</td></tr>';
+  }).catch(function(e){toast(e.message);});
+}
+
+function review(id,op){
+  var reason='';
+  if(op==='reject'){reason=prompt('驳回原因（必填，会展示给提问者）：');if(!reason||!reason.trim())return;}
+  else if(!confirm('确认通过并公布？公布后志愿者可以接单。'))return;
+  post('review',{id:id,op:op,reason:reason}).then(function(){toast(op==='approve'?'已公布':'已驳回');load();}).catch(function(e){toast(e.message);});
+}
+load();
+</script>
+</body>
+</html>

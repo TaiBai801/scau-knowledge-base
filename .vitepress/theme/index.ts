@@ -28,6 +28,8 @@ import MobileTabBar from './components/MobileTabBar.vue'
 import CetApp from './components/CetApp.vue'
 import CetIntro from './components/CetIntro.vue'
 import PointsShop from './components/PointsShop.vue'
+import WeekPlan from './components/WeekPlan.vue'
+import QaBoard from './components/QaBoard.vue'
 import FocusTimer from './components/FocusTimer.vue'
 import FocusPage from './components/FocusPage.vue'
 import WeeklyReport from './components/WeeklyReport.vue'
@@ -69,6 +71,8 @@ export default {
     app.component('CetApp', CetApp)
     app.component('CetIntro', CetIntro)
     app.component('PointsShop', PointsShop)
+    app.component('WeekPlan', WeekPlan)
+    app.component('QaBoard', QaBoard)
     app.component('FocusTimer', FocusTimer)
     app.component('FocusPage', FocusPage)
     app.component('WeeklyReport', WeeklyReport)
