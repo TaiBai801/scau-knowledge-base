@@ -230,9 +230,8 @@ export async function onRequestPost({ request }) {
         return { stop: true, value: { ok: true, order, balance: next } };
       });
       if (res && res.error) return json({ error: res.error }, res.conflict ? 409 : 400);
-      if (res && res.value && res.value.error) return json({ error: res.value.error }, 400);
-      const out = (res && res.value) || {};
-      if (!out.ok) return json({ error: '兑换失败，请重试' }, 500);
+      const out = res || {};
+      if (!out.ok) return json({ error: out.error || '兑换失败，请重试' }, 400);
       return json({ ok: true, order: out.order, balance: out.balance, duplicated: !!out.duplicated });
     }
 
@@ -265,7 +264,7 @@ export async function onRequestPost({ request }) {
         else state.prizes.push(p);
         return { stop: true, value: { ok: true } };
       });
-      if (!res || !res.ok || !res.value || !res.value.ok) return json({ error: (res && res.error) || '保存失败' }, 500);
+      if (!res || !res.ok) return json({ error: (res && res.error) || '保存失败' }, 500);
       return json({ ok: true, prize: p });
     }
 
@@ -276,7 +275,7 @@ export async function onRequestPost({ request }) {
         state.prizes = state.prizes.filter((p) => p.id !== id);
         return { stop: true, value: { ok: true } };
       });
-      if (!res || !res.ok || !res.value || !res.value.ok) return json({ error: (res && res.error) || '删除失败' }, 500);
+      if (!res || !res.ok) return json({ error: (res && res.error) || '删除失败' }, 500);
       return json({ ok: true });
     }
 
@@ -307,9 +306,9 @@ export async function onRequestPost({ request }) {
         o.handledBy = who;
         return { stop: true, value: { ok: true, order: o } };
       });
-      if (!res || !res.ok || !res.value || !res.value.ok) return json({ error: (res && res.value && res.value.error) || (res && res.error) || '处理失败' }, 400);
+      if (!res || !res.ok) return json({ error: (res && res.error) || '处理失败' }, 400);
       await auditLog(who, staff.role, 'points:handleOrder', orderId + ' ' + op + (reason ? ' ' + reason : ''));
-      return json({ ok: true, order: res.value.order });
+      return json({ ok: true, order: res.order });
     }
 
     if (action === 'saveRules') {
@@ -328,7 +327,7 @@ export async function onRequestPost({ request }) {
         }
         return { stop: true, value: { ok: true } };
       });
-      if (!res || !res.ok || !res.value || !res.value.ok) return json({ error: (res && res.error) || '保存失败' }, 500);
+      if (!res || !res.ok) return json({ error: (res && res.error) || '保存失败' }, 500);
       await auditLog(who, staff.role, 'points:saveRules', JSON.stringify(rules).slice(0, 300));
       return json({ ok: true });
     }
@@ -345,9 +344,9 @@ export async function onRequestPost({ request }) {
         if (next < 0) return { stop: true, value: { error: '调整后余额不能为负' } };
         return { stop: true, value: { ok: true, balance: next } };
       });
-      if (!res || !res.ok || !res.value || !res.value.ok) return json({ error: (res && res.value && res.value.error) || (res && res.error) || '调整失败' }, 400);
+      if (!res || !res.ok) return json({ error: (res && res.error) || '调整失败' }, 400);
       await auditLog(who, staff.role, 'points:adjust', user + ' ' + delta + ' ' + reason);
-      return json({ ok: true, balance: res.value.balance });
+      return json({ ok: true, balance: res.balance });
     }
 
     if (action === 'ledger') {
