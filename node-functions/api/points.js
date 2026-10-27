@@ -88,13 +88,14 @@ async function mutate(fn) {
     if (!state.balances) state.balances = {};
     if (!Array.isArray(state.prizes)) state.prizes = [];
     const out = await fn(state);
-    if (out && out.stop) return out.value;
-    state.meta = { version: (state.meta && state.meta.version ? state.meta.version : 0) + 1, updatedAt: Date.now() };
-    if (state.ledger.length > LEDGER_MAX) state.ledger.length = LEDGER_MAX;
+    if (out && out.stop) {
+      state.meta = { version: (state.meta && state.meta.version ? state.meta.version : 0) + 1, updatedAt: Date.now() };
+      if (state.ledger.length > LEDGER_MAX) state.ledger.length = LEDGER_MAX;
     if (state.awardedKeys.length > KEY_MAX) state.awardedKeys.length = KEY_MAX;
     const r = await writeJsonIfMatch(DATA_KEY, state, etag);
-    if (r.ok) return { ok: true, state };
+    if (r.ok) return out.value;
     if (r.status !== 412) return { error: '写入失败 ' + r.status };
+    continue;
   }
   return { error: '写入冲突（并发操作），请重试', conflict: true };
 }

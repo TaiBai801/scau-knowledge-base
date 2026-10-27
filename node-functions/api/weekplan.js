@@ -37,7 +37,13 @@ async function mutate(fn) {
     const { data, etag } = await readJsonWithEtag(DATA_KEY);
     const state = data && Array.isArray(data.plans) ? data : seed();
     const out = await fn(state);
-    if (out && out.stop) return out.value;
+    if (out && out.stop) {
+      state.meta = { version: ((state.meta && state.meta.version) || 0) + 1, updatedAt: Date.now() };
+      const r = await writeJsonIfMatch(DATA_KEY, state, etag);
+      if (r.ok) return out.value;
+      if (r.status !== 412) return { error: '写入失败 ' + r.status };
+      continue;
+    }
     state.meta = { version: ((state.meta && state.meta.version) || 0) + 1, updatedAt: Date.now() };
     const r = await writeJsonIfMatch(DATA_KEY, state, etag);
     if (r.ok) return { ok: true };
