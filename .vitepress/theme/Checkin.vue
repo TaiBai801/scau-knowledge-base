@@ -1,4 +1,5 @@
 <script setup>
+import { trackFootprint } from './lib/footprint'
 // 学习打卡 — 独立页面组件（/checkin），与现有页面零耦合
 // 依赖：./userauth.js（登录态）、./leaderboard.js（排行榜上报契约）、./AuthPanel.vue（登录 UI）
 //
@@ -98,6 +99,7 @@ async function doCheckin() {
     days.value[today.value] = { minutes: data.day.minutes, count: data.day.count, note: note.value.trim() }
     stats.value = data.stats
     justChecked.value = true
+    trackFootprint({ kind: 'checkin', n: minutes.value, ref: '每日打卡' })
     note.value = ''
 
     // 排行榜上报：打卡成功后 fire-and-forget 调用一次，失败静默重试 1 次（见 leaderboard.js 契约）

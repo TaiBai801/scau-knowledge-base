@@ -188,20 +188,17 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '课程', items: [
+        { text: '课程地图', link: '/map' },
         { text: '电子科学与技术', link: '/majors/dianzikexue/' },
         { text: '电气工程及其自动化', link: '/majors/dianqigongcheng/' },
         { text: '农业机械化及其自动化', link: '/majors/nongyejixiehua/' },
         { text: '农业工程', link: '/majors/nongyegongcheng/' },
         { text: '机器人工程', link: '/majors/jiqirengongcheng/' },
-        { text: '共享课程', link: '/majors/shared/' },
-        { text: '课程地图', link: '/map' },
       ]},
       { text: '学习', items: [
         { text: '全站检索', link: '/search' },
         { text: '组题练习', link: '/quiz' },
-        { text: '考试冲刺', link: '/sprint' },
         { text: '概念卡', link: '/cards' },
-        { text: '学习计划', link: '/plan' },
         { text: '四六级考场', link: '/cet' },
         { text: '学习周计划', link: '/weekplan' },
       ]},

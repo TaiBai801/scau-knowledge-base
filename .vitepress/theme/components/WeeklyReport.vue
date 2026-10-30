@@ -70,6 +70,8 @@ function rangeStats(start, end) {
     focusUnits: units.length,
     courses: sum.courses,
     quizQuestions: sum.quizQuestions > 0 ? sum.quizQuestions : quizHist,
+    checkinDays: sum.checkinDays || 0,
+    checkinMinutes: sum.checkinMinutes || 0,
     newWrong,
     activeDays: sum.days,
   }
@@ -206,6 +208,7 @@ const cards = computed(() => {
     { key: 'courses', label: '访问课程', unit: '门', cur: cur.courses, prev: prev.courses, better: 'up' },
     { key: 'quiz', label: '做题数', unit: '道', cur: cur.quizQuestions, prev: prev.quizQuestions, better: 'up' },
     { key: 'wrong', label: '新增错题', unit: '道', cur: cur.newWrong, prev: prev.newWrong, better: 'down' },
+    { key: 'checkin', label: '打卡天数', unit: '天', cur: cur.checkinDays, prev: prev.checkinDays, better: 'up' },
   ]
 })
 

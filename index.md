@@ -57,7 +57,7 @@ features:
       dark: /icons/featured-1.svg
       alt: 组题
     title: 组题练习
-    details: 按章节随机抽题、客观题自动判分，错题和薄弱知识点自动归集。
+    details: 按章节随机抽题、客观题自动判分；内置「考前冲刺」模式，错题和薄弱知识点自动归集。
     link: /quiz
   - icon:
       light: /icons/featured-2.svg

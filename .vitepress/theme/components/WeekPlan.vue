@@ -1,4 +1,5 @@
 <script setup>
+import { trackFootprint } from '../lib/footprint'
 // 学习周计划 · 学生端
 // 流程：录入一周计划 → 学风建设部审核 → 通过后每日打卡（四周）→ 积分/二课分
 import { computed, onMounted, reactive, ref } from 'vue'
@@ -64,6 +65,19 @@ async function submit() {
   } catch (e) { form.err = e.message } finally { form.submitting = false }
 }
 
+function autoGen() {
+  form.err = ''
+  let sel = null
+  try { sel = JSON.parse(localStorage.getItem('my_term_v1') || 'null') } catch (e) { sel = null }
+  const list = sel && Array.isArray(sel.courses) ? sel.courses.filter(Boolean) : []
+  if (!list.length) { form.err = '先在「我的本学期」选好本学期课程，再回来一键生成'; return }
+  form.goals = DAYS.map((_, i) => ({ day: i, task: '', hours: 0 }))
+  ;[0, 1, 2, 3, 4].forEach((d, i) => {
+    form.goals[d] = { day: d, task: list[i % list.length] + ' 复习', hours: 2 }
+  })
+  form.weekStart = mondayOf()
+}
+
 const checkinBusy = ref(false)
 const checkinMsg = ref('')
 async function doCheckin(p) {
@@ -71,6 +85,7 @@ async function doCheckin(p) {
   try {
     const d = await post({ action: 'checkin', planId: p.id, date: today.value, minutes: 0 })
     checkinMsg.value = '打卡成功' + (d.award && d.award.ok ? '，+' + d.award.points + ' 积分' : '')
+    trackFootprint({ kind: 'checkin', ref: '周计划打卡' })
     await load()
   } catch (e) { checkinMsg.value = e.message } finally { checkinBusy.value = false }
 }
@@ -133,6 +148,7 @@ onMounted(async () => { await restoreUser(); if (loggedIn.value) await load(); e
       <!-- 录入表单 -->
       <section v-if="showForm" class="wp-card">
         <h2>录入周计划</h2>
+        <div style="margin:0 0 4px"><ArBtn variant="ghost" size="sm" @click="autoGen">⚡ 从我的本学期自动生成</ArBtn><span class="wp-muted" style="margin-left:8px">按周一到周五轮流排课，每天 2 小时，可再手动改</span></div>
         <label class="wp-f">周起始日期（周一）</label>
         <input v-model="form.weekStart" type="date" class="wp-input" />
         <label class="wp-f">每天打算做什么（至少 3 天，写具体：科目 + 任务 + 时长）</label>

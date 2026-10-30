@@ -4,6 +4,11 @@ import { trackFootprint } from './lib/footprint'
 import { recordAnswer } from './lib/spaced'
 import ArBtn from './components/ArBtn.vue'
 import ArPageHero from './components/ArPageHero.vue'
+import SprintPack from './components/SprintPack.vue'
+import { useRoute, withBase } from 'vitepress'
+
+const route = useRoute()
+const mode = computed(() => String((route.query && route.query.mode) || ''))
 
 // ============ 数据 ============
 const bank = ref({})          // { 课程名: { course, code, questions:[] } }
@@ -387,6 +392,13 @@ const progress = computed(() => answers.value.filter(a => {
     <!-- Hero -->
     <ArPageHero center tag="随学随测" title="组题练习" sub="按课程章节随机抽题组卷，客观题自动判分，主观题对答案自评，错题与薄弱知识点自动归集。" />
 
+    <div class="quiz-modes">
+      <a :href="withBase('/quiz')" class="quiz-mode" :class="{ on: mode !== 'sprint' }">自由组题</a>
+      <a :href="withBase('/quiz?mode=sprint')" class="quiz-mode" :class="{ on: mode === 'sprint' }">考前冲刺</a>
+    </div>
+    <SprintPack v-if="mode === 'sprint'" />
+    <template v-else>
+
     <div class="quiz-inner">
       <!-- 加载中 -->
       <div v-if="loading" class="quiz-state">题库加载中…</div>
@@ -610,6 +622,7 @@ const progress = computed(() => answers.value.filter(a => {
         </div>
       </div>
     </div>
+    </template>
   </div>
 </template>
 
@@ -778,4 +791,7 @@ const progress = computed(() => answers.value.filter(a => {
   .quiz-result-head { flex-direction: column; text-align: center; }
   .quiz-mastery-name { flex: 0 0 45%; }
 }
+.quiz-modes { display: flex; gap: 8px; justify-content: center; margin: 0 0 14px; }
+.quiz-mode { padding: 6px 18px; border-radius: 999px; border: 1px solid var(--line); font-size: 0.82rem; color: var(--text-muted); text-decoration: none; }
+.quiz-mode.on { border-color: var(--brand); color: var(--brand); background: var(--brand-pale); font-weight: 600; }
 </style>

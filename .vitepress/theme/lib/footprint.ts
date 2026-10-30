@@ -7,7 +7,7 @@
 // 只在用户自己的浏览器里记录，不上传、不排名。
 import { KEYS, read, write, todayISO } from './storage'
 
-export type FootprintKind = 'view' | 'download' | 'quiz' | 'focus' | 'note' | 'card'
+export type FootprintKind = 'view' | 'download' | 'quiz' | 'focus' | 'note' | 'card' | 'checkin'
 
 export const KIND_LABEL: Record<FootprintKind, string> = {
   view: '浏览课程',
@@ -16,6 +16,7 @@ export const KIND_LABEL: Record<FootprintKind, string> = {
   focus: '专注单元',
   note: '记了笔记',
   card: '自测卡片',
+  checkin: '学习打卡',
 }
 
 export interface FootprintEvent {
@@ -62,6 +63,9 @@ export interface FootprintSummary {
   quizQuestions: number
   focusMinutes: number
   focusUnits: number
+  checkinCount: number
+  checkinDays: number
+  checkinMinutes: number
   days: number
   byDate: Record<string, number>
   courseList: Array<{ course: string; code?: string; count: number; lastAt: number }>
@@ -71,7 +75,7 @@ export function summarizeFootprint(
   events: FootprintEvent[] = readFootprint(),
   sinceTs = 0
 ): FootprintSummary {
-  const byKind = { view: 0, download: 0, quiz: 0, focus: 0, note: 0, card: 0 } as Record<
+  const byKind = { view: 0, download: 0, quiz: 0, focus: 0, note: 0, card: 0, checkin: 0 } as Record<
     FootprintKind,
     number
   >
@@ -80,6 +84,8 @@ export function summarizeFootprint(
   let quizQuestions = 0
   let focusMinutes = 0
   let focusUnits = 0
+  let checkinMinutes = 0
+  const checkinDates = new Set<string>()
 
   for (const e of events) {
     if (e.ts < sinceTs) continue
@@ -90,6 +96,10 @@ export function summarizeFootprint(
     if (e.kind === 'focus') {
       focusUnits += 1
       focusMinutes += Number(e.n) || 0
+    }
+    if (e.kind === 'checkin') {
+      checkinMinutes += Number(e.n) || 0
+      checkinDates.add(e.date)
     }
     if (e.course) {
       const cur = courseMap.get(e.course)
@@ -115,6 +125,9 @@ export function summarizeFootprint(
     quizQuestions,
     focusMinutes,
     focusUnits,
+    checkinCount: byKind.checkin,
+    checkinDays: checkinDates.size,
+    checkinMinutes,
     days: Object.keys(byDate).length,
     byDate,
     courseList,
