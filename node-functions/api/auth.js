@@ -116,11 +116,13 @@ export async function onRequestPost({ request }) {
 
     if (action === 'getLogs') {
       const data = (await readJsonSigned(LOG_KEY)) || { logs: [] };
-      const all = Array.isArray(data.logs) ? data.logs : [];
+      let all = Array.isArray(data.logs) ? data.logs : [];
+      const user = String(body.user || '').trim().toLowerCase();
+      if (user) all = all.filter((l) => String(l.username || '').toLowerCase().includes(user));
       const offset = Math.max(0, Math.floor(Number(body.offset) || 0));
       const limit = Math.min(200, Math.max(1, Math.floor(Number(body.limit) || 50)));
       const page = all.slice(offset, offset + limit);
-      return json({ logs: page, total: all.length, offset, limit, hasMore: offset + page.length < all.length });
+      return json({ logs: page, total: all.length, offset, limit, user, hasMore: offset + page.length < all.length });
     }
 
     return json({ error: 'unknown action: ' + action }, 400);

@@ -37,8 +37,15 @@ th{color:#94a3b8;font-weight:500}
 .log-day-h{display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;padding:8px 12px;background:#faf9f6;border:1px solid #f0ede6;border-radius:8px;font-size:.84rem;font-weight:600;color:#0D5C5A;user-select:none}
 .log-day-h:hover{background:#f4efe6}
 .log-day-h .cnt{color:#8a8578;font-weight:400;font-size:.76rem}
-.log-day-body{padding:2px 4px 6px;border-left:2px solid #E8E4DB;margin:4px 0 0 6px}
+.log-day-body{padding:2px 4px 6px;border-left:2px solid #E8E4DB;margin:4px 0 0 6px;max-height:240px;overflow-y:auto;overscroll-behavior:contain}
+.log-day-body::-webkit-scrollbar{width:8px}
+.log-day-body::-webkit-scrollbar-thumb{background:#ddd6c9;border-radius:4px}
+.log-day-body::-webkit-scrollbar-thumb:hover{background:#c9c0ae}
 .log-day-body .log-item{padding:.4rem 0 .4rem .6rem}
+.log-day-more{position:sticky;bottom:0;background:linear-gradient(transparent,#fff 35%);text-align:center;font-size:.72rem;color:#94a3b8;padding:6px 0 2px}
+.log-search{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.log-search input{padding:.45rem .7rem;border:1px solid var(--line);border-radius:8px;font-size:.82rem;min-width:220px;font-family:inherit}
+.log-search input:focus{outline:2px solid var(--brand);border-color:var(--brand)}
 .hint{font-size:.8rem;color:#94a3b8;margin-bottom:.5rem}
 </style>
 </head>
@@ -75,7 +82,12 @@ if (window.ADMIN && Number(window.ADMIN.role) !== 2) { location.replace('/admin/
   <div class="card">
     <div class="log-toolbar">
       <span class="hint" id="logMeta">加载中…</span>
-      <button class="btn" id="logMore" onclick="moreLogs()" style="display:none">加载更多</button>
+      <div class="log-search">
+        <input id="logUser" placeholder="按用户名搜索，如 admin202405801" onkeydown="if(event.key==='Enter')searchLogs()" />
+        <button class="btn" onclick="searchLogs()">搜索</button>
+        <button class="btn btn-ghost" onclick="clearLogSearch()">清除</button>
+        <button class="btn" id="logMore" onclick="moreLogs()" style="display:none">加载更多</button>
+      </div>
     </div>
     <div id="logList"><div class="hint">加载中…</div></div>
   </div>
@@ -118,7 +130,7 @@ function removeAdmin(u){
   if(!confirm('确认删除管理员「'+u+'」？')) return;
   call('removeAdmin',{username:u}).then(function(d){ if(d.error){ alert(d.message||d.error); } loadAdmins(); });
 }
-var LOG={offset:0,limit:50,total:0,logs:[],open:{},busy:false};
+var LOG={offset:0,limit:50,total:0,logs:[],open:{},busy:false,user:''};
 function dayKey(t){var d=new Date(t);return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
 function dayLabel(k){
   var w=['日','一','二','三','四','五','六'][new Date(k+'T00:00:00').getDay()];
@@ -143,10 +155,11 @@ function renderLogs(){
     var items=g[k].map(function(l){
       return '<div class="log-item"><span class="log-time">'+fmt(l.time)+'</span> <b>'+esc(l.username)+'</b>('+(l.role===2?'二级':'一级')+') '+esc(l.action)+(l.detail?' · '+esc(l.detail):'')+'</div>';
     }).join('');
-    return '<div class="log-day"><div class="log-day-h" onclick="toggleDay(\''+k+'\')"><span>'+(open?'▾':'▸')+' '+dayLabel(k)+'</span><span class="cnt">'+g[k].length+' 条</span></div>'+(open?'<div class="log-day-body">'+items+'</div>':'')+'</div>';
+    var tip=(open&&g[k].length>8)?'<div class="log-day-more">↑↓ 本日记录较多，可在框内上下滚动</div>':'';
+    return '<div class="log-day"><div class="log-day-h" onclick="toggleDay(\''+k+'\')"><span>'+(open?'▾':'▸')+' '+dayLabel(k)+'</span><span class="cnt">'+g[k].length+' 条</span></div>'+(open?'<div class="log-day-body">'+items+tip+'</div>':'')+'</div>';
   }).join('');
   var meta=document.getElementById('logMeta');
-  meta.textContent='已显示 '+LOG.logs.length+' / 共 '+LOG.total+' 条 · 按日期折叠，点击日期展开';
+  meta.textContent=(LOG.user?'筛选「'+LOG.user+'」：':'')+'已显示 '+LOG.logs.length+' / 共 '+LOG.total+' 条 · 按日期折叠，点击日期展开，单日可上下滚动';
   var btn=document.getElementById('logMore');
   btn.style.display=LOG.offset<LOG.total?'inline-block':'none';
   btn.textContent='加载更多（还有 '+(LOG.total-LOG.logs.length)+' 条）';
@@ -155,7 +168,7 @@ function fetchLogs(reset){
   if(LOG.busy) return;
   LOG.busy=true;
   if(reset){ LOG.offset=0; LOG.logs=[]; LOG.open={}; }
-  call('getLogs',{offset:LOG.offset,limit:LOG.limit}).then(function(d){
+  call('getLogs',{offset:LOG.offset,limit:LOG.limit,user:LOG.user}).then(function(d){
     LOG.busy=false;
     var el=document.getElementById('logList');
     if(d.error){ el.innerHTML='<div class="hint">'+esc(d.error)+'</div>'; document.getElementById('logMore').style.display='none'; return; }
@@ -168,6 +181,15 @@ function fetchLogs(reset){
 }
 function moreLogs(){ fetchLogs(false); }
 function loadLogs(){ fetchLogs(true); }
+function searchLogs(){
+  LOG.user=document.getElementById('logUser').value.trim();
+  fetchLogs(true);
+}
+function clearLogSearch(){
+  document.getElementById('logUser').value='';
+  LOG.user='';
+  fetchLogs(true);
+}
 loadAdmins(); loadLogs();
 </script>
 </body>
