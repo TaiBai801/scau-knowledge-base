@@ -234,7 +234,7 @@ function fmtTs(ts) {
       <div class="fp-now-item">
         <span class="fp-now-num">{{ todayUnits }}</span>
         <span class="fp-now-label">个专注单元已完成</span>
-        <a href="/plan">看学习计划 →</a>
+        <a href="/weekplan">看本周计划 →</a>
       </div>
       <div class="fp-now-item">
         <span class="fp-now-label fp-now-label--strong">今天打卡了吗</span>

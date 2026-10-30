@@ -16,9 +16,8 @@
 
 <a href="/search" class="nav-card">🔍 全站检索 · 只记得知识点也能找到课</a>
 <a href="/quiz" class="nav-card">📝 组题练习 · 章节抽题自动判分</a>
-<a href="/sprint" class="nav-card">⚡ 考试冲刺 · 章节排序 + 考前清单</a>
 <a href="/cards" class="nav-card">🃏 概念卡 · 三档自测</a>
-<a href="/plan" class="nav-card">📅 学习计划 · 多课混排自动排期</a>
+<a href="/weekplan" class="nav-card">🗓️ 学习周计划 · 周计划审核 + 每日打卡</a>
 
 ## 我的
 
@@ -30,7 +29,6 @@
 <a href="/wrong" class="nav-card">🔁 错题本 · 按遗忘曲线提醒</a>
 <a href="/cet" class="nav-card">🎧 四六级模拟考场 · 全真模考+单项训练</a>
 <a href="/points" class="nav-card">🎁 积分商城 · 攒积分换文创</a>
-<a href="/weekplan" class="nav-card">🗓️ 学习周计划 · 周计划审核 + 每日打卡</a>
 <a href="/qa" class="nav-card">🙋 答疑坊 · 发难题，志愿者接单答疑</a>
 
 ## 社区

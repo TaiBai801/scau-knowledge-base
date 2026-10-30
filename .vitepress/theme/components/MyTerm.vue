@@ -568,9 +568,8 @@ onMounted(async () => {
             <span class="mt-more">
               <ArBtn class="mt-learn" variant="ghost" size="sm">学习 ▾</ArBtn>
               <span class="mt-menu">
-                <a v-if="c.syllabus > 0" :href="'/plan?course=' + encodeURIComponent(c.name)">学习计划</a>
+                <a v-if="c.syllabus > 0" :href="'/weekplan?course=' + encodeURIComponent(c.name)">排进本周计划</a>
                 <a v-if="c.bank > 0" :href="'/quiz?course=' + encodeURIComponent(c.name)">组题练习</a>
-                <a v-if="c.bank > 0" :href="'/sprint?course=' + encodeURIComponent(c.name)">考试冲刺</a>
                 <a :href="coursePath(c.code)">课程页</a>
               </span>
             </span>

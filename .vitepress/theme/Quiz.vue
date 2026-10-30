@@ -517,7 +517,7 @@ const progress = computed(() => answers.value.filter(a => {
         </div>
 
         <div class="quiz-empty-actions">
-          <a class="quiz-btn" :href="`/plan?course=${encodeURIComponent(config.course)}`">📖 去生成学习计划</a>
+          <a class="quiz-btn" :href="`/weekplan?course=${encodeURIComponent(config.course)}`">📖 排进本周计划</a>
           <a class="quiz-btn quiz-btn-ghost" href="/contribute">✍️ 投稿题目</a>
         </div>
 

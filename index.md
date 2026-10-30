@@ -21,9 +21,9 @@ features:
       light: /icons/books.svg
       dark: /icons/books-dark.svg
       alt: 课程
-    title: 课程总览
-    details: 按专业和学期分类浏览五专业 [[m:courses.planEntries|plus]] 门课程，找课只需三步。
-    link: /map
+    title: 学习周计划
+    details: 录入一周计划、学风建设部审核、每日打卡，四周一循环；可从「我的本学期」一键生成。
+    link: /weekplan
   - icon:
       light: /icons/compass.svg
       dark: /icons/compass-dark.svg

@@ -3,6 +3,7 @@ import { trackFootprint } from '../lib/footprint'
 // 学习周计划 · 学生端
 // 流程：录入一周计划 → 学风建设部审核 → 通过后每日打卡（四周）→ 积分/二课分
 import { computed, onMounted, reactive, ref } from 'vue'
+import { useRoute } from 'vitepress'
 import { userAuth, restoreUser } from '../userauth.js'
 import AuthPanel from '../AuthPanel.vue'
 import ArBtn from './ArBtn.vue'
@@ -11,6 +12,7 @@ import ArLoading from './ArLoading.vue'
 import ArError from './ArError.vue'
 
 const API = '/api/weekplan'
+const route = useRoute()
 const loggedIn = computed(() => !!userAuth.user)
 const DAYS = ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
 const STATUS = { pending: ['待审核', 'warning'], approved: ['已通过', 'success'], rejected: ['已打回', 'danger'] }
@@ -99,7 +101,21 @@ function weekDates(start) {
 }
 const fmt = (ts) => (ts ? new Date(ts).toLocaleString('zh-CN', { hour12: false }) : '')
 
-onMounted(async () => { await restoreUser(); if (loggedIn.value) await load(); else loading.value = false })
+function prefillFromQuery() {
+  const c = String((route.query && route.query.course) || '').trim()
+  if (!c) return
+  form.weekStart = mondayOf()
+  form.goals = DAYS.map((_, i) => ({ day: i, task: '', hours: 0 }))
+  ;[0, 1, 2, 3, 4].forEach((d) => { form.goals[d] = { day: d, task: c + ' 复习', hours: 2 } })
+  showForm.value = true
+}
+
+onMounted(async () => {
+  await restoreUser()
+  if (loggedIn.value) await load()
+  else loading.value = false
+  prefillFromQuery()
+})
 </script>
 
 <template>
@@ -194,7 +210,7 @@ onMounted(async () => { await restoreUser(); if (loggedIn.value) await load(); e
         </template>
       </section>
 
-      <p class="wp-foot">计划由学风建设部审核（质量与数量），通过后每日打卡、连续四周；完成情况计入二课赋分与网站积分。</p>
+      <p class="wp-foot">计划由学风建设部审核（质量与数量），通过后每日打卡、连续四周；完成情况计入二课赋分与网站积分。<br/>想自己细致排期（多课混排、按考试日期倒推）？<a href="/plan" style="color:var(--brand)">用学习计划（手动）</a></p>
     </template>
   </div>
 </template>
