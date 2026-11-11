@@ -1,8 +1,7 @@
 <script setup>
-// 目标计划 —— 以「大目标」为分区的长期学习计划板
-// 结构：大目标(goals[]) → 多层任务(tasks[], parentId 扁平存) → 每日安排(daily[date][])
-// 数据：本机 kx_goals_v1 缓存 + /api/user dataPut/dataGet 云端绑定（登录即用，自动同步）
-// 布局：三栏（大目标 | 任务层级 | 每日安排⇅备注），分栏条可拖拽调宽，尺寸存 kx_goals_layout_v1
+// 目标计划 —— 大目标分区 + 多层任务 + 每日排期 + 备注（数据绑定学生云端账户）
+// 布局：左侧「大目标」栏（可拖宽）｜ 右侧三标签页（任务 / 每日 / 备注），底部可拖高度
+// 存储：本机 kx_goals_v1 缓存 + /api/user dataPut/dataGet（key=goals）自动同步
 import { ref, reactive, computed, onMounted } from 'vue'
 import { userAuth, restoreUser, getToken } from '../userauth.js'
 import { read, write } from '../lib/storage'
@@ -21,8 +20,15 @@ const activeId = ref('')
 const selDate = ref(todayISO())
 const syncMsg = ref('')
 const syncing = ref(false)
+const tab = ref('tasks')      // tasks | daily | notes
+const showMeta = ref(false)   // 目标设置折叠
 
-const lay = reactive(read(LS_LAYOUT, { c1: 20, c2: 34, r1: 62 }))
+// 旧版布局键是 {c1,c2,r1}，这里做一次兼容迁移，避免读到旧值后宽度变 NaN
+const savedLay = read(LS_LAYOUT, {}) || {}
+const lay = reactive({
+  side: clamp(Number(savedLay.side) || 250, 190, 420),
+  h: clamp(Number(savedLay.h) || 640, 430, 860),
+})
 const boardEl = ref(null)
 
 // ── 工具 ──
@@ -30,18 +36,13 @@ function todayISO() {
   const d = new Date()
   return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0')
 }
-function uid() {
-  return 'g' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6)
-}
-function hhmm(ts) {
-  const d = new Date(ts)
-  return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0')
-}
+function uid() { return 'g' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6) }
+function hhmm(ts) { const d = new Date(ts); return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0') }
 function clamp(v, a, b) { return Math.min(b, Math.max(a, v)) }
 
 const activeGoal = computed(() => goals.value.find((g) => g.id === activeId.value) || null)
 
-// ── 任务树：扁平存 parentId，展示前按 DFS 归一化顺序 ──
+// ── 任务树（扁平 parentId，展示前 DFS 归一化）──
 function normalizeTasks(list) {
   const children = {}
   list.forEach((t) => { const k = t.parentId || ''; (children[k] = children[k] || []).push(t) })
@@ -52,11 +53,7 @@ function normalizeTasks(list) {
 }
 function depthOf(list, t) {
   let d = 0, p = t.parentId
-  while (p) {
-    const pt = list.find((x) => x.id === p)
-    if (!pt) break
-    d++; p = pt.parentId
-  }
+  while (p) { const pt = list.find((x) => x.id === p); if (!pt) break; d++; p = pt.parentId }
   return d
 }
 function taskProgress(g, taskId) {
@@ -67,15 +64,16 @@ function taskProgress(g, taskId) {
   return n ? Math.round(sum / n) : 0
 }
 
-// ── 大目标 CRUD ──
+// ── 大目标 ──
 function addGoal() {
   const g = {
-    id: uid(), title: '新目标', desc: '', targetDate: '', taskGoal: '',
-    motto: '', mottos: { goals: '', tasks: '', daily: '', notes: '' },
+    id: uid(), title: '新目标', desc: '', targetDate: '', taskGoal: '', motto: '',
+    mottos: { goals: '', tasks: '', daily: '', notes: '' },
     notes: '', tasks: [], daily: {}, createdAt: Date.now(), updatedAt: Date.now(),
   }
   goals.value.push(g)
   activeId.value = g.id
+  showMeta.value = true
   persist()
 }
 function removeGoal(id) {
@@ -85,8 +83,9 @@ function removeGoal(id) {
   persist()
 }
 
-// ── 任务 CRUD 与层级调整 ──
+// ── 任务 ──
 function addTask(g, parentId) {
+  if (!g) return
   g.tasks.push({ id: uid(), title: '新任务', parentId: parentId || null })
   g.tasks = normalizeTasks(g.tasks)
   persist()
@@ -104,8 +103,8 @@ function removeTask(g, id) {
 }
 function moveTask(g, id, dir) {
   const rows = g.tasks
-  const i = rows.findIndex((t) => t.id === id)
-  const t = rows[i]
+  const t = rows.find((x) => x.id === id)
+  if (!t) return
   const siblings = rows.filter((x) => (x.parentId || '') === (t.parentId || ''))
   const pos = siblings.findIndex((x) => x.id === id)
   const swapWith = siblings[pos + dir]
@@ -119,8 +118,7 @@ function indentTask(g, id) {
   const i = rows.findIndex((t) => t.id === id)
   const t = rows[i]
   const prev = rows[i - 1]
-  if (!prev) return
-  if ((prev.parentId || '') !== (t.parentId || '')) return // 只缩进到同级前一个任务下
+  if (!prev || (prev.parentId || '') !== (t.parentId || '')) return
   t.parentId = prev.id
   g.tasks = normalizeTasks(rows)
   persist()
@@ -136,9 +134,7 @@ function outdentTask(g, id) {
 }
 
 // ── 每日安排 ──
-function dayList(g) {
-  return (g && g.daily && g.daily[selDate.value]) || []
-}
+function dayList(g) { return (g && g.daily && g.daily[selDate.value]) || [] }
 function addAssign(g) {
   if (!g || !g.tasks.length) return
   const arr = (g.daily[selDate.value] = g.daily[selDate.value] || [])
@@ -152,7 +148,7 @@ function removeAssign(g, aid) {
 }
 function weekDates() {
   const base = new Date(selDate.value + 'T00:00:00')
-  const dow = (base.getDay() + 6) % 7 // 周一=0
+  const dow = (base.getDay() + 6) % 7
   const mon = new Date(base); mon.setDate(base.getDate() - dow)
   return Array.from({ length: 7 }, (_, i) => {
     const d = new Date(mon); d.setDate(mon.getDate() + i)
@@ -168,16 +164,13 @@ function shiftDay(n) {
   selDate.value = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0')
 }
 
-// ── 持久化与云同步 ──
+// ── 持久化 / 云同步 ──
 let pushTimer = null
 function persist() {
   const g = activeGoal.value
   if (g) g.updatedAt = Date.now()
   write(LS_DATA, { goals: goals.value, updatedAt: Date.now() })
-  if (loggedIn.value) {
-    clearTimeout(pushTimer)
-    pushTimer = setTimeout(pushCloud, 1200)
-  }
+  if (loggedIn.value) { clearTimeout(pushTimer); pushTimer = setTimeout(pushCloud, 1200) }
 }
 async function post(payload) {
   const res = await fetch(API, {
@@ -194,11 +187,7 @@ async function pushCloud() {
   try {
     await post({ action: 'dataPut', key: CLOUD_KEY, value: { goals: goals.value, updatedAt: Date.now() } })
     syncMsg.value = '已自动同步 ' + hhmm(Date.now())
-  } catch (e) {
-    syncMsg.value = '同步失败：' + e.message
-  } finally {
-    syncing.value = false
-  }
+  } catch (e) { syncMsg.value = '同步失败：' + e.message } finally { syncing.value = false }
 }
 async function loadCloud() {
   syncing.value = true
@@ -211,52 +200,43 @@ async function loadCloud() {
       activeId.value = goals.value[0].id
       syncMsg.value = '已从云端载入 ' + (v.updatedAt ? hhmm(v.updatedAt) : '')
     } else {
-      goals.value = seed()
-      activeId.value = goals.value[0].id
-      await pushCloud()
-      syncMsg.value = '已创建示例目标并同步'
+      goals.value = seed(); activeId.value = goals.value[0].id
+      await pushCloud(); syncMsg.value = '已创建示例目标并同步'
     }
     write(LS_DATA, { goals: goals.value, updatedAt: Date.now() })
   } catch (e) {
     syncMsg.value = '云端读取失败：' + e.message
     if (!goals.value.length) { goals.value = seed(); activeId.value = goals.value[0].id }
-  } finally {
-    syncing.value = false
-  }
+  } finally { syncing.value = false }
 }
 function seed() {
+  const m = uid(), e = uid(), p = uid()
   return [{
     id: uid(), title: '考研', desc: '写在说明里：目标院校、专业、近年分数线。', targetDate: '2027-12-25',
     taskGoal: '总分 380+ · 数学一 120+', motto: '日拱一卒，功不唐捐。',
     mottos: { goals: '一个阶段，主攻一个目标', tasks: '拆到不能再拆，才是任务', daily: '今天的一小步', notes: '写给未来的自己' },
     notes: '', createdAt: Date.now(), updatedAt: Date.now(),
     tasks: [
-      { id: uid(), title: '数学一', parentId: null },
-      { id: uid(), title: '高等数学', parentId: '' },
-      { id: uid(), title: '线性代数', parentId: '' },
-      { id: uid(), title: '概率论与数理统计', parentId: '' },
-      { id: uid(), title: '英语二', parentId: null },
-      { id: uid(), title: '政治', parentId: null },
-    ].map((t, i, arr) => {
-      if (i > 0 && i < 4) arr[i].parentId = arr[0].id
-      return t
-    }),
+      { id: m, title: '数学一', parentId: null },
+      { id: uid(), title: '高等数学', parentId: m },
+      { id: uid(), title: '线性代数', parentId: m },
+      { id: uid(), title: '概率论与数理统计', parentId: m },
+      { id: e, title: '英语二', parentId: null },
+      { id: p, title: '政治', parentId: null },
+    ],
     daily: {},
   }]
 }
 
-// ── 分栏拖拽 ──
+// ── 拖拽调尺寸 ──
 function saveLay() { write(LS_LAYOUT, { ...lay }) }
 function startDrag(e, which) {
   e.preventDefault()
   const sx = e.clientX, sy = e.clientY
-  const c1 = lay.c1, c2 = lay.c2, r1 = lay.r1
-  const W = boardEl.value ? boardEl.value.offsetWidth : 1000
-  const H = boardEl.value ? boardEl.value.offsetHeight : 600
+  const s0 = lay.side, h0 = lay.h
   const mv = (ev) => {
-    if (which === 'c1') lay.c1 = clamp(c1 + ((ev.clientX - sx) / W) * 100, 12, 42)
-    if (which === 'c2') lay.c2 = clamp(c2 + ((ev.clientX - sx) / W) * 100, 20, 52)
-    if (which === 'r1') lay.r1 = clamp(r1 + ((ev.clientY - sy) / H) * 100, 25, 82)
+    if (which === 'side') lay.side = clamp(s0 + (ev.clientX - sx), 190, 420)
+    if (which === 'h') lay.h = clamp(h0 + (ev.clientY - sy), 430, 860)
   }
   const up = () => {
     window.removeEventListener('mousemove', mv)
@@ -278,12 +258,13 @@ const daySummary = computed(() => {
   const avg = arr.length ? Math.round(arr.reduce((s, a) => s + (Number(a.progress) || 0), 0) / arr.length) : 0
   return { min, avg }
 })
+const taskCount = computed(() => (activeGoal.value ? activeGoal.value.tasks.length : 0))
+const dayCount = computed(() => (activeGoal.value ? dayList(activeGoal.value).length : 0))
 
 onMounted(async () => {
   await restoreUser()
-  if (loggedIn.value) {
-    await loadCloud()
-  } else {
+  if (loggedIn.value) await loadCloud()
+  else {
     const local = read(LS_DATA, null)
     if (local && Array.isArray(local.goals) && local.goals.length) {
       goals.value = local.goals
@@ -309,213 +290,231 @@ onMounted(async () => {
     </div>
 
     <div v-if="loading" class="gp-loading">载入中…</div>
-    <div v-else class="gp-board" ref="boardEl">
-      <!-- ① 大目标分区 -->
-      <section class="gp-col" :style="{ flexBasis: lay.c1 + '%' }">
-        <header class="gp-h">
+    <div v-else class="gp-board" ref="boardEl" :style="{ height: lay.h + 'px' }">
+      <!-- 左：大目标 -->
+      <aside class="gp-side" :style="{ width: lay.side + 'px' }">
+        <header class="gp-side-h">
           <span>大目标</span>
-          <button class="gp-mini" @click="addGoal" title="新增大目标">＋</button>
+          <button class="gp-icon" @click="addGoal" title="新增大目标">＋</button>
         </header>
         <div class="gp-goals">
-          <div v-for="g in goals" :key="g.id" class="gp-goal" :class="{ on: g.id === activeId }" @click="activeId = g.id">
-            <div class="gp-goal-top">
-              <b>{{ g.title }}</b>
-              <button class="gp-mini danger" @click.stop="removeGoal(g.id)" title="删除">✕</button>
+          <div v-for="g in goals" :key="g.id" class="gp-goal" :class="{ on: g.id === activeId }" @click="activeId = g.id; tab = 'tasks'">
+            <div class="gp-goal-row">
+              <b class="gp-goal-t">{{ g.title || '未命名' }}</b>
+              <button class="gp-icon danger" @click.stop="removeGoal(g.id)" title="删除">✕</button>
             </div>
-            <span class="gp-goal-sub">{{ g.targetDate || '未设日期' }}</span>
-            <p v-if="g.motto" class="gp-goal-motto">{{ g.motto }}</p>
+            <div class="gp-goal-sub">{{ g.targetDate || '未设目标日期' }}</div>
+            <div v-if="g.motto" class="gp-goal-motto">{{ g.motto }}</div>
           </div>
-          <p v-if="!goals.length" class="gp-empty">还没有目标，点右上角 ＋ 新建一个。</p>
+          <p v-if="!goals.length" class="gp-empty" style="padding:6px">点右上角 ＋ 新建第一个大目标。</p>
         </div>
         <p class="gp-hint">{{ activeGoal?.mottos?.goals || '一个阶段，主攻一个目标' }}</p>
-      </section>
+      </aside>
 
-      <div class="gp-rz" @mousedown="startDrag($event, 'c1')" title="拖拽调整宽度"></div>
+      <div class="gp-rz" @mousedown="startDrag($event, 'side')" title="拖拽调整宽度"></div>
 
-      <!-- ② 任务层级 -->
-      <section class="gp-col" :style="{ flexBasis: lay.c2 + '%' }">
-        <header class="gp-h"><span>任务层级</span></header>
-        <p v-if="!activeGoal" class="gp-empty" style="padding:14px">先在左侧新建一个大目标。</p>
-        <div v-if="activeGoal" class="gp-goal-edit">
-          <input v-model="activeGoal.title" class="gp-in-title" placeholder="目标名称" @input="persist" />
-          <textarea v-model="activeGoal.desc" class="gp-in" rows="2" placeholder="目标说明（院校 / 分数线 / 为什么是它）" @input="persist"></textarea>
-          <div class="gp-row2">
-            <label>目标日期 <input v-model="activeGoal.targetDate" type="date" class="gp-in-sm" @input="persist" /></label>
-            <label>激励文案 <input v-model="activeGoal.motto" class="gp-in-sm" placeholder="一句话给自己" @input="persist" /></label>
-          </div>
-          <input v-model="activeGoal.taskGoal" class="gp-in" placeholder="任务目标（如：总分 380+ · 数学一 120+）" @input="persist" />
-        </div>
-
-        <div class="gp-tasks">
-          <div v-for="t in (activeGoal?.tasks || [])" :key="t.id" class="gp-task" :style="{ paddingLeft: 10 + depthOf(activeGoal.tasks, t) * 18 + 'px' }">
-            <span class="gp-indent" :style="{ width: depthOf(activeGoal.tasks, t) * 18 + 'px' }"></span>
-            <input v-model="t.title" class="gp-task-name" @input="persist" />
-            <span class="gp-prog" :class="{ done: taskProgress(activeGoal, t.id) >= 100 }">{{ taskProgress(activeGoal, t.id) }}%</span>
-            <span class="gp-ops">
-              <button @click="addTask(activeGoal, t.id)" title="添加子任务">＋子</button>
-              <button @click="moveTask(activeGoal, t.id, -1)" title="上移">↑</button>
-              <button @click="moveTask(activeGoal, t.id, 1)" title="下移">↓</button>
-              <button @click="indentTask(activeGoal, t.id)" title="降级为上一任务的子任务">→</button>
-              <button @click="outdentTask(activeGoal, t.id)" title="提升层级">←</button>
-              <button class="danger" @click="removeTask(activeGoal, t.id)" title="删除（含子任务）">✕</button>
-            </span>
-          </div>
-          <div v-if="activeGoal" class="gp-task-add">
-            <ArBtn variant="ghost" size="sm" @click="addTask(activeGoal, null)">＋ 添加一级任务</ArBtn>
-          </div>
-        </div>
-        <p class="gp-hint">{{ activeGoal?.mottos?.tasks || '拆到不能再拆，才是任务' }}</p>
-      </section>
-
-      <div class="gp-rz" @mousedown="startDrag($event, 'c2')" title="拖拽调整宽度"></div>
-
-      <!-- ③ 每日安排 + 备注 -->
-      <section class="gp-col gp-col3">
-        <p v-if="!activeGoal" class="gp-empty" style="padding:14px">选择或新建一个大目标后，在这里排每天的日程。</p>
+      <!-- 右：工作区 -->
+      <section class="gp-main">
+        <p v-if="!activeGoal" class="gp-empty" style="padding:20px">先在左侧选择或新建一个大目标。</p>
         <template v-else>
-        <div class="gp-daily" :style="{ flexBasis: lay.r1 + '%' }">
-          <header class="gp-h">
-            <span>每日安排</span>
-            <span class="gp-day-nav">
-              <button class="gp-mini" @click="shiftDay(-7)">«</button>
-              <button class="gp-mini" @click="shiftDay(-1)">‹</button>
-              <input type="date" v-model="selDate" class="gp-in-sm" />
-              <button class="gp-mini" @click="shiftDay(1)">›</button>
-              <button class="gp-mini" @click="shiftDay(7)">»</button>
-            </span>
+          <header class="gp-tabs">
+            <button :class="{ on: tab === 'tasks' }" @click="tab = 'tasks'">任务 <em>{{ taskCount }}</em></button>
+            <button :class="{ on: tab === 'daily' }" @click="tab = 'daily'">每日安排 <em>{{ dayCount }}</em></button>
+            <button :class="{ on: tab === 'notes' }" @click="tab = 'notes'">备注</button>
+            <span class="gp-tabs-sp"></span>
+            <button class="gp-tabs-meta" v-if="tab === 'tasks'" @click="showMeta = !showMeta">{{ showMeta ? '收起目标设置' : '目标设置' }}</button>
           </header>
 
-          <div class="gp-week">
-            <div v-for="d in weekDates()" :key="d" class="gp-wd" :class="{ on: d === selDate, today: d === todayISO() }" @click="selDate = d">
-              <span class="gp-wd-d">{{ wdOf(d) }}</span>
-              <span class="gp-wd-n">{{ d.slice(5) }}</span>
-              <span class="gp-wd-m" v-if="dayMinutes(activeGoal, d)">{{ dayMinutes(activeGoal, d) }}′</span>
-              <span class="gp-wd-m" v-else>·</span>
+          <!-- 任务 -->
+          <div v-if="tab === 'tasks'" class="gp-pane">
+            <div v-if="showMeta" class="gp-meta">
+              <label class="gp-f"><span>目标说明</span><textarea v-model="activeGoal.desc" rows="2" placeholder="院校 / 分数线 / 为什么选它" @input="persist"></textarea></label>
+              <div class="gp-f2">
+                <label class="gp-f"><span>目标日期</span><input v-model="activeGoal.targetDate" type="date" @input="persist" /></label>
+                <label class="gp-f"><span>任务目标</span><input v-model="activeGoal.taskGoal" placeholder="如：总分 380+ · 数学一 120+" @input="persist" /></label>
+              </div>
+              <label class="gp-f"><span>激励文案</span><input v-model="activeGoal.motto" placeholder="一句话给自己" @input="persist" /></label>
+            </div>
+
+            <div class="gp-tasks">
+              <div v-for="t in activeGoal.tasks" :key="t.id" class="gp-task" :style="{ paddingLeft: 4 + depthOf(activeGoal.tasks, t) * 22 + 'px' }">
+                <span class="gp-bar" :class="{ deep: depthOf(activeGoal.tasks, t) > 0 }"></span>
+                <input v-model="t.title" class="gp-task-name" placeholder="任务名称" @input="persist" />
+                <span class="gp-prog" :class="{ done: taskProgress(activeGoal, t.id) >= 100 }">{{ taskProgress(activeGoal, t.id) }}%</span>
+                <span class="gp-ops">
+                  <button @click="addTask(activeGoal, t.id)" title="添加子任务">＋子</button>
+                  <button @click="moveTask(activeGoal, t.id, -1)" title="上移">↑</button>
+                  <button @click="moveTask(activeGoal, t.id, 1)" title="下移">↓</button>
+                  <button @click="indentTask(activeGoal, t.id)" title="降级为上一任务的子任务">缩进</button>
+                  <button @click="outdentTask(activeGoal, t.id)" title="提升一层">提升</button>
+                  <button class="danger" @click="removeTask(activeGoal, t.id)" title="删除（含子任务）">删除</button>
+                </span>
+              </div>
+              <p v-if="!activeGoal.tasks.length" class="gp-empty" style="padding:10px 4px">还没有任务，先加一个一级任务，再往下拆。</p>
+            </div>
+
+            <div class="gp-pane-foot">
+              <ArBtn variant="ghost" size="sm" @click="addTask(activeGoal, null)">＋ 添加一级任务</ArBtn>
+              <span class="gp-hint">{{ activeGoal.mottos?.tasks || '拆到不能再拆，才是任务' }}</span>
             </div>
           </div>
 
-          <div class="gp-day-list">
-            <div v-for="a in dayList(activeGoal)" :key="a.id" class="gp-assign">
-              <select v-model="a.taskId" class="gp-in-sm" @change="persist">
-                <option v-for="t in (activeGoal?.tasks || [])" :key="t.id" :value="t.id">
-                  {{ '　'.repeat(depthOf(activeGoal.tasks, t)) + t.title }}
-                </option>
-              </select>
-              <input v-model.number="a.minutes" type="number" min="0" max="720" class="gp-in-xs" title="学习时长（分钟）" @input="persist" />
-              <span class="gp-unit">分钟</span>
-              <input v-model.number="a.progress" type="range" min="0" max="100" step="5" class="gp-range" @input="persist" />
-              <input v-model.number="a.progress" type="number" min="0" max="100" class="gp-in-xs" title="进度 %" @input="persist" />
-              <span class="gp-unit">%</span>
-              <input v-model="a.note" class="gp-in-note" placeholder="备注（可选）" @input="persist" />
-              <button class="gp-mini danger" @click="removeAssign(activeGoal, a.id)">✕</button>
+          <!-- 每日 -->
+          <div v-if="tab === 'daily'" class="gp-pane">
+            <div class="gp-daybar">
+              <div class="gp-daynav">
+                <button class="gp-icon" @click="shiftDay(-1)" title="前一天">‹</button>
+                <input type="date" v-model="selDate" class="gp-date" />
+                <button class="gp-icon" @click="shiftDay(1)" title="后一天">›</button>
+              </div>
+              <div class="gp-sum">合计 <b>{{ daySummary.min }}</b> 分钟 · 平均进度 <b>{{ daySummary.avg }}%</b></div>
             </div>
-            <div class="gp-day-add">
-              <ArBtn variant="ghost" size="sm" :disabled="!(activeGoal && activeGoal.tasks.length)" @click="addAssign(activeGoal)">＋ 给这一天加任务</ArBtn>
+
+            <div class="gp-week">
+              <button v-for="d in weekDates()" :key="d" class="gp-wd" :class="{ on: d === selDate, today: d === todayISO() }" @click="selDate = d">
+                <span class="gp-wd-d">{{ wdOf(d) }}</span>
+                <span class="gp-wd-n">{{ d.slice(5) }}</span>
+                <span class="gp-wd-m">{{ dayMinutes(activeGoal, d) ? dayMinutes(activeGoal, d) + ' 分' : '—' }}</span>
+              </button>
             </div>
-            <p class="gp-day-sum">
-              {{ selDate }} · {{ wdOf(selDate) }} ｜ 合计 <b>{{ daySummary.min }}</b> 分钟 ｜ 平均进度 <b>{{ daySummary.avg }}%</b>
-            </p>
+
+            <div class="gp-assigns">
+              <div v-for="a in dayList(activeGoal)" :key="a.id" class="gp-assign">
+                <div class="gp-assign-r1">
+                  <select v-model="a.taskId" class="gp-task-sel" @change="persist">
+                    <option v-for="t in activeGoal.tasks" :key="t.id" :value="t.id">{{ '　'.repeat(depthOf(activeGoal.tasks, t)) + (t.title || '未命名') }}</option>
+                  </select>
+                  <label class="gp-min">时长 <input v-model.number="a.minutes" type="number" min="0" max="720" @input="persist" /> 分</label>
+                  <button class="gp-icon danger" @click="removeAssign(activeGoal, a.id)" title="删除这条安排">✕</button>
+                </div>
+                <div class="gp-assign-r2">
+                  <input v-model.number="a.progress" type="range" min="0" max="100" step="5" class="gp-range" @input="persist" />
+                  <span class="gp-pct">{{ a.progress }}%</span>
+                  <input v-model="a.note" class="gp-note-in" placeholder="这条安排的备注（可选）" @input="persist" />
+                </div>
+              </div>
+              <p v-if="!dayList(activeGoal).length" class="gp-empty" style="padding:10px 4px">这一天还没有安排。点下面按钮加一条。</p>
+            </div>
+
+            <div class="gp-pane-foot">
+              <ArBtn variant="ghost" size="sm" :disabled="!activeGoal.tasks.length" @click="addAssign(activeGoal)">＋ 给这一天加任务</ArBtn>
+              <span class="gp-hint">{{ activeGoal.mottos?.daily || '今天的一小步' }}</span>
+            </div>
           </div>
-          <p class="gp-hint">{{ activeGoal?.mottos?.daily || '今天的一小步' }}</p>
-        </div>
 
-        <div class="gp-rz-h" @mousedown="startDrag($event, 'r1')" title="拖拽调整高度"></div>
-
-        <div class="gp-notes">
-          <header class="gp-h"><span>备注</span></header>
-          <textarea v-model="activeGoal.notes" class="gp-notes-in" placeholder="阶段性复盘、资料清单、心情记录……" @input="persist"></textarea>
-          <p class="gp-hint">{{ activeGoal?.mottos?.notes || '写给未来的自己' }}</p>
-        </div>
+          <!-- 备注 -->
+          <div v-if="tab === 'notes'" class="gp-pane">
+            <textarea v-model="activeGoal.notes" class="gp-notes-in" placeholder="阶段性复盘、资料清单、心情记录…… 自动保存" @input="persist"></textarea>
+            <div class="gp-pane-foot">
+              <span class="gp-hint">{{ activeGoal.mottos?.notes || '写给未来的自己' }}</span>
+            </div>
+          </div>
         </template>
       </section>
     </div>
+    <div class="gp-hz" @mousedown="startDrag($event, 'h')" title="拖拽调整整板高度"><span></span></div>
   </div>
 </template>
 
 <style scoped>
-.gp { display: flex; flex-direction: column; gap: 10px; }
+.gp { display: flex; flex-direction: column; gap: 8px; }
 .gp-loading, .gp-gate { padding: 30px 0; }
-.gp-gate-t { color: var(--text-muted, #64748B); font-size: 0.9rem; margin-bottom: 12px; }
-.gp-syncbar { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: var(--text-muted, #64748B); }
+.gp-gate-t { color: var(--text-muted, #64748B); font-size: 0.92rem; margin-bottom: 12px; }
+.gp-syncbar { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--text-muted, #64748B); }
 .gp-sync-dot { width: 8px; height: 8px; border-radius: 50%; background: #7FC9BE; }
 .gp-sync-dot.busy { background: #148F8C; animation: gp-pulse 1s infinite; }
 @keyframes gp-pulse { 50% { opacity: 0.4 } }
 
-.gp-board { display: flex; gap: 0; height: 640px; border: 1px solid var(--line, #E8E4DB); border-radius: 12px; background: #fff; overflow: hidden; }
-.gp-col { display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
-.gp-col3 { flex: 1; }
-.gp-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; font-weight: 600; font-size: 0.92rem; color: var(--brand, #0D5C5A); border-bottom: 1px solid var(--line, #E8E4DB); background: #FAF9F6; flex: none; }
-.gp-mini { border: 1px solid var(--line, #E8E4DB); background: #fff; border-radius: 6px; width: 22px; height: 22px; font-size: 0.75rem; cursor: pointer; color: var(--text-muted, #64748B); flex: none; }
-.gp-mini:hover { border-color: var(--brand, #0D5C5A); color: var(--brand, #0D5C5A); }
-.gp-mini.danger:hover { border-color: #c0392b; color: #c0392b; }
-
-.gp-goals { flex: 1; overflow: auto; padding: 8px; }
-.gp-goal { border: 1px solid var(--line, #E8E4DB); border-radius: 10px; padding: 8px 10px; margin-bottom: 8px; cursor: pointer; }
+.gp-board { display: flex; border: 1px solid var(--line, #E8E4DB); border-radius: 12px; background: #fff; overflow: hidden; min-height: 430px; }
+.gp-side { display: flex; flex-direction: column; flex: none; background: #FCFBF8; min-width: 0; }
+.gp-side-h { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid var(--line, #E8E4DB); font-weight: 600; color: var(--brand, #0D5C5A); font-size: 0.95rem; }
+.gp-goals { flex: 1; overflow: auto; padding: 10px; }
+.gp-goal { border: 1px solid var(--line, #E8E4DB); border-radius: 10px; padding: 10px 12px; margin-bottom: 10px; cursor: pointer; background: #fff; }
 .gp-goal.on { border-color: var(--brand, #0D5C5A); background: var(--brand-pale, #E8F4F0); }
-.gp-goal-top { display: flex; justify-content: space-between; align-items: center; }
-.gp-goal-top b { font-size: 0.9rem; }
-.gp-goal-sub { font-size: 0.72rem; color: var(--text-muted, #64748B); }
-.gp-goal-motto { font-size: 0.72rem; color: var(--brand, #0D5C5A); margin: 4px 0 0; }
-.gp-empty { font-size: 0.8rem; color: var(--text-muted, #64748B); padding: 8px; }
+.gp-goal-row { display: flex; align-items: center; gap: 6px; }
+.gp-goal-t { font-size: 0.95rem; flex: 1; overflow-wrap: anywhere; line-height: 1.5; }
+.gp-goal-sub { font-size: 0.78rem; color: var(--text-muted, #64748B); margin-top: 4px; }
+.gp-goal-motto { font-size: 0.78rem; color: var(--brand, #0D5C5A); margin-top: 6px; line-height: 1.5; }
+
+.gp-icon { border: 1px solid var(--line, #E8E4DB); background: #fff; border-radius: 7px; min-width: 26px; height: 26px; padding: 0 8px; font-size: 0.8rem; cursor: pointer; color: var(--text-muted, #64748B); flex: none; }
+.gp-icon:hover { border-color: var(--brand, #0D5C5A); color: var(--brand, #0D5C5A); }
+.gp-icon.danger:hover { border-color: #c0392b; color: #c0392b; }
 
 .gp-rz { flex: none; width: 6px; cursor: col-resize; background: var(--line, #E8E4DB); }
 .gp-rz:hover { background: var(--brand, #0D5C5A); }
-.gp-rz-h { flex: none; height: 6px; cursor: row-resize; background: var(--line, #E8E4DB); }
-.gp-rz-h:hover { background: var(--brand, #0D5C5A); }
+.gp-hz { height: 14px; cursor: row-resize; display: flex; align-items: center; justify-content: center; }
+.gp-hz span { width: 54px; height: 4px; border-radius: 3px; background: var(--line, #E8E4DB); }
+.gp-hz:hover span { background: var(--brand, #0D5C5A); }
 
-.gp-goal-edit { padding: 10px 12px; border-bottom: 1px dashed var(--line, #E8E4DB); display: flex; flex-direction: column; gap: 6px; flex: none; }
-.gp-in-title { font-weight: 700; font-size: 1rem; border: none; border-bottom: 1px solid transparent; background: transparent; padding: 2px 0; }
-.gp-in-title:focus { outline: none; border-bottom-color: var(--brand, #0D5C5A); }
-.gp-in, .gp-in-sm { border: 1px solid var(--line, #E8E4DB); border-radius: 8px; padding: 5px 8px; font-size: 0.8rem; font-family: inherit; background: #fff; width: 100%; }
-.gp-in-sm { width: auto; }
-.gp-in:focus, .gp-in-sm:focus { outline: 2px solid var(--brand, #0D5C5A); border-color: var(--brand, #0D5C5A); }
-.gp-row2 { display: flex; gap: 10px; flex-wrap: wrap; }
-.gp-row2 label { display: flex; align-items: center; gap: 6px; font-size: 0.76rem; color: var(--text-muted, #64748B); flex: 1; min-width: 150px; }
+.gp-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.gp-tabs { display: flex; align-items: center; gap: 6px; padding: 8px 12px 0; border-bottom: 1px solid var(--line, #E8E4DB); flex: none; }
+.gp-tabs button { border: none; background: transparent; padding: 8px 12px; font-size: 0.9rem; color: var(--text-muted, #64748B); cursor: pointer; border-bottom: 2px solid transparent; font-family: inherit; }
+.gp-tabs button.on { color: var(--brand, #0D5C5A); font-weight: 700; border-bottom-color: var(--brand, #0D5C5A); }
+.gp-tabs button em { font-style: normal; font-size: 0.74rem; color: #94a3b8; margin-left: 2px; }
+.gp-tabs-sp { flex: 1; }
+.gp-tabs-meta { font-size: 0.8rem !important; border: 1px solid var(--line, #E8E4DB) !important; border-radius: 999px; padding: 4px 12px !important; margin-bottom: 6px; }
+.gp-tabs-meta:hover { border-color: var(--brand, #0D5C5A); color: var(--brand, #0D5C5A); }
 
-.gp-tasks { flex: 1; overflow: auto; padding: 8px 10px; }
-.gp-task { display: flex; align-items: center; gap: 6px; padding-top: 4px; padding-bottom: 4px; border-bottom: 1px solid #F4F1EA; }
-.gp-task-name { flex: 1; min-width: 0; border: 1px solid transparent; border-radius: 6px; padding: 3px 6px; font-size: 0.84rem; background: transparent; }
-.gp-task-name:hover { border-color: var(--line, #E8E4DB); }
+.gp-pane { flex: 1; overflow: auto; display: flex; flex-direction: column; padding: 12px 14px 0; min-height: 0; }
+.gp-meta { display: flex; flex-direction: column; gap: 10px; padding: 12px; border: 1px dashed var(--line, #E8E4DB); border-radius: 10px; margin-bottom: 12px; background: #FCFBF8; flex: none; }
+.gp-f { display: flex; flex-direction: column; gap: 5px; font-size: 0.8rem; color: var(--text-muted, #64748B); flex: 1; min-width: 0; }
+.gp-f2 { display: flex; gap: 10px; flex-wrap: wrap; }
+.gp-f input, .gp-f textarea { border: 1px solid var(--line, #E8E4DB); border-radius: 8px; padding: 7px 9px; font-size: 0.88rem; font-family: inherit; background: #fff; color: var(--text, #1F2A28); width: 100%; }
+.gp-f input:focus, .gp-f textarea:focus { outline: 2px solid var(--brand, #0D5C5A); border-color: var(--brand, #0D5C5A); }
+
+.gp-tasks { flex: 1; }
+.gp-task { display: flex; align-items: center; gap: 8px; padding: 5px 4px; border-bottom: 1px solid #F4F1EA; }
+.gp-bar { width: 2px; height: 18px; border-radius: 2px; background: #D9D3C6; flex: none; }
+.gp-bar.deep { background: var(--brand-pale, #E8F4F0); }
+.gp-task-name { flex: 1; min-width: 0; border: 1px solid transparent; border-radius: 7px; padding: 5px 8px; font-size: 0.9rem; background: transparent; font-family: inherit; color: var(--text, #1F2A28); }
+.gp-task-name:hover { border-color: var(--line, #E8E4DB); background: #fff; }
 .gp-task-name:focus { outline: none; border-color: var(--brand, #0D5C5A); background: #fff; }
-.gp-prog { font-size: 0.7rem; color: var(--text-muted, #64748B); min-width: 34px; text-align: right; font-variant-numeric: tabular-nums; }
+.gp-prog { font-size: 0.78rem; color: var(--text-muted, #64748B); min-width: 40px; text-align: right; font-variant-numeric: tabular-nums; flex: none; }
 .gp-prog.done { color: var(--brand, #0D5C5A); font-weight: 700; }
-.gp-ops { display: flex; gap: 2px; flex: none; opacity: 0.25; transition: opacity 0.15s; }
-.gp-task:hover .gp-ops { opacity: 1; }
-.gp-ops button { border: 1px solid var(--line, #E8E4DB); background: #fff; border-radius: 5px; font-size: 0.68rem; padding: 1px 5px; cursor: pointer; color: var(--text-muted, #64748B); }
+.gp-ops { display: flex; gap: 4px; flex: none; }
+.gp-ops button { border: 1px solid var(--line, #E8E4DB); background: #fff; border-radius: 6px; font-size: 0.74rem; padding: 3px 8px; cursor: pointer; color: var(--text-muted, #64748B); font-family: inherit; white-space: nowrap; }
 .gp-ops button:hover { border-color: var(--brand, #0D5C5A); color: var(--brand, #0D5C5A); }
 .gp-ops button.danger:hover { border-color: #c0392b; color: #c0392b; }
-.gp-task-add { padding: 8px 0 2px; }
-.gp-hint { font-size: 0.72rem; color: var(--text-muted, #64748B); padding: 8px 12px; margin: 0; border-top: 1px dashed var(--line, #E8E4DB); flex: none; }
 
-.gp-daily, .gp-notes { display: flex; flex-direction: column; overflow: hidden; min-height: 0; }
-.gp-day-nav { display: flex; align-items: center; gap: 4px; }
-.gp-week { display: flex; gap: 4px; padding: 8px 10px; border-bottom: 1px solid var(--line, #E8E4DB); flex: none; }
-.gp-wd { flex: 1; min-width: 0; border: 1px solid var(--line, #E8E4DB); border-radius: 8px; padding: 4px 2px; text-align: center; cursor: pointer; display: flex; flex-direction: column; gap: 1px; }
+.gp-pane-foot { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 0 12px; border-top: 1px dashed var(--line, #E8E4DB); flex: none; }
+.gp-hint { font-size: 0.8rem; color: var(--text-muted, #64748B); margin: 0; }
+.gp-side .gp-hint { padding: 10px 14px; border-top: 1px dashed var(--line, #E8E4DB); }
+.gp-empty { font-size: 0.86rem; color: var(--text-muted, #64748B); }
+
+.gp-daybar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; flex: none; }
+.gp-daynav { display: flex; align-items: center; gap: 6px; }
+.gp-date { border: 1px solid var(--line, #E8E4DB); border-radius: 8px; padding: 6px 8px; font-size: 0.86rem; font-family: inherit; }
+.gp-sum { font-size: 0.84rem; color: var(--text-muted, #64748B); }
+.gp-sum b { color: var(--brand, #0D5C5A); font-variant-numeric: tabular-nums; }
+
+.gp-week { display: flex; gap: 6px; margin-bottom: 12px; flex: none; }
+.gp-wd { flex: 1; min-width: 0; border: 1px solid var(--line, #E8E4DB); background: #fff; border-radius: 9px; padding: 7px 4px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: inherit; }
+.gp-wd:hover { border-color: var(--brand, #0D5C5A); }
 .gp-wd.on { border-color: var(--brand, #0D5C5A); background: var(--brand-pale, #E8F4F0); }
 .gp-wd.today .gp-wd-n { color: var(--brand, #0D5C5A); font-weight: 700; }
-.gp-wd-d { font-size: 0.66rem; color: var(--text-muted, #64748B); }
-.gp-wd-n { font-size: 0.78rem; }
-.gp-wd-m { font-size: 0.66rem; color: var(--brand, #0D5C5A); font-variant-numeric: tabular-nums; }
+.gp-wd-d { font-size: 0.72rem; color: var(--text-muted, #64748B); }
+.gp-wd-n { font-size: 0.85rem; color: var(--text, #1F2A28); }
+.gp-wd-m { font-size: 0.72rem; color: var(--brand, #0D5C5A); font-variant-numeric: tabular-nums; }
 
-.gp-day-list { flex: 1; overflow: auto; padding: 8px 10px; }
-.gp-assign { display: flex; align-items: center; gap: 6px; padding: 5px 0; border-bottom: 1px solid #F4F1EA; flex-wrap: wrap; }
-.gp-assign select { max-width: 38%; }
-.gp-in-xs { width: 58px; border: 1px solid var(--line, #E8E4DB); border-radius: 7px; padding: 4px 6px; font-size: 0.78rem; background: #fff; }
-.gp-unit { font-size: 0.72rem; color: var(--text-muted, #64748B); flex: none; }
-.gp-range { flex: 1; min-width: 70px; accent-color: var(--brand, #0D5C5A); }
-.gp-in-note { flex: 1 1 140px; min-width: 110px; border: 1px solid var(--line, #E8E4DB); border-radius: 7px; padding: 4px 8px; font-size: 0.78rem; background: #fff; }
-.gp-day-add { padding: 8px 0; }
-.gp-day-sum { font-size: 0.78rem; color: var(--text-muted, #64748B); margin: 4px 0 0; }
-.gp-day-sum b { color: var(--brand, #0D5C5A); }
+.gp-assigns { flex: 1; }
+.gp-assign { border: 1px solid var(--line, #E8E4DB); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; display: flex; flex-direction: column; gap: 8px; }
+.gp-assign-r1 { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.gp-task-sel { flex: 1 1 200px; min-width: 160px; border: 1px solid var(--line, #E8E4DB); border-radius: 8px; padding: 6px 8px; font-size: 0.88rem; font-family: inherit; background: #fff; }
+.gp-min { font-size: 0.8rem; color: var(--text-muted, #64748B); display: flex; align-items: center; gap: 5px; }
+.gp-min input { width: 62px; border: 1px solid var(--line, #E8E4DB); border-radius: 7px; padding: 5px 7px; font-size: 0.85rem; font-family: inherit; }
+.gp-assign-r2 { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.gp-range { flex: 0 0 160px; accent-color: var(--brand, #0D5C5A); }
+.gp-pct { font-size: 0.82rem; color: var(--brand, #0D5C5A); font-variant-numeric: tabular-nums; min-width: 38px; }
+.gp-note-in { flex: 1 1 180px; min-width: 140px; border: 1px solid var(--line, #E8E4DB); border-radius: 8px; padding: 6px 9px; font-size: 0.85rem; font-family: inherit; background: #fff; }
 
-.gp-notes-in { flex: 1; margin: 10px 12px; border: 1px solid var(--line, #E8E4DB); border-radius: 10px; padding: 10px; font-size: 0.84rem; font-family: inherit; resize: none; background: #fff; min-height: 0; }
+.gp-notes-in { flex: 1; min-height: 240px; border: 1px solid var(--line, #E8E4DB); border-radius: 10px; padding: 12px 14px; font-size: 0.92rem; line-height: 1.8; font-family: inherit; resize: none; background: #fff; }
 .gp-notes-in:focus { outline: 2px solid var(--brand, #0D5C5A); border-color: var(--brand, #0D5C5A); }
 
 @media (max-width: 900px) {
-  .gp-board { flex-direction: column; height: auto; }
-  .gp-col { flex-basis: auto !important; max-height: none; }
-  .gp-goals, .gp-tasks, .gp-day-list { max-height: 260px; }
-  .gp-rz, .gp-rz-h { display: none; }
-  .gp-daily { flex-basis: auto !important; }
+  .gp-board { flex-direction: column; height: auto !important; }
+  .gp-side { width: auto !important; max-height: 260px; border-bottom: 1px solid var(--line, #E8E4DB); }
+  .gp-rz, .gp-hz { display: none; }
+  .gp-ops button { padding: 3px 6px; }
+  .gp-range { flex: 1 0 120px; }
 }
 </style>
