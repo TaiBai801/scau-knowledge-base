@@ -201,6 +201,7 @@ export default defineConfig({
         { text: '概念卡', link: '/cards' },
         { text: '四六级考场', link: '/cet' },
         { text: '学习周计划', link: '/weekplan' },
+        { text: '目标计划', link: '/goals' },
       ]},
       { text: '我的', items: [
         { text: '学习打卡', link: '/checkin' },
