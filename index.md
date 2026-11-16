@@ -2,12 +2,12 @@
 layout: home
 
 hero:
-  name: "机电专业知识库"
+  name: "机电学院  专业知识库"
   text: "课程资料 · 经验传承 · 共同成长"
   tagline: 别让好资料躺在硬盘里吃灰 — 开放共享
   image:
     src: /emblem.png
-    alt: 机电专业知识库
+    alt: 机电学院  专业知识库
   actions:
     - theme: brand
       text: 浏览课程

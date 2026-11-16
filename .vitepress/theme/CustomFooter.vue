@@ -1,5 +1,5 @@
 <script setup>
-// 机电专业知识库 — 页脚（对齐 Ardot 设计稿）
+// 机电学院  专业知识库 — 页脚（对齐 Ardot 设计稿）
 </script>
 
 <template>
@@ -8,9 +8,9 @@
       <!-- 品牌区 -->
       <div class="cf-brand">
         <div class="cf-logo">
-          <img src="/emblem.png" alt="机电专业知识库" width="48" height="48" />
+          <img src="/emblem.png" alt="机电学院  专业知识库" width="48" height="48" />
         </div>
-        <div class="cf-site-name">机电专业知识库</div>
+        <div class="cf-site-name">机电学院  专业知识库</div>
         <div class="cf-desc">机电专业课程资源<br/>电子科学与技术 · 电气工程及其自动化<br/>农业机械化及其自动化 · 农业工程<br/>机器人工程<br/>五专业全覆盖，开放共享。</div>
       </div>
 

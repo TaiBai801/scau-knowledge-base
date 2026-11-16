@@ -145,7 +145,7 @@ function fillTokensDeep(value: any): any {
 
 export default defineConfig({
   lang: 'zh-CN',
-  title: '机电专业知识库',
+  title: '机电学院  专业知识库',
   description: `机电专业课程资源 · 五专业 ${METRICS.courses?.planEntries ?? 0}+ 门课程 · 培养方案 / 组题练习 / 学习打卡 · 开放共享`,
   head: [
     ['link', { rel: 'icon', href: '/emblem.png' }],
@@ -157,9 +157,9 @@ export default defineConfig({
     ['meta', { 'http-equiv': 'Pragma', content: 'no-cache' }],
     ['meta', { 'http-equiv': 'Expires', content: '0' }],
     ['meta', { property: 'og:type', content: 'website' }],
-    ['meta', { property: 'og:title', content: '机电专业知识库' }],
+    ['meta', { property: 'og:title', content: '机电学院  专业知识库' }],
     ['meta', { property: 'og:description', content: '机电专业课程资源 · 电子科学与技术/电气工程及其自动化/农业机械化及其自动化/农业工程/机器人工程五专业全覆盖 · 组题练习 · 学习打卡 · 开放共享' }],
-    ['meta', { property: 'og:site_name', content: '机电专业知识库' }],
+    ['meta', { property: 'og:site_name', content: '机电学院  专业知识库' }],
     ['script', { src: '/materials-loader.js', defer: '' }],
     ['script', { src: '/stats-loader.js', defer: '' }],
     ['script', { src: '/semester-health.js', defer: '' }],

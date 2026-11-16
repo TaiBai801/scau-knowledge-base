@@ -202,7 +202,7 @@ function onClear() {
             <div class="fp-share">
               <div class="fp-share-top">
                 <span class="fp-share-tag">学期轨迹</span>
-                <span class="fp-share-brand">机电专业知识库</span>
+                <span class="fp-share-brand">机电学院  专业知识库</span>
               </div>
               <h3 class="fp-share-title">{{ termLabel }} · 我的学习轨迹</h3>
               <div class="fp-share-grid">
