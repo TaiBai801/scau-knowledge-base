@@ -16,7 +16,7 @@
     "semesterPages": 88,
     "overviewPages": 16,
     "stories": 4,
-    "changelogReleases": 12,
+    "changelogReleases": 13,
     "gradesByMajor": {
       "dianqigongcheng": [
         2024,
@@ -53,7 +53,7 @@
     },
     "materials": {
       "courses": 25,
-      "items": 223
+      "items": 123
     },
     "contributors": {
       "count": 1,
@@ -292,7 +292,7 @@
     },
     "materials": {
       "courses": 25,
-      "items": 223
+      "items": 123
     },
     "bank": {
       "courses": 14,
@@ -303,6 +303,6 @@
       "contributions": 346
     }
   },
-  "generatedAt": "2026-10-21T10:45:43.915Z",
-  "contentHash": "sha1:2af6516b63972577f4fc2d8b97a878b820bd12e9"
+  "generatedAt": "2026-11-14T14:52:05.371Z",
+  "contentHash": "sha1:940520a16662c75b5e1a055da1e3fcf412ec530f"
 }

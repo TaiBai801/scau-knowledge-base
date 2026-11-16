@@ -37,3 +37,6 @@ refill_templates.py
 .ardot_screenshots/
 
 .env
+
+# 四六级真题/音频素材：含第三方版权材料，不入库、不部署
+四六级套题资源/
