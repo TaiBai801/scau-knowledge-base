@@ -4,9 +4,6 @@
 // 注入分组导航；当前页加高亮；右侧放「回站点 / 退出」。
 (function () {
   var NAV = [
-    { group: '工作', items: [
-      { t: '排期工作站', h: '/admin/schedule.html' },
-    ]},
     { group: '内容', items: [
       { t: '课程管理', h: '/admin/index.html' },
       { t: '资料上传', h: '/admin/upload.html' },
