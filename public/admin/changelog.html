@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>更新日志 · 管理后台</title>
+<style>
+:root{--brand:#0D5C5A;--bg:#F7F5F0;--card:#fff;--line:#E8E4DB;--text:#4A5568;--green:#059669}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:var(--brand);color:#fff;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+header h1{font-size:1.2rem;font-weight:600}
+header a{color:#b2d9d6;font-size:0.85rem;text-decoration:none}
+header a:hover{color:#fff}
+main{max-width:900px;margin:0 auto;padding:2rem 1rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.25rem;margin-bottom:1.25rem}
+.card h2{font-size:1rem;font-weight:600;color:var(--brand);margin-bottom:0.75rem}
+input[type=text],input[type=date],select,textarea{width:100%;padding:0.55rem 0.75rem;border:1px solid var(--line);border-radius:8px;font-size:0.9rem;font-family:inherit;background:#fff}
+textarea{min-height:60px;line-height:1.6;resize:vertical}
+label{display:block;font-size:0.82rem;font-weight:600;color:var(--brand);margin:0.7rem 0 0.25rem}
+.grid3{display:grid;grid-template-columns:1fr 1fr 2fr;gap:0 1rem}
+.btn{display:inline-block;padding:0.55rem 1.2rem;border:none;border-radius:8px;font-size:0.9rem;cursor:pointer;background:var(--brand);color:#fff;transition:opacity .15s}
+.btn:hover{opacity:.9}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-ghost{background:#fff;color:var(--brand);border:1px solid var(--brand)}
+.btn-danger{background:#fff;color:#DC2626;border:1px solid #FCA5A5}
+.btn-danger:hover{background:#FEF2F2}
+.btn-sm{padding:0.3rem 0.8rem;font-size:0.8rem}
+.hint{font-size:0.78rem;color:#94a3b8;margin-top:0.4rem}
+.savebar{display:flex;align-items:center;gap:0.75rem;margin-top:1rem}
+.savebar .msg{font-size:0.85rem;color:var(--green)}
+.rel-list .item{display:flex;align-items:center;gap:0.75rem;padding:0.6rem 0.75rem;border-bottom:1px solid #f0ede6;font-size:0.88rem}
+.rel-list .item:last-child{border-bottom:none}
+.rel-list .ver{font-weight:700;color:var(--brand);font-family:Georgia,serif;min-width:70px}
+.rel-list .meta{flex:1;min-width:0}
+.rel-list .meta .sub{font-size:0.75rem;color:#94a3b8}
+.empty-tip{padding:1rem;text-align:center;color:#94a3b8;font-size:0.85rem}
+.item-row{display:grid;grid-template-columns:130px 1fr 34px;gap:0.5rem;margin-bottom:0.5rem;align-items:start}
+.item-row .del{padding:0.5rem 0;border-radius:8px;border:1px solid #FCA5A5;background:#fff;color:#DC2626;cursor:pointer;font-size:0.8rem}
+.kind-badge{font-size:0.7rem;padding:1px 8px;border-radius:999px;margin-right:0.4rem}
+.k-milestone{background:#FEF3C7;color:#92400E}.k-feature{background:#D1FAE5;color:#065F46}
+.k-fix{background:#FEE2E2;color:#991B1B}.k-improve{background:#DBEAFE;color:#1E40AF}
+</style>
+</head>
+<body>
+<script src="/admin/auth-check.js"></script>
+<script src="/admin/admin-nav.js"></script>
+<header>
+  <h1>📜 更新日志管理</h1>
+  <a href="/">← 回站点</a>
+  <a href="/admin/index.html">课程管理</a>
+  <span id="who" style="margin-left:auto;font-size:0.8rem"></span>
+</header>
+<main>
+
+  <div class="card rel-list">
+    <h2>已发布的版本（倒序展示）</h2>
+    <div id="relList"><div class="empty-tip">加载中…</div></div>
+    <div class="hint">保存后立即生效：changelog 页与首页「最新版本」标识同步更新，无需重新部署。</div>
+  </div>
+
+  <div class="card" id="formCard" style="display:none">
+    <h2 id="formTitle">新增版本</h2>
+    <div class="grid3">
+      <div><label>版本号 *</label><input type="text" id="f-version" placeholder="如 v1.13.0"></div>
+      <div><label>日期 *</label><input type="date" id="f-date"></div>
+      <div><label>标题 *</label><input type="text" id="f-title" placeholder="一句话概括本次更新"></div>
+    </div>
+    <label>更新条目（kind 决定标签颜色：里程碑/功能/修复/改进）</label>
+    <div id="itemRows"></div>
+    <button class="btn btn-ghost btn-sm" id="addItem">＋ 添加条目</button>
+    <div class="savebar">
+      <button class="btn" id="saveBtn">保存</button>
+      <button class="btn btn-ghost" id="cancelBtn">取消</button>
+      <span class="msg" id="saveMsg"></span>
+    </div>
+    <div class="hint">条目文本支持 **加粗**。保存后 changelog 页运行时拉取 COS 数据，即时生效。</div>
+  </div>
+
+  <div class="card">
+    <button class="btn" id="addBtn">＋ 新增版本</button>
+    <span class="hint" style="margin-left:0.75rem">版本按日期自动倒序展示，无需关心录入顺序。</span>
+  </div>
+
+</main>
+<script>
+var API = '/api/changelog';
+var KINDS = [
+  {v:'feature', t:'✨ 功能'},
+  {v:'fix', t:'🐛 修复'},
+  {v:'improve', t:'⚡ 改进'},
+  {v:'milestone', t:'🏆 里程碑'}
+];
+var releases = [];
+var editIdx = null;   // null=新增；数字=编辑 releases 下标
+var rows = [];        // 编辑中的 items [{kind,text}]
+
+function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':String(s));return d.innerHTML;}
+function kindLabel(k){var x=KINDS.find(function(y){return y.v===k;});return x?x.t:k;}
+
+function loadAll(){
+  return fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:window.ADMIN.token,action:'getChangelog'})})
+    .then(function(r){return r.json();})
+    .then(function(res){
+      if(res.data){ releases=res.data.releases||[]; }
+      renderList();
+    });
+}
+
+function renderList(){
+  var box=document.getElementById('relList');
+  if(!releases.length){ box.innerHTML='<div class="empty-tip">还没有版本记录。</div>'; return; }
+  var sorted=[...releases].sort(function(a,b){ if(a.date===b.date) return verNum(b.version)-verNum(a.version); return a.date<b.date?1:-1; });
+  box.innerHTML=sorted.map(function(r){
+    var idx=releases.indexOf(r);
+    return '<div class="item" data-idx="'+idx+'">'+
+      '<span class="ver">'+esc(r.version)+'</span>'+
+      '<div class="meta"><b>'+esc(r.title)+'</b>'+
+      '<div class="sub">'+esc(r.date)+' · '+r.items.length+' 条</div></div>'+
+      '<button class="btn btn-ghost btn-sm" data-act="edit" data-idx="'+idx+'">编辑</button>'+
+      '<button class="btn btn-danger btn-sm" data-act="del" data-idx="'+idx+'">删除</button>'+
+      '</div>';
+  }).join('');
+  box.querySelectorAll('button[data-act]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var i=+b.dataset.idx;
+      if(b.dataset.act==='edit') openForm(i);
+      else delRel(i);
+    });
+  });
+}
+function verNum(v){var m=String(v||'').match(/(\d+)\.(\d+)\.(\d+)/);return m?Number(m[1])*1e6+Number(m[2])*1e3+Number(m[3]):0;}
+
+function saveAll(){
+  return fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({token:window.ADMIN.token,action:'saveChangelog',data:{
+      version:1,updatedAt:new Date().toISOString().slice(0,10),releases:releases
+    }})}).then(function(r){return r.json();});
+}
+
+function delRel(i){
+  var r=releases[i];
+  if(!confirm('确定删除版本 '+(r&&r.version)+'（'+(r&&r.title)+'）？此操作立即生效。')) return;
+  releases.splice(i,1);
+  var msg=document.getElementById('saveMsg');
+  saveAll().then(function(res){
+    if(res.ok){ renderList(); msg.textContent='✓ 已删除'; } else msg.textContent='删除失败：'+(res.error||'');
+    setTimeout(function(){msg.textContent='';},2500);
+  });
+}
+
+function openForm(i){
+  editIdx=(i==null?null:i);
+  var r=i==null?{version:'',date:new Date().toISOString().slice(0,10),title:'',items:[]}:releases[i];
+  document.getElementById('formTitle').textContent=i==null?'新增版本':'编辑版本 '+r.version;
+  document.getElementById('f-version').value=r.version||'';
+  document.getElementById('f-date').value=r.date||'';
+  document.getElementById('f-title').value=r.title||'';
+  rows=(r.items||[]).map(function(x){return {kind:x.kind||'feature',text:x.text||''};});
+  if(!rows.length) rows.push({kind:'feature',text:''});
+  renderRows();
+  document.getElementById('formCard').style.display='block';
+  document.getElementById('formCard').scrollIntoView({behavior:'smooth'});
+}
+
+function renderRows(){
+  var box=document.getElementById('itemRows');
+  box.innerHTML=rows.map(function(r,i){
+    var opts=KINDS.map(function(k){return '<option value="'+k.v+'"'+(k.v===r.kind?' selected':'')+'>'+k.t+'</option>';}).join('');
+    return '<div class="item-row"><select data-i="'+i+'" class="row-kind">'+opts+'</select>'+
+      '<textarea data-i="'+i+'" class="row-text" placeholder="条目内容，支持 **加粗**">'+esc(r.text)+'</textarea>'+
+      '<button class="del" data-i="'+i+'">✕</button></div>';
+  }).join('');
+  box.querySelectorAll('.row-kind').forEach(function(s){
+    s.addEventListener('change',function(){ rows[+s.dataset.i].kind=s.value; });
+  });
+  box.querySelectorAll('.row-text').forEach(function(t){
+    t.addEventListener('input',function(){ rows[+t.dataset.i].text=t.value; });
+  });
+  box.querySelectorAll('.del').forEach(function(b){
+    b.addEventListener('click',function(){ rows.splice(+b.dataset.i,1); renderRows(); });
+  });
+}
+
+document.getElementById('addItem').addEventListener('click',function(){
+  rows.push({kind:'feature',text:''}); renderRows();
+  var last=document.querySelectorAll('#itemRows .row-text'); if(last.length) last[last.length-1].focus();
+});
+
+document.getElementById('addBtn').addEventListener('click',function(){ openForm(null); });
+document.getElementById('cancelBtn').addEventListener('click',function(){ document.getElementById('formCard').style.display='none'; });
+
+document.getElementById('saveBtn').addEventListener('click',function(){
+  var version=document.getElementById('f-version').value.trim();
+  var date=document.getElementById('f-date').value;
+  var title=document.getElementById('f-title').value.trim();
+  var items=rows.filter(function(r){return r.text.trim();}).map(function(r){return {kind:r.kind,text:r.text.trim()};});
+  if(!version){ alert('请填版本号'); return; }
+  if(!date){ alert('请选日期'); return; }
+  if(!title){ alert('请填标题'); return; }
+  if(!items.length){ alert('至少一条更新条目'); return; }
+  var entry={version:version,date:date,title:title,items:items};
+  if(editIdx==null){
+    if(releases.some(function(x){return x.version===version;})){ alert('版本号 '+version+' 已存在'); return; }
+    releases.push(entry);
+  } else releases[editIdx]=entry;
+  var btn=document.getElementById('saveBtn'),msg=document.getElementById('saveMsg');
+  btn.disabled=true; msg.textContent='保存中…';
+  saveAll().then(function(res){
+    if(res.ok){
+      renderList();
+      document.getElementById('formCard').style.display='none';
+      msg.textContent='✓ 已保存（'+res.count+' 个版本）';
+    } else msg.textContent='保存失败：'+(res.error||'');
+    btn.disabled=false;
+    setTimeout(function(){msg.textContent='';},2500);
+  }).catch(function(){ msg.textContent='保存失败'; btn.disabled=false; });
+});
+
+loadAll();
+</script>
+</body>
+</html>

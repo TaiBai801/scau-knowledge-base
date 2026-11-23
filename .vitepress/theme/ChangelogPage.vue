@@ -1,13 +1,26 @@
 <script setup>
 // 更新日志 / 发展历程
 // 数据源：data/changelog.json（随仓库版本化管理，构建期静态导入，无需运行时接口）
-import { computed } from 'vue'
-import changelog from '../../data/changelog.json'
+import { ref, computed, onMounted } from 'vue'
+import seed from '../../data/changelog.json'
+
+// 运行时优先拉 COS 版（后台「更新日志管理」即时编辑），失败/为空回落构建期种子
+const COS_CHANGELOG = 'https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/data/changelog.json'
+const remote = ref(null)
+onMounted(async () => {
+  try {
+    const res = await fetch(COS_CHANGELOG, { cache: 'no-store' })
+    if (!res.ok) return
+    const d = await res.json()
+    if (d && Array.isArray(d.releases)) remote.value = d
+  } catch { /* 静默回落种子 */ }
+})
+const live = computed(() => remote.value || seed)
 
 const KIND_LABEL = { milestone: '里程碑', feature: '功能', fix: '修复' }
 
 const releases = computed(() => {
-  const list = Array.isArray(changelog?.releases) ? changelog.releases : []
+  const list = Array.isArray(live.value?.releases) ? live.value.releases : []
   // 倒序：日期新的在前，同日按版本号降序
   return [...list].sort((a, b) => {
     if (a.date === b.date) return versionNum(b.version) - versionNum(a.version)
