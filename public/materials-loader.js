@@ -205,10 +205,11 @@
       function groupOf(m) {
         var n = m.name || '';
         if (n.indexOf('原文件 · ') === 0) return 'origin';
+        if (/试卷配图/.test(n)) return 'img';
         if (/习题（\d+题）/.test(n) || /(判断题|填空题|选择题|简答题|思考题)（\d+题）/.test(n) || /考点与题型说明|复习笔记/.test(n)) return 'hw';
         return 'doc';
       }
-      var buckets = { doc: [], hw: [], origin: [] };
+      var buckets = { doc: [], hw: [], img: [], origin: [] };
       list.forEach(function (m, i) { buckets[groupOf(m)].push({ m: m, i: i }); });
       function tableOf(arr) {
         var rows = arr.map(function (x) {
@@ -222,9 +223,9 @@
         }).join('');
         return '<table><thead><tr><th>文件名</th><th>格式</th><th>大小</th><th>操作</th></tr></thead><tbody>' + rows + '</tbody></table>';
       }
-      var LABELS = { doc: '📚 课件与资料', hw: '✏️ 习题集', origin: '🖼 原文件（含图，建议直接看原件）' };
+      var LABELS = { doc: '📚 课件与资料', hw: '✏️ 习题集', img: '🖼 试卷配图（公式 / 电路图）', origin: '🖼 原文件（含图，建议直接看原件）' };
       var html = note;
-      ['doc', 'hw', 'origin'].forEach(function (k) {
+      ['doc', 'hw', 'img', 'origin'].forEach(function (k) {
         if (!buckets[k].length) return;
         var openAttr = k === 'doc' ? ' open' : '';
         html += '<details class="mat-group"' + openAttr + '><summary>' + LABELS[k] + '（' + buckets[k].length + '）</summary>' + tableOf(buckets[k]) + '</details>';
