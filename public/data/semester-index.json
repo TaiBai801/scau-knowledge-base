@@ -6,7 +6,7 @@
     "cards": 984,
     "uniqueCodes": 325,
     "coverage": {
-      "withMaterials": 18,
+      "withMaterials": 29,
       "withBank": 17,
       "withSyllabus": 164
     }
@@ -17,16 +17,16 @@
       "year": 2024,
       "semester": 1,
       "total": 13,
-      "withMaterials": 3,
+      "withMaterials": 5,
       "withBank": 2,
       "withSyllabus": 12,
-      "materialItems": 8,
-      "health": 35,
+      "materialItems": 21,
+      "health": 42,
       "courses": [
         {
           "code": "1210004000",
           "name": "C语言程序设计",
-          "materials": 0,
+          "materials": 5,
           "bank": 45,
           "syllabus": 10
         },
@@ -68,7 +68,7 @@
         {
           "code": "1215607110",
           "name": "高等数学AⅠ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
@@ -89,7 +89,7 @@
         {
           "code": "1215841000",
           "name": "思想道德与法治",
-          "materials": 3,
+          "materials": 5,
           "bank": 0,
           "syllabus": 7
         },
@@ -103,7 +103,7 @@
         {
           "code": "1215845000",
           "name": "中国近现代史纲要",
-          "materials": 4,
+          "materials": 7,
           "bank": 0,
           "syllabus": 8
         },
@@ -121,11 +121,11 @@
       "year": 2024,
       "semester": 2,
       "total": 11,
-      "withMaterials": 2,
+      "withMaterials": 4,
       "withBank": 3,
       "withSyllabus": 10,
-      "materialItems": 3,
-      "health": 35,
+      "materialItems": 9,
+      "health": 45,
       "courses": [
         {
           "code": "1210008001",
@@ -151,7 +151,7 @@
         {
           "code": "1215749220",
           "name": "大学物理B",
-          "materials": 0,
+          "materials": 2,
           "bank": 30,
           "syllabus": 10
         },
@@ -179,14 +179,14 @@
         {
           "code": "1210267121",
           "name": "高等数学AⅡ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
         {
           "code": "1217001000",
           "name": "人工智能",
-          "materials": 2,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -214,7 +214,7 @@
       "withMaterials": 2,
       "withBank": 2,
       "withSyllabus": 12,
-      "materialItems": 46,
+      "materialItems": 57,
       "health": 27,
       "courses": [
         {
@@ -248,7 +248,7 @@
         {
           "code": "1210175201",
           "name": "电路分析",
-          "materials": 35,
+          "materials": 38,
           "bank": 35,
           "syllabus": 12
         },
@@ -311,7 +311,7 @@
         {
           "code": "1215844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 11,
+          "materials": 19,
           "bank": 0,
           "syllabus": 8
         },
@@ -329,11 +329,11 @@
       "year": 2024,
       "semester": 4,
       "total": 18,
-      "withMaterials": 2,
+      "withMaterials": 5,
       "withBank": 3,
       "withSyllabus": 10,
-      "materialItems": 17,
-      "health": 22,
+      "materialItems": 64,
+      "health": 30,
       "courses": [
         {
           "code": "4215858000",
@@ -345,7 +345,7 @@
         {
           "code": "1215949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 5,
           "bank": 0,
           "syllabus": 9
         },
@@ -359,7 +359,7 @@
         {
           "code": "1210656000",
           "name": "马克思主义基本原理概论",
-          "materials": 0,
+          "materials": 4,
           "bank": 0,
           "syllabus": 8
         },
@@ -380,7 +380,7 @@
         {
           "code": "1210969000",
           "name": "数字电子技术",
-          "materials": 8,
+          "materials": 25,
           "bank": 30,
           "syllabus": 9
         },
@@ -408,7 +408,7 @@
         {
           "code": "1211204000",
           "name": "信号与系统",
-          "materials": 9,
+          "materials": 22,
           "bank": 28,
           "syllabus": 7
         },
@@ -443,7 +443,7 @@
         {
           "code": "1211478000",
           "name": "自动控制原理",
-          "materials": 0,
+          "materials": 8,
           "bank": 30,
           "syllabus": 8
         },
@@ -468,11 +468,11 @@
       "year": 2024,
       "semester": 5,
       "total": 18,
-      "withMaterials": 4,
+      "withMaterials": 5,
       "withBank": 2,
       "withSyllabus": 11,
-      "materialItems": 20,
-      "health": 27,
+      "materialItems": 28,
+      "health": 29,
       "courses": [
         {
           "code": "4215859000",
@@ -498,7 +498,7 @@
         {
           "code": "1210169001",
           "name": "电机学",
-          "materials": 0,
+          "materials": 1,
           "bank": 25,
           "syllabus": 5
         },
@@ -512,7 +512,7 @@
         {
           "code": "1210172001",
           "name": "电力系统分析",
-          "materials": 5,
+          "materials": 6,
           "bank": 28,
           "syllabus": 8
         },
@@ -526,7 +526,7 @@
         {
           "code": "1210179001",
           "name": "电气测量技术",
-          "materials": 3,
+          "materials": 8,
           "bank": 0,
           "syllabus": 8
         },
@@ -582,7 +582,7 @@
         {
           "code": "1219921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 2,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -610,13 +610,13 @@
       "withMaterials": 4,
       "withBank": 1,
       "withSyllabus": 9,
-      "materialItems": 26,
+      "materialItems": 30,
       "health": 22,
       "courses": [
         {
           "code": "1210038002",
           "name": "变电工程设计",
-          "materials": 15,
+          "materials": 16,
           "bank": 0,
           "syllabus": 9
         },
@@ -651,7 +651,7 @@
         {
           "code": "1210170001",
           "name": "电力电子技术",
-          "materials": 4,
+          "materials": 5,
           "bank": 25,
           "syllabus": 7
         },
@@ -693,7 +693,7 @@
         {
           "code": "1210173001",
           "name": "电力系统继电保护",
-          "materials": 6,
+          "materials": 7,
           "bank": 0,
           "syllabus": 10
         },
@@ -707,7 +707,7 @@
         {
           "code": "1210184001",
           "name": "电子电路设计与仿真",
-          "materials": 1,
+          "materials": 2,
           "bank": 0,
           "syllabus": 7
         },
@@ -814,16 +814,16 @@
       "year": 2025,
       "semester": 1,
       "total": 14,
-      "withMaterials": 3,
+      "withMaterials": 5,
       "withBank": 2,
       "withSyllabus": 13,
-      "materialItems": 8,
-      "health": 34,
+      "materialItems": 21,
+      "health": 41,
       "courses": [
         {
           "code": "1210004000",
           "name": "C语言程序设计",
-          "materials": 0,
+          "materials": 5,
           "bank": 45,
           "syllabus": 10
         },
@@ -865,7 +865,7 @@
         {
           "code": "1215607110",
           "name": "高等数学AⅠ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
@@ -893,7 +893,7 @@
         {
           "code": "1215841000",
           "name": "思想道德与法治",
-          "materials": 3,
+          "materials": 5,
           "bank": 0,
           "syllabus": 7
         },
@@ -907,7 +907,7 @@
         {
           "code": "1215845000",
           "name": "中国近现代史纲要",
-          "materials": 4,
+          "materials": 7,
           "bank": 0,
           "syllabus": 8
         },
@@ -925,11 +925,11 @@
       "year": 2025,
       "semester": 2,
       "total": 11,
-      "withMaterials": 2,
+      "withMaterials": 4,
       "withBank": 3,
       "withSyllabus": 10,
-      "materialItems": 3,
-      "health": 35,
+      "materialItems": 9,
+      "health": 45,
       "courses": [
         {
           "code": "1210008001",
@@ -955,7 +955,7 @@
         {
           "code": "1215749220",
           "name": "大学物理B",
-          "materials": 0,
+          "materials": 2,
           "bank": 30,
           "syllabus": 10
         },
@@ -983,14 +983,14 @@
         {
           "code": "1210267121",
           "name": "高等数学AⅡ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
         {
           "code": "1217001000",
           "name": "人工智能",
-          "materials": 2,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -1018,7 +1018,7 @@
       "withMaterials": 2,
       "withBank": 2,
       "withSyllabus": 12,
-      "materialItems": 46,
+      "materialItems": 57,
       "health": 27,
       "courses": [
         {
@@ -1052,7 +1052,7 @@
         {
           "code": "1210175201",
           "name": "电路分析",
-          "materials": 35,
+          "materials": 38,
           "bank": 35,
           "syllabus": 12
         },
@@ -1115,7 +1115,7 @@
         {
           "code": "1215844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 11,
+          "materials": 19,
           "bank": 0,
           "syllabus": 8
         },
@@ -1133,11 +1133,11 @@
       "year": 2025,
       "semester": 4,
       "total": 18,
-      "withMaterials": 2,
+      "withMaterials": 5,
       "withBank": 3,
       "withSyllabus": 10,
-      "materialItems": 17,
-      "health": 22,
+      "materialItems": 64,
+      "health": 30,
       "courses": [
         {
           "code": "4215858000",
@@ -1149,7 +1149,7 @@
         {
           "code": "1215949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 5,
           "bank": 0,
           "syllabus": 9
         },
@@ -1163,7 +1163,7 @@
         {
           "code": "1210656000",
           "name": "马克思主义基本原理概论",
-          "materials": 0,
+          "materials": 4,
           "bank": 0,
           "syllabus": 8
         },
@@ -1184,7 +1184,7 @@
         {
           "code": "1210969000",
           "name": "数字电子技术",
-          "materials": 8,
+          "materials": 25,
           "bank": 30,
           "syllabus": 9
         },
@@ -1212,7 +1212,7 @@
         {
           "code": "1211204000",
           "name": "信号与系统",
-          "materials": 9,
+          "materials": 22,
           "bank": 28,
           "syllabus": 7
         },
@@ -1247,7 +1247,7 @@
         {
           "code": "1211478000",
           "name": "自动控制原理",
-          "materials": 0,
+          "materials": 8,
           "bank": 30,
           "syllabus": 8
         },
@@ -1272,11 +1272,11 @@
       "year": 2025,
       "semester": 5,
       "total": 18,
-      "withMaterials": 4,
+      "withMaterials": 5,
       "withBank": 2,
       "withSyllabus": 11,
-      "materialItems": 20,
-      "health": 27,
+      "materialItems": 28,
+      "health": 29,
       "courses": [
         {
           "code": "4215859000",
@@ -1302,7 +1302,7 @@
         {
           "code": "1210169001",
           "name": "电机学",
-          "materials": 0,
+          "materials": 1,
           "bank": 25,
           "syllabus": 5
         },
@@ -1316,7 +1316,7 @@
         {
           "code": "1210172001",
           "name": "电力系统分析",
-          "materials": 5,
+          "materials": 6,
           "bank": 28,
           "syllabus": 8
         },
@@ -1330,7 +1330,7 @@
         {
           "code": "1210179001",
           "name": "电气测量技术",
-          "materials": 3,
+          "materials": 8,
           "bank": 0,
           "syllabus": 8
         },
@@ -1386,7 +1386,7 @@
         {
           "code": "1219921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 2,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -1414,13 +1414,13 @@
       "withMaterials": 4,
       "withBank": 1,
       "withSyllabus": 9,
-      "materialItems": 26,
+      "materialItems": 30,
       "health": 22,
       "courses": [
         {
           "code": "1210038002",
           "name": "变电工程设计",
-          "materials": 15,
+          "materials": 16,
           "bank": 0,
           "syllabus": 9
         },
@@ -1455,7 +1455,7 @@
         {
           "code": "1210170001",
           "name": "电力电子技术",
-          "materials": 4,
+          "materials": 5,
           "bank": 25,
           "syllabus": 7
         },
@@ -1497,7 +1497,7 @@
         {
           "code": "1210173001",
           "name": "电力系统继电保护",
-          "materials": 6,
+          "materials": 7,
           "bank": 0,
           "syllabus": 10
         },
@@ -1511,7 +1511,7 @@
         {
           "code": "1210184001",
           "name": "电子电路设计与仿真",
-          "materials": 1,
+          "materials": 2,
           "bank": 0,
           "syllabus": 7
         },
@@ -1618,11 +1618,11 @@
       "year": 2026,
       "semester": 1,
       "total": 15,
-      "withMaterials": 3,
+      "withMaterials": 4,
       "withBank": 1,
       "withSyllabus": 14,
-      "materialItems": 8,
-      "health": 31,
+      "materialItems": 16,
+      "health": 34,
       "courses": [
         {
           "code": "1250001000",
@@ -1655,7 +1655,7 @@
         {
           "code": "1250267110",
           "name": "高等数学AⅠ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
@@ -1704,7 +1704,7 @@
         {
           "code": "1255841000",
           "name": "思想道德与法治",
-          "materials": 3,
+          "materials": 5,
           "bank": 0,
           "syllabus": 7
         },
@@ -1718,7 +1718,7 @@
         {
           "code": "1255845000",
           "name": "中国近现代史纲要",
-          "materials": 4,
+          "materials": 7,
           "bank": 0,
           "syllabus": 8
         },
@@ -1736,11 +1736,11 @@
       "year": 2026,
       "semester": 2,
       "total": 12,
-      "withMaterials": 1,
+      "withMaterials": 3,
       "withBank": 3,
       "withSyllabus": 10,
-      "materialItems": 1,
-      "health": 28,
+      "materialItems": 6,
+      "health": 37,
       "courses": [
         {
           "code": "1255689001",
@@ -1766,7 +1766,7 @@
         {
           "code": "1250134100",
           "name": "大学物理A",
-          "materials": 0,
+          "materials": 2,
           "bank": 30,
           "syllabus": 10
         },
@@ -1794,7 +1794,7 @@
         {
           "code": "1250267121",
           "name": "高等数学AⅡ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
@@ -1833,11 +1833,11 @@
       "year": 2026,
       "semester": 3,
       "total": 14,
-      "withMaterials": 1,
+      "withMaterials": 3,
       "withBank": 2,
       "withSyllabus": 9,
-      "materialItems": 35,
-      "health": 21,
+      "materialItems": 47,
+      "health": 28,
       "courses": [
         {
           "code": "1250008001",
@@ -1863,7 +1863,7 @@
         {
           "code": "1255949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 5,
           "bank": 0,
           "syllabus": 9
         },
@@ -1884,7 +1884,7 @@
         {
           "code": "1250175001",
           "name": "电路分析",
-          "materials": 35,
+          "materials": 38,
           "bank": 35,
           "syllabus": 12
         },
@@ -1912,7 +1912,7 @@
         {
           "code": "1250656000",
           "name": "马克思主义基本原理概论",
-          "materials": 0,
+          "materials": 4,
           "bank": 0,
           "syllabus": 8
         },
@@ -1944,11 +1944,11 @@
       "year": 2026,
       "semester": 4,
       "total": 18,
-      "withMaterials": 3,
+      "withMaterials": 5,
       "withBank": 4,
       "withSyllabus": 10,
-      "materialItems": 28,
-      "health": 26,
+      "materialItems": 75,
+      "health": 32,
       "courses": [
         {
           "code": "3251045010",
@@ -1960,7 +1960,7 @@
         {
           "code": "1250169001",
           "name": "电机学",
-          "materials": 0,
+          "materials": 1,
           "bank": 25,
           "syllabus": 5
         },
@@ -1995,7 +1995,7 @@
         {
           "code": "1250969000",
           "name": "数字电子技术",
-          "materials": 8,
+          "materials": 25,
           "bank": 30,
           "syllabus": 9
         },
@@ -2016,7 +2016,7 @@
         {
           "code": "1255844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 11,
+          "materials": 19,
           "bank": 0,
           "syllabus": 8
         },
@@ -2037,7 +2037,7 @@
         {
           "code": "1251204000",
           "name": "信号与系统",
-          "materials": 9,
+          "materials": 22,
           "bank": 28,
           "syllabus": 7
         },
@@ -2058,7 +2058,7 @@
         {
           "code": "1251478000",
           "name": "自动控制原理",
-          "materials": 0,
+          "materials": 8,
           "bank": 30,
           "syllabus": 8
         },
@@ -2086,13 +2086,13 @@
       "withMaterials": 3,
       "withBank": 1,
       "withSyllabus": 6,
-      "materialItems": 16,
+      "materialItems": 18,
       "health": 33,
       "courses": [
         {
           "code": "1250170001",
           "name": "电力电子技术",
-          "materials": 4,
+          "materials": 5,
           "bank": 25,
           "syllabus": 7
         },
@@ -2141,7 +2141,7 @@
         {
           "code": "1259921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 2,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -2162,7 +2162,7 @@
       "withMaterials": 2,
       "withBank": 0,
       "withSyllabus": 8,
-      "materialItems": 7,
+      "materialItems": 9,
       "health": 20,
       "courses": [
         {
@@ -2196,7 +2196,7 @@
         {
           "code": "2250173002",
           "name": "电力系统继电保护",
-          "materials": 6,
+          "materials": 7,
           "bank": 0,
           "syllabus": 10
         },
@@ -2210,7 +2210,7 @@
         {
           "code": "1250184001",
           "name": "电子电路设计与仿真",
-          "materials": 1,
+          "materials": 2,
           "bank": 0,
           "syllabus": 7
         },
@@ -2324,16 +2324,16 @@
       "year": 2024,
       "semester": 1,
       "total": 13,
-      "withMaterials": 3,
+      "withMaterials": 5,
       "withBank": 2,
       "withSyllabus": 12,
-      "materialItems": 8,
-      "health": 35,
+      "materialItems": 21,
+      "health": 42,
       "courses": [
         {
           "code": "1210004000",
           "name": "C语言程序设计",
-          "materials": 0,
+          "materials": 5,
           "bank": 45,
           "syllabus": 10
         },
@@ -2375,7 +2375,7 @@
         {
           "code": "1215607110",
           "name": "高等数学AⅠ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
@@ -2396,7 +2396,7 @@
         {
           "code": "1215841000",
           "name": "思想道德与法治",
-          "materials": 3,
+          "materials": 5,
           "bank": 0,
           "syllabus": 7
         },
@@ -2410,7 +2410,7 @@
         {
           "code": "1215845000",
           "name": "中国近现代史纲要",
-          "materials": 4,
+          "materials": 7,
           "bank": 0,
           "syllabus": 8
         },
@@ -2428,11 +2428,11 @@
       "year": 2024,
       "semester": 2,
       "total": 9,
-      "withMaterials": 2,
+      "withMaterials": 4,
       "withBank": 3,
       "withSyllabus": 9,
-      "materialItems": 3,
-      "health": 41,
+      "materialItems": 9,
+      "health": 52,
       "courses": [
         {
           "code": "1215788000",
@@ -2444,7 +2444,7 @@
         {
           "code": "1215749220",
           "name": "大学物理B",
-          "materials": 0,
+          "materials": 2,
           "bank": 30,
           "syllabus": 10
         },
@@ -2472,14 +2472,14 @@
         {
           "code": "1210267121",
           "name": "高等数学AⅡ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
         {
           "code": "1217001000",
           "name": "人工智能",
-          "materials": 2,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -2507,7 +2507,7 @@
       "withMaterials": 2,
       "withBank": 3,
       "withSyllabus": 10,
-      "materialItems": 39,
+      "materialItems": 42,
       "health": 30,
       "courses": [
         {
@@ -2548,7 +2548,7 @@
         {
           "code": "1210175201",
           "name": "电路分析",
-          "materials": 35,
+          "materials": 38,
           "bank": 35,
           "syllabus": 12
         },
@@ -2608,11 +2608,11 @@
       "year": 2024,
       "semester": 4,
       "total": 15,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 4,
       "withSyllabus": 7,
-      "materialItems": 17,
-      "health": 24,
+      "materialItems": 55,
+      "health": 27,
       "courses": [
         {
           "code": "1210020002",
@@ -2652,7 +2652,7 @@
         {
           "code": "1210969000",
           "name": "数字电子技术",
-          "materials": 8,
+          "materials": 25,
           "bank": 30,
           "syllabus": 9
         },
@@ -2673,7 +2673,7 @@
         {
           "code": "1211204000",
           "name": "信号与系统",
-          "materials": 9,
+          "materials": 22,
           "bank": 28,
           "syllabus": 7
         },
@@ -2701,7 +2701,7 @@
         {
           "code": "1211478000",
           "name": "自动控制原理",
-          "materials": 0,
+          "materials": 8,
           "bank": 30,
           "syllabus": 8
         },
@@ -2726,11 +2726,11 @@
       "year": 2024,
       "semester": 5,
       "total": 18,
-      "withMaterials": 2,
+      "withMaterials": 4,
       "withBank": 0,
       "withSyllabus": 11,
-      "materialItems": 12,
-      "health": 18,
+      "materialItems": 30,
+      "health": 23,
       "courses": [
         {
           "code": "1210005001",
@@ -2784,7 +2784,7 @@
         {
           "code": "1215949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 5,
           "bank": 0,
           "syllabus": 9
         },
@@ -2798,7 +2798,7 @@
         {
           "code": "1210184001",
           "name": "电子电路设计与仿真",
-          "materials": 1,
+          "materials": 2,
           "bank": 0,
           "syllabus": 7
         },
@@ -2833,7 +2833,7 @@
         {
           "code": "1210656000",
           "name": "马克思主义基本原理概论",
-          "materials": 0,
+          "materials": 4,
           "bank": 0,
           "syllabus": 8
         },
@@ -2847,7 +2847,7 @@
         {
           "code": "1215844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 11,
+          "materials": 19,
           "bank": 0,
           "syllabus": 8
         },
@@ -2868,7 +2868,7 @@
       "withMaterials": 2,
       "withBank": 1,
       "withSyllabus": 11,
-      "materialItems": 14,
+      "materialItems": 15,
       "health": 18,
       "courses": [
         {
@@ -2909,7 +2909,7 @@
         {
           "code": "1210170001",
           "name": "电力电子技术",
-          "materials": 4,
+          "materials": 5,
           "bank": 25,
           "syllabus": 7
         },
@@ -3014,7 +3014,7 @@
       "withMaterials": 1,
       "withBank": 0,
       "withSyllabus": 3,
-      "materialItems": 2,
+      "materialItems": 3,
       "health": 37,
       "courses": [
         {
@@ -3027,7 +3027,7 @@
         {
           "code": "1219921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 2,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -3079,16 +3079,16 @@
       "year": 2025,
       "semester": 1,
       "total": 14,
-      "withMaterials": 3,
+      "withMaterials": 5,
       "withBank": 2,
       "withSyllabus": 13,
-      "materialItems": 8,
-      "health": 34,
+      "materialItems": 21,
+      "health": 41,
       "courses": [
         {
           "code": "1210004000",
           "name": "C语言程序设计",
-          "materials": 0,
+          "materials": 5,
           "bank": 45,
           "syllabus": 10
         },
@@ -3130,7 +3130,7 @@
         {
           "code": "1215607110",
           "name": "高等数学AⅠ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
@@ -3158,7 +3158,7 @@
         {
           "code": "1215841000",
           "name": "思想道德与法治",
-          "materials": 3,
+          "materials": 5,
           "bank": 0,
           "syllabus": 7
         },
@@ -3172,7 +3172,7 @@
         {
           "code": "1215845000",
           "name": "中国近现代史纲要",
-          "materials": 4,
+          "materials": 7,
           "bank": 0,
           "syllabus": 8
         },
@@ -3190,11 +3190,11 @@
       "year": 2025,
       "semester": 2,
       "total": 9,
-      "withMaterials": 2,
+      "withMaterials": 4,
       "withBank": 3,
       "withSyllabus": 9,
-      "materialItems": 3,
-      "health": 41,
+      "materialItems": 9,
+      "health": 52,
       "courses": [
         {
           "code": "1215788000",
@@ -3206,7 +3206,7 @@
         {
           "code": "1215749220",
           "name": "大学物理B",
-          "materials": 0,
+          "materials": 2,
           "bank": 30,
           "syllabus": 10
         },
@@ -3234,14 +3234,14 @@
         {
           "code": "1210267121",
           "name": "高等数学AⅡ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
         {
           "code": "1217001000",
           "name": "人工智能",
-          "materials": 2,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -3269,7 +3269,7 @@
       "withMaterials": 2,
       "withBank": 3,
       "withSyllabus": 10,
-      "materialItems": 39,
+      "materialItems": 42,
       "health": 30,
       "courses": [
         {
@@ -3310,7 +3310,7 @@
         {
           "code": "1210175201",
           "name": "电路分析",
-          "materials": 35,
+          "materials": 38,
           "bank": 35,
           "syllabus": 12
         },
@@ -3370,11 +3370,11 @@
       "year": 2025,
       "semester": 4,
       "total": 15,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 4,
       "withSyllabus": 7,
-      "materialItems": 17,
-      "health": 24,
+      "materialItems": 55,
+      "health": 27,
       "courses": [
         {
           "code": "1210020002",
@@ -3414,7 +3414,7 @@
         {
           "code": "1210969000",
           "name": "数字电子技术",
-          "materials": 8,
+          "materials": 25,
           "bank": 30,
           "syllabus": 9
         },
@@ -3435,7 +3435,7 @@
         {
           "code": "1211204000",
           "name": "信号与系统",
-          "materials": 9,
+          "materials": 22,
           "bank": 28,
           "syllabus": 7
         },
@@ -3463,7 +3463,7 @@
         {
           "code": "1211478000",
           "name": "自动控制原理",
-          "materials": 0,
+          "materials": 8,
           "bank": 30,
           "syllabus": 8
         },
@@ -3488,11 +3488,11 @@
       "year": 2025,
       "semester": 5,
       "total": 18,
-      "withMaterials": 2,
+      "withMaterials": 4,
       "withBank": 0,
       "withSyllabus": 11,
-      "materialItems": 12,
-      "health": 18,
+      "materialItems": 30,
+      "health": 23,
       "courses": [
         {
           "code": "1210005001",
@@ -3546,7 +3546,7 @@
         {
           "code": "1215949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 5,
           "bank": 0,
           "syllabus": 9
         },
@@ -3560,7 +3560,7 @@
         {
           "code": "1210184001",
           "name": "电子电路设计与仿真",
-          "materials": 1,
+          "materials": 2,
           "bank": 0,
           "syllabus": 7
         },
@@ -3595,7 +3595,7 @@
         {
           "code": "1210656000",
           "name": "马克思主义基本原理概论",
-          "materials": 0,
+          "materials": 4,
           "bank": 0,
           "syllabus": 8
         },
@@ -3609,7 +3609,7 @@
         {
           "code": "1215844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 11,
+          "materials": 19,
           "bank": 0,
           "syllabus": 8
         },
@@ -3630,7 +3630,7 @@
       "withMaterials": 2,
       "withBank": 1,
       "withSyllabus": 11,
-      "materialItems": 14,
+      "materialItems": 15,
       "health": 18,
       "courses": [
         {
@@ -3671,7 +3671,7 @@
         {
           "code": "1210170001",
           "name": "电力电子技术",
-          "materials": 4,
+          "materials": 5,
           "bank": 25,
           "syllabus": 7
         },
@@ -3776,7 +3776,7 @@
       "withMaterials": 1,
       "withBank": 0,
       "withSyllabus": 3,
-      "materialItems": 2,
+      "materialItems": 3,
       "health": 37,
       "courses": [
         {
@@ -3789,7 +3789,7 @@
         {
           "code": "1219921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 2,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -3841,11 +3841,11 @@
       "year": 2026,
       "semester": 1,
       "total": 15,
-      "withMaterials": 3,
+      "withMaterials": 4,
       "withBank": 1,
       "withSyllabus": 14,
-      "materialItems": 8,
-      "health": 31,
+      "materialItems": 16,
+      "health": 34,
       "courses": [
         {
           "code": "1250001000",
@@ -3878,7 +3878,7 @@
         {
           "code": "1250267110",
           "name": "高等数学AⅠ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
@@ -3927,7 +3927,7 @@
         {
           "code": "1255841000",
           "name": "思想道德与法治",
-          "materials": 3,
+          "materials": 5,
           "bank": 0,
           "syllabus": 7
         },
@@ -3941,7 +3941,7 @@
         {
           "code": "1255845000",
           "name": "中国近现代史纲要",
-          "materials": 4,
+          "materials": 7,
           "bank": 0,
           "syllabus": 8
         },
@@ -3959,11 +3959,11 @@
       "year": 2026,
       "semester": 2,
       "total": 13,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 3,
       "withSyllabus": 9,
-      "materialItems": 36,
-      "health": 28,
+      "materialItems": 42,
+      "health": 32,
       "courses": [
         {
           "code": "1250008001",
@@ -4010,7 +4010,7 @@
         {
           "code": "1250175001",
           "name": "电路分析",
-          "materials": 35,
+          "materials": 38,
           "bank": 35,
           "syllabus": 12
         },
@@ -4024,7 +4024,7 @@
         {
           "code": "1250267121",
           "name": "高等数学AⅡ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
@@ -4063,11 +4063,11 @@
       "year": 2026,
       "semester": 3,
       "total": 11,
-      "withMaterials": 1,
+      "withMaterials": 3,
       "withBank": 3,
       "withSyllabus": 10,
-      "materialItems": 4,
-      "health": 31,
+      "materialItems": 10,
+      "health": 40,
       "courses": [
         {
           "code": "1252417021",
@@ -4079,7 +4079,7 @@
         {
           "code": "1250134100",
           "name": "大学物理A",
-          "materials": 0,
+          "materials": 2,
           "bank": 30,
           "syllabus": 10
         },
@@ -4121,7 +4121,7 @@
         {
           "code": "1250656000",
           "name": "马克思主义基本原理概论",
-          "materials": 0,
+          "materials": 4,
           "bank": 0,
           "syllabus": 8
         },
@@ -4156,7 +4156,7 @@
       "withMaterials": 3,
       "withBank": 3,
       "withSyllabus": 8,
-      "materialItems": 28,
+      "materialItems": 66,
       "health": 31,
       "courses": [
         {
@@ -4204,7 +4204,7 @@
         {
           "code": "1250969000",
           "name": "数字电子技术",
-          "materials": 8,
+          "materials": 25,
           "bank": 30,
           "syllabus": 9
         },
@@ -4225,14 +4225,14 @@
         {
           "code": "1255844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 11,
+          "materials": 19,
           "bank": 0,
           "syllabus": 8
         },
         {
           "code": "1251204000",
           "name": "信号与系统",
-          "materials": 9,
+          "materials": 22,
           "bank": 28,
           "syllabus": 7
         },
@@ -4257,11 +4257,11 @@
       "year": 2026,
       "semester": 5,
       "total": 17,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 0,
       "withSyllabus": 10,
-      "materialItems": 11,
-      "health": 18,
+      "materialItems": 17,
+      "health": 21,
       "courses": [
         {
           "code": "1250019002",
@@ -4280,7 +4280,7 @@
         {
           "code": "1255949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 5,
           "bank": 0,
           "syllabus": 9
         },
@@ -4322,7 +4322,7 @@
         {
           "code": "1250184001",
           "name": "电子电路设计与仿真",
-          "materials": 1,
+          "materials": 2,
           "bank": 0,
           "syllabus": 7
         },
@@ -4389,11 +4389,11 @@
       "year": 2026,
       "semester": 6,
       "total": 15,
-      "withMaterials": 1,
+      "withMaterials": 2,
       "withBank": 0,
       "withSyllabus": 8,
-      "materialItems": 2,
-      "health": 14,
+      "materialItems": 8,
+      "health": 17,
       "courses": [
         {
           "code": "1250005001",
@@ -4489,14 +4489,14 @@
         {
           "code": "2252567000",
           "name": "嵌入式系统与应用",
-          "materials": 0,
+          "materials": 5,
           "bank": 0,
           "syllabus": 8
         },
         {
           "code": "1259921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 2,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         }
@@ -4568,11 +4568,11 @@
       "year": 2026,
       "semester": 1,
       "total": 15,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 1,
       "withSyllabus": 13,
-      "materialItems": 4,
-      "health": 26,
+      "materialItems": 9,
+      "health": 29,
       "courses": [
         {
           "code": "1250001000",
@@ -4605,7 +4605,7 @@
         {
           "code": "1250267110",
           "name": "高等数学AⅠ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
@@ -4661,7 +4661,7 @@
         {
           "code": "1255841000",
           "name": "思想道德与法治",
-          "materials": 3,
+          "materials": 5,
           "bank": 0,
           "syllabus": 7
         },
@@ -4686,11 +4686,11 @@
       "year": 2026,
       "semester": 2,
       "total": 12,
-      "withMaterials": 2,
+      "withMaterials": 4,
       "withBank": 3,
       "withSyllabus": 10,
-      "materialItems": 5,
-      "health": 33,
+      "materialItems": 13,
+      "health": 41,
       "courses": [
         {
           "code": "1251045020",
@@ -4702,7 +4702,7 @@
         {
           "code": "1250134200",
           "name": "大学物理B",
-          "materials": 0,
+          "materials": 2,
           "bank": 30,
           "syllabus": 10
         },
@@ -4730,7 +4730,7 @@
         {
           "code": "1250267121",
           "name": "高等数学AⅡ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
@@ -4772,7 +4772,7 @@
         {
           "code": "1255845000",
           "name": "中国近现代史纲要",
-          "materials": 4,
+          "materials": 7,
           "bank": 0,
           "syllabus": 8
         }
@@ -4880,11 +4880,11 @@
       "year": 2026,
       "semester": 4,
       "total": 13,
-      "withMaterials": 1,
+      "withMaterials": 3,
       "withBank": 2,
       "withSyllabus": 8,
-      "materialItems": 9,
-      "health": 21,
+      "materialItems": 34,
+      "health": 28,
       "courses": [
         {
           "code": "3251045010",
@@ -4903,7 +4903,7 @@
         {
           "code": "1250656000",
           "name": "马克思主义基本原理概论",
-          "materials": 0,
+          "materials": 4,
           "bank": 0,
           "syllabus": 8
         },
@@ -4938,7 +4938,7 @@
         {
           "code": "1251204000",
           "name": "信号与系统",
-          "materials": 9,
+          "materials": 22,
           "bank": 28,
           "syllabus": 7
         },
@@ -4959,7 +4959,7 @@
         {
           "code": "1251478000",
           "name": "自动控制原理",
-          "materials": 0,
+          "materials": 8,
           "bank": 30,
           "syllabus": 8
         },
@@ -4984,11 +4984,11 @@
       "year": 2026,
       "semester": 5,
       "total": 13,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 0,
       "withSyllabus": 10,
-      "materialItems": 13,
-      "health": 23,
+      "materialItems": 27,
+      "health": 27,
       "courses": [
         {
           "code": "1255689001",
@@ -5007,7 +5007,7 @@
         {
           "code": "1255949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 5,
           "bank": 0,
           "syllabus": 9
         },
@@ -5056,7 +5056,7 @@
         {
           "code": "1259921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 2,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -5070,7 +5070,7 @@
         {
           "code": "1255844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 11,
+          "materials": 19,
           "bank": 0,
           "syllabus": 8
         },
@@ -5239,16 +5239,16 @@
       "year": 2024,
       "semester": 1,
       "total": 13,
-      "withMaterials": 3,
+      "withMaterials": 5,
       "withBank": 2,
       "withSyllabus": 12,
-      "materialItems": 8,
-      "health": 35,
+      "materialItems": 21,
+      "health": 42,
       "courses": [
         {
           "code": "1210004000",
           "name": "C语言程序设计",
-          "materials": 0,
+          "materials": 5,
           "bank": 45,
           "syllabus": 10
         },
@@ -5290,7 +5290,7 @@
         {
           "code": "1215607110",
           "name": "高等数学AⅠ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
@@ -5311,7 +5311,7 @@
         {
           "code": "1215841000",
           "name": "思想道德与法治",
-          "materials": 3,
+          "materials": 5,
           "bank": 0,
           "syllabus": 7
         },
@@ -5325,7 +5325,7 @@
         {
           "code": "1215845000",
           "name": "中国近现代史纲要",
-          "materials": 4,
+          "materials": 7,
           "bank": 0,
           "syllabus": 8
         },
@@ -5343,11 +5343,11 @@
       "year": 2024,
       "semester": 2,
       "total": 9,
-      "withMaterials": 1,
+      "withMaterials": 4,
       "withBank": 3,
       "withSyllabus": 9,
-      "materialItems": 1,
-      "health": 36,
+      "materialItems": 10,
+      "health": 52,
       "courses": [
         {
           "code": "1215788000",
@@ -5359,7 +5359,7 @@
         {
           "code": "1215749220",
           "name": "大学物理B",
-          "materials": 0,
+          "materials": 2,
           "bank": 30,
           "syllabus": 10
         },
@@ -5387,14 +5387,14 @@
         {
           "code": "1210267121",
           "name": "高等数学AⅡ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
         {
           "code": "1210656000",
           "name": "马克思主义基本原理概论",
-          "materials": 0,
+          "materials": 4,
           "bank": 0,
           "syllabus": 8
         },
@@ -5419,11 +5419,11 @@
       "year": 2024,
       "semester": 3,
       "total": 16,
-      "withMaterials": 1,
+      "withMaterials": 2,
       "withBank": 2,
       "withSyllabus": 11,
-      "materialItems": 35,
-      "health": 21,
+      "materialItems": 43,
+      "health": 24,
       "courses": [
         {
           "code": "4211119000",
@@ -5449,7 +5449,7 @@
         {
           "code": "1215949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 5,
           "bank": 0,
           "syllabus": 9
         },
@@ -5470,7 +5470,7 @@
         {
           "code": "1210175201",
           "name": "电路分析",
-          "materials": 35,
+          "materials": 38,
           "bank": 35,
           "syllabus": 12
         },
@@ -5544,11 +5544,11 @@
       "year": 2024,
       "semester": 4,
       "total": 16,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 2,
       "withSyllabus": 9,
-      "materialItems": 9,
-      "health": 21,
+      "materialItems": 35,
+      "health": 24,
       "courses": [
         {
           "code": "1210121001",
@@ -5588,7 +5588,7 @@
         {
           "code": "1210184001",
           "name": "电子电路设计与仿真",
-          "materials": 1,
+          "materials": 2,
           "bank": 0,
           "syllabus": 7
         },
@@ -5623,7 +5623,7 @@
         {
           "code": "1210969000",
           "name": "数字电子技术",
-          "materials": 8,
+          "materials": 25,
           "bank": 30,
           "syllabus": 9
         },
@@ -5644,7 +5644,7 @@
         {
           "code": "1211478000",
           "name": "自动控制原理",
-          "materials": 0,
+          "materials": 8,
           "bank": 30,
           "syllabus": 8
         },
@@ -5669,11 +5669,11 @@
       "year": 2024,
       "semester": 5,
       "total": 17,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 1,
       "withSyllabus": 9,
-      "materialItems": 13,
-      "health": 18,
+      "materialItems": 23,
+      "health": 21,
       "courses": [
         {
           "code": "1215689001",
@@ -5706,7 +5706,7 @@
         {
           "code": "1210169001",
           "name": "电机学",
-          "materials": 0,
+          "materials": 1,
           "bank": 25,
           "syllabus": 5
         },
@@ -5776,14 +5776,14 @@
         {
           "code": "1217001000",
           "name": "人工智能",
-          "materials": 2,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
         {
           "code": "1215844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 11,
+          "materials": 19,
           "bank": 0,
           "syllabus": 8
         },
@@ -5804,7 +5804,7 @@
       "withMaterials": 2,
       "withBank": 0,
       "withSyllabus": 8,
-      "materialItems": 12,
+      "materialItems": 13,
       "health": 22,
       "courses": [
         {
@@ -5880,7 +5880,7 @@
         {
           "code": "1219921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 2,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -5959,16 +5959,16 @@
       "year": 2025,
       "semester": 1,
       "total": 14,
-      "withMaterials": 3,
+      "withMaterials": 5,
       "withBank": 2,
       "withSyllabus": 13,
-      "materialItems": 8,
-      "health": 34,
+      "materialItems": 21,
+      "health": 41,
       "courses": [
         {
           "code": "1210004000",
           "name": "C语言程序设计",
-          "materials": 0,
+          "materials": 5,
           "bank": 45,
           "syllabus": 10
         },
@@ -6010,7 +6010,7 @@
         {
           "code": "1215607110",
           "name": "高等数学AⅠ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
@@ -6038,7 +6038,7 @@
         {
           "code": "1215841000",
           "name": "思想道德与法治",
-          "materials": 3,
+          "materials": 5,
           "bank": 0,
           "syllabus": 7
         },
@@ -6052,7 +6052,7 @@
         {
           "code": "1215845000",
           "name": "中国近现代史纲要",
-          "materials": 4,
+          "materials": 7,
           "bank": 0,
           "syllabus": 8
         },
@@ -6070,11 +6070,11 @@
       "year": 2025,
       "semester": 2,
       "total": 9,
-      "withMaterials": 1,
+      "withMaterials": 4,
       "withBank": 3,
       "withSyllabus": 9,
-      "materialItems": 1,
-      "health": 36,
+      "materialItems": 10,
+      "health": 52,
       "courses": [
         {
           "code": "1215788000",
@@ -6086,7 +6086,7 @@
         {
           "code": "1215749220",
           "name": "大学物理B",
-          "materials": 0,
+          "materials": 2,
           "bank": 30,
           "syllabus": 10
         },
@@ -6114,14 +6114,14 @@
         {
           "code": "1210267121",
           "name": "高等数学AⅡ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
         {
           "code": "1210656000",
           "name": "马克思主义基本原理概论",
-          "materials": 0,
+          "materials": 4,
           "bank": 0,
           "syllabus": 8
         },
@@ -6146,11 +6146,11 @@
       "year": 2025,
       "semester": 3,
       "total": 16,
-      "withMaterials": 1,
+      "withMaterials": 2,
       "withBank": 2,
       "withSyllabus": 11,
-      "materialItems": 35,
-      "health": 21,
+      "materialItems": 43,
+      "health": 24,
       "courses": [
         {
           "code": "4211119000",
@@ -6176,7 +6176,7 @@
         {
           "code": "1215949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 5,
           "bank": 0,
           "syllabus": 9
         },
@@ -6197,7 +6197,7 @@
         {
           "code": "1210175201",
           "name": "电路分析",
-          "materials": 35,
+          "materials": 38,
           "bank": 35,
           "syllabus": 12
         },
@@ -6271,11 +6271,11 @@
       "year": 2025,
       "semester": 4,
       "total": 16,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 2,
       "withSyllabus": 9,
-      "materialItems": 9,
-      "health": 21,
+      "materialItems": 35,
+      "health": 24,
       "courses": [
         {
           "code": "1210121001",
@@ -6315,7 +6315,7 @@
         {
           "code": "1210184001",
           "name": "电子电路设计与仿真",
-          "materials": 1,
+          "materials": 2,
           "bank": 0,
           "syllabus": 7
         },
@@ -6350,7 +6350,7 @@
         {
           "code": "1210969000",
           "name": "数字电子技术",
-          "materials": 8,
+          "materials": 25,
           "bank": 30,
           "syllabus": 9
         },
@@ -6371,7 +6371,7 @@
         {
           "code": "1211478000",
           "name": "自动控制原理",
-          "materials": 0,
+          "materials": 8,
           "bank": 30,
           "syllabus": 8
         },
@@ -6396,11 +6396,11 @@
       "year": 2025,
       "semester": 5,
       "total": 17,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 1,
       "withSyllabus": 9,
-      "materialItems": 13,
-      "health": 18,
+      "materialItems": 23,
+      "health": 21,
       "courses": [
         {
           "code": "1215689001",
@@ -6433,7 +6433,7 @@
         {
           "code": "1210169001",
           "name": "电机学",
-          "materials": 0,
+          "materials": 1,
           "bank": 25,
           "syllabus": 5
         },
@@ -6503,14 +6503,14 @@
         {
           "code": "1217001000",
           "name": "人工智能",
-          "materials": 2,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
         {
           "code": "1215844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 11,
+          "materials": 19,
           "bank": 0,
           "syllabus": 8
         },
@@ -6531,7 +6531,7 @@
       "withMaterials": 2,
       "withBank": 0,
       "withSyllabus": 8,
-      "materialItems": 12,
+      "materialItems": 13,
       "health": 22,
       "courses": [
         {
@@ -6607,7 +6607,7 @@
         {
           "code": "1219921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 2,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -6686,11 +6686,11 @@
       "year": 2024,
       "semester": 1,
       "total": 14,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 1,
       "withSyllabus": 12,
-      "materialItems": 4,
-      "health": 26,
+      "materialItems": 9,
+      "health": 30,
       "courses": [
         {
           "code": "1212418010",
@@ -6723,7 +6723,7 @@
         {
           "code": "1215607110",
           "name": "高等数学AⅠ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
@@ -6772,7 +6772,7 @@
         {
           "code": "1215841000",
           "name": "思想道德与法治",
-          "materials": 3,
+          "materials": 5,
           "bank": 0,
           "syllabus": 7
         },
@@ -6797,11 +6797,11 @@
       "year": 2024,
       "semester": 2,
       "total": 10,
-      "withMaterials": 3,
+      "withMaterials": 4,
       "withBank": 1,
       "withSyllabus": 9,
-      "materialItems": 16,
-      "health": 36,
+      "materialItems": 30,
+      "health": 41,
       "courses": [
         {
           "code": "1215788000",
@@ -6820,7 +6820,7 @@
         {
           "code": "1210267121",
           "name": "高等数学AⅡ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
@@ -6855,7 +6855,7 @@
         {
           "code": "1215844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 11,
+          "materials": 19,
           "bank": 0,
           "syllabus": 8
         },
@@ -6869,7 +6869,7 @@
         {
           "code": "1215845000",
           "name": "中国近现代史纲要",
-          "materials": 4,
+          "materials": 7,
           "bank": 0,
           "syllabus": 8
         }
@@ -6880,16 +6880,16 @@
       "year": 2024,
       "semester": 3,
       "total": 13,
-      "withMaterials": 0,
+      "withMaterials": 2,
       "withBank": 2,
       "withSyllabus": 11,
-      "materialItems": 0,
-      "health": 22,
+      "materialItems": 7,
+      "health": 29,
       "courses": [
         {
           "code": "1210004000",
           "name": "C语言程序设计",
-          "materials": 0,
+          "materials": 5,
           "bank": 45,
           "syllabus": 10
         },
@@ -6924,7 +6924,7 @@
         {
           "code": "1215750320",
           "name": "大学物理C",
-          "materials": 0,
+          "materials": 2,
           "bank": 30,
           "syllabus": 10
         },
@@ -6984,11 +6984,11 @@
       "year": 2024,
       "semester": 4,
       "total": 14,
-      "withMaterials": 1,
+      "withMaterials": 3,
       "withBank": 1,
       "withSyllabus": 11,
-      "materialItems": 2,
-      "health": 21,
+      "materialItems": 12,
+      "health": 29,
       "courses": [
         {
           "code": "4215858000",
@@ -7000,7 +7000,7 @@
         {
           "code": "1215949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 5,
           "bank": 0,
           "syllabus": 9
         },
@@ -7056,14 +7056,14 @@
         {
           "code": "1210656000",
           "name": "马克思主义基本原理概论",
-          "materials": 0,
+          "materials": 4,
           "bank": 0,
           "syllabus": 8
         },
         {
           "code": "1217001000",
           "name": "人工智能",
-          "materials": 2,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -7098,7 +7098,7 @@
       "withMaterials": 1,
       "withBank": 0,
       "withSyllabus": 9,
-      "materialItems": 1,
+      "materialItems": 2,
       "health": 18,
       "courses": [
         {
@@ -7118,7 +7118,7 @@
         {
           "code": "1210184001",
           "name": "电子电路设计与仿真",
-          "materials": 1,
+          "materials": 2,
           "bank": 0,
           "syllabus": 7
         },
@@ -7202,7 +7202,7 @@
       "withMaterials": 1,
       "withBank": 0,
       "withSyllabus": 8,
-      "materialItems": 2,
+      "materialItems": 3,
       "health": 21,
       "courses": [
         {
@@ -7264,7 +7264,7 @@
         {
           "code": "1219921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 2,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -7364,11 +7364,11 @@
       "year": 2025,
       "semester": 1,
       "total": 15,
-      "withMaterials": 2,
+      "withMaterials": 3,
       "withBank": 1,
       "withSyllabus": 13,
-      "materialItems": 4,
-      "health": 26,
+      "materialItems": 9,
+      "health": 29,
       "courses": [
         {
           "code": "1212418010",
@@ -7401,7 +7401,7 @@
         {
           "code": "1215607110",
           "name": "高等数学AⅠ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
@@ -7457,7 +7457,7 @@
         {
           "code": "1215841000",
           "name": "思想道德与法治",
-          "materials": 3,
+          "materials": 5,
           "bank": 0,
           "syllabus": 7
         },
@@ -7482,11 +7482,11 @@
       "year": 2025,
       "semester": 2,
       "total": 10,
-      "withMaterials": 3,
+      "withMaterials": 4,
       "withBank": 1,
       "withSyllabus": 9,
-      "materialItems": 16,
-      "health": 36,
+      "materialItems": 30,
+      "health": 41,
       "courses": [
         {
           "code": "1215788000",
@@ -7505,7 +7505,7 @@
         {
           "code": "1210267121",
           "name": "高等数学AⅡ",
-          "materials": 0,
+          "materials": 3,
           "bank": 35,
           "syllabus": 11
         },
@@ -7540,7 +7540,7 @@
         {
           "code": "1215844000",
           "name": "习近平新时代中国特色社会主义思想概论",
-          "materials": 11,
+          "materials": 19,
           "bank": 0,
           "syllabus": 8
         },
@@ -7554,7 +7554,7 @@
         {
           "code": "1215845000",
           "name": "中国近现代史纲要",
-          "materials": 4,
+          "materials": 7,
           "bank": 0,
           "syllabus": 8
         }
@@ -7565,16 +7565,16 @@
       "year": 2025,
       "semester": 3,
       "total": 13,
-      "withMaterials": 0,
+      "withMaterials": 2,
       "withBank": 2,
       "withSyllabus": 11,
-      "materialItems": 0,
-      "health": 22,
+      "materialItems": 7,
+      "health": 29,
       "courses": [
         {
           "code": "1210004000",
           "name": "C语言程序设计",
-          "materials": 0,
+          "materials": 5,
           "bank": 45,
           "syllabus": 10
         },
@@ -7609,7 +7609,7 @@
         {
           "code": "1215750320",
           "name": "大学物理C",
-          "materials": 0,
+          "materials": 2,
           "bank": 30,
           "syllabus": 10
         },
@@ -7669,11 +7669,11 @@
       "year": 2025,
       "semester": 4,
       "total": 14,
-      "withMaterials": 1,
+      "withMaterials": 3,
       "withBank": 1,
       "withSyllabus": 11,
-      "materialItems": 2,
-      "health": 21,
+      "materialItems": 12,
+      "health": 29,
       "courses": [
         {
           "code": "4215858000",
@@ -7685,7 +7685,7 @@
         {
           "code": "1215949001",
           "name": "单片机原理与应用",
-          "materials": 0,
+          "materials": 5,
           "bank": 0,
           "syllabus": 9
         },
@@ -7741,14 +7741,14 @@
         {
           "code": "1210656000",
           "name": "马克思主义基本原理概论",
-          "materials": 0,
+          "materials": 4,
           "bank": 0,
           "syllabus": 8
         },
         {
           "code": "1217001000",
           "name": "人工智能",
-          "materials": 2,
+          "materials": 3,
           "bank": 0,
           "syllabus": 7
         },
@@ -7783,7 +7783,7 @@
       "withMaterials": 1,
       "withBank": 0,
       "withSyllabus": 9,
-      "materialItems": 1,
+      "materialItems": 2,
       "health": 18,
       "courses": [
         {
@@ -7803,7 +7803,7 @@
         {
           "code": "1210184001",
           "name": "电子电路设计与仿真",
-          "materials": 1,
+          "materials": 2,
           "bank": 0,
           "syllabus": 7
         },
@@ -7887,7 +7887,7 @@
       "withMaterials": 1,
       "withBank": 0,
       "withSyllabus": 8,
-      "materialItems": 2,
+      "materialItems": 3,
       "health": 21,
       "courses": [
         {
@@ -7949,7 +7949,7 @@
         {
           "code": "1219921902",
           "name": "试验设计与统计分析（研）",
-          "materials": 2,
+          "materials": 3,
           "bank": 0,
           "syllabus": 8
         },
@@ -8045,6 +8045,6 @@
       ]
     }
   },
-  "generatedAt": "2026-11-14T14:52:05.517Z",
-  "contentHash": "sha1:4dbb18117f7065acf4af38da7c3d63c64deb5a2b"
+  "generatedAt": "2026-11-23T07:08:13.630Z",
+  "contentHash": "sha1:e0ed4f2ac308d60833c75accb58c303da793c5b7"
 }

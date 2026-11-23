@@ -53,7 +53,7 @@
     },
     "materials": {
       "courses": 25,
-      "items": 123
+      "items": 214
     },
     "contributors": {
       "count": 1,
@@ -292,7 +292,7 @@
     },
     "materials": {
       "courses": 25,
-      "items": 123
+      "items": 214
     },
     "bank": {
       "courses": 14,
@@ -303,6 +303,6 @@
       "contributions": 346
     }
   },
-  "generatedAt": "2026-11-14T14:52:05.371Z",
-  "contentHash": "sha1:940520a16662c75b5e1a055da1e3fcf412ec530f"
+  "generatedAt": "2026-11-23T07:08:13.491Z",
+  "contentHash": "sha1:d1ae52c7798e354dd3745e48e59724af4a7f72cb"
 }
