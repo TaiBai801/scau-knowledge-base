@@ -309,6 +309,13 @@ async function doSubmit(forced) {
       if (sr && sr.doneSets != null) result.doneSets = sr.doneSets
     } catch (e) { /* 记账失败不影响交卷展示；完成度不足或未绑学号时后端返回提示，前端兜底 */ }
   }
+  // 初始化结果折叠：错题/未答/主观题展开，答对的收起
+  const openSet = new Set()
+  for (const q of resultQs.value) {
+    if (isObjective(q)) { if (judgeWith(q) !== 'right') openSet.add(q.id) }
+    else openSet.add(q.id)
+  }
+  resultOpen.value = openSet
   stopHeartbeat()
   view.value = 'result'
   window.scrollTo(0, 0)
@@ -323,6 +330,18 @@ const finalScore = computed(() => {
   return s
 })
 const resultQs = computed(() => (result.paper ? result.paper.questionIds.map((id) => qMap.value[id]).filter(Boolean) : []))
+
+// 结果页折叠：默认展开错题/未答/主观题，答对的收起
+const resultOpen = ref(new Set())
+function toggleResult(id) {
+  const s = new Set(resultOpen.value)
+  if (s.has(id)) s.delete(id); else s.add(id)
+  resultOpen.value = s
+}
+function toggleAllResult() {
+  if (resultOpen.value.size === resultQs.value.length) resultOpen.value = new Set()
+  else resultOpen.value = new Set(resultQs.value.map((q) => q.id))
+}
 
 function backLobby() {
   result.paper = null
@@ -547,41 +566,37 @@ function showAnswer(v) {
         <b>{{ result.paper.name }}</b>
         <span class="cet-res-score">总分 <em>{{ finalScore }}</em></span>
         <span v-if="result.forced" class="cet-res-forced">（时间到，已自动交卷）</span>
+        <ArBtn variant="ghost" size="sm" @click="toggleAllResult">全部展开 / 收起</ArBtn>
         <ArBtn variant="ghost" size="sm" @click="backLobby">返回大厅</ArBtn>
       </header>
 
-      <div class="cet-split">
-        <!-- 左：试卷与作答 -->
-        <div class="cet-col cet-col-left">
-          <h4 class="cet-col-t">我的答卷</h4>
-          <div v-for="q in resultQs" :key="q.id" class="cet-q">
-            <p class="cet-q-stem">
-              <ArBadge tone="info">{{ TYPE_LABEL[q.type] }}</ArBadge>
-              <ArBadge :tone="isObjective(q) ? (judgeWith(q) === 'right' ? 'success' : judgeWith(q) === 'wrong' ? 'danger' : 'neutral') : 'warning'">
-                {{ isObjective(q) ? (judgeWith(q) === 'right' ? '答对 +' + q.score : judgeWith(q) === 'wrong' ? '答错' : '未作答') : '待自评' }}
-              </ArBadge>
-              {{ q.stem }}
-            </p>
-            <p class="cet-myans">我的答案：<b>{{ showAnswer(result.answers[q.id]) || '（未作答）' }}</b></p>
-            <div v-if="!isObjective(q)" class="cet-selfscore">
-              自评得分：
-              <input type="number" min="0" :max="q.score" v-model.number="result.selfScores[q.id]" />
-              / {{ q.score }} 分
+      <div class="cet-result-list">
+        <div v-for="(q, qi) in resultQs" :key="q.id" class="cet-ri" :class="{ open: resultOpen.has(q.id) }">
+          <button type="button" class="cet-ri-head" @click="toggleResult(q.id)">
+            <span class="cet-ri-num">第 {{ qi + 1 }} 题</span>
+            <ArBadge tone="info">{{ TYPE_LABEL[q.type] }}</ArBadge>
+            <ArBadge :tone="isObjective(q) ? (judgeWith(q) === 'right' ? 'success' : judgeWith(q) === 'wrong' ? 'danger' : 'neutral') : 'warning'">
+              {{ isObjective(q) ? (judgeWith(q) === 'right' ? '答对 +' + q.score : judgeWith(q) === 'wrong' ? '答错' : '未作答') : '待自评' }}
+            </ArBadge>
+            <span class="cet-ri-ans">{{ showAnswer(result.answers[q.id]) || '未作答' }}</span>
+            <span class="cet-ri-toggle">▾</span>
+          </button>
+          <div v-if="resultOpen.has(q.id)" class="cet-ri-body">
+            <div class="cet-ri-left">
+              <div class="cet-ri-stem">{{ q.stem }}</div>
+              <p class="cet-myans">我的答案：<b>{{ showAnswer(result.answers[q.id]) || '（未作答）' }}</b></p>
+              <div v-if="!isObjective(q)" class="cet-selfscore">
+                自评得分：
+                <input type="number" min="0" :max="q.score" v-model.number="result.selfScores[q.id]" />
+                / {{ q.score }} 分
+              </div>
             </div>
-          </div>
-        </div>
-        <!-- 右：解析 -->
-        <div class="cet-col cet-col-right">
-          <h4 class="cet-col-t">解析与得分说明</h4>
-          <div v-for="q in resultQs" :key="q.id" class="cet-q">
-            <p class="cet-q-stem">
-              <ArBadge tone="info">{{ TYPE_LABEL[q.type] }}</ArBadge>
-              {{ q.stem.slice(0, 40) }}{{ q.stem.length > 40 ? '…' : '' }}
-            </p>
-            <p class="cet-ans">正确答案：<b>{{ showAnswer(q.answer) }}</b></p>
-            <p class="cet-ana">{{ q.analysis || '（暂无解析）' }}</p>
-            <p v-if="q.traps" class="cet-trap">⚠️ 易错点：{{ q.traps }}</p>
-            <p class="cet-score-note">本题 {{ q.score }} 分 · 难度 {{ '★'.repeat(q.difficulty) }}</p>
+            <div class="cet-ri-right">
+              <p class="cet-ans">正确答案：<b>{{ showAnswer(q.answer) }}</b></p>
+              <p class="cet-ana">{{ q.analysis || '（暂无解析）' }}</p>
+              <p v-if="q.traps" class="cet-trap">⚠️ 易错点：{{ q.traps }}</p>
+              <p class="cet-score-note">本题 {{ q.score }} 分 · 难度 {{ '★'.repeat(q.difficulty) }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -591,7 +606,7 @@ function showAnswer(v) {
 
 
 <style scoped>
-.cet { max-width: 1100px; margin: 0 auto; font-family: var(--font-body); }
+.cet { max-width: 1280px; margin: 0 auto; font-family: var(--font-body); }
 .cet-gate { max-width: 560px; margin: 0 auto; }
 .cet-gate-t { text-align: center; color: var(--text-muted); font-size: 0.85rem; }
 .cet-off { max-width: 480px; margin: 0 auto; }
@@ -687,8 +702,18 @@ function showAnswer(v) {
 .cet-res-score em { font-style: normal; font-size: 1.4rem; color: var(--brand); font-weight: 700; }
 .cet-res-forced { color: var(--color-warning); font-size: 0.8rem; }
 .cet-res-head .ar-btn { margin-left: auto; }
-.cet-split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
-.cet-col-t { margin: 0 0 10px; font-size: 0.9rem; color: var(--text-heading); }
+.cet-result-list { display: flex; flex-direction: column; gap: 10px; }
+.cet-ri { background: var(--bg-card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.cet-ri-head { display: flex; align-items: center; gap: 10px; width: 100%; padding: 11px 16px; border: none; background: transparent; cursor: pointer; font-family: inherit; text-align: left; font-size: 0.88rem; color: var(--text-body); }
+.cet-ri-head:hover { background: var(--brand-pale); }
+.cet-ri-num { font-weight: 500; color: var(--text-heading); white-space: nowrap; }
+.cet-ri-ans { margin-left: auto; color: var(--text-muted); font-size: 0.82rem; max-width: 40%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cet-ri-toggle { color: var(--text-muted); transition: transform .15s; flex: none; }
+.cet-ri.open .cet-ri-toggle { transform: rotate(180deg); }
+.cet-ri-body { display: grid; grid-template-columns: 1.25fr 1fr; gap: 18px; padding: 4px 18px 16px; }
+.cet-ri-left, .cet-ri-right { min-width: 0; }
+.cet-ri-stem { font-size: 0.92rem; line-height: 1.85; color: var(--text-heading); white-space: pre-wrap; word-break: break-word; margin: 0 0 12px; }
+.cet-ri-right { border-left: 1px solid var(--line); padding-left: 18px; }
 .cet-myans { font-size: 0.84rem; color: var(--text-body); margin: 0 0 6px; word-break: break-all; }
 .cet-selfscore { font-size: 0.82rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
 .cet-selfscore input {
@@ -701,7 +726,8 @@ function showAnswer(v) {
 .cet-score-note { font-size: 0.74rem; color: var(--text-muted); margin: 0; }
 
 @media (max-width: 860px) {
-  .cet-split { grid-template-columns: 1fr; }
+  .cet-ri-body { grid-template-columns: 1fr; gap: 12px; }
+  .cet-ri-right { border-left: none; padding-left: 0; border-top: 1px dashed var(--line); padding-top: 14px; }
 }
 .dark .cet-mode, .dark .cet-paper, .dark .cet-rec, .dark .cet-q,
 .dark .cet-run-head, .dark .cet-secbtn, .dark .cet-res-head {
