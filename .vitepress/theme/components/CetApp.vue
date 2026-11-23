@@ -584,6 +584,16 @@ function showAnswer(v) {
           <div v-if="resultOpen.has(q.id)" class="cet-ri-body">
             <div class="cet-ri-left">
               <div class="cet-ri-stem">{{ q.stem }}</div>
+              <div v-if="q.options && q.options.length" class="cet-ri-opts">
+                <div v-for="(opt, oi) in q.options" :key="oi" class="cet-ri-opt"
+                  :class="{
+                    right: String.fromCharCode(65 + oi) === q.answer,
+                    wrong: String.fromCharCode(65 + oi) === result.answers[q.id] && result.answers[q.id] !== q.answer
+                  }">
+                  <span class="cet-ri-opt-k">{{ String.fromCharCode(65 + oi) }}</span>
+                  <span class="cet-ri-opt-t">{{ opt }}</span>
+                </div>
+              </div>
               <p class="cet-myans">我的答案：<b>{{ showAnswer(result.answers[q.id]) || '（未作答）' }}</b></p>
               <div v-if="!isObjective(q)" class="cet-selfscore">
                 自评得分：
@@ -713,6 +723,16 @@ function showAnswer(v) {
 .cet-ri-body { display: grid; grid-template-columns: 1.25fr 1fr; gap: 18px; padding: 4px 18px 16px; }
 .cet-ri-left, .cet-ri-right { min-width: 0; }
 .cet-ri-stem { font-size: 0.92rem; line-height: 1.85; color: var(--text-heading); white-space: pre-wrap; word-break: break-word; margin: 0 0 12px; }
+.cet-ri-opts { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.cet-ri-opt { display: flex; gap: 8px; align-items: flex-start; padding: 8px 11px; border: 1px solid var(--line); border-radius: 8px; font-size: 0.88rem; line-height: 1.6; color: var(--text-body); }
+.cet-ri-opt-k { font-weight: 500; color: var(--text-muted); flex: none; }
+.cet-ri-opt-t { word-break: break-word; }
+.cet-ri-opt.right { border-color: var(--color-success); background: #EAF3E7; }
+.cet-ri-opt.right .cet-ri-opt-k { color: var(--color-success); }
+.cet-ri-opt.right .cet-ri-opt-t { color: #27502F; }
+.cet-ri-opt.wrong { border-color: var(--color-danger); background: #FBEDEC; }
+.cet-ri-opt.wrong .cet-ri-opt-k { color: var(--color-danger); }
+.cet-ri-opt.wrong .cet-ri-opt-t { color: #8B2F26; }
 .cet-ri-right { border-left: 1px solid var(--line); padding-left: 18px; }
 .cet-myans { font-size: 0.84rem; color: var(--text-body); margin: 0 0 6px; word-break: break-all; }
 .cet-selfscore { font-size: 0.82rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
