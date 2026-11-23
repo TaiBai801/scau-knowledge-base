@@ -1281,6 +1281,12 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   max-width: 1100px;
   margin: 0 auto;
 }
+
+/* 四六级考场：结果页左右分栏需要更宽，单独放开容器上限 */
+.cet-wide .ardot-page-inner { max-width: 1440px; }
+@media (max-width: 1500px) {
+  .cet-wide .ardot-page-inner { max-width: 100%; }
+}
 .ardot-tag {
   display: inline-block;
   background: rgba(255,255,255,0.15);
