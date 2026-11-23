@@ -6,6 +6,7 @@
   var BASE = 'https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com';
   var MATERIALS_URL = BASE + '/data/materials.json';
   var CONTENT_URL = BASE + '/data/content.json';
+  var STORIES_URL = '/data/stories.json'; // 仓库文件，构建期经 SYNC_FILES 同步到站点（勿改 COS）
   var INDEX_URL = '/data/course-index.json';
   var cache = {};
 
@@ -269,7 +270,76 @@
     tasay: '<blockquote><p>💬 招募中！学过本课程且成绩不错的同学，欢迎<a href="/contribute">投稿</a>。</p></blockquote>'
   };
 
+  var tasayStyleReady = false;
+  function ensureTasayStyles() {
+    if (tasayStyleReady) return;
+    tasayStyleReady = true;
+    var st = document.createElement('style');
+    st.textContent =
+      '.ts-card{display:flex;flex-direction:column;gap:14px;padding:22px 22px 20px;border:1px solid var(--line,#E8E4DB);border-radius:14px;background:var(--bg-card,#fff);max-width:760px}' +
+      '.ts-head{display:flex;align-items:flex-start;gap:12px}' +
+      '.ts-avatar{flex-shrink:0;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.05rem;font-weight:700;background:#E6F2EF;color:#0D5C5A}' +
+      '.ts-who{flex:1;min-width:0}' +
+      '.ts-name{font-size:.98rem;font-weight:700;color:var(--text-heading,#1a1a1a);margin-bottom:6px}' +
+      '.ts-tags{display:flex;flex-wrap:wrap;gap:6px}' +
+      '.ts-tag{font-size:.72rem;line-height:1.6;padding:1px 8px;border-radius:999px;background:var(--vp-c-bg-soft,#F7F5F0);border:1px solid var(--line,#E8E4DB);color:var(--text-body,#4a4a4a)}' +
+      '.ts-score{flex-shrink:0;display:flex;align-items:baseline;gap:2px;padding:4px 10px;border-radius:8px;background:#E6F2EF;color:#0D5C5A}' +
+      '.ts-score .v{font-family:Georgia,serif;font-size:1.15rem;font-weight:700;line-height:1}' +
+      '.ts-score .u{font-size:.7rem;opacity:.8}' +
+      '.ts-course{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;padding-top:12px;border-top:1px solid var(--line,#E8E4DB)}' +
+      '.ts-kicker{font-size:.7rem;color:var(--text-muted,#8A8578);letter-spacing:.04em}' +
+      '.ts-cname{font-size:.95rem;font-weight:700;color:var(--text-heading,#1a1a1a)}' +
+      '.ts-answers{display:flex;flex-direction:column;gap:14px}' +
+      '.ts-qa{display:flex;flex-direction:column;gap:5px}' +
+      '.ts-q{display:flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;color:var(--text-muted,#8A8578)}' +
+      '.ts-q .ic{font-size:.85rem;line-height:1}' +
+      '.ts-a{margin:0;font-size:.9rem;line-height:1.75;color:var(--text-body,#4a4a4a)}' +
+      '.dark .ts-card{background:#151b1a;border-color:#2c3331}' +
+      '.dark .ts-a{color:#c9d4d0}';
+    document.head.appendChild(st);
+  }
+  function tasayCardHtml(s, qs) {
+    var who = s.anonymous ? '匿名同学' : (s.author || '同学');
+    var tags = [];
+    if (s.grade) tags.push('<span class="ts-tag">' + esc(s.grade) + '</span>');
+    if (s.major) tags.push('<span class="ts-tag">' + esc(s.major) + '</span>');
+    var qas = (qs || []).map(function (q) {
+      var text = (s.a && s.a[q.id]) || '';
+      if (!text) return '';
+      return '<div class="ts-qa"><div class="ts-q"><span class="ic">' + (q.icon || '') + '</span><span>' + esc(q.label || '') + '</span></div><p class="ts-a">' + esc(text) + '</p></div>';
+    }).join('');
+    return '<article class="ts-card">' +
+      '<header class="ts-head">' +
+        '<div class="ts-avatar">' + esc(who.charAt(0)) + '</div>' +
+        '<div class="ts-who"><div class="ts-name">' + esc(who) + '</div><div class="ts-tags">' + tags.join('') + '</div></div>' +
+        (s.score ? '<div class="ts-score"><span class="v">' + esc(String(s.score)) + '</span><span class="u">分</span></div>' : '') +
+      '</header>' +
+      '<div class="ts-course"><span class="ts-kicker">这门课</span><span class="ts-cname">' + esc(s.course || '') + '</span></div>' +
+      '<div class="ts-answers">' + qas + '</div>' +
+    '</article>';
+  }
+  /* ⑤ ta说：优先按课程名/编码匹配 data/stories.json 的结构化卡片，匹配不到回落 content.json */
+  function renderTasay(el, key) {
+    ensureTasayStyles();
+    Promise.all([getJson(STORIES_URL), getJson(CONTENT_URL)]).then(function (rs) {
+      var st = rs[0] || {};
+      var data = rs[1] || {};
+      var list = (st.stories || []).filter(function (s) {
+        return s.course === key || s.code === key;
+      });
+      if (list.length) {
+        el.innerHTML = list.map(function (s) { return tasayCardHtml(s, st.questions || []); }).join('');
+        return;
+      }
+      var entry = data[key] || {};
+      var text = entry.tasay || '';
+      el.innerHTML = text ? mdToHtml(text) : SECTION_FALLBACK.tasay;
+    }).catch(function () {
+      el.innerHTML = SECTION_FALLBACK.tasay;
+    });
+  }
   function renderSection(el, code, field) {
+    if (field === 'tasay') { renderTasay(el, code); return; }
     getJson(CONTENT_URL).then(function (data) {
       var entry = (data && data[code]) || {};
       var text = entry[field] || '';

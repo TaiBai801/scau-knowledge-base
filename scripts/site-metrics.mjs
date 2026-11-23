@@ -35,6 +35,7 @@ const SYNC_FILES = [
   'cards.json',
   'materials.json',
   'dir-map.json',
+  'stories.json',
 ]
 
 /* ─────────────────────────── 基础工具 ─────────────────────────── */
