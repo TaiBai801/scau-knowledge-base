@@ -1282,7 +1282,11 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   margin: 0 auto;
 }
 
-/* 四六级考场：做题页 + 结果页需要宽屏，容器放到 1880 */
+/* 四六级考场：cet.md 是 Markdown 页面，内容被 VPDoc(960/1040) 包着，
+   必须连 VPDoc 一起撑开，否则 .ardot-page-inner 的宽度会被父级吃掉 */
+.VPDoc:has(.ardot-page-content.cet-wide) { max-width: 1880px !important; }
+.VPDoc:has(.ardot-page-content.cet-wide) .content-container,
+.VPDoc:has(.ardot-page-content.cet-wide) .content { max-width: 1880px !important; }
 .cet-wide .ardot-page-inner { max-width: 1880px; }
 @media (max-width: 1900px) {
   .cet-wide .ardot-page-inner { max-width: 100%; }
