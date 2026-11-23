@@ -195,6 +195,18 @@
       "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/img/信号与系统/index.html",
       "ext": "html",
       "size": null
+    },
+    {
+      "name": "信号与系统 习题（18题）_考试试题A(2)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/hw/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F%20%E4%B9%A0%E9%A2%98%EF%BC%8818%E9%A2%98%EF%BC%89_%E8%80%83%E8%AF%95%E8%AF%95%E9%A2%98A%282%29.docx",
+      "ext": "docx",
+      "size": 38573
+    },
+    {
+      "name": "信号与系统 习题（76题）_信号与系统平时作业（选择判断题）",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/hw/%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F%20%E4%B9%A0%E9%A2%98%EF%BC%8876%E9%A2%98%EF%BC%89_%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F%E5%B9%B3%E6%97%B6%E4%BD%9C%E4%B8%9A%EF%BC%88%E9%80%89%E6%8B%A9%E5%88%A4%E6%96%AD%E9%A2%98%EF%BC%89.docx",
+      "ext": "docx",
+      "size": 333468
     }
   ],
   "大学物理B": [
@@ -383,6 +395,18 @@
       "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/img/数字电子技术/index.html",
       "ext": "html",
       "size": null
+    },
+    {
+      "name": "数字电子技术 习题（6题）_计算题(2)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/hw/%E6%95%B0%E5%AD%97%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%20%E4%B9%A0%E9%A2%98%EF%BC%886%E9%A2%98%EF%BC%89_%E8%AE%A1%E7%AE%97%E9%A2%98%282%29.docx",
+      "ext": "docx",
+      "size": 38354
+    },
+    {
+      "name": "数字电子技术 习题（26题）_选择题2(35页)yikan(1)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/hw/%E6%95%B0%E5%AD%97%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%20%E4%B9%A0%E9%A2%98%EF%BC%8826%E9%A2%98%EF%BC%89_%E9%80%89%E6%8B%A9%E9%A2%982%2835%E9%A1%B5%29yikan%281%29.docx",
+      "ext": "docx",
+      "size": 46331
     }
   ],
   "电磁场与电磁波": [
@@ -665,6 +689,42 @@
       "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/img/自动控制原理/index.html",
       "ext": "html",
       "size": null
+    },
+    {
+      "name": "自动控制原理 习题（44题）_自动控制原理_试卷_全大题_完整答案",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/hw/%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E5%8E%9F%E7%90%86%20%E4%B9%A0%E9%A2%98%EF%BC%8844%E9%A2%98%EF%BC%89_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E5%8E%9F%E7%90%86_%E8%AF%95%E5%8D%B7_%E5%85%A8%E5%A4%A7%E9%A2%98_%E5%AE%8C%E6%95%B4%E7%AD%94%E6%A1%88.docx",
+      "ext": "docx",
+      "size": 41591
+    },
+    {
+      "name": "自动控制原理 习题（208题）_自动控制原理复习试题库20套",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/hw/%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E5%8E%9F%E7%90%86%20%E4%B9%A0%E9%A2%98%EF%BC%88208%E9%A2%98%EF%BC%89_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0%E8%AF%95%E9%A2%98%E5%BA%9320%E5%A5%97.docx",
+      "ext": "docx",
+      "size": 52432
+    },
+    {
+      "name": "自动控制原理 习题（140题）_自动控制原理试卷及答案（31页）",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/hw/%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E5%8E%9F%E7%90%86%20%E4%B9%A0%E9%A2%98%EF%BC%88140%E9%A2%98%EF%BC%89_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E5%8E%9F%E7%90%86%E8%AF%95%E5%8D%B7%E5%8F%8A%E7%AD%94%E6%A1%88%EF%BC%8831%E9%A1%B5%EF%BC%89.docx",
+      "ext": "docx",
+      "size": 46862
+    },
+    {
+      "name": "自动控制原理 习题（171题）_自动控制原理考试复习题（22页）",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/hw/%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E5%8E%9F%E7%90%86%20%E4%B9%A0%E9%A2%98%EF%BC%88171%E9%A2%98%EF%BC%89_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E5%8E%9F%E7%90%86%E8%80%83%E8%AF%95%E5%A4%8D%E4%B9%A0%E9%A2%98%EF%BC%8822%E9%A1%B5%EF%BC%89.docx",
+      "ext": "docx",
+      "size": 40895
+    },
+    {
+      "name": "自动控制原理 习题（103题）_自动控制原理选择题(48学时)有答案",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/hw/%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E5%8E%9F%E7%90%86%20%E4%B9%A0%E9%A2%98%EF%BC%88103%E9%A2%98%EF%BC%89_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E5%8E%9F%E7%90%86%E9%80%89%E6%8B%A9%E9%A2%98%2848%E5%AD%A6%E6%97%B6%29%E6%9C%89%E7%AD%94%E6%A1%88.docx",
+      "ext": "docx",
+      "size": 41074
+    },
+    {
+      "name": "自动控制原理 习题（85题）_自动控制理论_习题集(含答案)（17",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/hw/%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E5%8E%9F%E7%90%86%20%E4%B9%A0%E9%A2%98%EF%BC%8885%E9%A2%98%EF%BC%89_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E7%90%86%E8%AE%BA_%E4%B9%A0%E9%A2%98%E9%9B%86%28%E5%90%AB%E7%AD%94%E6%A1%88%29%EF%BC%8817.docx",
+      "ext": "docx",
+      "size": 41873
     }
   ],
   "马克思主义基本原理概论": [
@@ -1021,7 +1081,14 @@
       "size": null
     }
   ],
-  "电机学": [],
+  "电机学": [
+    {
+      "name": "电机学 习题（280题）_《电机学》复习资料2025月12月",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/hw/%E7%94%B5%E6%9C%BA%E5%AD%A6%20%E4%B9%A0%E9%A2%98%EF%BC%88280%E9%A2%98%EF%BC%89_%E3%80%8A%E7%94%B5%E6%9C%BA%E5%AD%A6%E3%80%8B%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%992025%E6%9C%8812%E6%9C%88.docx",
+      "ext": "docx",
+      "size": 60764
+    }
+  ],
   "试验设计与统计分析（研）": [
     {
       "name": "笔记",
@@ -1150,6 +1217,12 @@
       "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/hw/习近平新时代中国特色社会主义思想概论 习题（707题）_新思想练习题.docx",
       "ext": "docx",
       "size": 109655
+    },
+    {
+      "name": "习近平新时代中国特色社会主义思想概论 习题（294题）_1_习思想课程练习题 (1) (1)",
+      "url": "https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/files/hw/%E4%B9%A0%E8%BF%91%E5%B9%B3%E6%96%B0%E6%97%B6%E4%BB%A3%E4%B8%AD%E5%9B%BD%E7%89%B9%E8%89%B2%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89%E6%80%9D%E6%83%B3%E6%A6%82%E8%AE%BA%20%E4%B9%A0%E9%A2%98%EF%BC%88294%E9%A2%98%EF%BC%89_1_%E4%B9%A0%E6%80%9D%E6%83%B3%E8%AF%BE%E7%A8%8B%E7%BB%83%E4%B9%A0%E9%A2%98%20%281%29%20%281%29.docx",
+      "ext": "docx",
+      "size": 79666
     }
   ],
   "电气控制技术": [
