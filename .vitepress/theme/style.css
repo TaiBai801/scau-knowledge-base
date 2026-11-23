@@ -1166,32 +1166,20 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   .hero-stats { gap: 1rem; }
   .hero-stat { min-width: 110px; padding: 1rem 1.25rem; }
 }
-/* 文档正文容器：VitePress 默认 688px（且只对有 aside 的页面生效），统一放宽到 1200
-   注意必须放在媒体查询外——写进 1440+ 断点的话，1200~1439 视口会失效 */
-.VPDoc .content-container,
-.VPDoc.has-aside .content-container {
-  max-width: 1200px !important;
-}
-.VPDoc:not(.has-sidebar) .content { max-width: 1200px !important; }
-
 /* 桌面 960-1199px */
 @media (min-width: 960px) and (max-width: 1199px) {
-  .VPDoc { max-width: 1100px !important; }
-  .VPDoc:not(.has-sidebar) .container { max-width: 1100px !important; }
+  .VPDoc { max-width: 800px !important; }
 }
 /* 宽屏 ≥1200px */
 @media (min-width: 1200px) {
-  .VPDoc { max-width: 1300px !important; padding: 2.5rem 2.5rem 3.5rem !important; }
-  .VPDoc:not(.has-sidebar) .container { max-width: 1300px !important; }
+  .VPDoc { max-width: 960px !important; padding: 2.5rem 2.5rem 3.5rem !important; }
   .vp-doc { font-size: 1rem; }
   .vp-doc h1 { font-size: 2rem !important; }
   .vp-doc h2 { font-size: 1.5rem !important; }
 }
 /* 超宽屏 ≥1440px */
 @media (min-width: 1440px) {
-  /* 文档页（字多）：容器放宽到 1880 上限，正文仍限 1200 */
-  .VPDoc { max-width: 1880px !important; padding: 3rem 3rem 4rem !important; }
-  .VPDoc:not(.has-sidebar) .container { max-width: 1880px !important; }
+  .VPDoc { max-width: 1040px !important; padding: 3rem 3rem 4rem !important; }
   .vp-doc { font-size: 1.05rem; }
 }
 /* ── 首页宽屏比例修复 ── */
@@ -1294,18 +1282,10 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   margin: 0 auto;
 }
 
-/* 四六级考场：结果页左右分栏需要更宽，单独放开 */
+/* 四六级考场：结果页左右分栏需要更宽，单独放开容器上限 */
 .cet-wide .ardot-page-inner { max-width: 1440px; }
 @media (max-width: 1500px) {
   .cet-wide .ardot-page-inner { max-width: 100%; }
-}
-
-/* 内容较长的正文段落限制行宽，避免一行过长 */
-.vp-doc > p,
-.vp-doc > ul,
-.vp-doc > ol,
-.vp-doc > blockquote {
-  max-width: 1200px;
 }
 .ardot-tag {
   display: inline-block;
