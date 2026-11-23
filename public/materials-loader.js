@@ -86,6 +86,24 @@
   }
 
   var modalReady = false;
+  var matStyleReady = false;
+  // 资料分组折叠样式：渲染列表时立即注入（不依赖预览弹层）
+  function ensureMatStyles() {
+    if (matStyleReady) return;
+    matStyleReady = true;
+    var st = document.createElement('style');
+    st.textContent =
+      '.mat-group{margin:0 0 .9rem;border:1px solid var(--line,#E8E4DB);border-radius:10px;overflow:hidden;background:var(--bg-card,#fff)}' +
+      '.mat-group>summary{padding:.65rem 1rem;cursor:pointer;font-weight:600;font-size:.9rem;color:var(--text-heading,#1a1a1a);list-style:none;display:flex;align-items:center;gap:.5rem;user-select:none}' +
+      '.mat-group>summary::-webkit-details-marker{display:none}' +
+      '.mat-group>summary::before{content:"▸";display:inline-block;transition:transform .15s;color:var(--text-muted,#8a8578);font-size:.8rem}' +
+      '.mat-group[open]>summary::before{transform:rotate(90deg)}' +
+      '.mat-group>summary:hover{background:rgba(13,92,90,.04)}' +
+      '.mat-group table{margin:0;border-top:1px solid var(--line,#E8E4DB)}' +
+      '.mat-group table th:first-child,.mat-group table td:first-child{padding-left:1rem}' +
+      '.dark .mat-group{background:#151b1a;border-color:#2c3331}';
+    document.head.appendChild(st);
+  }
   function ensureModal() {
     if (modalReady) return;
     modalReady = true;
@@ -157,6 +175,7 @@
   }
 
   function renderMaterials(el, code) {
+    ensureMatStyles();
     Promise.all([getJson(MATERIALS_URL), getIndex()]).then(function (rs) {
       var data = rs[0] || {};
       var index = rs[1];
@@ -182,15 +201,35 @@
       if (source !== code) {
         note = '<div class="mat-alias-note">📎 本课暂无独立资料，已为你调出同类课程 <strong>《' + esc(source) + '》</strong> 的资料：</div>';
       }
-      var rows = list.map(function (m, i) {
-        var pv = previewInfo(m);
-        var pvLink = pv ? '<a href="javascript:;" class="pv-link" data-i="' + i + '">预览</a> · ' : '';
-        return '<tr><td>' + esc(m.name) + '</td>' +
-          '<td style="text-align:center">' + esc((m.ext || '').toUpperCase()) + '</td>' +
-          '<td style="text-align:center">' + fmtSize(m.size) + '</td>' +
-          '<td style="text-align:center;white-space:nowrap">' + pvLink + '<a href="' + esc(m.url) + '" class="dl-link">下载</a></td></tr>';
-      }).join('');
-      el.innerHTML = note + '<table><thead><tr><th>文件名</th><th>格式</th><th>大小</th><th>操作</th></tr></thead><tbody>' + rows + '</tbody></table>';
+      // ── 按类型分组，长列表折叠 ──
+      function groupOf(m) {
+        var n = m.name || '';
+        if (n.indexOf('原文件 · ') === 0) return 'origin';
+        if (/习题（\d+题）/.test(n) || /(判断题|填空题|选择题|简答题|思考题)（\d+题）/.test(n) || /考点与题型说明|复习笔记/.test(n)) return 'hw';
+        return 'doc';
+      }
+      var buckets = { doc: [], hw: [], origin: [] };
+      list.forEach(function (m, i) { buckets[groupOf(m)].push({ m: m, i: i }); });
+      function tableOf(arr) {
+        var rows = arr.map(function (x) {
+          var m = x.m, i = x.i;
+          var pv = previewInfo(m);
+          var pvLink = pv ? '<a href="javascript:;" class="pv-link" data-i="' + i + '">预览</a> · ' : '';
+          return '<tr><td>' + esc(m.name) + '</td>' +
+            '<td style="text-align:center">' + esc((m.ext || '').toUpperCase()) + '</td>' +
+            '<td style="text-align:center">' + fmtSize(m.size) + '</td>' +
+            '<td style="text-align:center;white-space:nowrap">' + pvLink + '<a href="' + esc(m.url) + '" class="dl-link">下载</a></td></tr>';
+        }).join('');
+        return '<table><thead><tr><th>文件名</th><th>格式</th><th>大小</th><th>操作</th></tr></thead><tbody>' + rows + '</tbody></table>';
+      }
+      var LABELS = { doc: '📚 课件与资料', hw: '✏️ 习题集', origin: '🖼 原文件（含图，建议直接看原件）' };
+      var html = note;
+      ['doc', 'hw', 'origin'].forEach(function (k) {
+        if (!buckets[k].length) return;
+        var openAttr = k === 'doc' ? ' open' : '';
+        html += '<details class="mat-group"' + openAttr + '><summary>' + LABELS[k] + '（' + buckets[k].length + '）</summary>' + tableOf(buckets[k]) + '</details>';
+      });
+      el.innerHTML = html;
       // 预览
       el.querySelectorAll('.pv-link').forEach(function (a) {
         a.addEventListener('click', function () { openPreview(list[+a.dataset.i]); });
