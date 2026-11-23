@@ -1282,9 +1282,9 @@ a:focus-visible, button:focus-visible, .VPButton:focus-visible,
   margin: 0 auto;
 }
 
-/* 四六级考场：结果页左右分栏需要更宽，单独放开容器上限 */
-.cet-wide .ardot-page-inner { max-width: 1440px; }
-@media (max-width: 1500px) {
+/* 四六级考场：做题页 + 结果页需要宽屏，容器放到 1880 */
+.cet-wide .ardot-page-inner { max-width: 1880px; }
+@media (max-width: 1900px) {
   .cet-wide .ardot-page-inner { max-width: 100%; }
 }
 .ardot-tag {

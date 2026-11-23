@@ -720,7 +720,7 @@ function showAnswer(v) {
 .cet-ri-ans { margin-left: auto; color: var(--text-muted); font-size: 0.82rem; max-width: 40%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .cet-ri-toggle { color: var(--text-muted); transition: transform .15s; flex: none; }
 .cet-ri.open .cet-ri-toggle { transform: rotate(180deg); }
-.cet-ri-body { display: grid; grid-template-columns: 1.45fr 1fr; gap: 22px; padding: 4px 18px 16px; }
+.cet-ri-body { display: grid; grid-template-columns: 7fr 3fr; gap: 22px; padding: 4px 18px 16px; }
 .cet-ri-left, .cet-ri-right { min-width: 0; }
 .cet-ri-stem { font-size: 0.92rem; line-height: 1.85; color: var(--text-heading); white-space: pre-wrap; word-break: break-word; margin: 0 0 12px; }
 .cet-ri-opts { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
