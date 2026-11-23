@@ -84,7 +84,7 @@ features:
       light: /icons/academic.svg
       dark: /icons/academic-dark.svg
       alt: 四六级
-    title: 四六级模拟考场
+    title: 四六级模拟
     details: 全真模考按真实顺序与时长自动计时交卷，听力/阅读/写作/翻译可单独训练，答案云端保存、断点续考。
     link: /cet
 ---

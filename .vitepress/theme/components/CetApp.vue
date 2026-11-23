@@ -393,7 +393,7 @@ function showAnswer(v) {
   <div class="cet">
     <!-- 未登录：引导登录 -->
     <div v-if="!loggedIn" class="cet-gate">
-      <p class="cet-gate-t">四六级模拟考场的作答记录与断点续考都绑定你的账号，请先登录。</p>
+      <p class="cet-gate-t">四六级模拟的作答记录与断点续考都绑定你的账号，请先登录。</p>
       <AuthPanel @authed="loadAll" />
     </div>
 

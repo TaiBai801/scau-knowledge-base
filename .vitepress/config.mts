@@ -201,7 +201,7 @@ export default defineConfig({
         { text: '全站检索', link: '/search' },
         { text: '组题练习', link: '/quiz' },
         { text: '概念卡', link: '/cards' },
-        { text: '四六级考场', link: '/cet' },
+        { text: '四六级模拟', link: '/cet' },
         { text: '学习周计划', link: '/weekplan' },
         { text: '目标计划', link: '/goals' },
       ]},
