@@ -46,6 +46,17 @@ export function verifyUserToken(token) {
   }
 }
 
+// ── 学号校验（四六级活动：9 位纯数字，前 4 位为入学年份）──
+// 返回 null 表示合法，否则返回错误提示文案
+export function validateStudentId(raw) {
+  const s = String(raw == null ? '' : raw).trim();
+  if (!s) return '请输入学号';
+  if (!/^\d{9}$/.test(s)) return '学号需为 9 位数字';
+  const y = Number(s.slice(0, 4));
+  if (y < 2015 || y > 2026) return '学号前 4 位（入学年份）不在合理范围';
+  return null;
+}
+
 // ── 简易限流（per 云函数实例内存；EdgeOne 多实例下为软限制，仅挡最基本的暴力尝试）──
 // rateLimit('login:1.2.3.4', 10, 60_000) → true=放行 false=超限
 const buckets = new Map();

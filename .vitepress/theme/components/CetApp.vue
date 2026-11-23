@@ -4,7 +4,7 @@
 // 数据：题库/试卷 ← /api/cet（云端）；作答进度/成绩记录 → /api/user key=cet（云端私有）
 // 断点续考：progress 每次作答变动 + 15s 心跳 + 页面卸载前 自动云端保存
 import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
-import { userAuth, restoreUser } from '../userauth.js'
+import { userAuth, restoreUser, bindStudentId } from '../userauth.js'
 import AuthPanel from '../AuthPanel.vue'
 import ArBtn from './ArBtn.vue'
 import ArBadge from './ArBadge.vue'
@@ -39,6 +39,28 @@ const loading = ref(true)
 const loadError = ref('')
 const bank = reactive({ config: { enabled: true, announce: '' }, questions: [], papers: [] })
 const cloud = ref(null) // 个人云端数据 { progress, records }
+
+// ── 学号绑定（四六级活动：进入练习前要求绑定）──
+const bindId = ref('')
+const bindErr = ref('')
+const binding = ref(false)
+const needBind = computed(() => !!userAuth.user && !userAuth.user.studentId)
+async function doBind() {
+  if (binding.value) return
+  const sid = bindId.value.trim()
+  if (!/^\d{9}$/.test(sid)) { bindErr.value = '学号需为 9 位数字'; return }
+  binding.value = true
+  bindErr.value = ''
+  try {
+    await bindStudentId(sid)
+    bindId.value = ''
+  } catch (e) {
+    bindErr.value = e.message || '绑定失败，请稍后再试'
+  } finally {
+    binding.value = false
+  }
+}
+
 const mode = ref('exam') // exam | training
 const trainingType = ref('listening')
 const trainingExam = ref('cet4')
@@ -112,6 +134,14 @@ const qMap = computed(() => {
   return m
 })
 const answeredCnt = computed(() => Object.values(run.answers).filter((v) => v !== '' && v != null && !(Array.isArray(v) && !v.length)).length)
+
+// 整卷共用一个音频（听力真题：25 题同段录音）→ 顶部放一个播放器，题目不再逐个渲染 audio
+const runAudio = computed(() => {
+  const audios = run.questions.map((q) => q.audio).filter(Boolean)
+  if (!audios.length) return ''
+  const first = audios[0]
+  return audios.every((a) => a === first) ? first : ''
+})
 
 function fmt(sec) {
   const s = Math.max(0, Math.floor(sec))
@@ -225,9 +255,9 @@ function judge(q) {
   return norm(mine) === norm(q.answer) ? 'right' : 'wrong'
 }
 
-const result = reactive({ paper: null, answers: {}, selfScores: {}, submittedAt: 0, forced: false })
+const result = reactive({ paper: null, answers: {}, selfScores: {}, submittedAt: 0, forced: false, doneSets: 0 })
 
-function doSubmit(forced) {
+async function doSubmit(forced) {
   if (run.submitting || !run.paper) return
   run.submitting = true
   const p = run.paper
@@ -272,6 +302,13 @@ function doSubmit(forced) {
   delete cloud.value.progress[p.id]
   markDirty()
   saveCloud()
+  // 服务端权威记账（仅全程模拟考；训练不计套数）
+  if (p.kind !== 'training') {
+    try {
+      const sr = await post(CET_API, { action: 'submit', paperId: p.id, answers: run.answers })
+      if (sr && sr.doneSets != null) result.doneSets = sr.doneSets
+    } catch (e) { /* 记账失败不影响交卷展示；完成度不足或未绑学号时后端返回提示，前端兜底 */ }
+  }
   stopHeartbeat()
   view.value = 'result'
   window.scrollTo(0, 0)
@@ -349,6 +386,24 @@ function showAnswer(v) {
     <template v-else-if="view === 'lobby'">
       <div v-if="!bank.config.enabled" class="cet-off">
         <ArError title="模拟考暂未开放" desc="请关注站内通知，开放时间由管理员配置。" />
+      </div>
+      <!-- 未绑学号：补绑层（挡住练习区） -->
+      <div v-else-if="needBind" class="cet-bind">
+        <h3 class="cet-bind-t">参加四六级活动需先绑定学号</h3>
+        <p class="cet-bind-d">线上练习完成套数与赋分都按学号统计，请绑定你的 9 位学号（例如 202405801）。</p>
+        <div class="cet-bind-row">
+          <input
+            v-model.trim="bindId"
+            type="text"
+            inputmode="numeric"
+            maxlength="9"
+            placeholder="9 位学号"
+            class="cet-bind-input"
+            @keyup.enter="doBind"
+          >
+          <ArBtn variant="primary" size="md" :loading="binding" @click="doBind">绑定</ArBtn>
+        </div>
+        <p v-if="bindErr" class="cet-bind-err">{{ bindErr }}</p>
       </div>
       <template v-else>
         <p v-if="bank.config.announce" class="cet-announce">{{ bank.config.announce }}</p>
@@ -437,6 +492,9 @@ function showAnswer(v) {
         >{{ secName(s.type) }}</button>
       </div>
 
+      <!-- 整卷共用的听力音频（放在分区进度条下方） -->
+      <audio v-if="runAudio" class="cet-run-audio" controls :src="runAudio" preload="auto"></audio>
+
       <!-- 当前分区题目 -->
       <div v-for="q in curQs" :key="q.id" class="cet-q">
         <p class="cet-q-stem">
@@ -444,7 +502,7 @@ function showAnswer(v) {
           <ArBadge tone="neutral">{{ q.score }} 分</ArBadge>
           {{ q.stem }}
         </p>
-        <audio v-if="q.audio" class="cet-q-audio" controls :src="q.audio" preload="auto"></audio>
+        <audio v-if="q.audio && !runAudio" class="cet-q-audio" controls :src="q.audio" preload="auto"></audio>
         <!-- 客观单选 -->
         <div v-if="q.type === 'listening' || q.type === 'reading'" class="cet-opts">
           <label v-for="(opt, oi) in q.options || []" :key="oi" class="cet-opt" :class="{ on: run.answers[q.id] === String.fromCharCode(65 + oi) }">
@@ -537,6 +595,14 @@ function showAnswer(v) {
 .cet-gate { max-width: 560px; margin: 0 auto; }
 .cet-gate-t { text-align: center; color: var(--text-muted); font-size: 0.85rem; }
 .cet-off { max-width: 480px; margin: 0 auto; }
+.cet-bind { max-width: 540px; margin: 24px auto; padding: 24px 20px; background: var(--bg-card); border: 1px solid var(--line); border-radius: 12px; text-align: center; }
+.cet-bind-t { font-size: 1.05rem; color: var(--text-heading); margin: 0 0 8px; }
+.cet-bind-d { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; margin: 0 0 16px; }
+.cet-bind-row { display: flex; gap: 10px; justify-content: center; }
+.cet-bind-input { flex: 1; max-width: 240px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 8px; font-family: inherit; font-size: 0.95rem; background: var(--vp-c-bg); color: var(--text-heading); }
+.cet-bind-err { font-size: 0.82rem; color: var(--color-danger); margin: 10px 0 0; }
+.dark .cet-bind { background: #151b1a; border-color: #2c3331; }
+.dark .cet-bind-input { background: #0f1514; border-color: #2c3331; }
 .cet-announce {
   background: var(--brand-pale); color: var(--brand);
   border-radius: 8px; padding: 8px 14px; font-size: 0.82rem; margin: 0 0 14px;
@@ -582,6 +648,7 @@ function showAnswer(v) {
 .cet-run-timer { font-family: var(--font-display); font-size: 1.25rem; color: var(--brand); }
 .cet-run-timer.danger { color: var(--color-danger); }
 .cet-secbar { display: flex; gap: 8px; margin-bottom: 14px; }
+.cet-run-audio { width: 100%; margin: 0 0 14px; }
 .cet-secbtn {
   flex: 1; padding: 8px 0; border-radius: 8px; border: 1px solid var(--line);
   background: var(--bg-card); cursor: pointer; font-family: inherit; font-size: 0.82rem;

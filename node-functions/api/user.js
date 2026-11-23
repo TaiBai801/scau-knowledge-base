@@ -13,16 +13,31 @@
 //   POST { action: 'logout' }        → 200 { ok: true }（无状态 token，客户端清除本地令牌即完成登出）
 //   POST { action: 'verify', token } → 200 { valid: true, username, displayName } / 401 { error }
 import { readJsonWithEtagSigned, writeJsonIfMatch, hasSecret } from './_cos.js';
-import { hashPassword, verifyPassword, signUserToken, verifyUserToken, rateLimit, json, parseBody } from './_userauth.js';
+import { hashPassword, verifyPassword, signUserToken, verifyUserToken, rateLimit, json, parseBody, validateStudentId } from './_userauth.js';
 import { auditLog } from './_auth.js';
 
 const USER_KEY = 'data/users.json';
 const DATA_KEY = 'data/users-data.json'; // 学生个人数据同步（按用户隔离，private）
 const NAME_RE = /^[\u4e00-\u9fa5a-zA-Z0-9_-]{2,16}$/; // 2-16 位：中文/字母/数字/下划线/连字符
+const NAME_MAX = 24;
 
 // 对外脱敏：绝不返回 salt/hash
 function publicUser(u) {
-  return { username: u.username, displayName: u.displayName || u.username, createdAt: u.createdAt };
+  return {
+    username: u.username,
+    displayName: u.displayName || u.username,
+    studentId: u.studentId || '',
+    realName: u.realName || '',
+    createdAt: u.createdAt,
+  };
+}
+
+// 读 users.json 并归一化结构（兼容旧数据：无 studentIdIndex 时补齐）
+function normalizeUsersState(raw) {
+  const s = (raw && typeof raw === 'object') ? raw : {};
+  if (!s.users || typeof s.users !== 'object') s.users = {};
+  if (!s.studentIdIndex || typeof s.studentIdIndex !== 'object') s.studentIdIndex = {};
+  return s;
 }
 
 export function onRequestOptions() {
@@ -46,30 +61,40 @@ export async function onRequestPost({ request }) {
       const username = String(body.username || '').trim();
       const password = String(body.password || '');
       const displayName = String(body.displayName || '').trim() || username;
+      const studentId = String(body.studentId || '').trim();
+      const realName = String(body.realName || '').trim().slice(0, NAME_MAX);
       if (!NAME_RE.test(username)) return json({ error: '用户名需 2-16 位，可用中文、字母、数字、下划线或连字符' }, 400);
       if (password.length < 6 || password.length > 64) return json({ error: '密码长度需 6-64 位' }, 400);
-      if (displayName.length > 24) return json({ error: '昵称过长（≤24 字）' }, 400);
+      if (displayName.length > NAME_MAX) return json({ error: '昵称过长（≤24 字）' }, 400);
+      // 学号选填：填了就校验
+      if (studentId) {
+        const sidErr = validateStudentId(studentId);
+        if (sidErr) return json({ error: sidErr }, 400);
+      }
 
       const { data, etag } = await readJsonWithEtagSigned(USER_KEY);
-      const state = data || { users: {} };
-      if (!state.users) state.users = {};
+      const state = normalizeUsersState(data);
       if (state.users[username]) return json({ error: '用户名已被注册' }, 409);
+      if (studentId && state.studentIdIndex[studentId]) return json({ error: '该学号已被其他账号绑定' }, 409);
 
       const { salt, hash } = hashPassword(password);
       const now = Date.now();
       const u = { username, displayName, salt, hash, createdAt: now, lastLoginAt: now };
+      if (studentId) { u.studentId = studentId; u.realName = realName; u.boundAt = now; state.studentIdIndex[studentId] = username; }
       state.users[username] = u;
       const r = await writeJsonIfMatch(USER_KEY, state, etag, 'private');
       if (!r.ok) {
         // 并发冲突：重读一次再试（仅重试 1 次）
         const { data: d2, etag: e2 } = await readJsonWithEtagSigned(USER_KEY);
-        const s2 = d2 || { users: {} };
+        const s2 = normalizeUsersState(d2);
         if (s2.users[username]) return json({ error: '用户名已被注册' }, 409);
+        if (studentId && s2.studentIdIndex[studentId]) return json({ error: '该学号已被其他账号绑定' }, 409);
         s2.users[username] = u;
+        if (studentId) s2.studentIdIndex[studentId] = username;
         const r2 = await writeJsonIfMatch(USER_KEY, s2, e2, 'private');
         if (!r2.ok) return json({ error: '写入冲突，请重试', status: r2.status }, 409);
       }
-      await auditLog(username, 0, 'register', '学生账号注册');
+      await auditLog(username, 0, 'register', studentId ? '学生账号注册（含学号绑定）' : '学生账号注册');
       return json({ ok: true, token: signUserToken(username), user: publicUser(u) });
     }
 
@@ -107,6 +132,45 @@ export async function onRequestPost({ request }) {
       const u = (data.data || { users: {} }).users[who.username];
       if (!u) return json({ error: '账号不存在' }, 401); // 注册后又被清理的极端情况
       return json({ valid: true, user: publicUser(u) });
+    }
+
+    // ── 绑定 / 补绑学号（四六级活动：进入练习前要求绑定）──
+    if (action === 'bindStudentId') {
+      const who = verifyUserToken(String(body.token || ''));
+      if (!who) return json({ error: '未登录或登录已过期' }, 401);
+      const studentId = String(body.studentId || '').trim();
+      const realName = String(body.realName || '').trim().slice(0, NAME_MAX);
+      const sidErr = validateStudentId(studentId);
+      if (sidErr) return json({ error: sidErr }, 400);
+
+      for (let i = 0; i < 4; i++) {
+        const { data, etag } = await readJsonWithEtagSigned(USER_KEY);
+        const state = normalizeUsersState(data);
+        const u = state.users[who.username];
+        if (!u) return json({ error: '账号不存在' }, 401);
+        // 幂等：已是同一学号
+        if (u.studentId === studentId) return json({ ok: true, user: publicUser(u), unchanged: true });
+        // 学号被他人占用（不泄露占用者身份）
+        const owner = state.studentIdIndex[studentId];
+        if (owner && owner !== who.username) return json({ error: '该学号已被其他账号绑定' }, 409);
+        // 改绑：释放旧学号索引
+        const oldId = u.studentId || '';
+        if (oldId && state.studentIdIndex[oldId] === who.username) delete state.studentIdIndex[oldId];
+        u.studentId = studentId;
+        u.realName = realName || u.realName || '';
+        u.boundAt = Date.now();
+        if (!Array.isArray(u.bindHistory)) u.bindHistory = [];
+        if (oldId && oldId !== studentId) u.bindHistory.push({ from: oldId, to: studentId, at: Date.now() });
+        if (u.bindHistory.length > 3) u.bindHistory = u.bindHistory.slice(-3);
+        state.studentIdIndex[studentId] = who.username;
+        const r = await writeJsonIfMatch(USER_KEY, state, etag, 'private');
+        if (r.ok) {
+          await auditLog(who.username, 0, 'bindStudentId', oldId ? ('改绑学号 ' + oldId + '→' + studentId) : ('绑定学号 ' + studentId));
+          return json({ ok: true, user: publicUser(u) });
+        }
+        if (r.status !== 412) return json({ error: '写入失败 ' + r.status }, 502);
+      }
+      return json({ error: '写入冲突（并发操作），请重试', conflict: true }, 409);
     }
 
     // ── 学生个人数据同步（kv，按用户隔离）────────────────────

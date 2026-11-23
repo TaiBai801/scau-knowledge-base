@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>四六级活动管理 · 管理后台</title>
+<style>
+:root{--brand:#0D5C5A;--bg:#F7F5F0;--card:#fff;--line:#E8E4DB;--text:#4A5568;--green:#059669;--red:#dc2626;--amber:#D97706}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:var(--brand);color:#fff;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+header h1{font-size:1.2rem;font-weight:600}
+main{max-width:1080px;margin:0 auto;padding:2rem 1rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.25rem;margin-bottom:1.25rem}
+.card h2{font-size:1rem;font-weight:600;color:var(--brand);margin-bottom:0.75rem}
+table{width:100%;border-collapse:collapse;font-size:0.82rem}
+th,td{padding:0.5rem 0.55rem;border-bottom:1px solid #f0ede6;text-align:left;vertical-align:top}
+th{color:#1a1a1a;font-weight:600;background:#faf9f6}
+.badge{display:inline-block;padding:0.05rem 0.5rem;border-radius:999px;font-size:0.7rem}
+.b-ok{background:#E8F4F0;color:var(--brand)}
+.b-no{background:#FEE2E2;color:var(--red)}
+.btn{display:inline-block;padding:0.35rem 0.85rem;border:none;border-radius:8px;font-size:0.8rem;cursor:pointer;background:var(--brand);color:#fff;font-family:inherit}
+.btn-ghost{background:#fff;color:var(--brand);border:1px solid var(--brand)}
+.muted{font-size:0.76rem;color:#8a8578}
+.kpis{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:1rem}
+.kpi{flex:1;min-width:120px;background:#faf9f6;border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.kpi b{display:block;font-size:1.5rem;color:var(--brand)}
+.kpi span{font-size:0.76rem;color:#8a8578}
+textarea{width:100%;min-height:140px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:0.82rem;background:#faf9f6;resize:vertical}
+.hint{font-size:0.76rem;color:#8a8578;margin:6px 0 10px}
+.toast{position:fixed;top:70px;right:20px;background:#0D5C5A;color:#fff;padding:0.6rem 1rem;border-radius:8px;font-size:0.85rem;display:none;z-index:99}
+</style>
+</head>
+<body>
+<header><h1>四六级活动管理</h1><span class="who" id="who"></span></header>
+<main>
+  <section class="card">
+    <h2>线上练习进度 <span class="muted">（按学号统计，完成度 ≥60% 计一套）</span></h2>
+    <div class="kpis">
+      <div class="kpi"><b id="k-total">—</b><span>已绑学号人数</span></div>
+      <div class="kpi"><b id="k-done2">—</b><span>完成 ≥2 套</span></div>
+    </div>
+    <div style="margin-bottom:10px"><button class="btn" onclick="loadProgress()">刷新</button></div>
+    <table><thead><tr><th>学号</th><th>姓名</th><th>用户名</th><th>完成套数</th><th>最近提交</th></tr></thead><tbody id="progress"></tbody></table>
+  </section>
+
+  <section class="card">
+    <h2>导入报名名单 <span class="muted">（问卷星导出的「学号,姓名」每行一条，覆盖式导入）</span></h2>
+    <textarea id="rosterInput" placeholder="202405801,张三&#10;202405802,李四&#10;..."></textarea>
+    <div class="hint">支持逗号 / 制表符 / 空格分隔；学号必须 9 位数字，重复自动去重。</div>
+    <button class="btn" onclick="doImport()">导入名单</button>
+  </section>
+
+  <section class="card">
+    <h2>赋分名单 <span class="muted">（= 报名名单 ∩ 线上完成 ≥2 套）</span></h2>
+    <div style="margin-bottom:10px"><button class="btn" onclick="loadCredit()">生成名单</button> <button class="btn btn-ghost" onclick="exportCSV()">导出 CSV</button></div>
+    <table><thead><tr><th>学号</th><th>姓名</th><th>完成套数</th><th>是否达标</th></tr></thead><tbody id="credit"></tbody></table>
+  </section>
+</main>
+<div class="toast" id="toast"></div>
+<script src="/admin/auth-check.js"></script>
+<script src="/admin/admin-nav.js"></script>
+<script>
+var API='/api/event';
+var creditRows=[]; // 缓存最近一次赋分名单，供导出
+function post(a,p){return fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({action:a,token:window.ADMIN.token},p))}).then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d.error||('HTTP '+r.status));return d;});});}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(function(){t.style.display='none';},2600);}
+function fmt(ts){return ts?new Date(ts).toLocaleString('zh-CN',{hour12:false}):'—';}
+
+function loadProgress(){
+  post('adminProgress').then(function(d){
+    document.getElementById('k-total').textContent=d.total||0;
+    document.getElementById('k-done2').textContent=d.done2||0;
+    document.getElementById('progress').innerHTML=(d.rows||[]).map(function(r){
+      var ok=r.doneSets>=2;
+      return '<tr><td><b>'+esc(r.studentId)+'</b></td><td>'+esc(r.realName||'—')+'</td><td class="muted">'+esc(r.username)+'</td>'+
+        '<td><span class="badge '+(ok?'b-ok':'b-no')+'">'+r.doneSets+' 套</span></td>'+
+        '<td class="muted">'+fmt(r.lastSubmitAt)+'</td></tr>';
+    }).join('')||'<tr><td colspan="5" class="muted">还没有绑定学号的学生，或无人交卷</td></tr>';
+  }).catch(function(e){toast(e.message);});
+}
+
+function parseRoster(text){
+  var rows=[],seen={};
+  text.split(/\r?\n/).forEach(function(line){
+    var t=line.trim();if(!t)return;
+    var m=t.match(/^(\d{9})[\s,，\t]+(.+)$/);
+    var studentId=m?m[1]:(t.split(/[,，\t]+/)[0]||'').trim();
+    var name=m?m[2].trim():((t.split(/[,，\t]+/)[1]||'').trim());
+    if(!/^\d{9}$/.test(studentId))return;
+    if(seen[studentId])return;
+    seen[studentId]=1;
+    rows.push({studentId:studentId,name:name});
+  });
+  return rows;
+}
+function doImport(){
+  var roster=parseRoster(document.getElementById('rosterInput').value);
+  if(!roster.length){toast('没解析到有效条目（学号需 9 位数字）');return;}
+  post('importRoster',{roster:roster}).then(function(d){toast('已导入 '+d.count+' 条'+(d.skipped?'，跳过 '+d.skipped+' 条':''));}).catch(function(e){toast(e.message);});
+}
+
+function loadCredit(){
+  post('exportCredit').then(function(d){
+    creditRows=d.rows||[];
+    document.getElementById('credit').innerHTML=creditRows.map(function(r){
+      return '<tr><td><b>'+esc(r.studentId)+'</b></td><td>'+esc(r.name||'—')+'</td><td>'+r.doneSets+'</td>'+
+        '<td><span class="badge '+(r.qualified?'b-ok':'b-no')+'">'+(r.qualified?'达标':'未达标')+'</span></td></tr>';
+    }).join('')||'<tr><td colspan="4" class="muted">请先导入报名名单</td></tr>';
+    if(d.total)toast('共 '+d.total+' 人报名，'+d.qualifiedCount+' 人达标');
+  }).catch(function(e){toast(e.message);});
+}
+function exportCSV(){
+  if(!creditRows.length){toast('请先生成名单');return;}
+  var csv='\ufeff学号,姓名,完成套数,是否达标\n';
+  creditRows.forEach(function(r){csv+=r.studentId+','+(r.name||'')+','+r.doneSets+','+(r.qualified?'是':'否')+'\n';});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  a.download='四六级赋分名单-'+new Date().toISOString().slice(0,10)+'.csv';
+  a.click();
+}
+
+loadProgress();
+</script>
+</body>
+</html>

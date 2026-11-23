@@ -85,9 +85,17 @@ export async function restoreUser() {
 }
 
 // ── 注册 ──
-export async function registerUser(username, password, displayName) {
-  const data = await apiUser('register', { username, password, displayName })
+export async function registerUser(username, password, displayName, studentId = '', realName = '') {
+  const data = await apiUser('register', { username, password, displayName, studentId, realName })
   saveSession(data.token, data.user)
+  return data.user
+}
+
+// ── 绑定 / 补绑学号（四六级活动：进入练习前要求）──
+export async function bindStudentId(studentId, realName = '') {
+  const data = await apiUser('bindStudentId', { token: getToken(), studentId, realName })
+  userAuth.user = data.user
+  if (ls()) ls().setItem(SNAP_KEY, JSON.stringify(data.user))
   return data.user
 }
 

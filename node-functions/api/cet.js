@@ -3,11 +3,13 @@
 // 数据: COS data/cet.json  { config, questions[], papers[] }
 // 读：学生 token（_userauth）或工作人员 token（_auth）均可
 // 写：仅工作人员（_auth token 且 role >= 1）
-import { readJson, readJsonWithEtag, writeJsonIfMatch, hasSecret } from './_cos.js';
+import { readJson, readJsonWithEtag, readJsonWithEtagSigned, writeJsonIfMatch, hasSecret } from './_cos.js';
 import { verifyToken, auditLog } from './_auth.js';
 import { verifyUserToken } from './_userauth.js';
 
 const DATA_KEY = 'data/cet.json';
+const PROGRESS_KEY = 'data/cet-progress.json'; // 服务端权威交卷记账（按学号，防伪造）
+const COMPLETE_RATE = 0.6; // 完成一套 = 已作答题目数 / 总题数 ≥ 60%
 const EXAMS = ['cet4', 'cet6'];
 const Q_TYPES = ['listening', 'reading', 'writing', 'translation'];
 const Q_STATUS = ['on', 'off'];
@@ -114,6 +116,55 @@ export async function onRequestPost({ request }) {
         questions: state.questions,
         papers: state.papers,
       });
+    }
+
+    // ── 学生交卷记账（服务端权威，防伪造；完成度 ≥60% 才记）──
+    if (action === 'submit') {
+      if (!whoUser) return json({ error: '需要学生账号登录' }, 403);
+      const paperId = String(body.paperId || '').trim();
+      const answers = (body.answers && typeof body.answers === 'object' && !Array.isArray(body.answers)) ? body.answers : {};
+      if (!paperId) return json({ error: '缺少试卷 id' }, 400);
+
+      const state = await readState();
+      const paper = (state.papers || []).find((p) => p.id === paperId);
+      if (!paper) return json({ error: '试卷不存在' }, 400);
+
+      // 完成度 = 已作答题目数 / 总题数
+      const qids = paper.questionIds || [];
+      let answered = 0;
+      for (const qid of qids) {
+        const v = answers[qid];
+        if (v !== undefined && v !== null && v !== '' && !(Array.isArray(v) && !v.length)) answered++;
+      }
+      const rate = qids.length ? answered / qids.length : 0;
+      if (rate < COMPLETE_RATE) {
+        return json({ ok: true, completed: false, answered, total: qids.length, rate: Math.round(rate * 100) });
+      }
+
+      // 拿学号（记账键）
+      const uData = await readJsonWithEtagSigned('data/users.json');
+      const users = ((uData && uData.data) || {}).users || {};
+      const studentId = users[whoUser.username] && users[whoUser.username].studentId;
+      if (!studentId) return json({ error: '请先绑定学号再交卷' }, 400);
+
+      for (let i = 0; i < 4; i++) {
+        const { data: pg, etag } = await readJsonWithEtagSigned(PROGRESS_KEY);
+        const p = (pg && pg.students && typeof pg.students === 'object') ? pg : { students: {} };
+        p.students[studentId] = p.students[studentId] || { studentId, username: whoUser.username, submitted: {} };
+        const rec = p.students[studentId];
+        rec.username = whoUser.username;
+        if (rec.submitted[paperId]) {
+          return json({ ok: true, completed: true, dup: true, doneSets: Object.keys(rec.submitted).length });
+        }
+        rec.submitted[paperId] = { submittedAt: Date.now(), answered, total: qids.length, rate: Math.round(rate * 100) };
+        const r = await writeJsonIfMatch(PROGRESS_KEY, p, etag, 'private');
+        if (r.ok) {
+          await auditLog(whoUser.username, 0, 'cet:submit', paperId + ' (完成度 ' + Math.round(rate * 100) + '%)');
+          return json({ ok: true, completed: true, doneSets: Object.keys(rec.submitted).length });
+        }
+        if (r.status !== 412) return json({ error: '写入失败 ' + r.status }, 502);
+      }
+      return json({ error: '写入冲突（并发），请重试', conflict: true }, 409);
     }
 
     // ── 写：仅工作人员 ──

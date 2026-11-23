@@ -13,6 +13,7 @@ const username = ref('')
 const password = ref('')
 const password2 = ref('') // 注册模式：二次确认
 const displayName = ref('')
+const studentId = ref('')
 const submitting = ref(false)
 const formError = ref('')
 
@@ -23,6 +24,14 @@ const ready = computed(() => userAuth.ready)
 const mismatch = computed(
   () => mode.value === 'register' && password2.value.length > 0 && password2.value !== password.value
 )
+
+// 学号即时校验（选填；填了就校验 9 位数字）
+const studentIdError = computed(() => {
+  const s = studentId.value.trim()
+  if (!s) return ''
+  if (!/^\d{9}$/.test(s)) return '学号需为 9 位数字'
+  return ''
+})
 
 // 静默恢复会话（若宿主页面未调过 restoreUser 也能自愈）
 restoreUser()
@@ -41,7 +50,7 @@ async function submit() {
   try {
     const user = mode.value === 'login'
       ? await loginUser(u, p)
-      : await registerUser(u, p, displayName.value.trim())
+      : await registerUser(u, p, displayName.value.trim(), studentId.value.trim())
     password.value = ''
     password2.value = ''
     emit('authed', user)
@@ -91,6 +100,17 @@ function doLogout() {
       </div>
       <div v-if="mode === 'register'" class="au-field">
         <input v-model.trim="displayName" type="text" placeholder="昵称（选填，默认用用户名）" maxlength="24">
+      </div>
+      <div v-if="mode === 'register'" class="au-field">
+        <input
+          v-model.trim="studentId"
+          type="text"
+          inputmode="numeric"
+          placeholder="学号（选填，9 位数字；参加四六级活动必填）"
+          maxlength="9"
+          :class="{ 'au-bad': studentIdError }"
+        >
+        <div v-if="studentIdError" class="au-hint au-hint-bad">{{ studentIdError }}</div>
       </div>
       <div class="au-field">
         <input v-model="password" type="password" :placeholder="mode === 'register' ? '设置密码（至少 6 位）' : '密码'" maxlength="64" @keyup.enter="submit">

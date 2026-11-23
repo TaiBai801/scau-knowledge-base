@@ -172,6 +172,8 @@ export default defineConfig({
     '**/node_modules/**',
     'REFACTOR_AUDIT.md',
     'NEXT_PHASE_PLAN.md',
+    '四六级自编模拟题/**',
+    '四六级套题资源/**',
   ],
   markdown: {
     config: (md) => {

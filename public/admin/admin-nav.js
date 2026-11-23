@@ -22,6 +22,7 @@
     { group: '数据', items: [
       { t: '数据统计', h: '/admin/stats.html' },
       { t: '存量盘活', h: '/admin/materials-scan.html' },
+      { t: '四六级活动', h: '/admin/event.html' },
     ]},
     { group: '系统', items: [
       { t: '管理员管理', h: '/admin/admins.html' },
