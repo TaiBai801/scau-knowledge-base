@@ -6,7 +6,7 @@
   var BASE = 'https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com';
   var MATERIALS_URL = BASE + '/data/materials.json';
   var CONTENT_URL = BASE + '/data/content.json';
-  var STORIES_URL = '/data/stories.json'; // 仓库文件，构建期经 SYNC_FILES 同步到站点（勿改 COS）
+  var STORIES_URL = BASE + '/data/stories.json'; // COS：后台「学长分享」运行时可写，即时生效
   var INDEX_URL = '/data/course-index.json';
   var cache = {};
 

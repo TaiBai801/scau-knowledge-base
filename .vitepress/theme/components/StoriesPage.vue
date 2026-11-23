@@ -3,11 +3,25 @@
 // 数据源：data/stories.json，构建期静态导入（无运行时请求），随仓库版本化管理。
 // 四问固定为：先抓什么 / 用什么资料 / 坑在哪 / 一句话。
 // 部分学长只回答了其中几问，空字符串一律不渲染，避免"暂无"占位符堆砌。
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import seed from '../../../data/stories.json'
 
-const questions = Array.isArray(seed?.questions) ? seed.questions : []
-const stories = (Array.isArray(seed?.stories) ? seed.stories : []).filter((s) => s && s.id)
+// 运行时优先拉 COS 版（后台「学长分享」即时编辑），失败/为空回落构建期种子
+const COS_STORIES = 'https://scau-files-1440179010.cos.ap-chengdu.myqcloud.com/data/stories.json'
+const remote = ref(null)
+onMounted(async () => {
+  try {
+    const res = await fetch(COS_STORIES, { cache: 'no-store' })
+    if (!res.ok) return
+    const d = await res.json()
+    if (d && Array.isArray(d.stories) && Array.isArray(d.questions)) remote.value = d
+  } catch { /* 静默回落种子 */ }
+})
+const live = computed(() => remote.value || seed)
+const questions = computed(() => (Array.isArray(live.value?.questions) ? live.value.questions : []))
+const stories = computed(() =>
+  (Array.isArray(live.value?.stories) ? live.value.stories : []).filter((s) => s && s.id)
+)
 
 const courseFilter = ref('all')
 const gradeFilter = ref('all')
@@ -21,11 +35,11 @@ function uniq(list) {
   return out
 }
 
-const courses = computed(() => uniq(stories.map((s) => s.course)))
-const grades = computed(() => uniq(stories.map((s) => s.grade)))
+const courses = computed(() => uniq(stories.value.map((s) => s.course)))
+const grades = computed(() => uniq(stories.value.map((s) => s.grade)))
 
 const filtered = computed(() =>
-  stories.filter(
+  stories.value.filter(
     (s) =>
       (courseFilter.value === 'all' || s.course === courseFilter.value) &&
       (gradeFilter.value === 'all' || s.grade === gradeFilter.value)
@@ -33,9 +47,9 @@ const filtered = computed(() =>
 )
 
 const stats = computed(() => ({
-  people: stories.length,
+  people: stories.value.length,
   courses: courses.value.length,
-  questions: questions.length,
+  questions: questions.value.length,
 }))
 
 // 每张卡预先把「有答案的问题」挑出来，模板里不再重复计算
@@ -44,7 +58,7 @@ const cards = computed(() =>
     const a = s.a || {}
     return {
       ...s,
-      items: questions
+      items: questions.value
         .map((q) => ({ ...q, text: String(a[q.id] ?? '').trim() }))
         .filter((q) => q.text !== ''),
     }

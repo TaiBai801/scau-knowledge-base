@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>学长分享 · 管理后台</title>
+<style>
+:root{--brand:#0D5C5A;--bg:#F7F5F0;--card:#fff;--line:#E8E4DB;--text:#4A5568;--green:#059669}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:var(--brand);color:#fff;padding:1rem 2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+header h1{font-size:1.2rem;font-weight:600}
+header a{color:#b2d9d6;font-size:0.85rem;text-decoration:none}
+header a:hover{color:#fff}
+main{max-width:860px;margin:0 auto;padding:2rem 1rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.25rem;margin-bottom:1.25rem}
+.card h2{font-size:1rem;font-weight:600;color:var(--brand);margin-bottom:0.75rem}
+textarea{width:100%;min-height:90px;padding:0.6rem 0.75rem;border:1px solid var(--line);border-radius:8px;font-size:0.9rem;font-family:inherit;line-height:1.6;resize:vertical}
+input[type=text],input[type=number],select{width:100%;padding:0.55rem 0.75rem;border:1px solid var(--line);border-radius:8px;font-size:0.9rem;font-family:inherit;background:#fff}
+label{display:block;font-size:0.82rem;font-weight:600;color:var(--brand);margin:0.7rem 0 0.25rem}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}
+.btn{display:inline-block;padding:0.55rem 1.2rem;border:none;border-radius:8px;font-size:0.9rem;cursor:pointer;background:var(--brand);color:#fff;transition:opacity .15s}
+.btn:hover{opacity:.9}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-ghost{background:#fff;color:var(--brand);border:1px solid var(--brand)}
+.btn-danger{background:#fff;color:#DC2626;border:1px solid #FCA5A5}
+.btn-danger:hover{background:#FEF2F2}
+.btn-sm{padding:0.3rem 0.8rem;font-size:0.8rem}
+.hint{font-size:0.78rem;color:#94a3b8;margin-top:0.4rem}
+.savebar{display:flex;align-items:center;gap:0.75rem;margin-top:1rem}
+.savebar .msg{font-size:0.85rem;color:var(--green)}
+.st-list .item{display:flex;align-items:center;gap:0.75rem;padding:0.6rem 0.75rem;border-bottom:1px solid #f0ede6;font-size:0.88rem}
+.st-list .item:last-child{border-bottom:none}
+.st-list .ava{width:32px;height:32px;border-radius:50%;background:#E6F2EF;color:var(--brand);display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+.st-list .meta{flex:1;min-width:0}
+.st-list .meta b{color:#1a1a1a}
+.st-list .meta .sub{font-size:0.75rem;color:#94a3b8}
+.st-list .score{color:var(--brand);font-weight:700;white-space:nowrap}
+.search-results{max-height:260px;overflow-y:auto;border:1px solid var(--line);border-radius:8px;margin-top:0.4rem;position:absolute;background:#fff;width:100%;z-index:5}
+.search-results .item{padding:0.5rem 0.75rem;cursor:pointer;font-size:0.85rem;border-bottom:1px solid #f0ede6}
+.search-results .item:hover{background:#f0faf8}
+.search-results .item .code{color:#94a3b8;font-size:0.72rem;margin-left:0.4rem}
+.search-wrap{position:relative}
+.anon-line{display:flex;align-items:center;gap:0.4rem;margin-top:0.6rem;font-size:0.85rem}
+.anon-line input{width:auto}
+.empty-tip{padding:1rem;text-align:center;color:#94a3b8;font-size:0.85rem}
+</style>
+</head>
+<body>
+<script src="/admin/auth-check.js"></script>
+<script src="/admin/admin-nav.js"></script>
+<header>
+  <h1>🎓 学长分享管理</h1>
+  <a href="/">← 回站点</a>
+  <a href="/admin/index.html">课程管理</a>
+  <span id="who" style="margin-left:auto;font-size:0.8rem"></span>
+</header>
+<main>
+
+  <div class="card st-list">
+    <h2>已上架的分享</h2>
+    <div id="storyList"><div class="empty-tip">加载中…</div></div>
+    <div class="hint">保存后立即生效：对应课程页「⑤ ta 说」与 <a href="/stories" target="_blank">/stories 学长分享页</a> 同步更新。</div>
+  </div>
+
+  <div class="card" id="formCard" style="display:none">
+    <h2 id="formTitle">新增分享</h2>
+    <div class="grid2">
+      <div><label>姓名（匿名时仅前端显示「匿名同学」）</label><input type="text" id="f-author" placeholder="如：王同学"></div>
+      <div><label>年级</label><input type="text" id="f-grade" placeholder="如：2023 级"></div>
+    </div>
+    <div class="grid2">
+      <div><label>专业 / 班级</label><input type="text" id="f-major" placeholder="如：电子科学与技术 2 班"></div>
+      <div><label>分数（选填）</label><input type="number" id="f-score" placeholder="如：96" min="0" max="100"></div>
+    </div>
+    <label>课程（搜索选择，自动带编码）</label>
+    <div class="search-wrap">
+      <input type="text" id="courseSearch" placeholder="输入课程名搜索，如「电磁场」" autocomplete="off">
+      <div class="search-results" id="searchResults" style="display:none"></div>
+    </div>
+    <div class="selected-course" id="selectedCourse" style="display:none;margin-top:0.5rem"></div>
+    <div class="anon-line"><input type="checkbox" id="f-anonymous"><label for="f-anonymous" style="margin:0;font-weight:400">匿名展示（前端显示「匿名同学」，仍记录姓名便于联系）</label></div>
+    <label>🎯 这门课最该先抓什么</label>
+    <textarea id="f-q1" placeholder="主线、优先级、必须拿下的部分"></textarea>
+    <label>📚 用什么资料、怎么刷题</label>
+    <textarea id="f-q2" placeholder="书、题源、节奏"></textarea>
+    <label>⚠️ 最大的坑在哪（可留空）</label>
+    <textarea id="f-q3" placeholder="踩过才知道的那种"></textarea>
+    <label>💬 给同届的一句话</label>
+    <textarea id="f-q4" placeholder="一句就够"></textarea>
+    <div class="savebar">
+      <button class="btn" id="saveBtn">保存</button>
+      <button class="btn btn-ghost" id="cancelBtn">取消</button>
+      <span class="msg" id="saveMsg"></span>
+    </div>
+  </div>
+
+  <div class="card">
+    <button class="btn" id="addBtn">＋ 新增分享</button>
+    <span class="hint" style="margin-left:0.75rem">保存后：/stories 学长分享页 + 对应课程页「⑤ ta 说」即时更新，无需重新部署。</span>
+  </div>
+
+</main>
+<script>
+var API = '/api/stories';
+var stories = [];      // 当前数据（整份读写）
+var questions = [
+  { id:'q1', icon:'🎯', label:'这门课最该先抓什么' },
+  { id:'q2', icon:'📚', label:'用什么资料、怎么刷题' },
+  { id:'q3', icon:'⚠️', label:'最大的坑在哪' },
+  { id:'q4', icon:'💬', label:'给同届的一句话' }
+];
+var courses = [];
+var editId = null;     // null=新增
+var selCourse = null;  // {name, code}
+
+function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':String(s));return d.innerHTML;}
+
+function loadAll(){
+  return fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:window.ADMIN.token,action:'getStories'})})
+    .then(function(r){return r.json();})
+    .then(function(res){
+      if(res.data){ stories=res.data.stories||[]; if(res.data.questions&&res.data.questions.length) questions=res.data.questions; }
+      renderList();
+    });
+}
+
+function renderList(){
+  var box=document.getElementById('storyList');
+  if(!stories.length){ box.innerHTML='<div class="empty-tip">还没有分享，点下方「＋ 新增分享」录入第一条。</div>'; return; }
+  box.innerHTML=stories.map(function(s){
+    return '<div class="item" data-id="'+s.id+'">'+
+      '<div class="ava">'+esc((s.author||'同').charAt(0))+'</div>'+
+      '<div class="meta"><b>'+esc(s.anonymous?'匿名同学':(s.author||''))+'</b>'+
+      '<div class="sub">'+esc(s.course||'')+' · '+esc(s.grade||'')+(s.major?' · '+esc(s.major):'')+'</div></div>'+
+      (s.score?'<div class="score">'+s.score+' 分</div>':'')+
+      '<button class="btn btn-ghost btn-sm" data-act="edit" data-id="'+s.id+'">编辑</button>'+
+      '<button class="btn btn-danger btn-sm" data-act="del" data-id="'+s.id+'">删除</button>'+
+      '</div>';
+  }).join('');
+  box.querySelectorAll('button[data-act]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var id=b.dataset.id;
+      if(b.dataset.act==='edit') openForm(id);
+      else delStory(id);
+    });
+  });
+}
+
+function saveAll(){
+  return fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({token:window.ADMIN.token,action:'saveStories',data:{
+      version:1,updatedAt:new Date().toISOString().slice(0,10),questions:questions,stories:stories
+    }})}).then(function(r){return r.json();});
+}
+
+function delStory(id){
+  var s=stories.find(function(x){return x.id===id;});
+  if(!confirm('确定删除 '+((s&&s.author)||'这条')+' 的分享（'+((s&&s.course)||'')+'）？此操作立即生效。')) return;
+  stories=stories.filter(function(x){return x.id!==id;});
+  var msg=document.getElementById('saveMsg');
+  saveAll().then(function(res){
+    if(res.ok){ renderList(); msg.textContent='✓ 已删除'; } else msg.textContent='删除失败：'+(res.error||'');
+    setTimeout(function(){msg.textContent='';},2500);
+  });
+}
+
+function openForm(id){
+  editId=id||null;
+  var s=id?stories.find(function(x){return x.id===id;}):null;
+  document.getElementById('formTitle').textContent=id?'编辑分享':'新增分享';
+  document.getElementById('f-author').value=(s&&s.author)||'';
+  document.getElementById('f-grade').value=(s&&s.grade)||'';
+  document.getElementById('f-major').value=(s&&s.major)||'';
+  document.getElementById('f-score').value=(s&&s.score)||'';
+  document.getElementById('f-anonymous').checked=!!(s&&s.anonymous);
+  var a=(s&&s.a)||{};
+  document.getElementById('f-q1').value=a.q1||'';
+  document.getElementById('f-q2').value=a.q2||'';
+  document.getElementById('f-q3').value=a.q3||'';
+  document.getElementById('f-q4').value=a.q4||'';
+  selCourse=s?{name:s.course,code:s.code||''}:null;
+  renderSelCourse();
+  document.getElementById('formCard').style.display='block';
+  document.getElementById('formCard').scrollIntoView({behavior:'smooth'});
+}
+
+function renderSelCourse(){
+  var el=document.getElementById('selectedCourse');
+  if(!selCourse){ el.style.display='none'; el.innerHTML=''; return; }
+  el.style.display='flex';
+  el.innerHTML='<span>'+esc(selCourse.name)+'</span><span class="code">'+esc(selCourse.code||'')+'</span>'+
+    '<button class="btn btn-sm btn-ghost" id="clearCourse" style="margin-left:auto">✕ 取消选择</button>';
+  document.getElementById('clearCourse').addEventListener('click',function(){
+    selCourse=null; renderSelCourse();
+  });
+}
+
+document.getElementById('courseSearch').addEventListener('input',function(){
+  var kw=this.value.trim().toLowerCase();
+  var box=document.getElementById('searchResults');
+  if(!kw){ box.style.display='none'; box.innerHTML=''; return; }
+  var matched=courses.filter(function(c){return c.name.toLowerCase().indexOf(kw)>=0;}).slice(0,30);
+  box.innerHTML=matched.map(function(c){
+    return '<div class="item" data-code="'+c.code+'" data-name="'+esc(c.name)+'">'+esc(c.name)+'<span class="code">'+c.code+'</span></div>';
+  }).join('');
+  box.style.display=matched.length?'block':'none';
+  box.querySelectorAll('.item').forEach(function(it){
+    it.addEventListener('click',function(){
+      selCourse={name:it.dataset.name,code:it.dataset.code};
+      renderSelCourse();
+      box.style.display='none';
+      document.getElementById('courseSearch').value='';
+    });
+  });
+});
+
+document.getElementById('addBtn').addEventListener('click',function(){ openForm(null); });
+document.getElementById('cancelBtn').addEventListener('click',function(){ document.getElementById('formCard').style.display='none'; });
+
+document.getElementById('saveBtn').addEventListener('click',function(){
+  var author=document.getElementById('f-author').value.trim();
+  var q1=document.getElementById('f-q1').value.trim();
+  if(!author){ alert('请填姓名'); return; }
+  if(!selCourse){ alert('请搜索并选择课程'); return; }
+  if(!q1 && !document.getElementById('f-q2').value.trim()){ alert('「先抓什么」和「资料刷题」至少填一个'); return; }
+  var score=parseInt(document.getElementById('f-score').value,10);
+  var entry={
+    id:editId||('s'+Date.now().toString(36)),
+    author:author,
+    grade:document.getElementById('f-grade').value.trim(),
+    major:document.getElementById('f-major').value.trim(),
+    course:selCourse.name,
+    code:selCourse.code,
+    score:isNaN(score)?null:score,
+    anonymous:document.getElementById('f-anonymous').checked,
+    a:{q1:q1,q2:document.getElementById('f-q2').value.trim(),q3:document.getElementById('f-q3').value.trim(),q4:document.getElementById('f-q4').value.trim()}
+  };
+  if(editId){
+    var i=stories.findIndex(function(x){return x.id===editId;});
+    if(i>=0) stories[i]=entry; else stories.push(entry);
+  } else stories.push(entry);
+  var btn=document.getElementById('saveBtn'),msg=document.getElementById('saveMsg');
+  btn.disabled=true; msg.textContent='保存中…';
+  saveAll().then(function(res){
+    if(res.ok){
+      renderList();
+      document.getElementById('formCard').style.display='none';
+      msg.textContent='✓ 已保存（'+res.count+' 条）';
+    } else msg.textContent='保存失败：'+(res.error||'');
+    btn.disabled=false;
+    setTimeout(function(){msg.textContent='';},2500);
+  }).catch(function(){ msg.textContent='保存失败'; btn.disabled=false; });
+});
+
+// 初始化：并行拉分享数据 + 课程列表
+Promise.all([loadAll(), fetch('/data/courses.json').then(function(r){return r.json();})])
+  .then(function(rs){ courses=rs[1]||[]; });
+</script>
+</body>
+</html>

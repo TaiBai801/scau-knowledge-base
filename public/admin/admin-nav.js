@@ -9,6 +9,7 @@
       { t: '资料上传', h: '/admin/upload.html' },
       { t: '题库录入', h: '/admin/bank.html' },
       { t: '内容编辑', h: '/admin/content.html' },
+      { t: '学长分享', h: '/admin/stories.html' },
       { t: '四六级模拟', h: '/admin/cet.html' },
       { t: '积分商城', h: '/admin/points.html' },
       { t: '周计划审核', h: '/admin/weekplan.html' },
