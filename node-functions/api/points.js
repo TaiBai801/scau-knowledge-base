@@ -29,15 +29,16 @@ export function onRequestOptions() {
 
 // 默认积分规则（后台可改）
 export const DEFAULT_RULES = {
-  checkin_daily: { label: '每日学习打卡', points: 2, dailyCap: 1, enabled: true },
-  material_approved: { label: '资料被审核通过', points: 20, dailyCap: 5, enabled: true },
+  checkin_daily: { label: '每日学习打卡', points: 5, dailyCap: 1, enabled: true },
+  material_approved: { label: '资料审核通过（按质定档 20/40/60/100）', points: 20, dailyCap: 5, enabled: true },
   bounty_fulfilled: { label: '悬赏被采纳', points: 30, dailyCap: 0, enabled: true },
   quiz_session: { label: '完成一组练习', points: 3, dailyCap: 5, enabled: true },
-  mock_exam_done: { label: '完成一次模考', points: 10, dailyCap: 1, enabled: true },
+  mock_exam_done: { label: '完成一次模考', points: 15, dailyCap: 1, enabled: true },
   note_created: { label: '新建课程笔记', points: 2, dailyCap: 3, enabled: true },
   first_contribution: { label: '首次贡献（一次性）', points: 50, dailyCap: 1, enabled: true },
-  streak_7: { label: '连续打卡 7 天', points: 5, dailyCap: 1, enabled: true },
-  streak_30: { label: '连续打卡 30 天', points: 20, dailyCap: 1, enabled: true },
+  streak_7: { label: '连续打卡 7 天', points: 10, dailyCap: 1, enabled: true },
+  streak_30: { label: '连续打卡 30 天', points: 60, dailyCap: 1, enabled: true },
+  monthly_perfect: { label: '月度满勤大奖', points: 50, dailyCap: 1, enabled: true },
   plan_approved: { label: '周学习计划审核通过', points: 10, dailyCap: 1, enabled: true },
   plan_checkin: { label: '周计划每日打卡', points: 2, dailyCap: 1, enabled: true },
   qa_answer: { label: '答疑坊完成答疑', points: 15, dailyCap: 3, enabled: true },
@@ -116,7 +117,7 @@ function addLedger(state, user, delta, reason, ref, by) {
 }
 
 // 供其他业务函数调用的加分入口（服务端内部调用）
-export async function awardPoints(user, ruleKey, ref) {
+export async function awardPoints(user, ruleKey, ref, tierPoints) {
   if (!user || !ruleKey) return { ok: false, reason: '参数缺失' };
   const today = gmt8Date(0);
   const awardKey = ruleKey + ':' + user + ':' + (ref || today);
@@ -130,7 +131,8 @@ export async function awardPoints(user, ruleKey, ref) {
       const cnt = state.awardedKeys.filter((k) => k.startsWith(prefix) && k.endsWith(today)).length;
       if (cnt >= cap) return { stop: true, value: { ok: false, reason: '已达每日上限' } };
     }
-    const delta = Number(rule.points) || 0;
+    // tierPoints：调用方按质定档的分值（如资料审核 20/40/60/100），未传则用规则表分值
+    const delta = Number(tierPoints) > 0 ? Number(tierPoints) : (Number(rule.points) || 0);
     if (delta <= 0) return { stop: true, value: { ok: false, reason: '规则分值无效' } };
     state.awardedKeys.unshift(awardKey);
     const next = addLedger(state, user, delta, ruleKey, ref || '', 'system');

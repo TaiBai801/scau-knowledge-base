@@ -94,6 +94,7 @@ export async function onRequestPost({ request }) {
       if (minutes > 720) minutes = 720; // 单日上限 12 小时，防刷
 
       let result = null;
+      let daysMap = null;
       const err = await saveWithRetry((state) => {
         const rec = state.records[username] || (state.records[username] = { days: {} });
         if (!rec.days) rec.days = {};
@@ -102,6 +103,7 @@ export async function onRequestPost({ request }) {
         day.count = (Number(day.count) || 0) + 1;
         day.note = note || day.note;
         day.at = Date.now();
+        daysMap = rec.days;
         result = { date, minutes: day.minutes, count: day.count };
         return null;
       });
@@ -118,6 +120,19 @@ export async function onRequestPost({ request }) {
         const streak = Number(stats && stats.streak) || 0;
         if (streak >= 7) await awardPoints(username, 'streak_7', date);
         if (streak >= 30) await awardPoints(username, 'streak_30', date);
+        // 月度满勤：上月每天打卡 → 月度大奖（awardKey 带月份，天然每月只发一次）
+        const lm = (() => {
+          const [y, m] = String(date).split('-').map(Number);
+          const d = new Date(Date.UTC(y, m - 1, 1));
+          d.setUTCMonth(d.getUTCMonth() - 1);
+          return d.toISOString().slice(0, 7);
+        })();
+        const [yy, mm] = lm.split('-').map(Number);
+        const dim = new Date(yy, mm, 0).getDate();
+        const doneDays = daysMap
+          ? Object.keys(daysMap).filter((x) => typeof x === 'string' && x.startsWith(lm + '-')).length
+          : 0;
+        if (doneDays >= dim) await awardPoints(username, 'monthly_perfect', lm);
       } catch (e) { /* 积分故障不阻断打卡 */ }
 
       return json({ ok: true, day: result, stats, award });

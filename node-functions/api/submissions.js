@@ -217,6 +217,17 @@ export async function onRequestPost({ request }) {
       const wr = await writeJsonIfMatch(DATA_KEY, state, etag, 'private');
       if (wr.ok) {
         await auditLog(who.username, who.role, 'submission:' + status, id + ' ' + rec.course);
+        // 标记已上架：按质定档给受益学生发积分（提交系统未绑账号，由审核时登记；档位 20/40/60/100）
+        if (status === 'done' && body.by) {
+          const TIER = [20, 40, 60, 100];
+          let tier = Number(body.tier) || 20;
+          if (!TIER.includes(tier)) tier = 20;
+          try {
+            const { awardPoints } = await import('./points.js');
+            const ar = await awardPoints(String(body.by).trim(), 'material_approved', id, tier);
+            return json({ ok: true, award: ar });
+          } catch (e) { /* 发分失败不阻断审核 */ }
+        }
         return json({ ok: true });
       }
     }

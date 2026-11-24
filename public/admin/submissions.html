@@ -179,7 +179,16 @@ main{max-width:900px;margin:0 auto;padding:2rem 1rem}
           reply = prompt('驳回理由（学生可见，必填）：') || '';
           if (!reply.trim()) return;
         }
-        await post({ action: 'review', id: id, status: act, reply: reply });
+        var by = '', tier = 20;
+        if (act === 'done') {
+          by = (prompt('受益学生账号（发放积分用，留空则不发分）：') || '').trim();
+          if (by) {
+            var t = parseInt(prompt('质量定档（输入分值）：\n20 = 基础补充\n40 = 有价值（成套笔记/带解析题集）\n60 = 高价值（整学期全套/稀缺资料）\n100 = 镇站级（完整带解析题库）', '20') || '20', 10);
+            if ([20, 40, 60, 100].indexOf(t) < 0) t = 20;
+            tier = t;
+          }
+        }
+        await post({ action: 'review', id: id, status: act, reply: reply, by: by, tier: tier });
       }
       await load();
     } catch (e) {
