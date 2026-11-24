@@ -157,6 +157,13 @@ function buildRun(paper) {
   run.submitting = false
 }
 
+async function resetPaper(p) {
+  if (!confirm(`确定重置《${p.name}》的作答状态吗？未提交的作答进度将被清除（历史成绩记录不受影响），重置后可重新进入考试。`)) return
+  delete cloud.value.progress[p.id]
+  markDirty()
+  await saveCloud()
+}
+
 function startPaper(p) {
   const prog = cloud.value.progress[p.id]
   if (prog && !prog.submitted) {
@@ -444,11 +451,10 @@ function showAnswer(v) {
                   共 {{ p.questionIds.length }} 题 · {{ fmt(p.durationSec) }}
                 </span>
               </div>
-              <ArBtn
-                v-if="cloud.progress[p.id] && !cloud.progress[p.id].submitted"
-                variant="primary" size="sm"
-                @click="startPaper(p)"
-              >继续作答（剩 {{ fmt(cloud.progress[p.id].leftSec) }}）</ArBtn>
+              <span v-if="cloud.progress[p.id] && !cloud.progress[p.id].submitted" class="cet-reset-wrap">
+                <ArBtn variant="primary" size="sm" @click="startPaper(p)">继续作答（剩 {{ fmt(cloud.progress[p.id].leftSec) }}）</ArBtn>
+                <ArBtn variant="ghost" size="sm" title="清除未提交的作答进度，恢复为「进入考试」" @click="resetPaper(p)">重置</ArBtn>
+              </span>
               <ArBtn v-else variant="primary" size="sm" @click="startPaper(p)">进入考试</ArBtn>
             </div>
           </template>
@@ -646,6 +652,7 @@ function showAnswer(v) {
   padding: 14px 16px; margin-bottom: 10px;
 }
 .cet-paper-main { display: flex; flex-direction: column; gap: 4px; }
+.cet-reset-wrap { display: inline-flex; align-items: center; gap: 6px; }
 .cet-paper-name { font-size: 0.95rem; color: var(--text-heading); }
 .cet-paper-meta { font-size: 0.78rem; color: var(--text-muted); }
 .cet-train-opts { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; font-size: 0.88rem; }
